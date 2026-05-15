@@ -29,7 +29,6 @@ export default function RootLayout({
       className={`${outfit.variable} ${jetbrainsMono.variable} font-sans h-full antialiased dark`}
     >
       <head>
-        {/* Preload logo using the absolute URL */}
         <link rel="preload" as="image" href={LOGO_SRC} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>

@@ -19,15 +19,33 @@ import {
   Zap
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-
-const MOCK_APPLICANTS = [
-  { id: 1, name: "Alice Chen", role: "Frontend Dev", track: "Arbitrum", status: "Approved", date: "2026-05-10" },
-  { id: 2, name: "Bob Smith", role: "Smart Contract", track: "Arkiv — Wikis", status: "Pending", date: "2026-05-11" },
-  { id: 3, name: "Charlie Davis", role: "Product Manager", track: "Arkiv — Job Platform", status: "Rejected", date: "2026-05-09" },
-  { id: 4, name: "Diana Prince", role: "UI/UX Designer", track: "Arbitrum", status: "Approved", date: "2026-05-12" },
-];
+import { useEffect, useState } from "react";
+import { getApplicants, updateParticipantStatus } from "@/app/actions/admin";
 
 export default function AdminPage() {
+  const [applicants, setApplicants] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchApplicants();
+  }, []);
+
+  const fetchApplicants = async () => {
+    setLoading(true);
+    const result = await getApplicants();
+    if (result.success) {
+      setApplicants(result.applicants);
+    }
+    setLoading(false);
+  };
+
+  const handleUpdateStatus = async (id: string, status: "APPROVED" | "REJECTED") => {
+    const result = await updateParticipantStatus(id, status);
+    if (result.success) {
+      fetchApplicants();
+    }
+  };
+
   return (
     <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
       {/* Sidebar Admin */}
@@ -71,10 +89,10 @@ export default function AdminPage() {
           {/* KPIs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { label: "Total Applicants", val: "1,452", trend: "+12%" },
-              { label: "Approved Hackers", val: "380", trend: "+5%" },
-              { label: "Mentors", val: "42", trend: "0%" },
-              { label: "Track Sponsors", val: "12", trend: "+2" },
+              { label: "Total Applicants", val: applicants.length.toString(), trend: "+0%" },
+              { label: "Approved Hackers", val: applicants.filter(a => a.status === "APPROVED").length.toString(), trend: "+0%" },
+              { label: "Mentors", val: "0", trend: "0%" },
+              { label: "Track Sponsors", val: "0", trend: "+0" },
             ].map((stat, i) => (
               <div key={i} className="bg-white/2 border border-white/8 p-6 rounded-xl space-y-2">
                 <div className="text-xs text-gray-600 font-mono uppercase tracking-widest">{stat.label}</div>
@@ -104,25 +122,29 @@ export default function AdminPage() {
                 <thead>
                   <tr className="border-b border-white/5 bg-white/2 font-mono text-[10px] text-gray-600 uppercase tracking-widest">
                     <th className="py-4 pl-8 pr-4">Name</th>
-                    <th className="py-4 px-4">Role</th>
-                    <th className="py-4 px-4">Track</th>
+                    <th className="py-4 px-4">Github</th>
+                    <th className="py-4 px-4">Wallet</th>
                     <th className="py-4 px-4">Date</th>
                     <th className="py-4 px-4 text-center">Status</th>
                     <th className="py-4 pl-4 pr-8 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
-                  {MOCK_APPLICANTS.map((app) => (
+                  {loading ? (
+                    <tr><td colSpan={6} className="py-20 text-center text-gray-500">Loading applicants...</td></tr>
+                  ) : applicants.length === 0 ? (
+                    <tr><td colSpan={6} className="py-20 text-center text-gray-500">No applicants found.</td></tr>
+                  ) : applicants.map((app) => (
                     <tr key={app.id} className="hover:bg-white/2 transition-colors">
                       <td className="py-4 pl-8 pr-4 font-medium">{app.name}</td>
-                      <td className="py-4 px-4 text-gray-400">{app.role}</td>
-                      <td className="py-4 px-4 text-gray-400">{app.track}</td>
-                      <td className="py-4 px-4 font-mono text-xs text-gray-600">{app.date}</td>
+                      <td className="py-4 px-4 text-gray-400 font-mono text-xs">{app.github || "-"}</td>
+                      <td className="py-4 px-4 text-gray-400 font-mono text-xs">{app.walletAddress ? `${app.walletAddress.slice(0, 6)}...${app.walletAddress.slice(-4)}` : "-"}</td>
+                      <td className="py-4 px-4 font-mono text-xs text-gray-600">{new Date(app.createdAt).toLocaleDateString()}</td>
                       <td className="py-4 px-4">
                         <div className="flex justify-center">
                           <Badge className={
-                            app.status === "Approved" ? "bg-green-500/10 text-green-500 border-green-500/20" : 
-                            app.status === "Pending" ? "bg-yellow-500/10 text-yellow-500 border-yellow-500/20" : 
+                            app.status === "APPROVED" ? "bg-green-500/10 text-green-500 border-green-500/20" : 
+                            app.status === "PENDING" ? "bg-yellow-500/10 text-yellow-500 border-yellow-500/20" : 
                             "bg-red-500/10 text-red-500 border-red-500/20"
                           }>
                             {app.status}
@@ -131,8 +153,8 @@ export default function AdminPage() {
                       </td>
                       <td className="py-4 pl-4 pr-8 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <button className="p-1.5 rounded bg-green-500/10 text-green-500 hover:bg-green-500/20 transition-colors"><CheckCircle className="w-4 h-4" /></button>
-                          <button className="p-1.5 rounded bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors"><XCircle className="w-4 h-4" /></button>
+                          <button onClick={() => handleUpdateStatus(app.id, "APPROVED")} className="p-1.5 rounded bg-green-500/10 text-green-500 hover:bg-green-500/20 transition-colors"><CheckCircle className="w-4 h-4" /></button>
+                          <button onClick={() => handleUpdateStatus(app.id, "REJECTED")} className="p-1.5 rounded bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors"><XCircle className="w-4 h-4" /></button>
                           <button className="p-1.5 rounded text-gray-600 hover:text-white transition-colors"><MoreVertical className="w-4 h-4" /></button>
                         </div>
                       </td>
