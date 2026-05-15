@@ -1,0 +1,189 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PARTICIPANT
+  MENTOR
+  JUDGE
+  SPEAKER
+  SPONSOR
+  ADMIN
+  SUPERADMIN
+}
+
+enum ProjectStatus {
+  DRAFT
+  SUBMITTED
+  EVALUATED
+}
+
+enum ParticipantStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(PARTICIPANT)
+  status        ParticipantStatus @default(PENDING)
+  
+  // Profile
+  bio           String?
+  country       String?
+  github        String?
+  linkedin      String?
+  walletAddress String?
+  skills        String[]
+  techStack     String[]
+  
+  // Relations
+  teamId        String?
+  team          Team?     @relation(fields: [teamId], references: [id])
+  
+  // Specific Relations
+  mentorships   Mentorship[] @relation("MentorRelation")
+  evaluations   Evaluation[] @relation("JudgeRelation")
+  sponsorId     String?
+  sponsor       Sponsor?     @relation(fields: [sponsorId], references: [id])
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Sponsor {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  logoUrl     String?
+  website     String?
+  
+  users       User[]
+  tracks      Track[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Track {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  color       String?
+  
+  sponsorId   String?
+  sponsor     Sponsor?  @relation(fields: [sponsorId], references: [id])
+  
+  categories  Category[]
+  prizes      Prize[]
+  projects    Project[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  
+  trackId     String
+  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+}
+
+model Prize {
+  id          String    @id @default(cuid())
+  name        String
+  amount      String
+  
+  trackId     String
+  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+}
+
+model Team {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  
+  members     User[]
+  project     Project?
+  
+  mentorships Mentorship[] @relation("TeamMentorship")
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  
+  trackId     String?
+  track       Track?    @relation(fields: [trackId], references: [id])
+  
+  readme      String?
+  demoUrl     String?
+  githubUrl   String?
+  pitchDeckUrl String?
+  videoUrl    String?
+  
+  status      ProjectStatus @default(DRAFT)
+  
+  teamId      String    @unique
+  team        Team      @relation(fields: [teamId], references: [id])
+  
+  evaluations Evaluation[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Mentorship {
+  id          String    @id @default(cuid())
+  scheduledAt DateTime
+  status      String    @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  feedback    String?
+  
+  mentorId    String
+  mentor      User      @relation("MentorRelation", fields: [mentorId], references: [id])
+  
+  teamId      String
+  team        Team      @relation("TeamMentorship", fields: [teamId], references: [id])
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Evaluation {
+  id          String    @id @default(cuid())
+  
+  // Scores (1-10)
+  innovation  Int
+  uxUi        Int
+  feasibility Int
+  useOfArbitrum Int
+  impact      Int
+  
+  comments    String?
+  
+  judgeId     String
+  judge       User      @relation("JudgeRelation", fields: [judgeId], references: [id])
+  
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id])
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
