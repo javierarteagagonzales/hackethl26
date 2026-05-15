@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Users, ArrowRight, GitBranch, Globe, MessageSquare, Mic, Briefcase, Trophy, Terminal, Code2, Zap, Server, HelpCircle } from "lucide-react";
@@ -13,9 +12,12 @@ import { MOCK_TRACKS } from "@/lib/mock-data";
 export default function Home() {
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+  
   const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
   useEffect(() => {
+    setIsMounted(true);
     let i = 0;
     const terminalInterval = setInterval(() => {
       setTerminalText(codeSnippet.slice(0, i));
@@ -45,11 +47,11 @@ export default function Home() {
       clearInterval(terminalInterval);
       clearInterval(countdownInterval);
     };
-  }, []);
+  }, [codeSnippet]);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-brand-blue/30 overflow-hidden font-sans">
-
+      
       {/* Background Grid & Glow Effect */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand-blue/20 blur-[150px] rounded-full pointer-events-none z-0"></div>
@@ -58,8 +60,8 @@ export default function Home() {
       <div className="w-full bg-gradient-to-r from-brand-blue via-indigo-600 to-purple-600 text-white py-2 px-4 text-center text-sm font-semibold z-50 relative shadow-[0_0_15px_rgba(59,130,246,0.5)]">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
           <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-yellow-300" /> Bootcamp Ethereum Lima, Aprende sobre Arbitrum</span>
-          <span className="font-mono bg-black/40 px-3 py-1 rounded-full text-xs border border-white/20 tracking-widest">
-            Postula hasta: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+          <span className="font-mono bg-black/40 px-3 py-1 rounded-full text-xs border border-white/20 tracking-widest min-w-[200px]">
+            {isMounted ? `Postula hasta: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : "Cargando..."}
           </span>
         </div>
       </div>
@@ -68,7 +70,7 @@ export default function Home() {
       <nav className="sticky top-0 w-full z-40 border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/Ethlogo.png" alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" />
+            <img src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" onError={(e) => { e.currentTarget.src = "/Ethlogo.png"; }} />
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
             <Link href="#about" className="hover:text-white transition-colors">About</Link>
@@ -80,11 +82,11 @@ export default function Home() {
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-gray-400 hover:text-white text-sm transition-colors mr-2">
               <HelpCircle className="w-4 h-4 mr-1" /> Soporte: @javierdgtl
             </a>
-            <Link href="/login">
-              <Button variant="ghost" className="hidden sm:inline-flex text-gray-300 hover:text-white hover:bg-white/5">Log in</Button>
+            <Link href="/login" className="hidden sm:inline-flex h-9 items-center justify-center px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors">
+              Log in
             </Link>
-            <Link href="/register">
-              <Button className="bg-brand-blue hover:bg-brand-blue/80 text-white border border-brand-blue/50 shadow-[0_0_15px_rgba(59,130,246,0.5)]">Apply Now</Button>
+            <Link href="/register" className="inline-flex h-9 items-center justify-center px-4 py-2 text-sm font-medium bg-brand-blue hover:bg-brand-blue/80 text-white border border-brand-blue/50 shadow-[0_0_15px_rgba(59,130,246,0.5)] rounded-md transition-colors">
+              Apply Now
             </Link>
           </div>
         </div>
@@ -159,7 +161,7 @@ export default function Home() {
             </div>
             <div className="relative h-full min-h-[300px] rounded-xl border border-white/10 bg-gradient-to-tr from-brand-blue/10 to-transparent p-8 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.1)]">
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-              <Image src="/Ethlogo.png" alt="ETH Lima Logo" width={200} height={200} className="object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] animate-pulse" />
+              <Image src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" width={200} height={200} className="object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] animate-pulse" onError={(e) => { e.currentTarget.srcset = "/Ethlogo.png"; }} unoptimized />
             </div>
           </div>
         </div>
@@ -207,7 +209,7 @@ export default function Home() {
                         </ul>
                       </div>
                     </div>
-
+                    
                     <div className="pt-4 border-t border-white/10 flex items-center justify-between mt-auto">
                       <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">Prize Pool</span>
                       <span className="text-xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{track.totalPrizePool}</span>
@@ -277,7 +279,7 @@ export default function Home() {
       <footer className="bg-black py-12 border-t border-white/10 relative z-10">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img src="/Ethlogo.png" alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all" />
+            <img src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all" onError={(e) => { e.currentTarget.src = "/Ethlogo.png"; }} />
           </div>
 
           <div className="flex items-center gap-6">
