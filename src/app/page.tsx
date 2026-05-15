@@ -101,8 +101,8 @@ export default function Home() {
             </Badge>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-tight">
-              Build the Future <br className="hidden md:block" />
-              at <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-purple-500 to-brand-red">Ethereum Lima</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-purple-500 to-brand-red">ETH Lima</span>{" "}
+              Hackathon <span className="block text-white">2026</span>
             </h1>
 
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light">
@@ -249,10 +249,10 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
               {[
-                { day: "18 Jul - 24 Jul", time: "Preparación", title: "Workshops Pre Event", desc: "Charlas, formación de equipos y soporte virtual continuo.", color: "bg-blue-600" },
-                { day: "25 Jul - 26 Jul", time: "Construcción", title: "Hackathon & Demo Day", desc: "48 horas de código intensivo y envío de los proyectos.", color: "bg-purple-600" },
-                { day: "31 Jul - 10 Ago", time: "Evaluación", title: "Resultados en Vivo", desc: "Anuncio de ganadores para Arbitrum, Arkiv y otros tracks.", color: "bg-yellow-500" },
-                { day: "13 Ago - 06 Sep", time: "Seguimiento", title: "Post Hackathon", desc: "Ciclo de charlas, mentoría y cierre oficial del evento.", color: "bg-orange-500" }
+                { day: "Jul 18 - Jul 24", time: "Preparation", title: "Pre-Event Workshops", desc: "Introductory talks, team formation, and virtual support sessions.", color: "bg-blue-600" },
+                { day: "Jul 25 - Jul 26", time: "Build", title: "Hackathon & Demo Day", desc: "48 hours of intensive coding, submissions and live demos.", color: "bg-purple-600" },
+                { day: "Jul 31 - Aug 10", time: "Evaluation", title: "Live Results", desc: "Winners announced for Arbitrum, Arkiv, and all other tracks.", color: "bg-yellow-500" },
+                { day: "Aug 13 - Sep 6", time: "Follow-up", title: "Post-Hackathon Talks", desc: "Talk series at UNI and official close of the event season.", color: "bg-orange-500" }
               ].map((item, idx) => (
                 <div key={idx} className="relative flex flex-col items-center text-center group">
 
