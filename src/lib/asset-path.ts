@@ -1,7 +1,11 @@
 /**
  * Asset path helper.
- * NEXT_PUBLIC_BASE_PATH is "" in dev and "/hackethl26" in production (set in next.config.ts).
- * Use LOGO_SRC anywhere you need the Ethereum Lima logo.
+ * For GitHub Pages deployment, we hardcode the base path to ensure it's always prepended correctly
+ * in both static HTML and client-side hydration.
  */
-export const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isProduction = typeof window !== "undefined" 
+  ? !window.location.hostname.includes("localhost") 
+  : process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS === "true";
+
+export const BASE = isProduction ? "/hackethl26" : "";
 export const LOGO_SRC = `${BASE}/Ethlogo.png`;
