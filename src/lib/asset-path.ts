@@ -1,6 +1,7 @@
 /**
  * Asset path helper.
- * We use a relative path "Ethlogo.png" combined with a <base> tag in layout.tsx
- * to ensure images load correctly on both localhost and GitHub Pages subfolders.
+ * To avoid any "double-prefixing" issues on GitHub Pages, 
+ * we use the full absolute URL for critical assets like the logo.
+ * This is "para siempre" (forever) and works on any page depth.
  */
-export const LOGO_SRC = "Ethlogo.png";
+export const LOGO_SRC = "https://javierarteagagonzales.github.io/hackethl26/Ethlogo.png";

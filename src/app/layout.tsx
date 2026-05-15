@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { LOGO_SRC } from "@/lib/asset-path";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -11,8 +12,6 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
 });
-
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   title: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
@@ -30,10 +29,8 @@ export default function RootLayout({
       className={`${outfit.variable} ${jetbrainsMono.variable} font-sans h-full antialiased dark`}
     >
       <head>
-        {/* Set base path for all relative URLs (images, links) */}
-        <base href={BASE ? `${BASE}/` : "/"} />
-        {/* Preload logo using the filename which is now relative to <base> */}
-        <link rel="preload" as="image" href="Ethlogo.png" />
+        {/* Preload logo using the absolute URL */}
+        <link rel="preload" as="image" href={LOGO_SRC} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
     </html>
