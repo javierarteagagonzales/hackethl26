@@ -3,81 +3,78 @@
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
-import { Star, Clock, Users, MessageSquare, HelpCircle } from "lucide-react";
+import { HelpCircle, Search, MessageSquare, Calendar, Globe } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
-const MENTORS = [
-  { name: "Valentina Torres", role: "Smart Contract Auditor @ Certik", expertise: ["Smart Contracts", "Seguridad", "DeFi"], available: true },
-  { name: "Rodrigo Sánchez", role: "Protocol Engineer @ Arbitrum", expertise: ["Layer 2", "Rollups", "Solidity"], available: true },
-  { name: "Camila Pérez", role: "DeFi Lead @ Aave LATAM", expertise: ["DeFi", "Tokenomics", "Frontend Web3"], available: false },
-  { name: "Diego Alvarado", role: "Founder @ Web3PE", expertise: ["Product", "UX Web3", "Go-to-Market"], available: true },
+const MOCK_MENTORS = [
+  { name: "Satoshi Nakamoto", role: "Blockchain Architect", expertise: ["Protocol Design", "C++", "ZK"], status: "Available" },
+  { name: "Vitalik Buterin", role: "Ethereum Founder", expertise: ["Smart Contracts", "Research", "PoS"], status: "In Session" },
+  { name: "Elena Nadolinski", role: "Iron Fish CEO", expertise: ["Privacy", "Rust", "L1 Design"], status: "Available" },
+  { name: "Austin Griffith", role: "Ethereum Educator", expertise: ["Frontend", "Scaffold-eth", "Solidity"], status: "Available" },
+  { name: "Stani Kulechov", role: "Aave Founder", expertise: ["DeFi", "Liquidity", "Social Graph"], status: "Away" },
+  { name: "Hayden Adams", role: "Uniswap Creator", expertise: ["AMM", "Smart Contracts", "Math"], status: "Available" },
 ];
 
-export default function MentorPage() {
+export default function MentorNetworkPage() {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
-      <div className="fixed inset-0 z-0 opacity-8 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "48px 48px" }} />
-      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-teal-600/8 blur-[130px] rounded-full pointer-events-none z-0" />
-
+      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "48px 48px" }} />
+      
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={100} height={32} className="h-7 w-auto" /></Link>
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
           <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors"><HelpCircle className="w-3 h-3" />@javierdgtl</a>
         </div>
       </nav>
 
-      <div className="relative z-10 container mx-auto px-6 py-12 max-w-4xl">
+      <div className="relative z-10 container mx-auto px-6 py-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <Link href="/" className="text-xs text-gray-600 hover:text-white transition-colors mb-8 block">← Volver al inicio</Link>
+          <Link href="/" className="text-xs text-gray-600 hover:text-white transition-colors mb-8 block">← Back to Home</Link>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <div className="font-mono text-xs text-blue-400 mb-3 tracking-[0.3em] uppercase">// Mentor Network</div>
+              <h1 className="text-4xl md:text-5xl font-black tracking-tighter">Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Experts</span></h1>
+            </div>
+            <div className="relative w-full md:w-80">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+              <input placeholder="Filter by expertise or name..." className="w-full h-11 pl-10 pr-4 rounded-xl bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30 transition-all" />
+            </div>
+          </div>
 
-          <div className="font-mono text-xs text-teal-400 mb-3 tracking-[0.3em] uppercase">// Mentors network</div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Nuestros <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400">Mentores</span></h1>
-          <p className="text-gray-400 text-lg mb-12 max-w-2xl">Expertos del ecosistema Web3 listos para guiarte durante el hackathon. Cada equipo tendrá acceso a sesiones 1:1 con mentores especializados.</p>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-12">
-            {MENTORS.map((mentor) => (
-              <motion.div key={mentor.name} whileHover={{ y: -3 }} className="rounded-xl border border-white/8 bg-white/2 p-6 hover:border-white/15 transition-all">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <div className="font-bold text-white">{mentor.name}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">{mentor.role}</div>
-                  </div>
-                  <span className={`text-xs px-2 py-1 rounded-full font-mono ${mentor.available ? "bg-green-500/15 text-green-400" : "bg-white/5 text-gray-600"}`}>
-                    {mentor.available ? "Disponible" : "No disponible"}
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {MOCK_MENTORS.map((mentor, i) => (
+              <motion.div key={i} whileHover={{ y: -4 }} className="bg-white/2 border border-white/8 rounded-xl p-6 flex flex-col hover:border-blue-500/30 transition-all">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-gray-800 to-gray-700 border border-white/10" />
+                  <Badge className={
+                    mentor.status === "Available" ? "bg-green-500/10 text-green-500 border-green-500/20" : 
+                    mentor.status === "In Session" ? "bg-yellow-500/10 text-yellow-500 border-yellow-500/20" : 
+                    "bg-gray-500/10 text-gray-500 border-gray-500/20"
+                  }>
+                    {mentor.status}
+                  </Badge>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {mentor.expertise.map(e => (
-                    <span key={e} className="text-xs px-2 py-1 rounded-md bg-white/5 border border-white/5 text-gray-400">{e}</span>
+                <h3 className="text-lg font-bold mb-0.5">{mentor.name}</h3>
+                <p className="text-sm text-gray-500 mb-4">{mentor.role}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {mentor.expertise.map(exp => (
+                    <Badge key={exp} variant="secondary" className="bg-white/5 text-gray-400 border-white/5 text-[10px]">{exp}</Badge>
                   ))}
                 </div>
-                <div className="flex gap-2">
-                  <button className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition-colors"><MessageSquare className="w-3 h-3" /> Contactar</button>
-                  <button className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition-colors"><Clock className="w-3 h-3" /> Agendar</button>
+                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <button className="text-gray-600 hover:text-white transition-colors"><Globe className="w-4 h-4" /></button>
+                    <button className="text-gray-600 hover:text-white transition-colors"><Globe className="w-4 h-4" /></button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button className="p-2 rounded-lg bg-white/5 text-gray-400 hover:text-white transition-colors"><Calendar className="w-4 h-4" /></button>
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-xs font-bold hover:bg-gray-200 transition-colors">
+                      <MessageSquare className="w-3 h-3" /> Contact
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 mb-12">
-            {[
-              { icon: <Users className="w-5 h-5 text-blue-400" />, val: "12+", label: "Mentores activos" },
-              { icon: <Star className="w-5 h-5 text-yellow-400" />, val: "4.9", label: "Rating promedio" },
-              { icon: <Clock className="w-5 h-5 text-green-400" />, val: "48h", label: "Disponibilidad" },
-            ].map(s => (
-              <div key={s.label} className="rounded-xl border border-white/5 bg-white/2 p-5 text-center">
-                <div className="flex justify-center mb-2">{s.icon}</div>
-                <div className="text-2xl font-black text-white mb-1">{s.val}</div>
-                <div className="text-xs text-gray-600">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-6 text-center">
-            <h2 className="text-xl font-bold mb-2">¿Eres experto en Web3?</h2>
-            <p className="text-gray-400 text-sm mb-4">Únete a nuestra red de mentores y ayuda a los builders del futuro.</p>
-            <Link href="/apply-mentor" className="inline-flex items-center gap-2 h-10 px-6 rounded-lg bg-white text-black font-semibold text-sm hover:bg-gray-100 transition-colors">
-              Postular como mentor →
-            </Link>
           </div>
         </motion.div>
       </div>

@@ -59,9 +59,9 @@ export default function Home() {
       {/* Top Banner Bootcamp */}
       <div className="w-full bg-gradient-to-r from-brand-blue via-indigo-600 to-purple-600 text-white py-2 px-4 text-center text-sm font-semibold z-50 relative shadow-[0_0_15px_rgba(59,130,246,0.5)]">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-          <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-yellow-300" /> Bootcamp Ethereum Lima, Aprende sobre Arbitrum</span>
+          <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-yellow-300" /> Ethereum Lima Bootcamp, Learn about Arbitrum</span>
           <span className="font-mono bg-black/40 px-3 py-1 rounded-full text-xs border border-white/20 tracking-widest min-w-[200px]">
-            {isMounted ? `Postula hasta: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : "Cargando..."}
+            {isMounted ? `Apply until: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : "Loading..."}
           </span>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-gray-400 hover:text-white text-sm transition-colors mr-2">
-              <HelpCircle className="w-4 h-4 mr-1" /> Soporte: @javierdgtl
+              <HelpCircle className="w-4 h-4 mr-1" /> Support: @javierdgtl
             </a>
             <Link href="/login" className="hidden sm:inline-flex h-9 items-center justify-center px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors">
               Log in

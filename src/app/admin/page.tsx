@@ -3,159 +3,147 @@
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
-import { LayoutDashboard, Trophy, Users, Code2, Settings, LogOut, ArrowUpRight, CheckCircle, AlertCircle, Clock, Shield } from "lucide-react";
+import { 
+  Users, 
+  Settings, 
+  LogOut, 
+  Trophy, 
+  Search,
+  Filter,
+  CheckCircle,
+  XCircle,
+  MoreVertical,
+  Download,
+  LayoutDashboard,
+  ShieldCheck,
+  Zap
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const MOCK_APPLICANTS = [
-  { name: "Carlos Mendiola", email: "carlos@dev.pe", track: "Arbitrum", status: "approved", skill: "Smart Contract" },
-  { name: "Sofia Quispe", email: "sofia@ux.io", track: "Arkiv", status: "pending", skill: "UI/UX Designer" },
-  { name: "Diego Flores", email: "diego@backend.co", track: "Arbitrum", status: "pending", skill: "Backend Dev" },
-  { name: "Valentina Cruz", email: "val@web3.pe", track: "Arkiv", status: "approved", skill: "Frontend Dev" },
-  { name: "Miguel Torres", email: "miguel@solidity.io", track: "Arbitrum", status: "review", skill: "Smart Contract" },
+  { id: 1, name: "Alice Chen", role: "Frontend Dev", track: "Arbitrum", status: "Approved", date: "2026-05-10" },
+  { id: 2, name: "Bob Smith", role: "Smart Contract", track: "Arkiv — Wikis", status: "Pending", date: "2026-05-11" },
+  { id: 3, name: "Charlie Davis", role: "Product Manager", track: "Arkiv — Job Platform", status: "Rejected", date: "2026-05-09" },
+  { id: 4, name: "Diana Prince", role: "UI/UX Designer", track: "Arbitrum", status: "Approved", date: "2026-05-12" },
 ];
-
-const STATUS_STYLES: Record<string, string> = {
-  approved: "bg-green-500/15 text-green-400",
-  pending: "bg-yellow-500/15 text-yellow-400",
-  review: "bg-blue-500/15 text-blue-400",
-  rejected: "bg-red-500/15 text-red-400",
-};
 
 export default function AdminPage() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans flex">
-      <div className="fixed inset-0 z-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #ef4444 1px, transparent 0)", backgroundSize: "48px 48px" }} />
-
-      {/* Sidebar */}
-      <aside className="hidden md:flex w-56 shrink-0 flex-col border-r border-white/5 bg-black/90 sticky top-0 h-screen z-20">
-        <div className="p-5 border-b border-white/5 flex items-center gap-2">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={90} height={30} className="h-7 w-auto" /></Link>
-          <span className="text-[10px] font-mono text-red-400 border border-red-400/30 px-1.5 py-0.5 rounded">ADMIN</span>
+    <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
+      {/* Sidebar Admin */}
+      <aside className="w-64 border-r border-white/5 flex flex-col shrink-0 bg-[#080808]">
+        <div className="p-6 border-b border-white/5 flex items-center justify-between">
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
+          <Badge className="bg-red-500/10 text-red-500 border-red-500/20 text-[10px]">ADMIN</Badge>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+        
+        <nav className="flex-1 p-4 space-y-2">
           {[
             { icon: <LayoutDashboard className="w-4 h-4" />, label: "Overview", active: true },
-            { icon: <Users className="w-4 h-4" />, label: "Participantes" },
-            { icon: <Trophy className="w-4 h-4" />, label: "Tracks" },
-            { icon: <Code2 className="w-4 h-4" />, label: "Proyectos" },
-            { icon: <Shield className="w-4 h-4" />, label: "Mentores" },
-            { icon: <Settings className="w-4 h-4" />, label: "Configuración" },
+            { icon: <Users className="w-4 h-4" />, label: "Applicants", active: false },
+            { icon: <Trophy className="w-4 h-4" />, label: "Track Management", active: false },
+            { icon: <ShieldCheck className="w-4 h-4" />, label: "Role Requests", active: false },
+            { icon: <Zap className="w-4 h-4" />, label: "Broadcast", active: false },
           ].map((item) => (
-            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${item.active ? "bg-white/10 text-white" : "text-gray-500 hover:text-white hover:bg-white/5"}`}>
+            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${item.active ? "bg-red-500/5 text-red-400" : "text-gray-500 hover:text-white hover:bg-white/2"}`}>
               {item.icon} {item.label}
             </button>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/5">
-          <Link href="/" className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Cerrar sesión</Link>
+
+        <div className="p-4 border-t border-white/5 space-y-2">
+          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-white transition-colors"><Settings className="w-4 h-4" /> System Settings</button>
+          <Link href="/" className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Logout</Link>
         </div>
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-10 border-b border-white/5 bg-black/80 backdrop-blur-xl h-14 flex items-center px-6 justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-white">Admin Panel</span>
-            <span className="text-[10px] font-mono text-red-400 border border-red-400/30 px-1.5 py-0.5 rounded">super@ethlima.org</span>
+      {/* Admin Content */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-black">
+        <header className="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-black/40 backdrop-blur-md sticky top-0 z-10">
+          <h2 className="text-sm font-bold tracking-tight">Admin Control Panel</h2>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 hover:text-white transition-colors"><Download className="w-3 h-3" /> Export CSV</button>
+            <div className="w-8 h-8 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center text-red-500 text-xs font-bold">A</div>
           </div>
         </header>
 
-        <main className="relative z-10 p-6 space-y-6">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-2xl font-bold tracking-tight mb-1">Panel de Administración</h1>
-            <p className="text-gray-500 text-sm font-mono">ETH Lima 2026 — <span className="text-red-400">Superadmin</span></p>
-          </motion.div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="p-8 space-y-8">
+          {/* KPIs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { label: "Total aplicantes", val: "248", icon: <Users className="w-4 h-4 text-blue-400" />, delta: "+12 hoy" },
-              { label: "Aprobados", val: "186", icon: <CheckCircle className="w-4 h-4 text-green-400" />, delta: "75.0%" },
-              { label: "En revisión", val: "34", icon: <Clock className="w-4 h-4 text-yellow-400" />, delta: "Pendientes" },
-              { label: "Proyectos", val: "89", icon: <Code2 className="w-4 h-4 text-purple-400" />, delta: "Activos" },
-            ].map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/5 bg-white/2 p-4">
-                <div className="flex items-center justify-between mb-2">{s.icon}<span className="text-xs text-gray-600 font-mono">{s.delta}</span></div>
-                <div className="text-3xl font-black text-white mb-1">{s.val}</div>
-                <div className="text-xs text-gray-600">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Track overview */}
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { name: "Arbitrum", applicants: 142, approved: 108, pool: "$2,100", color: "bg-blue-500" },
-              { name: "Arkiv", applicants: 106, approved: 78, pool: "$2,500 USDC", color: "bg-purple-500" },
-            ].map(t => (
-              <div key={t.name} className="rounded-xl border border-white/8 bg-white/2 p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2"><div className={`w-2.5 h-2.5 rounded-full ${t.color}`} /><h3 className="font-semibold">{t.name} Track</h3></div>
-                  <span className="text-xs font-mono text-green-400">{t.pool}</span>
-                </div>
-                <div className="flex justify-between text-sm text-gray-400 mb-2">
-                  <span>Aplicantes: <span className="text-white">{t.applicants}</span></span>
-                  <span>Aprobados: <span className="text-green-400">{t.approved}</span></span>
-                </div>
-                <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                  <div className={`h-full ${t.color} rounded-full`} style={{ width: `${(t.approved / t.applicants) * 100}%` }} />
+              { label: "Total Applicants", val: "1,452", trend: "+12%" },
+              { label: "Approved Hackers", val: "380", trend: "+5%" },
+              { label: "Mentors", val: "42", trend: "0%" },
+              { label: "Track Sponsors", val: "12", trend: "+2" },
+            ].map((stat, i) => (
+              <div key={i} className="bg-white/2 border border-white/8 p-6 rounded-xl space-y-2">
+                <div className="text-xs text-gray-600 font-mono uppercase tracking-widest">{stat.label}</div>
+                <div className="flex items-end justify-between">
+                  <div className="text-2xl font-bold">{stat.val}</div>
+                  <div className="text-[10px] text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded">{stat.trend}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Applicants table */}
-          <div className="rounded-xl border border-white/8 bg-white/2 p-5">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-semibold">Aplicantes recientes</h2>
-              <button className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">Ver todos <ArrowUpRight className="w-3 h-3" /></button>
+          {/* Table */}
+          <section className="bg-white/2 border border-white/8 rounded-xl overflow-hidden">
+            <div className="p-6 border-b border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Recent Applications</h3>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="relative flex-1 sm:w-64">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                  <input placeholder="Search applicants..." className="w-full h-9 pl-10 pr-4 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30" />
+                </div>
+                <button className="p-2 border border-white/10 rounded-lg text-gray-500 hover:text-white"><Filter className="w-4 h-4" /></button>
+              </div>
             </div>
+            
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="text-left text-xs text-gray-600 font-mono uppercase tracking-wider border-b border-white/5">
-                    <th className="pb-3 pr-4">Nombre</th>
-                    <th className="pb-3 pr-4">Track</th>
-                    <th className="pb-3 pr-4">Habilidad</th>
-                    <th className="pb-3">Estado</th>
+                  <tr className="border-b border-white/5 bg-white/2 font-mono text-[10px] text-gray-600 uppercase tracking-widest">
+                    <th className="py-4 pl-8 pr-4">Name</th>
+                    <th className="py-4 px-4">Role</th>
+                    <th className="py-4 px-4">Track</th>
+                    <th className="py-4 px-4">Date</th>
+                    <th className="py-4 px-4 text-center">Status</th>
+                    <th className="py-4 pl-4 pr-8 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
-                  {MOCK_APPLICANTS.map((a) => (
-                    <tr key={a.email} className="hover:bg-white/2 transition-colors">
-                      <td className="py-3 pr-4">
-                        <div className="text-white font-medium">{a.name}</div>
-                        <div className="text-xs text-gray-600 font-mono">{a.email}</div>
+                  {MOCK_APPLICANTS.map((app) => (
+                    <tr key={app.id} className="hover:bg-white/2 transition-colors">
+                      <td className="py-4 pl-8 pr-4 font-medium">{app.name}</td>
+                      <td className="py-4 px-4 text-gray-400">{app.role}</td>
+                      <td className="py-4 px-4 text-gray-400">{app.track}</td>
+                      <td className="py-4 px-4 font-mono text-xs text-gray-600">{app.date}</td>
+                      <td className="py-4 px-4">
+                        <div className="flex justify-center">
+                          <Badge className={
+                            app.status === "Approved" ? "bg-green-500/10 text-green-500 border-green-500/20" : 
+                            app.status === "Pending" ? "bg-yellow-500/10 text-yellow-500 border-yellow-500/20" : 
+                            "bg-red-500/10 text-red-500 border-red-500/20"
+                          }>
+                            {app.status}
+                          </Badge>
+                        </div>
                       </td>
-                      <td className="py-3 pr-4 text-gray-400">{a.track}</td>
-                      <td className="py-3 pr-4 text-gray-400">{a.skill}</td>
-                      <td className="py-3">
-                        <span className={`text-xs px-2 py-1 rounded-full font-mono ${STATUS_STYLES[a.status]}`}>{a.status}</span>
+                      <td className="py-4 pl-4 pr-8 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <button className="p-1.5 rounded bg-green-500/10 text-green-500 hover:bg-green-500/20 transition-colors"><CheckCircle className="w-4 h-4" /></button>
+                          <button className="p-1.5 rounded bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors"><XCircle className="w-4 h-4" /></button>
+                          <button className="p-1.5 rounded text-gray-600 hover:text-white transition-colors"><MoreVertical className="w-4 h-4" /></button>
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </div>
-
-          {/* Quick actions */}
-          <div className="rounded-xl border border-white/8 bg-white/2 p-5">
-            <h2 className="text-sm font-semibold mb-4">Acciones rápidas</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {[
-                { label: "Agregar Track", icon: <Trophy className="w-4 h-4 text-yellow-400" /> },
-                { label: "Invitar Mentor", icon: <Shield className="w-4 h-4 text-green-400" /> },
-                { label: "Nuevo Anuncio", icon: <AlertCircle className="w-4 h-4 text-blue-400" /> },
-                { label: "Exportar CSV", icon: <ArrowUpRight className="w-4 h-4 text-purple-400" /> },
-              ].map(action => (
-                <button key={action.label} className="flex flex-col items-center justify-center gap-2 p-4 rounded-lg border border-white/5 bg-white/2 hover:bg-white/5 transition-colors text-sm text-gray-400 hover:text-white">
-                  {action.icon} {action.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </main>
-      </div>
+          </section>
+        </div>
+      </main>
     </div>
   );
 }

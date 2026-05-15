@@ -3,143 +3,152 @@
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
-import { LayoutDashboard, Trophy, Users, Code2, Bell, Settings, LogOut, ArrowUpRight, Zap } from "lucide-react";
-
-const NOTIFICATIONS = [
-  { msg: "Tu aplicación fue aprobada", time: "hace 2h", type: "success" },
-  { msg: "Nuevo mentor disponible: Valentina Torres", time: "hace 5h", type: "info" },
-  { msg: "Hackathon comienza en 10 días", time: "ayer", type: "warning" },
-];
-
-const PROJECTS = [
-  { name: "ArbiSwap — DEX en Arbitrum", track: "Arbitrum", status: "En progreso", team: 3 },
-  { name: "WikiChain — Knowledge Graph", track: "Arkiv", status: "Ideación", team: 2 },
-];
+import { 
+  LayoutDashboard, 
+  Code2, 
+  Users, 
+  MessageSquare, 
+  Settings, 
+  LogOut, 
+  Trophy, 
+  Calendar,
+  ChevronRight,
+  Bell,
+  Search,
+  ExternalLink
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans flex">
-      <div className="fixed inset-0 z-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "48px 48px" }} />
-
+    <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
       {/* Sidebar */}
-      <aside className="hidden md:flex w-56 shrink-0 flex-col border-r border-white/5 bg-black/90 sticky top-0 h-screen z-20">
-        <div className="p-5 border-b border-white/5">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={90} height={30} className="h-7 w-auto" /></Link>
+      <aside className="w-64 border-r border-white/5 flex flex-col shrink-0 bg-[#050505]">
+        <div className="p-6 border-b border-white/5">
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+        
+        <nav className="flex-1 p-4 space-y-2">
           {[
-            { icon: <LayoutDashboard className="w-4 h-4" />, label: "Dashboard", active: true },
-            { icon: <Code2 className="w-4 h-4" />, label: "Mi Proyecto" },
-            { icon: <Users className="w-4 h-4" />, label: "Equipo" },
-            { icon: <Trophy className="w-4 h-4" />, label: "Tracks" },
-            { icon: <Bell className="w-4 h-4" />, label: "Notificaciones" },
-            { icon: <Settings className="w-4 h-4" />, label: "Configuración" },
+            { icon: <LayoutDashboard className="w-4 h-4" />, label: "Overview", active: true },
+            { icon: <Code2 className="w-4 h-4" />, label: "My Projects", active: false },
+            { icon: <Users className="w-4 h-4" />, label: "Team Finder", active: false },
+            { icon: <Trophy className="w-4 h-4" />, label: "Prizes \u0026 Bounties", active: false },
+            { icon: <Calendar className="w-4 h-4" />, label: "Schedule", active: false },
+            { icon: <MessageSquare className="w-4 h-4" />, label: "Discord/Telegram", active: false },
           ].map((item) => (
-            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${item.active ? "bg-white/10 text-white" : "text-gray-500 hover:text-white hover:bg-white/5"}`}>
+            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${item.active ? "bg-white/5 text-white" : "text-gray-500 hover:text-white hover:bg-white/2"}`}>
               {item.icon} {item.label}
             </button>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/5">
-          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Salir</button>
+
+        <div className="p-4 border-t border-white/5 space-y-2">
+          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-white transition-colors"><Settings className="w-4 h-4" /> Settings</button>
+          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Logout</button>
         </div>
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col min-w-0">
-        {/* Top bar */}
-        <header className="sticky top-0 z-10 border-b border-white/5 bg-black/80 backdrop-blur-xl h-14 flex items-center px-6 justify-between">
-          <div>
-            <span className="text-sm font-semibold text-white">Dashboard</span>
-            <span className="ml-2 text-xs text-gray-600 font-mono">// hacker@ethlima.org</span>
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <header className="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-black/40 backdrop-blur-md sticky top-0 z-10">
+          <div className="flex items-center gap-4 flex-1">
+            <div className="relative w-full max-w-md hidden md:block">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+              <input placeholder="Search resources, projects..." className="w-full h-9 pl-10 pr-4 rounded-lg bg-white/5 border border-white/10 text-xs focus:outline-none focus:border-blue-500/30" />
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-xs text-gray-500">Online</span>
+          <div className="flex items-center gap-4">
+            <button className="relative p-2 text-gray-500 hover:text-white transition-colors"><Bell className="w-5 h-5" /><span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-black" /></button>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 border border-white/20" />
           </div>
         </header>
 
-        <main className="relative z-10 p-6 space-y-6">
+        <div className="p-8 space-y-8">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-2xl font-bold tracking-tight mb-1">Bienvenido, Hacker 👾</h1>
-            <p className="text-gray-500 text-sm">ETH Lima 2026 — Estado: <span className="text-green-400">Aplicación aprobada</span></p>
+            <h1 className="text-2xl font-bold tracking-tight mb-1">Welcome, Hacker 👾</h1>
+            <p className="text-gray-500 text-sm">Application Status: <span className="text-green-500 font-medium">Approved ✅</span></p>
           </motion.div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { label: "Días restantes", val: "71", color: "text-blue-400" },
-              { label: "Tracks abiertos", val: "2", color: "text-purple-400" },
-              { label: "Proyectos activos", val: "1", color: "text-green-400" },
-              { label: "Mentores disponibles", val: "12", color: "text-yellow-400" },
-            ].map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/5 bg-white/2 p-4">
-                <div className={`text-3xl font-black mb-1 ${s.color}`}>{s.val}</div>
-                <div className="text-xs text-gray-600 font-mono">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            {/* Projects */}
-            <div className="rounded-xl border border-white/8 bg-white/2 p-5">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold">Mis Proyectos</h2>
-                <button className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">Nuevo <ArrowUpRight className="w-3 h-3" /></button>
-              </div>
-              <div className="space-y-3">
-                {PROJECTS.map(p => (
-                  <div key={p.name} className="flex items-center justify-between p-3 rounded-lg bg-white/3 border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
-                    <div>
-                      <div className="text-sm text-white font-medium">{p.name}</div>
-                      <div className="text-xs text-gray-600 mt-0.5">{p.track} · {p.team} miembros</div>
-                    </div>
-                    <span className={`text-xs px-2 py-1 rounded-full font-mono ${p.status === "En progreso" ? "bg-blue-500/15 text-blue-400" : "bg-white/5 text-gray-500"}`}>{p.status}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Notifications */}
-            <div className="rounded-xl border border-white/8 bg-white/2 p-5">
-              <h2 className="text-sm font-semibold mb-4">Notificaciones</h2>
-              <div className="space-y-3">
-                {NOTIFICATIONS.map((n, i) => (
-                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/3 border border-white/5">
-                    <Zap className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${n.type === "success" ? "text-green-400" : n.type === "warning" ? "text-yellow-400" : "text-blue-400"}`} />
-                    <div>
-                      <div className="text-sm text-gray-300">{n.msg}</div>
-                      <div className="text-xs text-gray-600 mt-0.5 font-mono">{n.time}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Tracks info */}
-          <div className="rounded-xl border border-white/8 bg-white/2 p-5">
-            <h2 className="text-sm font-semibold mb-4">Tracks del Hackathon</h2>
-            <div className="grid md:grid-cols-2 gap-3">
-              {[
-                { name: "Arbitrum", desc: "Construye en Ethereum L2", pool: "$2,100", color: "from-blue-500 to-cyan-400" },
-                { name: "Arkiv", desc: "Jobs, Wikis & Events platform", pool: "$2,500 USDC", color: "from-purple-500 to-pink-400" },
-              ].map(t => (
-                <div key={t.name} className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-white/3">
-                  <div>
-                    <div className={`text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r ${t.color}`}>{t.name}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">{t.desc}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-mono text-green-400 font-bold">{t.pool}</div>
-                    <div className="text-xs text-gray-600">prize pool</div>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 space-y-6">
+              {/* Active Project */}
+              <section className="bg-white/2 border border-white/8 rounded-xl overflow-hidden">
+                <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                  <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Active Project</h2>
+                  <button className="text-xs text-blue-400 hover:underline">Edit Project</button>
                 </div>
-              ))}
+                <div className="p-12 text-center">
+                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4 border border-dashed border-white/20">
+                    <Code2 className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">No projects submitted yet</h3>
+                  <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">Start building your project for ETH Lima 2026. You can submit or edit your project until the deadline.</p>
+                  <button className="h-10 px-6 rounded-lg bg-white text-black font-bold text-sm hover:bg-gray-200 transition-colors">Start Building</button>
+                </div>
+              </section>
+
+              {/* Announcements */}
+              <section className="space-y-4">
+                <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Announcements</h2>
+                <div className="space-y-3">
+                  {[
+                    { title: "Arbitrum Workshop tomorrow at 10 AM", time: "2h ago", type: "Event" },
+                    { title: "Team formation session starting now on Discord", time: "5h ago", type: "Community" },
+                  ].map((ann, i) => (
+                    <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/2 flex items-center justify-between hover:bg-white/4 transition-colors group cursor-pointer">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-[10px] uppercase font-mono py-0 px-2">{ann.type}</Badge>
+                          <span className="text-sm font-medium">{ann.title}</span>
+                        </div>
+                        <span className="text-xs text-gray-600">{ann.time}</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-700 group-hover:text-white transition-colors" />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="space-y-6">
+              {/* Event Stats */}
+              <section className="bg-white/2 border border-white/8 rounded-xl p-6 space-y-6">
+                <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Event Stats</h2>
+                <div className="space-y-4">
+                  {[
+                    { label: "Participants", val: "1,240" },
+                    { label: "Teams", val: "312" },
+                    { label: "Total Prize Pool", val: "$15,000" },
+                  ].map(stat => (
+                    <div key={stat.label} className="flex justify-between items-center border-b border-white/5 pb-2">
+                      <span className="text-sm text-gray-500">{stat.label}</span>
+                      <span className="text-sm font-mono text-blue-400 font-bold">{stat.val}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4">
+                  <div className="text-xs text-gray-600 mb-2">Hackathon Progress</div>
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-1/3" /></div>
+                  <div className="flex justify-between mt-2 text-[10px] font-mono text-gray-700 uppercase"><span>Registration</span><span>Build</span><span>Demo Day</span></div>
+                </div>
+              </section>
+
+              {/* Useful Links */}
+              <section className="bg-white/2 border border-white/8 rounded-xl p-6 space-y-4">
+                <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Quick Links</h2>
+                <div className="space-y-2">
+                  {["Official Rulebook", "Arbitrum Docs", "Technical Support", "Code of Conduct"].map(link => (
+                    <a key={link} href="#" className="flex items-center justify-between text-sm text-gray-400 hover:text-white transition-all py-2 group">
+                      {link} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  ))}
+                </div>
+              </section>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

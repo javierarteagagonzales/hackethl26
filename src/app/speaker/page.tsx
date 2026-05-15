@@ -16,22 +16,22 @@ export default function SpeakerPage() {
       <div className="fixed bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0" />
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={100} height={32} className="h-7 w-auto" /></Link>
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
           <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors"><HelpCircle className="w-3 h-3" />@javierdgtl</a>
         </div>
       </nav>
       <div className="relative z-10 container mx-auto px-6 py-12 max-w-3xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <Link href="/" className="text-xs text-gray-600 hover:text-white transition-colors mb-8 block">← Volver al inicio</Link>
+          <Link href="/" className="text-xs text-gray-600 hover:text-white transition-colors mb-8 block">← Back to Home</Link>
           <div className="font-mono text-xs text-purple-400 mb-3 tracking-[0.3em] uppercase">// Speakers & Workshops</div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Habla en <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Ethereum Lima</span></h1>
-          <p className="text-gray-400 text-lg mb-10 max-w-xl">Comparte tu conocimiento con cientos de builders de LATAM. Workshops, keynotes y sesiones técnicas en formato híbrido.</p>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Speak at <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">ETH Lima</span></h1>
+          <p className="text-gray-400 text-lg mb-10 max-w-xl">Share your knowledge with hundreds of LATAM builders. Workshops, keynotes, and technical sessions in a hybrid format.</p>
 
           <div className="grid grid-cols-3 gap-3 mb-10">
             {[
-              { icon: <Mic className="w-4 h-4 text-purple-400" />, label: "Formato", val: "Keynote / Workshop" },
-              { icon: <Monitor className="w-4 h-4 text-blue-400" />, label: "Modalidad", val: "Presencial u online" },
-              { icon: <Users className="w-4 h-4 text-green-400" />, label: "Audiencia", val: "200+ developers" },
+              { icon: <Mic className="w-4 h-4 text-purple-400" />, label: "Format", val: "Keynote / Workshop" },
+              { icon: <Monitor className="w-4 h-4 text-blue-400" />, label: "Modality", val: "In-person or online" },
+              { icon: <Users className="w-4 h-4 text-green-400" />, label: "Audience", val: "200+ developers" },
             ].map((item) => (
               <div key={item.label} className="border border-white/5 rounded-lg p-4 bg-white/2 text-center">
                 <div className="flex justify-center mb-2">{item.icon}</div>
@@ -43,34 +43,34 @@ export default function SpeakerPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="rounded-xl border border-white/8 bg-white/2 p-6 space-y-4">
-              <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest">01. Datos del speaker</h2>
+              <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest">01. Speaker Info</h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                {[["Nombre completo", "Tu nombre"], ["Email", "speaker@example.com"], ["Twitter/X", "@tuhandle"], ["LinkedIn", "linkedin.com/in/..."], ["Empresa / Protocolo", "ej. Ethereum Foundation"]].map(([l, ph]) => (
+                {[["Full Name", "Your name"], ["Email", "speaker@example.com"], ["Twitter/X", "@yourhandle"], ["LinkedIn", "linkedin.com/in/..."], ["Company / Protocol", "e.g. Ethereum Foundation"]].map(([l, ph]) => (
                   <div key={l}><label className="text-xs text-gray-500 block mb-1.5">{l}</label><input placeholder={ph} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-purple-500/50 transition-all" /></div>
                 ))}
               </div>
             </div>
 
             <div className="rounded-xl border border-white/8 bg-white/2 p-6 space-y-4">
-              <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest">02. Propuesta</h2>
-              <div><label className="text-xs text-gray-500 block mb-1.5">Título de la charla / taller</label><input required placeholder="ej. Construyendo en Arbitrum Orbit" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-purple-500/50 transition-all" /></div>
+              <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest">02. Proposal</h2>
+              <div><label className="text-xs text-gray-500 block mb-1.5">Talk / Workshop Title</label><input required placeholder="e.g. Building on Arbitrum Orbit" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-purple-500/50 transition-all" /></div>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div><label className="text-xs text-gray-500 block mb-1.5">Formato</label>
+                <div><label className="text-xs text-gray-500 block mb-1.5">Format</label>
                   <select className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
-                    {["Keynote (20-30 min)", "Workshop técnico (60-90 min)", "Panel de discusión", "Lightning talk (10 min)"].map(o => <option key={o} className="bg-black">{o}</option>)}
+                    {["Keynote (20-30 min)", "Technical Workshop (60-90 min)", "Panel Discussion", "Lightning talk (10 min)"].map(o => <option key={o} className="bg-black">{o}</option>)}
                   </select>
                 </div>
-                <div><label className="text-xs text-gray-500 block mb-1.5">Modalidad preferida</label>
+                <div><label className="text-xs text-gray-500 block mb-1.5">Preferred Modality</label>
                   <select className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
-                    {["Presencial en Lima", "Online / streaming", "Ambas"].map(o => <option key={o} className="bg-black">{o}</option>)}
+                    {["In-person in Lima", "Online / streaming", "Both"].map(o => <option key={o} className="bg-black">{o}</option>)}
                   </select>
                 </div>
               </div>
-              <div><label className="text-xs text-gray-500 block mb-1.5">Descripción de la charla</label><textarea rows={4} required placeholder="Describe de qué trata tu charla, qué aprenderán los asistentes y por qué es relevante para el ecosistema..." className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-purple-500/50 transition-all resize-none" /></div>
+              <div><label className="text-xs text-gray-500 block mb-1.5">Talk Description</label><textarea rows={4} required placeholder="Describe what your talk is about, what attendees will learn and why it's relevant to the ecosystem..." className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-purple-500/50 transition-all resize-none" /></div>
             </div>
 
             <button type="submit" className="w-full h-12 rounded-lg bg-white text-black font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
-              Enviar propuesta <ArrowRight className="w-4 h-4" />
+              Submit Proposal <ArrowRight className="w-4 h-4" />
             </button>
           </form>
         </motion.div>
