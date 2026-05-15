@@ -1,12 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Code2, GitBranch, ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, GitBranch, Wallet, HelpCircle } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,8 +12,7 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
-    const email = (target.elements.namedItem('email') as HTMLInputElement)?.value;
-    
+    const email = (target.elements.namedItem("email") as HTMLInputElement)?.value;
     if (email && (email.includes("admin") || email.includes("super"))) {
       router.push("/admin");
     } else {
@@ -24,111 +21,164 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row">
-      {/* Left side: Branding */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between border-r border-white/10 relative overflow-hidden bg-black/50">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-background to-background"></div>
+    <div className="min-h-screen bg-black text-white font-sans flex flex-col lg:flex-row">
+      {/* BG effects */}
+      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "48px 48px" }} />
+      <div className="fixed top-0 left-0 w-[500px] h-[500px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none z-0" />
+
+      {/* Left panel */}
+      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-12 border-r border-white/5 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/30 via-black to-black" />
+        {/* Decorative hex grid pattern */}
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15zm0 15l13 7.5v15l-13 7.5L1 46.75v-15z' fill='none' stroke='%233b82f6' stroke-width='1'/%3E%3C/svg%3E\")" }} />
         
         <div className="relative z-10">
-          <Link href="/" className="flex items-center gap-2 inline-flex">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center">
-              <Code2 className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-bold tracking-tight">ETH Lima 2026</span>
+          <Link href="/">
+            <Image src="/Ethlogo.png" alt="ETH Lima" width={120} height={40} className="h-9 w-auto" unoptimized />
           </Link>
         </div>
 
-        <div className="relative z-10 mt-20 md:mt-0">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Welcome back <br /> to the arena.
+        <div className="relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="font-mono text-xs text-blue-400 mb-4 tracking-[0.3em] uppercase">// System access</div>
+            <h1 className="text-5xl font-black tracking-tighter mb-6 leading-tight">
+              Welcome back<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">to the arena.</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-md">
-              Log in to access your dashboard, connect with mentors, and manage your hackathon project.
+            <p className="text-gray-400 text-lg max-w-sm leading-relaxed">
+              Access your dashboard, connect with your team, and manage your hackathon project.
             </p>
           </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-12 grid grid-cols-3 gap-4">
+            {[
+              { label: "Hackers", value: "500+" },
+              { label: "Prize Pool", value: "$10K+" },
+              { label: "Tracks", value: "2+" },
+            ].map((stat) => (
+              <div key={stat.label} className="border border-white/5 rounded-lg p-4 bg-white/2">
+                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-xs text-gray-500 mt-1 font-mono">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
-        
-        <div className="relative z-10 hidden md:block text-sm text-muted-foreground">
-          © 2026 ETH Lima. All rights reserved.
+
+        <div className="relative z-10 text-xs text-gray-600 font-mono">
+          © 2026 Ethereum Lima — All rights reserved
         </div>
       </div>
 
-      {/* Right side: Form */}
-      <div className="w-full md:w-1/2 p-8 md:p-24 flex items-center justify-center bg-background">
-        <div className="w-full max-w-md space-y-8">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold tracking-tight">Sign in to your account</h2>
-            <p className="text-sm text-muted-foreground mt-2">Choose your preferred login method</p>
+      {/* Right panel — form */}
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md"
+        >
+          {/* Mobile logo */}
+          <div className="lg:hidden mb-10">
+            <Link href="/">
+              <Image src="/Ethlogo.png" alt="ETH Lima" width={100} height={32} className="h-8 w-auto" unoptimized />
+            </Link>
           </div>
 
-          <div className="space-y-4">
-            <Button variant="outline" className="w-full h-12 border-white/10 bg-white/5 hover:bg-white/10" onClick={handleLogin}>
-              <GitBranch className="w-5 h-5 mr-2" /> Continue with GitHub
-            </Button>
-            <Button variant="outline" className="w-full h-12 border-white/10 bg-white/5 hover:bg-white/10" onClick={handleLogin}>
-              <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              Continue with Google
-            </Button>
-            <Button variant="outline" className="w-full h-12 border-blue-500/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20" onClick={handleLogin}>
-              <span className="w-5 h-5 mr-2 rounded-full bg-blue-500 flex items-center justify-center text-white text-[10px]">W</span>
-              Connect Wallet
-            </Button>
+          <h2 className="text-2xl font-bold tracking-tight mb-1">Sign in</h2>
+          <p className="text-sm text-gray-500 mb-8">Use your credentials or connect via OAuth.</p>
+
+          {/* OAuth buttons */}
+          <div className="space-y-3 mb-8">
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="w-full flex items-center justify-center gap-2 h-11 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-all"
+            >
+              <GitBranch className="w-4 h-4" /> Continue with GitHub
+            </button>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="w-full flex items-center justify-center gap-2 h-11 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-all"
+            >
+              <span className="font-bold text-base leading-none">G</span> Continue with Google
+            </button>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="w-full flex items-center justify-center gap-2 h-11 rounded-lg border border-blue-500/30 bg-blue-500/10 text-sm text-blue-400 hover:bg-blue-500/20 transition-all"
+            >
+              <Wallet className="w-4 h-4" /> Connect Wallet
+            </button>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10"></div>
-            </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Test Accounts</span>
-              </div>
-            </div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="flex-1 h-px bg-white/5" />
+            <span className="text-xs text-gray-600 font-mono uppercase tracking-widest">or email</span>
+            <div className="flex-1 h-px bg-white/5" />
+          </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-2 text-sm text-gray-300 font-mono">
-               <div className="flex justify-between border-b border-white/5 pb-2">
-                 <span>Superadmin:</span> <span className="text-white">super@ethlima.org</span> <span className="text-gray-500">test1234</span>
-               </div>
-               <div className="flex justify-between border-b border-white/5 pb-2">
-                 <span>Admin:</span> <span className="text-white">admin@ethlima.org</span> <span className="text-gray-500">test1234</span>
-               </div>
-               <div className="flex justify-between">
-                 <span>Participant:</span> <span className="text-white">hacker@ethlima.org</span> <span className="text-gray-500">test1234</span>
-               </div>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="text-xs text-gray-400 font-mono uppercase tracking-widest block mb-2">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="hacker@ethlima.org"
+                required
+                className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/8 transition-all"
+              />
             </div>
-
-            <div className="space-y-4 mt-6">
-            <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required className="h-12 bg-white/5 border-white/10" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
-                <Link href="#" className="text-xs text-blue-400 hover:underline">Forgot password?</Link>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-xs text-gray-400 font-mono uppercase tracking-widest">Password</label>
+                <Link href="#" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">Forgot?</Link>
               </div>
-              <Input id="password" type="password" required className="h-12 bg-white/5 border-white/10" />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/8 transition-all"
+              />
             </div>
-            <Button type="submit" className="w-full h-12 bg-white text-black hover:bg-white/90">
-              Sign In <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <button
+              type="submit"
+              className="w-full h-11 mt-2 rounded-lg bg-white text-black font-semibold text-sm flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors"
+            >
+              Sign In <ArrowRight className="w-4 h-4" />
+            </button>
           </form>
 
-          <p className="text-center text-sm text-muted-foreground">
-            Don't have an account?{" "}
-            <Link href="/register" className="text-blue-400 hover:underline font-medium">
-              Apply now
-            </Link>
+          {/* Test accounts */}
+          <div className="mt-8 rounded-xl border border-white/5 bg-white/2 p-4">
+            <div className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">// Test accounts</div>
+            <div className="space-y-2 font-mono text-xs">
+              {[
+                { role: "superadmin", email: "super@ethlima.org", pass: "test1234" },
+                { role: "admin", email: "admin@ethlima.org", pass: "test1234" },
+                { role: "hacker", email: "hacker@ethlima.org", pass: "test1234" },
+              ].map((acc) => (
+                <div key={acc.role} className="flex items-center justify-between py-1 border-b border-white/5 last:border-0">
+                  <span className="text-gray-600">{acc.role}</span>
+                  <span className="text-gray-400">{acc.email}</span>
+                  <span className="text-gray-600">{acc.pass}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-gray-600 mt-6">
+            ¿No tienes cuenta?{" "}
+            <Link href="/register" className="text-blue-400 hover:text-blue-300 transition-colors">Apply now →</Link>
           </p>
-        </div>
+
+          <div className="mt-6 text-center">
+            <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-gray-600 hover:text-gray-400 transition-colors">
+              <HelpCircle className="w-3 h-3" /> ¿Necesitas ayuda? @javierdgtl
+            </a>
+          </div>
+        </motion.div>
       </div>
-    </div>
     </div>
   );
 }
