@@ -70,7 +70,7 @@ export default function Home() {
       <nav className="sticky top-0 w-full z-40 border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" onError={(e) => { e.currentTarget.src = "/Ethlogo.png"; }} />
+            <Image src="/Ethlogo.png" alt="ETH Lima Logo" width={120} height={40} className="h-8 sm:h-10 w-auto object-contain" unoptimized />
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
             <Link href="#about" className="hover:text-white transition-colors">About</Link>
@@ -160,8 +160,8 @@ export default function Home() {
               </ul>
             </div>
             <div className="relative h-full min-h-[300px] rounded-xl border border-white/10 bg-gradient-to-tr from-brand-blue/10 to-transparent p-8 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-              <Image src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" width={200} height={200} className="object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] animate-pulse" onError={(e) => { e.currentTarget.srcset = "/Ethlogo.png"; }} unoptimized />
+              <div className="absolute inset-0 opacity-20"></div>
+              <Image src="/Ethlogo.png" alt="ETH Lima Logo" width={200} height={200} className="object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] animate-pulse" unoptimized />
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@ export default function Home() {
       <footer className="bg-black py-12 border-t border-white/10 relative z-10">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img src="/hackethl26/Ethlogo.png" alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all" onError={(e) => { e.currentTarget.src = "/Ethlogo.png"; }} />
+            <Image src="/Ethlogo.png" alt="ETH Lima Logo" width={80} height={32} className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all" unoptimized />
           </div>
 
           <div className="flex items-center gap-6">

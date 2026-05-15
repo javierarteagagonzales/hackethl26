@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+const basePath = isProd ? "/hackethl26" : "";
+
 const nextConfig: NextConfig = {
   output: "export",
   images: {
     unoptimized: true,
   },
-  // Si usas un dominio personalizado, comenta esta línea:
-  basePath: "/hackethl26",
+  basePath,
+  assetPrefix: basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;
