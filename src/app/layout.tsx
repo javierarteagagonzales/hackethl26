@@ -12,7 +12,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   title: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
@@ -30,8 +30,10 @@ export default function RootLayout({
       className={`${outfit.variable} ${jetbrainsMono.variable} font-sans h-full antialiased dark`}
     >
       <head>
-        {/* Preload logo to ensure it loads before JS hydration */}
-        <link rel="preload" as="image" href={`${BASE}/Ethlogo.png`} />
+        {/* Set base path for all relative URLs (images, links) */}
+        <base href={BASE ? `${BASE}/` : "/"} />
+        {/* Preload logo using the filename which is now relative to <base> */}
+        <link rel="preload" as="image" href="Ethlogo.png" />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
     </html>
