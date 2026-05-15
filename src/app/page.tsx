@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, MapPin, Users, ArrowRight, GitBranch, Globe, MessageSquare, Mic, Briefcase, Trophy, Terminal, Code2, Zap, Server, HelpCircle } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight, ArrowUp, GitBranch, Globe, MessageSquare, Mic, Briefcase, Trophy, Terminal, Code2, Zap, Server, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { MOCK_TRACKS } from "@/lib/mock-data";
@@ -13,6 +13,7 @@ export default function Home() {
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   
   const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
@@ -43,14 +44,24 @@ export default function Home() {
       });
     }, 1000);
 
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
     return () => {
       clearInterval(terminalInterval);
       clearInterval(countdownInterval);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [codeSnippet]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-brand-blue/30 overflow-hidden font-sans">
+    <div className="min-h-screen bg-black text-white selection:bg-brand-blue/30 overflow-x-hidden font-sans">
       
       {/* Background Grid & Glow Effect */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
@@ -67,7 +78,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <nav className="sticky top-0 w-full z-40 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+      <nav className="sticky top-0 w-full z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={LOGO_SRC} alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" />
@@ -292,6 +303,17 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Back to Top Button */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0.5 }}
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-brand-blue text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:bg-brand-blue/80 transition-all cursor-pointer pointer-events-auto"
+        style={{ pointerEvents: showBackToTop ? "auto" : "none" }}
+      >
+        <ArrowUp className="w-6 h-6" />
+      </motion.button>
     </div>
   );
 }

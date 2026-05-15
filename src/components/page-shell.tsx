@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { HelpCircle, ArrowLeft } from "lucide-react";
 
-export default function PageShell({ children, backHref = "/", backLabel = "← Volver al inicio" }: { children: React.ReactNode; backHref?: string; backLabel?: string }) {
+export default function PageShell({ children, backHref = "/", backLabel = "← Back to Home" }: { children: React.ReactNode; backHref?: string; backLabel?: string }) {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       {/* Subtle grid background */}
