@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
 import { ArrowRight, HelpCircle, Star, Clock, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ export default function ApplyMentorPage() {
       <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-green-600/8 blur-[120px] rounded-full pointer-events-none z-0" />
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/"><Image src="/Ethlogo.png" alt="ETH Lima" width={100} height={32} className="h-7 w-auto" unoptimized /></Link>
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={100} height={32} className="h-7 w-auto" /></Link>
           <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors"><HelpCircle className="w-3 h-3" />@javierdgtl</a>
         </div>
       </nav>

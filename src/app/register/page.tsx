@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
@@ -26,7 +26,7 @@ export default function RegisterPage() {
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/">
-            <Image src="/Ethlogo.png" alt="ETH Lima" width={100} height={32} className="h-7 w-auto" unoptimized />
+            <img src={LOGO_SRC} alt="ETH Lima" width={100} height={32} className="h-7 w-auto" />
           </Link>
           <Link href="/login" className="text-xs text-gray-500 hover:text-white transition-colors">Ya tengo cuenta →</Link>
         </div>

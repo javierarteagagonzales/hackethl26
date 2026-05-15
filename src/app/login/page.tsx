@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
 import { ArrowRight, GitBranch, Wallet, HelpCircle } from "lucide-react";
 
@@ -34,7 +34,7 @@ export default function LoginPage() {
         
         <div className="relative z-10">
           <Link href="/">
-            <Image src="/Ethlogo.png" alt="ETH Lima" width={120} height={40} className="h-9 w-auto" unoptimized />
+            <img src={LOGO_SRC} alt="ETH Lima" width={120} height={40} className="h-9 w-auto" />
           </Link>
         </div>
 
@@ -80,7 +80,7 @@ export default function LoginPage() {
           {/* Mobile logo */}
           <div className="lg:hidden mb-10">
             <Link href="/">
-              <Image src="/Ethlogo.png" alt="ETH Lima" width={100} height={32} className="h-8 w-auto" unoptimized />
+              <img src={LOGO_SRC} alt="ETH Lima" width={100} height={32} className="h-8 w-auto" />
             </Link>
           </div>
 

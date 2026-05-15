@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
 import { LayoutDashboard, Trophy, Users, Code2, Bell, Settings, LogOut, ArrowUpRight, Zap } from "lucide-react";
 
@@ -24,7 +24,7 @@ export default function DashboardPage() {
       {/* Sidebar */}
       <aside className="hidden md:flex w-56 shrink-0 flex-col border-r border-white/5 bg-black/90 sticky top-0 h-screen z-20">
         <div className="p-5 border-b border-white/5">
-          <Link href="/"><Image src="/Ethlogo.png" alt="ETH Lima" width={90} height={30} className="h-7 w-auto" unoptimized /></Link>
+          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" width={90} height={30} className="h-7 w-auto" /></Link>
         </div>
         <nav className="flex-1 p-4 space-y-1">
           {[
