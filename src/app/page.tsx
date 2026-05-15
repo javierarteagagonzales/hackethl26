@@ -14,7 +14,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  
+
   const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-brand-blue/30 overflow-x-hidden font-sans">
-      
+
       {/* Background Grid & Glow Effect */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand-blue/20 blur-[150px] rounded-full pointer-events-none z-0"></div>
@@ -147,9 +147,9 @@ export default function Home() {
             </div>
 
             <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-gray-500 font-mono text-sm uppercase tracking-widest">
-              <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-blue" /> Oct 24–26, 2026</div>
+              <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-blue" /> Jul 18 - Aug 11, 2026</div>
               <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-brand-red" /> Lima & Virtual</div>
-              <div className="flex items-center gap-2"><Server className="w-4 h-4 text-green-500" /> $10k+ Prizes</div>
+              <div className="flex items-center gap-2"><Server className="w-4 h-4 text-green-500" /> $4k+ Prizes</div>
             </div>
           </motion.div>
         </div>
@@ -220,7 +220,7 @@ export default function Home() {
                         </ul>
                       </div>
                     </div>
-                    
+
                     <div className="pt-4 border-t border-white/10 flex items-center justify-between mt-auto">
                       <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">Prize Pool</span>
                       <span className="text-xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{track.totalPrizePool}</span>
