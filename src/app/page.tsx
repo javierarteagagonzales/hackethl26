@@ -226,7 +226,7 @@ export default function Home() {
                       <div>
                         <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Categories</h4>
                         <div className="flex flex-wrap gap-2">
-                          {track.categories.map((cat, j) => (
+                          {track.categories.map((cat: string, j: number) => (
                             <Badge key={j} variant="secondary" className="bg-brand-blue/10 text-brand-blue border border-brand-blue/20 hover:bg-brand-blue/20">{cat}</Badge>
                           ))}
                         </div>
@@ -234,7 +234,7 @@ export default function Home() {
                       <div>
                         <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2"><Trophy className="w-3 h-3" /> Prizes</h4>
                         <ul className="space-y-2">
-                          {track.prizes.map((prize, j) => (
+                          {track.prizes.map((prize: { name: string; amount: string }, j: number) => (
                             <li key={j} className="text-sm flex justify-between items-center bg-white/5 p-2 rounded border border-white/5">
                               <span className="text-gray-300">{prize.name}</span>
                               <span className="font-mono text-green-400 font-semibold">{prize.amount}</span>
