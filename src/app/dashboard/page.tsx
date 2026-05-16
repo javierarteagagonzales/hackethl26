@@ -64,7 +64,7 @@ export default function DashboardPage() {
     ]);
 
     if (tracksResult.success) {
-      setTracks(tracksResult.tracks);
+      setTracks(tracksResult.tracks || []);
     }
 
     if (mentorshipsResult.success) {
@@ -75,7 +75,7 @@ export default function DashboardPage() {
       setTeam(teamResult.team);
       const projectResult = await getProjectByTeam(teamResult.team.id);
       if (projectResult.success) {
-        setProject(projectResult.project);
+        setProject(projectResult.project || null);
       }
     }
     setLoading(false);

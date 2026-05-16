@@ -54,11 +54,11 @@ export default function AdminPage() {
       getSponsors()
     ]);
 
-    if (appRes.success) setApplicants(appRes.applicants);
-    if (projRes.success) setProjects(projRes.projects);
-    if (statsRes.success) setStats(statsRes.stats);
-    if (tracksRes.success) setTracks(tracksRes.tracks);
-    if (sponsorsRes.success) setSponsors(sponsorsRes.sponsors);
+    if (appRes.success) setApplicants(appRes.applicants || []);
+    if (projRes.success) setProjects(projRes.projects || []);
+    if (statsRes.success) setStats(statsRes.stats || { users: 0, teams: 0, projects: 0 });
+    if (tracksRes.success) setTracks(tracksRes.tracks || []);
+    if (sponsorsRes.success) setSponsors(sponsorsRes.sponsors || []);
     setLoading(false);
   };
 

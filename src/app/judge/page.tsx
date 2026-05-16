@@ -62,7 +62,7 @@ export default function JudgePage() {
     setLoading(true);
     const result = await getProjectsForJudging();
     if (result.success) {
-      setProjects(result.projects);
+      setProjects(result.projects || []);
     }
     setLoading(false);
   };
