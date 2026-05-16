@@ -22,10 +22,21 @@ export default function Home() {
   useEffect(() => {
     setIsMounted(true);
     let i = 0;
+    let erasing = false;
+    let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
+
     const terminalInterval = setInterval(() => {
-      setTerminalText(codeSnippet.slice(0, i));
-      i++;
-      if (i > codeSnippet.length) clearInterval(terminalInterval);
+      if (!erasing) {
+        setTerminalText(codeSnippet.slice(0, i));
+        i++;
+        if (i > codeSnippet.length) {
+          erasing = true;
+          pauseTimeout = setTimeout(() => {
+            erasing = false;
+            i = 0;
+          }, 2000);
+        }
+      }
     }, 40);
 
     const targetDate = new Date("2026-05-30T00:00:00").getTime();
@@ -79,6 +90,7 @@ export default function Home() {
     return () => {
       clearInterval(terminalInterval);
       clearInterval(countdownInterval);
+      if (pauseTimeout) clearTimeout(pauseTimeout);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [codeSnippet]);
@@ -144,10 +156,14 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 
             {/* Coming Soon Badge */}
-            <div className="flex justify-center mb-8">
+            <div className="flex flex-col items-center gap-3 mb-8">
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-blue/40 bg-brand-blue/10 text-brand-blue font-semibold text-sm shadow-[0_0_20px_rgba(59,130,246,0.15)] md:animate-pulse">
                 <Zap className="w-4 h-4" />
                 Applications opening soon — stay tuned!
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-gray-500 font-mono text-xs sm:text-sm uppercase tracking-widest">
+                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-blue" /> Jul 18 - Aug 11, 2026</div>
+                <div className="flex items-center gap-2">🌍 Híbrido</div>
               </div>
             </div>
 
@@ -175,8 +191,6 @@ export default function Home() {
             </div>
 
             <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-gray-500 font-mono text-sm uppercase tracking-widest">
-              <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-blue" /> Jul 18 - Aug 11, 2026</div>
-              <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-brand-red" /> Lima & Virtual</div>
               <div className="flex items-center gap-2"><Server className="w-4 h-4 text-green-500" /> $4k+ Prizes</div>
             </div>
           </motion.div>
