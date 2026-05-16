@@ -58,6 +58,7 @@ export default function Home() {
           id: t.id,
           title: t.title,
           sponsor: t.sponsor?.name || "Independent",
+          sponsorLogo: t.sponsor?.logoUrl || null,
           description: t.description,
           color: t.color || "from-blue-500 to-cyan-400",
           categories: t.categories?.map((c: any) => c.name) || [],
@@ -215,9 +216,13 @@ export default function Home() {
                 <Card className="h-full bg-black/80 backdrop-blur-sm border-white/10 overflow-hidden hover:border-brand-blue/50 transition-all flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]">
                   <div className={`h-1 w-full bg-gradient-to-r ${track.color}`}></div>
                   <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex justify-between items-center mb-2">
                       <CardTitle className="text-2xl font-bold">{track.title}</CardTitle>
-                      <Badge variant="outline" className="bg-white/5 border-white/10 text-gray-300 font-mono text-xs">{track.sponsor}</Badge>
+                      {track.sponsorLogo ? (
+                        <img src={track.sponsorLogo} alt={track.sponsor} className="h-6 w-auto object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity" />
+                      ) : (
+                        <Badge variant="outline" className="bg-white/5 border-white/10 text-gray-300 font-mono text-xs">{track.sponsor}</Badge>
+                      )}
                     </div>
                     <CardDescription className="text-gray-400">{track.description}</CardDescription>
                   </CardHeader>
@@ -277,10 +282,10 @@ export default function Home() {
           
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
             <motion.div whileHover={{ scale: 1.05 }} className="group grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="/assets/sponsors/arbitrum-logo.svg" alt="Arbitrum" className="h-12 md:h-16 w-auto drop-shadow-[0_0_20px_rgba(59,130,246,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+              <img src="/assets/sponsors/arbitrum-logo.svg" alt="Arbitrum" className="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} className="group grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="/assets/sponsors/logo-arkiv.png" alt="Arkiv" className="h-12 md:h-16 w-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+              <img src="/assets/sponsors/logo-arkiv.png" alt="Arkiv" className="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
             </motion.div>
           </div>
         </div>
