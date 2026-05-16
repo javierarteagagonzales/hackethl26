@@ -95,12 +95,26 @@ export default function Home() {
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand-blue/20 blur-[150px] rounded-full pointer-events-none z-0"></div>
 
       {/* Top Banner Bootcamp */}
-      <div className="w-full bg-gradient-to-r from-brand-blue via-indigo-600 to-purple-600 text-white py-2 px-4 text-center text-sm font-semibold z-50 relative shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-          <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-yellow-300" /> Ethereum Lima Bootcamp, Learn about Arbitrum</span>
-          <span className="font-mono bg-black/40 px-3 py-1 rounded-full text-xs border border-white/20 tracking-widest min-w-[200px]">
-            {isMounted ? `Apply until: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : "Loading..."}
+      <div className="w-full bg-gradient-to-r from-brand-blue via-indigo-600 to-purple-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 text-center z-50 relative shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-6">
+          <span className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
+            <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-300 flex-shrink-0" />
+            <span className="hidden sm:inline">Ethereum Lima Bootcamp, Learn about Arbitrum</span>
+            <span className="sm:hidden">ETH Lima Bootcamp · Arbitrum</span>
           </span>
+          <div className="flex items-center gap-2">
+            <span className="font-mono bg-black/40 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs border border-white/20 tracking-widest hidden sm:inline-block min-w-[200px]">
+              {isMounted ? `Apply until: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : "Loading..."}
+            </span>
+            <a
+              href="https://bootcamp.ethlima.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 bg-white text-indigo-700 hover:bg-yellow-300 hover:text-indigo-900 transition-colors font-bold rounded-full px-3 py-0.5 sm:px-4 sm:py-1 text-[10px] sm:text-xs shadow-md whitespace-nowrap"
+            >
+              Register <ArrowRight className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       </div>
 
