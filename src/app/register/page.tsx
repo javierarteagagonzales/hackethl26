@@ -7,21 +7,50 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { registerHacker } from "@/app/actions/register";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 const SKILLS = ["Smart Contract Engineer", "Frontend Developer", "Backend Developer", "UI/UX Designer", "Product Manager", "Data Scientist", "Full Stack Dev", "Blockchain Researcher"];
 const TRACKS = ["Arbitrum", "Arkiv — Job Platform", "Arkiv — Wikis", "Arkiv — Events", "To be defined"];
+
+const registerSchema = z.object({
+  firstName: z.string().min(2, "First name is too short"),
+  lastName: z.string().min(2, "Last name is too short"),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  github: z.string().min(1, "GitHub username is required"),
+  walletAddress: z.string().optional(),
+  skills: z.string().min(1, "Please select a skill"),
+  track: z.string().min(1, "Please select a track"),
+  bio: z.string().optional(),
+});
+
+type RegisterValues = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      skills: SKILLS[0],
+      track: TRACKS[0],
+    }
+  });
+
+  const onSubmit = async (values: RegisterValues) => {
     setLoading(true);
     setError("");
     
-    const formData = new FormData(e.currentTarget);
+    // Transform to FormData for the existing server action
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) formData.append(key, value as string);
+    });
+
     const result = await registerHacker(formData);
     
     if (result.success) {
@@ -65,7 +94,7 @@ export default function RegisterPage() {
             ))}
           </div>
 
-          <form onSubmit={handleRegister} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {error && <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">{error}</div>}
             
             {/* Personal info */}
@@ -74,20 +103,24 @@ export default function RegisterPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs text-gray-500 block mb-1.5">First Name</label>
-                  <input name="firstName" placeholder="Javier" required className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                  <input {...register("firstName")} placeholder="Javier" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                  {errors.firstName && <p className="text-[10px] text-red-500 mt-1">{errors.firstName.message}</p>}
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 block mb-1.5">Last Name</label>
-                  <input name="lastName" placeholder="Doe" required className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                  <input {...register("lastName")} placeholder="Doe" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                  {errors.lastName && <p className="text-[10px] text-red-500 mt-1">{errors.lastName.message}</p>}
                 </div>
               </div>
               <div>
                 <label className="text-xs text-gray-500 block mb-1.5">Email</label>
-                <input name="email" type="email" placeholder="hacker@ethlima.org" required className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                <input {...register("email")} type="email" placeholder="hacker@ethlima.org" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                {errors.email && <p className="text-[10px] text-red-500 mt-1">{errors.email.message}</p>}
               </div>
               <div>
                 <label className="text-xs text-gray-500 block mb-1.5">Password</label>
-                <input name="password" type="password" placeholder="••••••••" required className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                <input {...register("password")} type="password" placeholder="••••••••" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                {errors.password && <p className="text-[10px] text-red-500 mt-1">{errors.password.message}</p>}
               </div>
             </div>
 
@@ -98,18 +131,20 @@ export default function RegisterPage() {
                 <label className="text-xs text-gray-500 block mb-1.5">GitHub Username</label>
                 <div className="flex items-center">
                   <span className="h-10 px-3 flex items-center bg-white/3 border border-r-0 border-white/10 rounded-l-lg text-gray-600 text-sm">github.com/</span>
-                  <input name="github" placeholder="your-user" className="flex-1 h-10 px-3 rounded-r-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                  <input {...register("github")} placeholder="your-user" className="flex-1 h-10 px-3 rounded-r-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
                 </div>
+                {errors.github && <p className="text-[10px] text-red-500 mt-1">{errors.github.message}</p>}
               </div>
               <div>
                 <label className="text-xs text-gray-500 block mb-1.5">Wallet Address (optional)</label>
-                <input name="walletAddress" placeholder="0x..." className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm font-mono placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
+                <input {...register("walletAddress")} placeholder="0x..." className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm font-mono placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all" />
               </div>
               <div>
                 <label className="text-xs text-gray-500 block mb-1.5">Primary Skill</label>
-                <select name="skills" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-blue-500/50 transition-all appearance-none">
+                <select {...register("skills")} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-blue-500/50 transition-all appearance-none">
                   {SKILLS.map(s => <option key={s} value={s} className="bg-black">{s}</option>)}
                 </select>
+                {errors.skills && <p className="text-[10px] text-red-500 mt-1">{errors.skills.message}</p>}
               </div>
             </div>
 
@@ -119,14 +154,15 @@ export default function RegisterPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {TRACKS.map(t => (
                   <label key={t} className="flex items-center gap-3 p-3 rounded-lg border border-white/5 bg-white/2 hover:bg-white/5 cursor-pointer transition-all text-sm text-gray-300 has-[:checked]:border-blue-500/50 has-[:checked]:bg-blue-500/5">
-                    <input type="radio" name="track" value={t} className="accent-blue-500" />
+                    <input type="radio" value={t} {...register("track")} className="accent-blue-500" />
                     {t}
                   </label>
                 ))}
               </div>
+              {errors.track && <p className="text-[10px] text-red-500 mt-1">{errors.track.message}</p>}
               <div>
                 <label className="text-xs text-gray-500 block mb-1.5">Why do you want to participate? (optional)</label>
-                <textarea name="bio" rows={3} placeholder="Tell us what motivates you to join ETH Lima 2026..." className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all resize-none" />
+                <textarea {...register("bio")} rows={3} placeholder="Tell us what motivates you to join ETH Lima 2026..." className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all resize-none" />
               </div>
             </div>
 

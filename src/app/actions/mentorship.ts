@@ -34,6 +34,7 @@ export async function requestMentorship(data: { scheduledAt: Date; topic?: strin
     const mentorship = await prisma.mentorship.create({
       data: {
         scheduledAt: data.scheduledAt,
+        topic: data.topic,
         teamId: user.teamId,
         mentorId: randomMentor.id,
         status: "PENDING"
@@ -75,7 +76,7 @@ export async function getTeamMentorships() {
   }
 }
 
-export async function getMentorMentorships() {
+export async function getMentorships() {
   const session = await getServerSession(authOptions);
   if (!session?.user) return { success: false };
 
@@ -97,7 +98,7 @@ export async function getMentorMentorships() {
   }
 }
 
-export async function updateMentorshipStatus(id: string, status: "ACCEPTED" | "COMPLETED" | "CANCELLED") {
+export async function updateMentorshipStatus(id: string, status: string) {
   try {
     await prisma.mentorship.update({
       where: { id },

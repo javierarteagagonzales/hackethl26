@@ -30,10 +30,10 @@ Este documento detalla las funcionalidades y tareas pendientes para completar la
 
 ## 🚀 Infraestructura y Despliegue
 - [ ] **Base de Datos**: Asegurar que todas las migraciones de Prisma estén aplicadas en Supabase/PostgreSQL de producción.
-- [ ] **Variables de Entorno**: Configurar `NEXTAUTH_SECRET`, `DATABASE_URL`, y proveedores de OAuth (si se agregan) en Vercel.
-- [ ] **Optimización SEO**: Agregar meta-tags dinámicos para las páginas de tracks y proyectos.
+- [ ] **Variables de Envío**: Configurar `NEXTAUTH_SECRET`, `DATABASE_URL`, y proveedores de OAuth (si se agregan) en Vercel.
+- [x] **Optimización SEO**: Agregar meta-tags dinámicos para las páginas de tracks y proyectos.
 
 ## 🎨 UI/UX y Pulido
-- [ ] **Estados de Carga**: Agregar skeletons y loaders en las transiciones de rutas protegidas.
-- [ ] **Validaciones**: Mejorar la validación de formularios en el cliente (Zod + React Hook Form).
-- [ ] **Notificaciones**: Implementar Toasts para feedback de acciones (registro exitoso, error de login, etc.).
+- [x] **Estados de Carga**: Agregar skeletons y loaders en las transiciones de rutas protegidas.
+- [x] **Validaciones**: Mejorar la validación de formularios en el cliente (Zod + React Hook Form).
+- [x] **Notificaciones**: Implementar Toasts para feedback de acciones (registro exitoso, error de login, etc.).

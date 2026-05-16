@@ -193,8 +193,9 @@ model Project {
 
 model Mentorship {
   id          String    @id @default(cuid())
+  topic       String?
   scheduledAt DateTime
-  status      String    @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  status      String    @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, CANCELLED
   feedback    String?
   
   mentorId    String

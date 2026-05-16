@@ -16,15 +16,16 @@ import {
   Bell,
   Search,
   ExternalLink,
-  UserPlus,
-  Globe,
-  Video,
   Copy,
+  UserPlus,
   Info,
   HelpCircle,
   Clock,
-  CheckCircle2
+  CheckCircle2,
+  Globe,
+  Video
 } from "lucide-react";
+import { TeamSkeleton, ProjectSkeleton } from "@/components/dashboard-skeletons";
 import { Badge } from "@/components/ui/badge";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -34,6 +35,33 @@ import { submitProject, getProjectByTeam } from "@/app/actions/project";
 import { getTracks } from "@/app/actions/tracks";
 import { requestMentorship, getTeamMentorships } from "@/app/actions/mentorship";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const teamSchema = z.object({
+  name: z.string().min(3, "Team name must be at least 3 characters"),
+});
+
+const joinTeamSchema = z.object({
+  inviteCode: z.string().min(5, "Invalid invite code"),
+});
+
+const projectSchema = z.object({
+  name: z.string().min(3, "Project name is too short"),
+  trackId: z.string().min(1, "Please select a track"),
+  description: z.string().min(10, "Description should be longer"),
+  githubUrl: z.string().url("Invalid GitHub URL"),
+  demoUrl: z.string().url("Invalid Demo URL").optional().or(z.literal("")),
+});
+
+const mentorshipSchema = z.object({
+  topic: z.string().min(5, "Please describe the topic"),
+  scheduledAt: z.string().min(1, "Please select a time"),
+});
+
+type ProjectValues = z.infer<typeof projectSchema>;
+type MentorshipValues = z.infer<typeof mentorshipSchema>;
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -46,6 +74,12 @@ export default function DashboardPage() {
   const [joining, setJoining] = useState(false);
   const [requestingMentorship, setRequestingMentorship] = useState(false);
   const [mentorships, setMentorships] = useState<any[]>([]);
+
+  // Forms
+  const teamForm = useForm<{ name: string }>({ resolver: zodResolver(teamSchema) });
+  const joinForm = useForm<{ inviteCode: string }>({ resolver: zodResolver(joinTeamSchema) });
+  const projectForm = useForm<ProjectValues>({ resolver: zodResolver(projectSchema) });
+  const mentorshipForm = useForm<MentorshipValues>({ resolver: zodResolver(mentorshipSchema) });
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -81,13 +115,14 @@ export default function DashboardPage() {
     setLoading(false);
   };
 
-  const handleCreateTeam = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  const handleCreateTeam = async (values: { name: string }) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
     const result = await createTeam(formData);
     if (result.success) {
       toast.success("Team created!");
       fetchInitialData();
+      teamForm.reset();
     } else {
       toast.error(result.error);
     }
@@ -102,15 +137,13 @@ export default function DashboardPage() {
     }
   };
 
-  const handleJoinTeam = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleJoinTeam = async (values: { inviteCode: string }) => {
     setJoining(true);
-    const formData = new FormData(e.currentTarget);
-    const code = formData.get("inviteCode") as string;
-    const result = await joinTeamByCode(code);
+    const result = await joinTeamByCode(values.inviteCode);
     if (result.success) {
       toast.success("Joined team!");
       fetchInitialData();
+      joinForm.reset();
     } else {
       toast.error(result.error);
     }
@@ -122,31 +155,29 @@ export default function DashboardPage() {
     toast.success("Code copied to clipboard!");
   };
 
-  const handleRequestMentorship = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleRequestMentorship = async (values: MentorshipValues) => {
     setRequestingMentorship(true);
-    const formData = new FormData(e.currentTarget);
-    const date = new FormData(e.currentTarget).get("scheduledAt") as string;
-    
     const result = await requestMentorship({
-      scheduledAt: new Date(date),
-      topic: formData.get("topic") as string
+      scheduledAt: new Date(values.scheduledAt),
+      topic: values.topic
     });
 
     if (result.success) {
       toast.success("Mentorship requested! A mentor will be assigned.");
       fetchInitialData();
-      (e.target as HTMLFormElement).reset();
+      mentorshipForm.reset();
     } else {
       toast.error(result.error || "Failed to request mentorship");
     }
     setRequestingMentorship(false);
   };
 
-  const handleSubmitProject = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmitProject = async (values: ProjectValues) => {
     setSubmitting(true);
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) formData.append(key, value);
+    });
     const result = await submitProject(formData);
     if (result.success) {
       toast.success("Project submitted successfully!");
@@ -226,7 +257,7 @@ export default function DashboardPage() {
                 </div>
                 
                 {loading ? (
-                  <div className="p-12 text-center text-gray-500 font-mono text-xs uppercase animate-pulse">Scanning database...</div>
+                  <TeamSkeleton />
                 ) : team ? (
                   <div className="p-6 space-y-6">
                     <div className="flex items-start justify-between">
@@ -286,20 +317,26 @@ export default function DashboardPage() {
                     <p className="text-gray-500 text-sm mb-8 max-w-sm mx-auto">Hackathons are better with a squad. Create a new team to start submitting a project.</p>
                     
                     <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
-                      <form onSubmit={handleCreateTeam} className="flex flex-col sm:flex-row gap-2 w-full">
-                        <input name="name" placeholder="New Team Name" required className="flex-1 h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30" />
+                      <form onSubmit={teamForm.handleSubmit(handleCreateTeam)} className="flex gap-2">
+                        <div className="flex-1">
+                          <input {...teamForm.register("name")} placeholder="New Team Name" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30" />
+                          {teamForm.formState.errors.name && <p className="text-[10px] text-red-500 mt-1">{teamForm.formState.errors.name.message}</p>}
+                        </div>
                         <button type="submit" className="h-10 px-6 rounded-lg bg-white text-black font-bold text-sm hover:bg-gray-200 transition-colors whitespace-nowrap">Create Team</button>
                       </form>
 
-                      <div className="relative">
+                      <div className="relative py-2">
                         <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/5"></div></div>
-                        <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-black px-4 text-gray-600 font-mono">Or join with code</span></div>
+                        <div className="relative flex justify-center text-[10px] uppercase font-mono text-gray-700 bg-transparent"><span className="px-2 bg-black">OR JOIN WITH CODE</span></div>
                       </div>
 
-                      <form onSubmit={handleJoinTeam} className="flex flex-col sm:flex-row gap-2 w-full">
-                        <input name="inviteCode" placeholder="Paste Invitation Code" required className="flex-1 h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30 uppercase font-mono tracking-widest" />
-                        <button type="submit" disabled={joining} className="h-10 px-6 rounded-lg bg-blue-600 text-white font-bold text-sm hover:bg-blue-500 transition-colors whitespace-nowrap disabled:opacity-50">
-                          {joining ? "Joining..." : "Join Team"}
+                      <form onSubmit={joinForm.handleSubmit(handleJoinTeam)} className="flex gap-2">
+                        <div className="flex-1">
+                          <input {...joinForm.register("inviteCode")} placeholder="TEAM-XXXX" className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30 uppercase" />
+                          {joinForm.formState.errors.inviteCode && <p className="text-[10px] text-red-500 mt-1">{joinForm.formState.errors.inviteCode.message}</p>}
+                        </div>
+                        <button type="submit" disabled={joining} className="h-10 px-6 rounded-lg border border-white/10 text-white font-bold text-sm hover:bg-white/5 transition-colors disabled:opacity-50">
+                          {joining ? "Joining..." : "Join"}
                         </button>
                       </form>
                     </div>
@@ -315,7 +352,7 @@ export default function DashboardPage() {
                 </div>
 
                 {loading ? (
-                  <div className="p-12 text-center text-gray-500 font-mono text-xs uppercase animate-pulse">Checking submissions...</div>
+                  <ProjectSkeleton />
                 ) : !team ? (
                   <div className="p-12 text-center">
                     <p className="text-gray-600 text-sm">Join or create a team to start building your project.</p>
@@ -350,38 +387,43 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmitProject} className="p-6 space-y-4">
-                    <div className="grid grid-cols-1 gap-4">
-                      <div>
-                        <label className="text-xs text-gray-500 block mb-1.5">Project Name</label>
-                        <input name="name" required placeholder="My Awesome DApp" defaultValue={project?.name} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30" />
-                      </div>
-                      <div>
-                        <label className="text-xs text-gray-500 block mb-1.5">Submission Track</label>
-                        <select name="trackId" required defaultValue={project?.trackId || ""} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-400 focus:outline-none focus:border-blue-500/30">
-                          <option value="">Select a track...</option>
-                          {tracks.map(t => <option key={t.id} value={t.id}>{t.title} ({t.sponsor?.name || "Independent"})</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-xs text-gray-500 block mb-1.5">Short Description</label>
-                        <textarea name="description" required rows={3} placeholder="What are you building?" defaultValue={project?.description} className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30 resize-none" />
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-xs text-gray-500 block mb-1.5">GitHub Repository</label>
-                          <input name="githubUrl" required placeholder="https://github.com/..." defaultValue={project?.githubUrl} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30" />
+                    <form onSubmit={projectForm.handleSubmit(handleSubmitProject)} className="space-y-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-gray-500 font-mono uppercase ml-1">Project Name</label>
+                          <input {...projectForm.register("name")} placeholder="My Awesome DApp" className="w-full h-11 px-4 rounded-lg bg-black border border-white/10 text-sm focus:outline-none focus:border-blue-500/50 transition-all" />
+                          {projectForm.formState.errors.name && <p className="text-[10px] text-red-500 mt-1">{projectForm.formState.errors.name.message}</p>}
                         </div>
-                        <div>
-                          <label className="text-xs text-gray-500 block mb-1.5">Demo URL (optional)</label>
-                          <input name="demoUrl" placeholder="https://..." defaultValue={project?.demoUrl} className="w-full h-10 px-3 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-blue-500/30" />
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-gray-500 font-mono uppercase ml-1">Track</label>
+                          <select {...projectForm.register("trackId")} className="w-full h-11 px-4 rounded-lg bg-black border border-white/10 text-sm text-gray-400 focus:outline-none focus:border-blue-500/50 transition-all appearance-none">
+                            <option value="">Select a track...</option>
+                            {tracks.map(t => <option key={t.id} value={t.id}>{t.title}</option>)}
+                          </select>
+                          {projectForm.formState.errors.trackId && <p className="text-[10px] text-red-500 mt-1">{projectForm.formState.errors.trackId.message}</p>}
                         </div>
                       </div>
-                    </div>
-                    <button type="submit" disabled={submitting} className="w-full h-11 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50">
-                      {submitting ? "Submitting..." : "Submit Project"} <Code2 className="w-4 h-4" />
-                    </button>
-                  </form>
+                      <div className="space-y-1.5">
+                        <label className="text-xs text-gray-500 font-mono uppercase ml-1">Description</label>
+                        <textarea {...projectForm.register("description")} rows={4} placeholder="What does your project do? How was it built?" className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 text-sm focus:outline-none focus:border-blue-500/50 transition-all resize-none" />
+                        {projectForm.formState.errors.description && <p className="text-[10px] text-red-500 mt-1">{projectForm.formState.errors.description.message}</p>}
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-gray-500 font-mono uppercase ml-1">GitHub Repository</label>
+                          <input {...projectForm.register("githubUrl")} placeholder="https://github.com/..." className="w-full h-11 px-4 rounded-lg bg-black border border-white/10 text-sm focus:outline-none focus:border-blue-500/50 transition-all" />
+                          {projectForm.formState.errors.githubUrl && <p className="text-[10px] text-red-500 mt-1">{projectForm.formState.errors.githubUrl.message}</p>}
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-gray-500 font-mono uppercase ml-1">Live Demo / Video (optional)</label>
+                          <input {...projectForm.register("demoUrl")} placeholder="https://..." className="w-full h-11 px-4 rounded-lg bg-black border border-white/10 text-sm focus:outline-none focus:border-blue-500/50 transition-all" />
+                          {projectForm.formState.errors.demoUrl && <p className="text-[10px] text-red-500 mt-1">{projectForm.formState.errors.demoUrl.message}</p>}
+                        </div>
+                      </div>
+                      <button type="submit" disabled={submitting} className="w-full h-11 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50">
+                        {submitting ? "Submitting..." : "Submit Project"} <Code2 className="w-4 h-4" />
+                      </button>
+                    </form>
                 )}
               </section>
 
@@ -397,14 +439,16 @@ export default function DashboardPage() {
                     <h3 className="text-sm font-bold flex items-center gap-2"><HelpCircle className="w-4 h-4 text-purple-400" /> Request a Mentor</h3>
                     <p className="text-xs text-gray-500 leading-relaxed">Stuck on a bug or need architecture advice? Our mentors are here to help you cross the finish line.</p>
                     
-                    <form onSubmit={handleRequestMentorship} className="space-y-3 pt-2">
+                    <form onSubmit={mentorshipForm.handleSubmit(handleRequestMentorship)} className="space-y-3 pt-2">
                       <div className="space-y-1.5">
                         <label className="text-[10px] text-gray-600 font-mono uppercase">Topic / Issue</label>
-                        <input name="topic" required placeholder="Smart contract debug, UX feedback..." className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-purple-500/30" />
+                        <input {...mentorshipForm.register("topic")} placeholder="Smart contract debug, UX feedback..." className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-purple-500/30" />
+                        {mentorshipForm.formState.errors.topic && <p className="text-[9px] text-red-500 mt-0.5">{mentorshipForm.formState.errors.topic.message}</p>}
                       </div>
                       <div className="space-y-1.5">
                         <label className="text-[10px] text-gray-600 font-mono uppercase">Preferred Time</label>
-                        <input name="scheduledAt" type="datetime-local" required className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs text-gray-400 focus:outline-none focus:border-purple-500/30" />
+                        <input {...mentorshipForm.register("scheduledAt")} type="datetime-local" className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs text-gray-400 focus:outline-none focus:border-purple-500/30" />
+                        {mentorshipForm.formState.errors.scheduledAt && <p className="text-[9px] text-red-500 mt-0.5">{mentorshipForm.formState.errors.scheduledAt.message}</p>}
                       </div>
                       <button type="submit" disabled={requestingMentorship || !team} className="w-full h-9 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-all disabled:opacity-50">
                         {requestingMentorship ? "Sending Request..." : "Request Mentorship"}
