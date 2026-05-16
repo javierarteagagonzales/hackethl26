@@ -187,7 +187,7 @@ export default function JudgePage() {
                   <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">{proj.description}</p>
                   
                   <div className="flex flex-wrap gap-2 pt-2">
-                    {proj.githubUrl && <a href={proj.githubUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded bg-white/5 border border-white/10 text-gray-500 hover:text-white transition-colors"><Github className="w-3.5 h-3.5" /></a>}
+                    {proj.githubUrl && <a href={proj.githubUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded bg-white/5 border border-white/10 text-gray-500 hover:text-white transition-colors"><Code2 className="w-3.5 h-3.5" /></a>}
                     {proj.demoUrl && <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded bg-white/5 border border-white/10 text-gray-500 hover:text-white transition-colors"><Globe className="w-3.5 h-3.5" /></a>}
                     {proj.videoUrl && <a href={proj.videoUrl} target="_blank" rel="noreferrer" className="p-1.5 rounded bg-white/5 border border-white/10 text-gray-500 hover:text-white transition-colors"><Video className="w-3.5 h-3.5" /></a>}
                   </div>

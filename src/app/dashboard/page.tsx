@@ -269,7 +269,7 @@ export default function DashboardPage() {
                             </div>
                             {member.github && (
                               <a href={`https://github.com/${member.github}`} target="_blank" rel="noreferrer" className="text-gray-600 hover:text-white transition-colors">
-                                <Github className="w-3.5 h-3.5" />
+                                <Code2 className="w-3.5 h-3.5" />
                               </a>
                             )}
                           </div>
@@ -332,7 +332,7 @@ export default function DashboardPage() {
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {[
-                        { label: "GitHub Repository", val: project.githubUrl, icon: <Github className="w-4 h-4" /> },
+                        { label: "GitHub Repository", val: project.githubUrl, icon: <Code2 className="w-4 h-4" /> },
                         { label: "Live Demo", val: project.demoUrl, icon: <Globe className="w-4 h-4" /> },
                         { label: "Video Pitch", val: project.videoUrl, icon: <Video className="w-4 h-4" /> },
                       ].map((link, i) => (
