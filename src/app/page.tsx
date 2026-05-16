@@ -263,7 +263,7 @@ export default function Home() {
                 { day: "Jul 18 - Jul 24", time: "Preparation", title: "Pre-Event Workshops", desc: "Introductory talks, team formation, and virtual support sessions.", color: "bg-blue-600" },
                 { day: "Jul 25 - Jul 26", time: "Build", title: "Hackathon & Demo Day", desc: "48 hours of intensive coding, submissions and live demos.", color: "bg-purple-600" },
                 { day: "Jul 31 - Aug 10", time: "Evaluation", title: "Live Results", desc: "Winners announced for Arbitrum, Arkiv, and all other tracks.", color: "bg-yellow-500" },
-                { day: "Aug 13 - Sep 6", time: "Follow-up", title: "Post-Hackathon Talks", desc: "Talk series at UNI and official close of the event season.", color: "bg-orange-500" }
+                { day: "Aug 13 - Sep 6", time: "Follow-up", title: "Post-Hackathon Talks", desc: "Talk series, Mentoring sessions and official close of the event season.", color: "bg-orange-500" }
               ].map((item, idx) => (
                 <div key={idx} className="relative flex flex-col items-center text-center group">
 
