@@ -26,15 +26,20 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { getApplicants, updateParticipantStatus, getProjects, getStats } from "@/app/actions/admin";
+import { getTracks, createTrack, getSponsors, createSponsor } from "@/app/actions/tracks";
+import { toast } from "sonner";
 
-type Tab = "overview" | "applicants" | "projects";
+type Tab = "overview" | "applicants" | "projects" | "tracks";
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [applicants, setApplicants] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
+  const [tracks, setTracks] = useState<any[]>([]);
+  const [sponsors, setSponsors] = useState<any[]>([]);
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -42,23 +47,58 @@ export default function AdminPage() {
 
   const loadData = async () => {
     setLoading(true);
-    const [appRes, projRes, statsRes] = await Promise.all([
+    const [appRes, projRes, statsRes, tracksRes, sponsorsRes] = await Promise.all([
       getApplicants(),
       getProjects(),
-      getStats()
+      getStats(),
+      getTracks(),
+      getSponsors()
     ]);
 
     if (appRes.success) setApplicants(appRes.applicants);
     if (projRes.success) setProjects(projRes.projects);
     if (statsRes.success) setStats(statsRes.stats);
+    if (tracksRes.success) setTracks(tracksRes.tracks);
+    if (sponsorsRes.success) setSponsors(sponsorsRes.sponsors);
     setLoading(false);
   };
 
   const handleUpdateStatus = async (id: string, status: "APPROVED" | "REJECTED") => {
     const result = await updateParticipantStatus(id, status);
     if (result.success) {
+      toast.success(`Applicant ${status.toLowerCase()}`);
       loadData();
     }
+  };
+
+  const handleCreateSponsor = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setCreating(true);
+    const formData = new FormData(e.currentTarget);
+    const result = await createSponsor(formData);
+    if (result.success) {
+      toast.success("Sponsor created");
+      loadData();
+      (e.target as HTMLFormElement).reset();
+    } else {
+      toast.error(result.error || "Error");
+    }
+    setCreating(false);
+  };
+
+  const handleCreateTrack = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setCreating(true);
+    const formData = new FormData(e.currentTarget);
+    const result = await createTrack(formData);
+    if (result.success) {
+      toast.success("Track created");
+      loadData();
+      (e.target as HTMLFormElement).reset();
+    } else {
+      toast.error(result.error || "Error");
+    }
+    setCreating(false);
   };
 
   return (
@@ -216,57 +256,103 @@ export default function AdminPage() {
             </section>
           )}
 
-          {/* Projects Tab */}
-          {activeTab === "projects" && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {loading ? (
-                <div className="lg:col-span-2 py-20 text-center text-gray-500">Loading projects...</div>
-              ) : projects.length === 0 ? (
-                <div className="lg:col-span-2 py-20 text-center text-gray-500">No projects submitted yet.</div>
-              ) : projects.map((proj) => (
-                <motion.div 
-                  layout
-                  key={proj.id} 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }}
-                  className="bg-white/2 border border-white/8 rounded-xl overflow-hidden flex flex-col"
-                >
-                  <div className="p-6 border-b border-white/5 bg-white/2">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="text-xl font-bold">{proj.name}</h3>
-                        <p className="text-xs text-blue-400 font-mono uppercase mt-1">By {proj.team?.name}</p>
-                      </div>
-                      <Badge className="bg-green-500/10 text-green-500 border-green-500/20">Active</Badge>
-                    </div>
+          {/* Tracks Tab */}
+          {activeTab === "tracks" && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-8">
+                <section className="bg-white/2 border border-white/8 rounded-xl overflow-hidden">
+                  <div className="p-6 border-b border-white/5">
+                    <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Existing Tracks</h3>
                   </div>
-                  <div className="p-6 space-y-4 flex-1">
-                    <p className="text-sm text-gray-400 line-clamp-3">{proj.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {proj.githubUrl && <a href={proj.githubUrl} target="_blank" rel="noreferrer" className="p-2 rounded bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors"><Github className="w-4 h-4" /></a>}
-                      {proj.demoUrl && <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="p-2 rounded bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors"><Globe className="w-4 h-4" /></a>}
-                      {proj.videoUrl && <a href={proj.videoUrl} target="_blank" rel="noreferrer" className="p-2 rounded bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors"><Video className="w-4 h-4" /></a>}
-                    </div>
-
-                    <div className="pt-4 border-t border-white/5">
-                      <div className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mb-3">Team Members</div>
-                      <div className="flex flex-wrap gap-3">
-                        {proj.team?.members?.map((m: any, i: number) => (
-                          <div key={i} className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[8px]">{m.name?.[0]}</div>
-                            <span className="text-xs text-gray-500">{m.name}</span>
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 gap-4">
+                      {tracks.map((track) => (
+                        <div key={track.id} className="p-4 rounded-lg border border-white/5 bg-white/2 flex items-center justify-between group">
+                          <div className="flex items-center gap-4">
+                            <div className={`w-2 h-12 rounded-full bg-gradient-to-b ${track.color || "from-gray-500 to-gray-700"}`} />
+                            <div>
+                              <h4 className="font-bold">{track.title}</h4>
+                              <p className="text-xs text-gray-500">{track.sponsor?.name || "No Sponsor"}</p>
+                            </div>
                           </div>
-                        ))}
-                      </div>
+                          <button className="text-xs text-gray-600 hover:text-white transition-colors">Edit</button>
+                        </div>
+                      ))}
+                      {tracks.length === 0 && <div className="text-center py-8 text-gray-600 text-sm">No tracks found. Create one.</div>}
                     </div>
                   </div>
-                  <div className="p-4 bg-white/2 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-[10px] text-gray-600 font-mono">{new Date(proj.createdAt).toLocaleString()}</span>
-                    <button className="text-xs text-blue-400 hover:underline flex items-center gap-1">Open Evaluation <ExternalLink className="w-3 h-3" /></button>
+                </section>
+
+                <section className="bg-white/2 border border-white/8 rounded-xl overflow-hidden">
+                  <div className="p-6 border-b border-white/5">
+                    <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest">Sponsors</h3>
                   </div>
-                </motion.div>
-              ))}
+                  <div className="p-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      {sponsors.map((sponsor) => (
+                        <div key={sponsor.id} className="p-4 rounded-lg border border-white/5 bg-white/2 flex flex-col items-center justify-center text-center group relative">
+                          {sponsor.logoUrl ? (
+                            <img src={sponsor.logoUrl} alt={sponsor.name} className="h-8 w-auto object-contain mb-2 grayscale group-hover:grayscale-0 transition-all" />
+                          ) : (
+                            <ShieldCheck className="w-8 h-8 text-gray-700 mb-2" />
+                          )}
+                          <span className="text-xs font-medium text-gray-400">{sponsor.name}</span>
+                        </div>
+                      ))}
+                      {sponsors.length === 0 && <div className="col-span-full text-center py-8 text-gray-600 text-sm">No sponsors found.</div>}
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div className="space-y-8">
+                {/* Create Sponsor Form */}
+                <section className="bg-white/2 border border-white/8 rounded-xl p-6">
+                  <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-6">Add Sponsor</h3>
+                  <form onSubmit={handleCreateSponsor} className="space-y-4">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Name</label>
+                      <input name="name" required placeholder="Arbitrum Foundation" className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Logo URL</label>
+                      <input name="logoUrl" placeholder="https://..." className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30" />
+                    </div>
+                    <button type="submit" disabled={creating} className="w-full h-9 rounded-lg bg-white text-black font-bold text-xs hover:bg-gray-200 transition-colors disabled:opacity-50">
+                      {creating ? "Creating..." : "Add Sponsor"}
+                    </button>
+                  </form>
+                </section>
+
+                {/* Create Track Form */}
+                <section className="bg-white/2 border border-white/8 rounded-xl p-6">
+                  <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-6">Add Track</h3>
+                  <form onSubmit={handleCreateTrack} className="space-y-4">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Title</label>
+                      <input name="title" required placeholder="Scaling Future" className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Sponsor</label>
+                      <select name="sponsorId" className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs text-gray-400 focus:outline-none focus:border-red-500/30">
+                        <option value="">None</option>
+                        {sponsors.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                      </select>
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Color (Tailwind classes)</label>
+                      <input name="color" placeholder="from-blue-500 to-cyan-500" className="w-full h-9 px-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] text-gray-500 font-mono uppercase">Description</label>
+                      <textarea name="description" rows={3} placeholder="Track description..." className="w-full p-3 rounded-lg bg-black border border-white/10 text-xs focus:outline-none focus:border-red-500/30 resize-none" />
+                    </div>
+                    <button type="submit" disabled={creating} className="w-full h-9 rounded-lg bg-red-600 text-white font-bold text-xs hover:bg-red-500 transition-colors disabled:opacity-50">
+                      {creating ? "Creating..." : "Add Track"}
+                    </button>
+                  </form>
+                </section>
+              </div>
             </div>
           )}
         </div>

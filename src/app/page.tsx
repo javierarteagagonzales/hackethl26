@@ -8,12 +8,14 @@ import { Calendar, MapPin, Users, ArrowRight, ArrowUp, GitBranch, Globe, Message
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { MOCK_TRACKS } from "@/lib/mock-data";
+import { getTracks } from "@/app/actions/tracks";
 
 export default function Home() {
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [tracks, setTracks] = useState<any[]>(MOCK_TRACKS);
 
   const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
@@ -48,6 +50,27 @@ export default function Home() {
       setShowBackToTop(window.scrollY > 400);
     };
 
+    const fetchTracks = async () => {
+      const result = await getTracks();
+      if (result.success && result.tracks && result.tracks.length > 0) {
+        // Map DB tracks to the UI format
+        const formattedTracks = result.tracks.map((t: any) => ({
+          id: t.id,
+          title: t.title,
+          sponsor: t.sponsor?.name || "Independent",
+          description: t.description,
+          color: t.color || "from-blue-500 to-cyan-400",
+          categories: t.categories?.map((c: any) => c.name) || [],
+          prizes: t.prizes?.map((p: any) => ({ name: p.name, amount: p.amount })) || [],
+          totalPrizePool: t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) > 0 
+            ? `$${t.prizes.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0)}`
+            : "TBA"
+        }));
+        setTracks(formattedTracks);
+      }
+    };
+
+    fetchTracks();
     window.addEventListener("scroll", handleScroll);
     return () => {
       clearInterval(terminalInterval);
@@ -187,7 +210,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MOCK_TRACKS.map((track, i) => (
+            {tracks.map((track, i) => (
               <motion.div key={i} whileHover={{ y: -5 }} className="group">
                 <Card className="h-full bg-black/80 backdrop-blur-sm border-white/10 overflow-hidden hover:border-brand-blue/50 transition-all flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]">
                   <div className={`h-1 w-full bg-gradient-to-r ${track.color}`}></div>

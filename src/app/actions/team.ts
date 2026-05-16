@@ -104,3 +104,29 @@ export async function getMyTeam() {
     return { success: false };
   }
 }
+
+export async function joinTeamByCode(inviteCode: string) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) return { success: false, error: "Unauthorized" };
+
+  try {
+    const team = await prisma.team.findUnique({
+      where: { inviteCode },
+    });
+
+    if (!team) {
+      return { success: false, error: "Invalid invitation code." };
+    }
+
+    await prisma.user.update({
+      where: { id: session.user.id },
+      data: { teamId: team.id },
+    });
+
+    revalidatePath("/dashboard");
+    return { success: true, team };
+  } catch (error) {
+    console.error("Join team by code error:", error);
+    return { success: false, error: "Could not join team." };
+  }
+}

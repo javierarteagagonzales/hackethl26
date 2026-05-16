@@ -155,6 +155,7 @@ model Team {
   id          String    @id @default(cuid())
   name        String
   description String?
+  inviteCode  String    @unique @default(cuid())
   
   members     User[]
   project     Project?
