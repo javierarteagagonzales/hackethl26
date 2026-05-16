@@ -90,6 +90,8 @@ export default function DashboardPage() {
         router.push("/admin");
       } else if (session?.user?.role === "MENTOR") {
         router.push("/mentor/dashboard");
+      } else if (session?.user?.role === "JUDGE") {
+        router.push("/judge");
       } else {
         fetchInitialData();
       }
