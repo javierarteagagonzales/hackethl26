@@ -120,12 +120,6 @@ export default function Home() {
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-gray-400 hover:text-white text-sm transition-colors mr-2">
               <HelpCircle className="w-4 h-4 mr-1" /> Support: @javierdgtl
             </a>
-            <Link href="/login" className="hidden sm:inline-flex h-9 items-center justify-center px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors">
-              Log in
-            </Link>
-            <Link href="/register" className="inline-flex h-9 items-center justify-center px-4 py-2 text-sm font-medium bg-brand-blue hover:bg-brand-blue/80 text-white border border-brand-blue/50 shadow-[0_0_15px_rgba(59,130,246,0.5)] rounded-md transition-colors">
-              Apply Now
-            </Link>
           </div>
         </div>
       </nav>
@@ -134,6 +128,14 @@ export default function Home() {
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10">
         <div className="container relative mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+
+            {/* Coming Soon Badge */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-blue/40 bg-brand-blue/10 text-brand-blue font-semibold text-sm shadow-[0_0_20px_rgba(59,130,246,0.15)] md:animate-pulse">
+                <Zap className="w-4 h-4" />
+                Applications opening soon — stay tuned!
+              </div>
+            </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-purple-500 to-brand-red">ETH Lima</span>{" "}
@@ -156,18 +158,6 @@ export default function Home() {
                 {terminalText}
                 <span className="animate-pulse text-white">_</span>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 mt-10">
-              <Link href="/register" className="inline-flex items-center justify-center h-14 px-8 text-lg bg-white text-black hover:bg-gray-200 rounded-md font-semibold w-full sm:w-auto transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                Apply as Hacker <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-              <Link href="/sponsor" className="inline-flex items-center justify-center h-14 px-6 text-base w-full sm:w-auto border border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-md font-medium transition-all">
-                <Briefcase className="mr-2 w-4 h-4" /> Sponsor Track
-              </Link>
-              <Link href="/apply-mentor" className="inline-flex items-center justify-center h-14 px-6 text-base w-full sm:w-auto border border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-md font-medium transition-all">
-                <Users className="mr-2 w-4 h-4" /> Become Mentor
-              </Link>
             </div>
 
             <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-gray-500 font-mono text-sm uppercase tracking-widest">
