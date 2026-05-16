@@ -92,7 +92,7 @@ async function main() {
       },
       prizes: {
         create: [
-          { name: "1st Place", amount: "$1,000" },
+          { name: "1st Place", amount: "$900" },
           { name: "2nd Place", amount: "$700" },
           { name: "Bounties", amount: "$500" }
         ]

@@ -54,19 +54,22 @@ export default function Home() {
       const result = await getTracks();
       if (result.success && result.tracks && result.tracks.length > 0) {
         // Map DB tracks to the UI format
-        const formattedTracks = result.tracks.map((t: any) => ({
-          id: t.id,
-          title: t.title,
-          sponsor: t.sponsor?.name || "Independent",
-          sponsorLogo: t.sponsor?.logoUrl || null,
-          description: t.description,
-          color: t.color || "from-blue-500 to-cyan-400",
-          categories: t.categories?.map((c: any) => c.name) || [],
-          prizes: t.prizes?.map((p: any) => ({ name: p.name, amount: p.amount })) || [],
-          totalPrizePool: t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) > 0 
-            ? `$${t.prizes.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0)}`
-            : "TBA"
-        }));
+        const formattedTracks = result.tracks.map((t: any) => {
+          const totalAmount = t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) || 0;
+          const isUSDC = t.prizes?.some((p: any) => p.amount.includes("USDC"));
+          
+          return {
+            id: t.id,
+            title: t.title,
+            sponsor: t.sponsor?.name || "Independent",
+            sponsorLogo: t.sponsor?.logoUrl || null,
+            description: t.description,
+            color: t.color || "from-blue-500 to-cyan-400",
+            categories: t.categories?.map((c: any) => c.name) || [],
+            prizes: t.prizes?.map((p: any) => ({ name: p.name, amount: p.amount })) || [],
+            totalPrizePool: totalAmount > 0 ? (isUSDC ? `${totalAmount} USDC` : `$${totalAmount}`) : "TBA"
+          };
+        });
         setTracks(formattedTracks);
       }
     };
