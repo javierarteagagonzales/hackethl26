@@ -85,9 +85,15 @@ export default function DashboardPage() {
     if (status === "unauthenticated") {
       router.push("/login");
     } else if (status === "authenticated") {
-      fetchInitialData();
+      if (session?.user?.role === "ADMIN" || session?.user?.role === "SUPERADMIN") {
+        router.push("/admin");
+      } else if (session?.user?.role === "MENTOR") {
+        router.push("/mentor/dashboard");
+      } else {
+        fetchInitialData();
+      }
     }
-  }, [status, router]);
+  }, [status, session, router]);
 
   const fetchInitialData = async () => {
     setLoading(true);
@@ -195,53 +201,22 @@ export default function DashboardPage() {
   if (!session) return null;
 
   return (
-    <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
-      {/* Sidebar */}
-      <aside className="w-64 border-r border-white/5 flex flex-col shrink-0 bg-[#050505]">
-        <div className="p-6 border-b border-white/5">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
+    <div className="space-y-8">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-white/5">
+        <div>
+          <h1 className="text-3xl font-black tracking-tighter">Welcome, <span className="text-brand-blue">{session.user?.name || "Hacker"}</span> 👾</h1>
+          <p className="text-gray-500 text-sm mt-1">Application Status: <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 ml-2">Approved ✅</Badge></p>
         </div>
-        
-        <nav className="flex-1 p-4 space-y-2">
-          {[
-            { icon: <LayoutDashboard className="w-4 h-4" />, label: "Overview", active: true },
-            { icon: <Code2 className="w-4 h-4" />, label: "My Projects", active: false },
-            { icon: <Users className="w-4 h-4" />, label: "Team Finder", active: false },
-            { icon: <Trophy className="w-4 h-4" />, label: "Prizes & Bounties", active: false },
-            { icon: <Calendar className="w-4 h-4" />, label: "Schedule", active: false },
-            { icon: <MessageSquare className="w-4 h-4" />, label: "Discord/Telegram", active: false },
-          ].map((item) => (
-            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${item.active ? "bg-white/5 text-white" : "text-gray-500 hover:text-white hover:bg-white/2"}`}>
-              {item.icon} {item.label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="p-4 border-t border-white/5 space-y-2">
-          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-white transition-colors"><Settings className="w-4 h-4" /> Settings</button>
-          <button onClick={() => signOut({ callbackUrl: "/" })} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Logout</button>
+        <div className="flex items-center gap-3">
+          <div className="text-right hidden sm:block">
+            <div className="text-xs font-mono text-gray-500 uppercase tracking-widest">Network</div>
+            <div className="text-[10px] font-bold text-emerald-500">Arbitrum One</div>
+          </div>
+          <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+            <Zap className="w-5 h-5 text-yellow-500" />
+          </div>
         </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        <header className="h-16 border-b border-white/5 flex items-center justify-between px-8 bg-black/40 backdrop-blur-md sticky top-0 z-10">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="relative w-full max-w-md hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
-              <input placeholder="Search resources, projects..." className="w-full h-9 pl-10 pr-4 rounded-lg bg-white/5 border border-white/10 text-xs focus:outline-none focus:border-blue-500/30" />
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 text-gray-500 hover:text-white transition-colors"><Bell className="w-5 h-5" /><span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-black" /></button>
-            <div className="flex items-center gap-3 border border-white/10 bg-white/5 py-1 px-3 rounded-full">
-              <span className="text-[10px] font-mono text-gray-500 hidden sm:block truncate max-w-[100px]">{session.user?.email}</span>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 border border-white/20" />
-            </div>
-          </div>
-        </header>
-
-        <div className="p-8 space-y-8">
+      </header>
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-2xl font-bold tracking-tight mb-1">Welcome, {session.user?.name || "Hacker"} 👾</h1>
             <p className="text-gray-500 text-sm">Application Status: <span className="text-green-500 font-medium">Approved ✅</span></p>
@@ -517,7 +492,6 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-      </main>
     </div>
   );
 }
