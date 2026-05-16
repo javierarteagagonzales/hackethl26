@@ -78,7 +78,7 @@ export async function getTeamMentorships() {
 
 export async function getMentorships() {
   const session = await getServerSession(authOptions);
-  if (!session?.user) return { success: false };
+  if (!session?.user) return { success: false, error: "Unauthorized", mentorships: [] };
 
   try {
     const mentorships = await prisma.mentorship.findMany({
@@ -94,7 +94,7 @@ export async function getMentorships() {
     });
     return { success: true, mentorships };
   } catch (error) {
-    return { success: false, mentorships: [] };
+    return { success: false, error: "Database error", mentorships: [] };
   }
 }
 
@@ -106,8 +106,8 @@ export async function updateMentorshipStatus(id: string, status: string) {
     });
     revalidatePath("/mentor");
     revalidatePath("/dashboard");
-    return { success: true };
+    return { success: true, error: null };
   } catch (error) {
-    return { success: false };
+    return { success: false, error: "Failed to update status" };
   }
 }
