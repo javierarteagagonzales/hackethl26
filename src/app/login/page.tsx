@@ -139,9 +139,11 @@ export default function LoginPage() {
 
           {/* Test accounts notice */}
           <div className="p-4 rounded-lg bg-blue-500/5 border border-blue-500/10 text-[10px] text-gray-500 space-y-1 leading-relaxed">
-            <p className="font-bold text-blue-400 uppercase tracking-widest mb-1 font-mono">// Sandbox mode</p>
-            <p>Admin: admin@ethlima.org / admin123</p>
-            <p>Hacker: hacker@ethlima.org / hacker123</p>
+            <p className="font-bold text-blue-400 uppercase tracking-widest mb-1 font-mono">// Sandbox mode (Password: password123)</p>
+            <p>Admin: admin@ethlima.org</p>
+            <p>Hacker: hacker@ethlima.org</p>
+            <p>Judge: judge@ethlima.org</p>
+            <p>Mentor: mentor@ethlima.org</p>
           </div>
         </div>
       </div>
