@@ -169,6 +169,5 @@ export default function MentorDashboard() {
             </div>
           )}
         </div>
-    </div>
-  );
-}
+      );
+    }
