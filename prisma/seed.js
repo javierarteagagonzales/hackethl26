@@ -75,6 +75,11 @@ async function main() {
     },
   });
 
+  // Clear existing tracks to prevent duplicates
+  await prisma.prize.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.track.deleteMany();
+
   // Create tracks
   await prisma.track.create({
     data: {
@@ -86,7 +91,11 @@ async function main() {
         create: [{ name: "DeFi" }, { name: "Gaming" }, { name: "Social" }]
       },
       prizes: {
-        create: [{ name: "1st Place", amount: "$3,000" }, { name: "2nd Place", amount: "$1,500" }]
+        create: [
+          { name: "1st Place", amount: "$1,000" },
+          { name: "2nd Place", amount: "$700" },
+          { name: "Bounties", amount: "$500" }
+        ]
       }
     }
   });
@@ -101,7 +110,10 @@ async function main() {
         create: [{ name: "Infrastructure" }, { name: "Storage" }]
       },
       prizes: {
-        create: [{ name: "Best Use of Arkiv", amount: "$2,000" }]
+        create: [
+          { name: "Local Winner", amount: "2500 USDC" },
+          { name: "Global Contest", amount: "Pass to ETH Mumbai" }
+        ]
       }
     }
   });
