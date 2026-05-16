@@ -5,13 +5,38 @@ import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { motion } from "framer-motion";
 import { Code2, Mail, ArrowRight, ShieldCheck, Zap, Globe } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("/dashboard");
+    setLoading(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      toast.error(result.error);
+      setLoading(false);
+    } else {
+      router.push("/dashboard");
+    }
+  };
+
+  const handleGitHubLogin = () => {
+    signIn("github", { callbackUrl: "/dashboard" });
   };
 
   return (
@@ -20,7 +45,7 @@ export default function LoginPage() {
       {/* Decorative background for mobile */}
       <div className="fixed inset-0 z-0 opacity-10 pointer-events-none md:hidden" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "40px 40px" }} />
 
-      {/* Left panel: Branding \u0026 Stats (Desktop) */}
+      {/* Left panel: Branding & Stats (Desktop) */}
       <div className="hidden md:flex md:w-1/2 bg-[#050505] border-r border-white/5 relative flex-col justify-between p-12 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
         
@@ -72,7 +97,7 @@ export default function LoginPage() {
           </div>
 
           <div className="space-y-4">
-            <button className="w-full h-11 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center gap-3 hover:bg-white/10 transition-all group">
+            <button onClick={handleGitHubLogin} className="w-full h-11 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center gap-3 hover:bg-white/10 transition-all group">
               <Code2 className="w-5 h-5" />
               <span className="text-sm font-medium">Continue with GitHub</span>
             </button>
@@ -90,18 +115,18 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-xs text-gray-500 font-medium ml-1">Email</label>
-              <input type="email" placeholder="hacker@ethlima.org" required className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-brand-blue/50 transition-all placeholder:text-gray-700" />
+              <input name="email" type="email" placeholder="hacker@ethlima.org" required className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-brand-blue/50 transition-all placeholder:text-gray-700" />
             </div>
             <div className="space-y-1.5">
               <div className="flex items-center justify-between ml-1">
                 <label className="text-xs text-gray-500 font-medium">Password</label>
                 <Link href="#" className="text-[10px] text-brand-blue hover:underline">Forgot password?</Link>
               </div>
-              <input type="password" placeholder="••••••••" required className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-brand-blue/50 transition-all placeholder:text-gray-700" />
+              <input name="password" type="password" placeholder="••••••••" required className="w-full h-11 px-4 rounded-lg bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-brand-blue/50 transition-all placeholder:text-gray-700" />
             </div>
             
-            <button type="submit" className="w-full h-11 rounded-lg bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all flex items-center justify-center gap-2 group">
-              Sign In <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <button type="submit" disabled={loading} className="w-full h-11 rounded-lg bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all flex items-center justify-center gap-2 group disabled:opacity-50">
+              {loading ? "Signing in..." : "Sign In"} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </form>
 

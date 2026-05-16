@@ -18,8 +18,26 @@ import {
   ExternalLink
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div className="h-screen bg-black flex items-center justify-center text-white font-mono tracking-widest uppercase text-xs">Loading Secure Environment...</div>;
+  }
+
+  if (!session) return null;
+
   return (
     <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
       {/* Sidebar */}
@@ -33,7 +51,7 @@ export default function DashboardPage() {
             { icon: <LayoutDashboard className="w-4 h-4" />, label: "Overview", active: true },
             { icon: <Code2 className="w-4 h-4" />, label: "My Projects", active: false },
             { icon: <Users className="w-4 h-4" />, label: "Team Finder", active: false },
-            { icon: <Trophy className="w-4 h-4" />, label: "Prizes \u0026 Bounties", active: false },
+            { icon: <Trophy className="w-4 h-4" />, label: "Prizes & Bounties", active: false },
             { icon: <Calendar className="w-4 h-4" />, label: "Schedule", active: false },
             { icon: <MessageSquare className="w-4 h-4" />, label: "Discord/Telegram", active: false },
           ].map((item) => (
@@ -45,7 +63,7 @@ export default function DashboardPage() {
 
         <div className="p-4 border-t border-white/5 space-y-2">
           <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-white transition-colors"><Settings className="w-4 h-4" /> Settings</button>
-          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Logout</button>
+          <button onClick={() => signOut({ callbackUrl: "/" })} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-colors"><LogOut className="w-4 h-4" /> Logout</button>
         </div>
       </aside>
 
@@ -60,13 +78,16 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center gap-4">
             <button className="relative p-2 text-gray-500 hover:text-white transition-colors"><Bell className="w-5 h-5" /><span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-black" /></button>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 border border-white/20" />
+            <div className="flex items-center gap-3 border border-white/10 bg-white/5 py-1 px-3 rounded-full">
+              <span className="text-[10px] font-mono text-gray-500 hidden sm:block truncate max-w-[100px]">{session.user?.email}</span>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 border border-white/20" />
+            </div>
           </div>
         </header>
 
         <div className="p-8 space-y-8">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-2xl font-bold tracking-tight mb-1">Welcome, Hacker 👾</h1>
+            <h1 className="text-2xl font-bold tracking-tight mb-1">Welcome, {session.user?.name || "Hacker"} 👾</h1>
             <p className="text-gray-500 text-sm">Application Status: <span className="text-green-500 font-medium">Approved ✅</span></p>
           </motion.div>
 

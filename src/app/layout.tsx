@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LOGO_SRC } from "@/lib/asset-path";
+import { AuthProvider } from "@/components/providers/session-provider";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -31,7 +32,9 @@ export default function RootLayout({
       <head>
         <link rel="preload" as="image" href={LOGO_SRC} />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
