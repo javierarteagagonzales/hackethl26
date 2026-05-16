@@ -131,9 +131,6 @@ export default function Home() {
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10">
         <div className="container relative mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Badge variant="outline" className="mb-6 border-brand-blue/30 bg-brand-blue/10 text-brand-blue font-mono py-1 px-4 text-xs uppercase tracking-wider backdrop-blur-sm">
-              <Zap className="w-3 h-3 mr-2" /> Hackathon Registrations Open
-            </Badge>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-purple-500 to-brand-red">ETH Lima</span>{" "}
