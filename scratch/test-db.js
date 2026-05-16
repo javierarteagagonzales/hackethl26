@@ -1,20 +1,17 @@
 const { Client } = require('pg');
-require('dotenv').config();
+const client = new Client({
+  connectionString: "postgres://postgres.fsrftxmecailbqpugtst:Kei5sXGTxLmKAaMH@aws-1-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true"
+});
 
-async function testConnection() {
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
+async function test() {
   try {
-    console.log('Connecting to database...');
     await client.connect();
-    console.log('Connection successful!');
     const res = await client.query('SELECT NOW()');
-    console.log('Server time:', res.rows[0].now);
+    console.log("Connection successful:", res.rows[0]);
     await client.end();
   } catch (err) {
-    console.error('Connection error:', err.stack);
+    console.error("Connection failed:", err.message);
   }
 }
 
-testConnection();
+test();
