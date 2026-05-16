@@ -14,6 +14,7 @@ export async function submitProject(formData: FormData) {
   const githubUrl = formData.get("githubUrl") as string;
   const demoUrl = formData.get("demoUrl") as string;
   const videoUrl = formData.get("videoUrl") as string;
+  const trackId = formData.get("trackId") as string;
 
   try {
     const user = await prisma.user.findUnique({
@@ -33,6 +34,7 @@ export async function submitProject(formData: FormData) {
         githubUrl,
         demoUrl,
         videoUrl,
+        trackId: trackId || null,
         status: "SUBMITTED",
       },
       create: {
@@ -42,6 +44,7 @@ export async function submitProject(formData: FormData) {
         demoUrl,
         videoUrl,
         teamId: user.teamId,
+        trackId: trackId || null,
         status: "SUBMITTED",
       },
     });

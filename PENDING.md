@@ -9,26 +9,24 @@ Este documento detalla las funcionalidades y tareas pendientes para completar la
 - [ ] **Verificación de Email**: Configurar el flujo de verificación si es necesario.
 
 ## 👥 Equipos y Proyectos
-- [ ] **Dashboard del Participante**: Crear una vista centralizada para el usuario autenticado.
-- [ ] **Gestión de Equipos**: 
-    - [ ] Lógica para crear un equipo (`Team`).
-    - [ ] Sistema de invitación/unión a equipos existentes.
-- [ ] **Envío de Proyectos**:
-    - [ ] Formulario de entrega de proyecto (Nombre, Descripción, README, Demo URL, Repo URL).
-    - [ ] Asociación de proyecto a un `Track` específico.
+- [x] **Dashboard del Participante**: Crear una vista centralizada para el usuario autenticado.
+- [x] **Gestión de Equipos**: 
+    - [x] Lógica para crear un equipo (`Team`).
+    - [x] Sistema de invitación/unión a equipos existentes (Invite Codes).
+- [x] **Envío de Proyectos**:
+    - [x] Formulario de entrega de proyecto (Nombre, Descripción, README, Demo URL, Repo URL).
+    - [x] Asociación de proyecto a un `Track` específico.
 
 ## 🛠️ Administración y Gestión
 - [x] **Panel de Administrador**:
     - [x] Interfaz para aprobar/rechazar aplicaciones de hackers (`status` en el modelo `User`).
     - [x] Gestión de patrocinadores (`Sponsor`) y retos (`Track`) desde la base de datos (reemplazar `MOCK_DATA`).
-- [ ] **Sistema de Votación (Judges)**:
-    - [ ] Panel para jueces donde puedan ver proyectos asignados.
-    - [ ] Formulario de evaluación con los criterios definidos (Innovación, UX/UI, Factibilidad, etc.).
-
-## 📅 Mentorías
-- [ ] **Agendamiento de Mentorías**: 
-    - [ ] Interfaz para que los equipos soliciten ayuda.
-    - [ ] Panel para mentores para ver y aceptar solicitudes.
+- [x] **Sistema de Votación (Judges)**:
+    - [x] Panel para jueces donde puedan ver proyectos asignados.
+    - [x] Formulario de evaluación con los criterios definidos (Innovación, UX/UI, Factibilidad, etc.).
+- [x] **Agendamiento de Mentorías**:
+    - [x] Interfaz para que los equipos soliciten ayuda.
+    - [x] Lógica de asignación de mentores.
 
 ## 🚀 Infraestructura y Despliegue
 - [ ] **Base de Datos**: Asegurar que todas las migraciones de Prisma estén aplicadas en Supabase/PostgreSQL de producción.
