@@ -57,7 +57,7 @@ export default function Home() {
         const formattedTracks = result.tracks.map((t: any) => {
           const totalAmount = t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) || 0;
           const isUSDC = t.prizes?.some((p: any) => p.amount.includes("USDC"));
-          
+
           return {
             id: t.id,
             title: t.title,
@@ -277,17 +277,21 @@ export default function Home() {
       {/* Sponsors Section */}
       <section id="sponsors" className="py-24 border-t border-white/5 relative z-10 bg-black/20">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">World Class <span className="text-brand-blue drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">Partners</span></h2>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">World Class <span className="text-brand-blue drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">Sponsors</span></h2>
           <p className="text-gray-400 text-lg mb-16 max-w-2xl mx-auto">Supported by the most innovative protocols and companies in the Web3 space.</p>
-          
+
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
             <motion.div whileHover={{ scale: 1.05 }} className="group grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="/assets/sponsors/arbitrum-logo.svg" alt="Arbitrum" className="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+              <img src="/assets/sponsors/arbitrum-logo.svg" alt="Arbitrum" className="h-14 md:h-22 max-h-22 w-auto object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} className="group grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="/assets/sponsors/logo-arkiv.png" alt="Arkiv" className="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+              <img src="/assets/sponsors/logo-arkiv.png" alt="Arkiv" className="h-10 md:h-12 max-h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
             </motion.div>
           </div>
+
+
+
+
         </div>
       </section>
 
