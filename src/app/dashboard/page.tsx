@@ -23,7 +23,8 @@ import {
   Clock,
   CheckCircle2,
   Globe,
-  Video
+  Video,
+  Zap
 } from "lucide-react";
 import { TeamSkeleton, ProjectSkeleton } from "@/components/dashboard-skeletons";
 import { Badge } from "@/components/ui/badge";
