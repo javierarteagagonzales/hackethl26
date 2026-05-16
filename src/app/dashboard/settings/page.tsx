@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { updateProfile, getProfile } from "@/app/actions/profile";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { User, Github, Linkedin, Wallet, Save, Loader2, ArrowLeft } from "lucide-react";
+import { User, Code2, Link as LinkIcon, Wallet, Save, Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function SettingsPage() {
@@ -91,7 +91,7 @@ export default function SettingsPage() {
           {/* Social & Web3 */}
           <section className="bg-white/2 border border-white/8 rounded-xl p-6 space-y-4">
             <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest flex items-center gap-2">
-              <Github className="w-3 h-3" /> 02. Web3 & Links
+              <Code2 className="w-3 h-3" /> 02. Web3 & Links
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -104,7 +104,9 @@ export default function SettingsPage() {
               <div className="space-y-1.5">
                 <label className="text-xs text-gray-500 block ml-1">LinkedIn URL</label>
                 <div className="flex items-center">
-                  <div className="h-11 px-3 flex items-center bg-white/3 border border-r-0 border-white/10 rounded-l-lg text-gray-600 text-xs">in/</div>
+                  <div className="h-11 px-3 flex items-center bg-white/3 border border-r-0 border-white/10 rounded-l-lg text-gray-600 text-xs">
+                    <LinkIcon className="w-3.5 h-3.5" />
+                  </div>
                   <input name="linkedin" defaultValue={profile?.linkedin || ""} placeholder="username" className="flex-1 h-11 px-4 rounded-r-lg bg-black border border-white/10 text-sm focus:outline-none focus:border-blue-500/50 transition-all" />
                 </div>
               </div>

@@ -17,9 +17,13 @@ import {
   Search,
   ExternalLink,
   UserPlus,
-  Github,
   Globe,
-  Video
+  Video,
+  Copy,
+  Info,
+  HelpCircle,
+  Clock,
+  CheckCircle2
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useSession, signOut } from "next-auth/react";
@@ -30,7 +34,6 @@ import { submitProject, getProjectByTeam } from "@/app/actions/project";
 import { getTracks } from "@/app/actions/tracks";
 import { requestMentorship, getTeamMentorships } from "@/app/actions/mentorship";
 import { toast } from "sonner";
-import { Copy, UserPlus, Info, HelpCircle, Clock, CheckCircle2 } from "lucide-react";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();

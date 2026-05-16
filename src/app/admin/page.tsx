@@ -19,7 +19,6 @@ import {
   Zap,
   Code2,
   ExternalLink,
-  Github,
   Globe,
   Video
 } from "lucide-react";

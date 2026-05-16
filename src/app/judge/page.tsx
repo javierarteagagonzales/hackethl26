@@ -10,7 +10,7 @@ import { LOGO_SRC } from "@/lib/asset-path";
 import { 
   Trophy, 
   ExternalLink, 
-  Github, 
+  Code2, 
   Globe, 
   Video, 
   Star, 
