@@ -12,6 +12,7 @@ import {
   XCircle, 
   MessageSquare, 
   User, 
+  Users,
   ExternalLink,
   Calendar,
   LayoutDashboard,

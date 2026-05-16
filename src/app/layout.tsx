@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     description: "Build the future of Web3 at the premier hybrid hackathon in Latin America.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/assets/favicon.png",
+  },
 };
 
 export default function RootLayout({
