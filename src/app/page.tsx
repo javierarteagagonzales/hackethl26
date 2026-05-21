@@ -216,9 +216,28 @@ export default function Home() {
               Hackathon <span className="block text-fg">2026</span>
             </h1>
 
-            <p className="text-xl text-fg/70 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            <p className="text-xl text-fg/70 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
               The premier Web3 hybrid hackathon in Latin America. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.
             </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-12 flex justify-center"
+            >
+              <a
+                href="https://tally.so/r/aQa4GX"
+                target="_blank"
+                rel="noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 bg-fg text-bg px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl hover:shadow-brand-accent/20"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-coral via-orange to-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                  Join Waitlist <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </a>
+            </motion.div>
 
             {/* Premium Glassmorphic Terminal Window */}
             <div className="max-w-3xl mx-auto my-12 text-left glass-card overflow-hidden shadow-xl border-brand-accent/10">
@@ -327,19 +346,14 @@ export default function Home() {
                       
                       <div>
                         <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3 flex items-center gap-2"><Trophy className="w-3 h-3 text-brand-accent" /> Prizes</h4>
-                        <ul className="space-y-2">
-                          {track.prizes.map((prize: { name: string; amount: string }, j: number) => (
-                            <li key={j} className="text-sm flex justify-between items-center bg-surface/50 px-3 py-2 rounded-lg border border-border">
-                              <span className="text-fg/80 font-medium">{prize.name}</span>
-                              <span className="font-mono text-brand-accent font-bold">{prize.amount}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="flex justify-center items-center bg-surface/50 px-3 py-6 rounded-lg border border-border border-dashed">
+                          <span className="text-fg/60 font-mono font-medium tracking-wider text-sm animate-pulse">SOON</span>
+                        </div>
                       </div>
                       
                       <div className="pt-4 border-t border-border flex items-center justify-between mt-auto">
                         <span className="text-xs font-mono text-fg/40 uppercase tracking-widest">Prize Pool</span>
-                        <span className="text-xl font-extrabold text-fg">{track.totalPrizePool}</span>
+                        <span className="text-xl font-extrabold text-fg">Soon</span>
                       </div>
                     </div>
                   </div>
