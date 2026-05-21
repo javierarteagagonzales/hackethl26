@@ -171,7 +171,7 @@ export default function Home() {
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2">
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> Support: @javierdgtl
             </a>
-            
+
             {/* Dynamic Adaptable Theme Switcher */}
             <button
               onClick={toggleTheme}
@@ -191,9 +191,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10">
         <div className="container relative mx-auto px-6 text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 24 }} 
-            animate={{ opacity: 1, y: 0 }} 
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
 
@@ -286,12 +286,12 @@ export default function Home() {
               className="relative h-full min-h-[300px] glass-card p-8 flex items-center justify-center overflow-hidden shadow-lg border-brand-accent/15"
             >
               <div className="absolute inset-0 pattern-dots opacity-10"></div>
-              <img 
-                src={LOGO_SRC} 
-                alt="ETH Lima Logo" 
-                width={200} 
-                height={200} 
-                className="object-contain drop-shadow-[0_0_30px_rgba(230,74,48,0.3)] animate-pulse" 
+              <img
+                src={LOGO_SRC}
+                alt="ETH Lima Logo"
+                width={200}
+                height={200}
+                className="object-contain drop-shadow-[0_0_30px_rgba(230,74,48,0.3)] animate-pulse"
                 style={{ filter: theme === "light" ? "none" : "drop-shadow(0 0 30px rgba(199, 247, 58, 0.4))" }}
               />
             </motion.div>
@@ -309,8 +309,8 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tracks.map((track, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -323,17 +323,17 @@ export default function Home() {
                     <div className="flex justify-between items-start gap-4 mb-4">
                       <h3 className="text-2xl font-bold tracking-tight text-fg">{track.title}</h3>
                       {track.sponsorLogo ? (
-                        <img 
-                          src={track.sponsorLogo} 
-                          alt={track.sponsor} 
-                          className={`h-6 w-auto object-contain transition-all duration-300 ${theme === 'dark' ? 'brightness-0 invert opacity-60 group-hover:opacity-100' : 'opacity-80 group-hover:opacity-100'}`} 
+                        <img
+                          src={track.sponsorLogo}
+                          alt={track.sponsor}
+                          className={`h-6 w-auto object-contain transition-all duration-300 ${theme === 'dark' ? 'brightness-0 invert opacity-60 group-hover:opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
                         />
                       ) : (
                         <span className="bg-fg/5 text-fg/80 border border-border px-2 py-0.5 rounded font-mono text-xs">{track.sponsor}</span>
                       )}
                     </div>
                     <p className="text-fg/70 text-sm mb-6 line-clamp-3 leading-relaxed font-light">{track.description}</p>
-                    
+
                     <div className="space-y-6 mt-auto">
                       <div>
                         <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3">Categories</h4>
@@ -343,14 +343,14 @@ export default function Home() {
                           ))}
                         </div>
                       </div>
-                      
+
                       <div>
                         <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3 flex items-center gap-2"><Trophy className="w-3 h-3 text-brand-accent" /> Prizes</h4>
                         <div className="flex justify-center items-center bg-surface/50 px-3 py-6 rounded-lg border border-border border-dashed">
                           <span className="text-fg/60 font-mono font-medium tracking-wider text-sm animate-pulse">SOON</span>
                         </div>
                       </div>
-                      
+
                       <div className="pt-4 border-t border-border flex items-center justify-between mt-auto">
                         <span className="text-xs font-mono text-fg/40 uppercase tracking-widest">Prize Pool</span>
                         <span className="text-xl font-extrabold text-fg">Soon</span>
@@ -361,7 +361,7 @@ export default function Home() {
               </motion.div>
             ))}
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -389,27 +389,29 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>World Class <span className="text-gradient-sunset font-extrabold">Sponsors</span></h2>
           <p className="text-fg/60 text-lg mb-16 max-w-2xl mx-auto font-light">Supported by the most innovative protocols and companies in the Web3 space.</p>
 
-          <div className="marquee-container py-6">
-            <div className="marquee-content items-center">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="flex gap-20 items-center justify-around">
-                  <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img 
-                      src="/assets/sponsors/arbitrum-logo.svg" 
-                      alt="Arbitrum" 
-                      className={`h-12 md:h-16 w-auto object-contain filter transition-all ${theme === 'dark' ? 'brightness-100' : 'brightness-75'}`} 
-                    />
+          <div className="marquee-container py-6 flex">
+            {[1, 2].map((idx) => (
+              <div key={idx} className="marquee-content items-center">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex gap-20 items-center justify-around">
+                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                      <img
+                        src="/assets/sponsors/arbitrum-logo.svg"
+                        alt="Arbitrum"
+                        className={`h-12 md:h-16 w-auto object-contain filter transition-all ${theme === 'dark' ? 'brightness-100' : 'brightness-75'}`}
+                      />
+                    </div>
+                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                      <img
+                        src="/assets/sponsors/logo-arkiv.png"
+                        alt="Arkiv"
+                        className={`h-8 md:h-10 w-auto object-contain filter transition-all ${theme === 'dark' ? 'brightness-100' : 'brightness-75'}`}
+                      />
+                    </div>
                   </div>
-                  <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img 
-                      src="/assets/sponsors/logo-arkiv.png" 
-                      alt="Arkiv" 
-                      className={`h-8 md:h-10 w-auto object-contain filter transition-all ${theme === 'dark' ? 'brightness-100' : 'brightness-75'}`} 
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -430,11 +432,11 @@ export default function Home() {
               {[
                 { day: "Jul 18 - Jul 24", time: "Preparation", title: "Pre-Event Workshops", desc: "Introductory talks, team formation, and virtual support sessions.", color: "bg-coral" },
                 { day: "Jul 25 - Jul 26", time: "Build", title: "Hackathon & Demo Day", desc: "48 hours of intensive coding, submissions and live demos.", color: "bg-teal" },
-                { day: "Jul 31 - Aug 10", time: "Evaluation", title: "Live Results", desc: "Winners announced for Arbitrum, Arkiv, and all other tracks.", color: "bg-orange" },
-                { day: "Aug 13 - Sep 6", time: "Follow-up", title: "Post-Hackathon Talks", desc: "Talk series, Mentoring sessions and official close of the event season.", color: "bg-cyan" }
+                { day: "Jul 31 - Aug 10", time: "Evaluation", title: "Results", desc: "Winners announced for Arbitrum, Arkiv, and all other tracks.", color: "bg-orange" },
+                { day: "Aug 13 - Sep 6", time: "Follow-up", title: "Post-Hackathon", desc: "Talk series, Mentoring sessions and official close of the event season.", color: "bg-cyan" }
               ].map((item, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
