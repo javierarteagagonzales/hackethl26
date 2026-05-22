@@ -374,7 +374,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-fg">Your Track Here</h3>
                 <p className="text-fg/60 mb-8 text-sm font-light">Want to see your technology used by the best builders in Web3? Sponsor a track.</p>
-                <Link href="/sponsor" className="inline-flex h-10 px-6 items-center justify-center rounded-full bg-fg text-bg font-bold hover:opacity-90 transition-all font-mono text-sm shadow-md">
+                <Link href="https://t.me/javierdgtl" target="_blank" rel="noopener noreferrer" className="inline-flex h-10 px-6 items-center justify-center rounded-full bg-fg text-bg font-bold hover:opacity-90 transition-all font-mono text-sm shadow-md">
                   Become a Sponsor
                 </Link>
               </div>
