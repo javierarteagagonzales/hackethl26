@@ -204,9 +204,9 @@ export default function Home() {
                 Applications opening soon — stay tuned!
               </div>
               <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-fg/60 font-mono text-xs sm:text-sm uppercase tracking-widest">
-                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-accent" /> Jul 18 - Aug 11, 2026</div>
+                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-accent" /> Jul 18 - Sep 6, 2026</div>
                 <div className="flex items-center gap-2">🌍 Híbrido</div>
-                <div className="flex items-center gap-2"><Server className="w-4 h-4 text-brand-accent" /> $4k+ Prizes</div>
+                {/*<div className="flex items-center gap-2"><Server className="w-4 h-4 text-brand-accent" /> $4k+ Prizes</div>*/}
               </div>
             </div>
 
