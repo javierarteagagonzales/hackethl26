@@ -96,3 +96,30 @@ export const countupAnimation = (element: HTMLElement, target: number, duration:
     },
   });
 };
+
+// Word stagger variants for Framer Motion
+export const wordStaggerVariants = {
+  container: {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+      },
+    },
+  },
+  word: {
+    hidden: { opacity: 0, y: 10 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        damping: 12,
+        mass: 1,
+        stiffness: 100,
+      },
+    },
+  },
+};

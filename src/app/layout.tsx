@@ -77,6 +77,35 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <header className="sticky-header">
+          <nav className="flex items-center justify-between h-16 px-6 md:px-8 container mx-auto">
+            <div className="flex items-center gap-2">
+              <div className="text-xl font-bold bg-gradient-to-r from-brand-accent to-brand-accent/60 bg-clip-text text-transparent">
+                ETH Lima
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <a
+                href="#tracks"
+                className="hidden md:inline-block text-sm font-medium text-fg/70 hover:text-fg transition-colors"
+              >
+                Tracks
+              </a>
+              <a
+                href="#sponsors"
+                className="hidden md:inline-block text-sm font-medium text-fg/70 hover:text-fg transition-colors"
+              >
+                Sponsors
+              </a>
+              <a
+                href="#timeline"
+                className="hidden md:inline-block text-sm font-medium text-fg/70 hover:text-fg transition-colors"
+              >
+                Timeline
+              </a>
+            </div>
+          </nav>
+        </header>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

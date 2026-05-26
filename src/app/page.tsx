@@ -12,6 +12,10 @@ import { MOCK_TRACKS } from "@/lib/mock-data";
 import { getTracks } from "@/app/actions/tracks";
 import { AnimatedSVGDivider } from "@/components/AnimatedSVGDivider";
 import { AnimatedTimeline } from "@/components/AnimatedTimeline";
+import { LiveActivityTicker } from "@/components/LiveActivityTicker";
+import { CountUpCard } from "@/components/CountUpCard";
+import { WordStaggerHeading } from "@/components/WordStaggerHeading";
+import { ParallaxImage } from "@/components/ParallaxImage";
 import { heroStaggerTimeline, staggerChildrenTimeline } from "@/lib/animations";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -331,8 +335,13 @@ export default function Home() {
           </motion.div>
         </div>
 
+        {/* Live Activity Ticker */}
+        <div className="mt-16 max-w-md mx-auto px-6">
+          {isMounted && <LiveActivityTicker maxItems={4} updateInterval={2000} />}
+        </div>
+
         {/* Animated SVG Divider */}
-        <AnimatedSVGDivider className="mt-8 md:mt-12 opacity-70" animated={isMounted} />
+        <AnimatedSVGDivider className="mt-12 md:mt-16 opacity-70" animated={isMounted} />
       </section>
 
       {/* About Section */}
@@ -345,9 +354,13 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6" style={{ letterSpacing: "-0.02em" }}>
-                Elevating the LATAM <span className="text-gradient-sunset font-extrabold">Web3 Ecosystem</span>
-              </h2>
+              <WordStaggerHeading
+                as="h2"
+                className="text-3xl md:text-5xl font-bold tracking-tight mb-6"
+                staggerDuration={0.08}
+              >
+                Elevating the LATAM Web3 Ecosystem
+              </WordStaggerHeading>
               <p className="text-fg/70 text-lg mb-6 leading-relaxed">
                 Ethereum Lima 2026 is more than a hackathon; it is a convergence of brilliant minds, protocols, and ideas aimed at solving real-world problems using decentralized technologies.
               </p>
@@ -382,7 +395,13 @@ export default function Home() {
       <section id="tracks" className="py-24 border-t border-border relative z-10">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>Official <span className="text-gradient-sunset font-extrabold">Tracks</span></h2>
+            <WordStaggerHeading
+              as="h2"
+              className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
+              staggerDuration={0.08}
+            >
+              Official Tracks
+            </WordStaggerHeading>
             <p className="text-fg/70 text-lg max-w-2xl mx-auto font-light">Build innovative solutions for these bounties. Choose your path and start hacking.</p>
           </div>
 
@@ -465,7 +484,13 @@ export default function Home() {
       {/* World Class Sponsors with Ticker Marquee Component */}
       <section id="sponsors" className="py-24 border-t border-border relative z-10 bg-surface/10">
         <div className="container mx-auto px-6 text-center" ref={sponsorsContainerRef}>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>World Class <span className="text-gradient-sunset font-extrabold">Sponsors</span></h2>
+          <WordStaggerHeading
+            as="h2"
+            className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
+            staggerDuration={0.08}
+          >
+            World Class Sponsors
+          </WordStaggerHeading>
           <p className="text-fg/60 text-lg mb-16 max-w-2xl mx-auto font-light">Supported by the most innovative protocols and companies in the Web3 space.</p>
 
           <div className="marquee-container py-6 flex mask-fade-horizontal">
@@ -499,7 +524,13 @@ export default function Home() {
       <section id="timeline" className="py-24 border-t border-border relative z-10 bg-bg transition-colors duration-300">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>Event <span className="text-gradient-sunset font-extrabold">Timeline</span></h2>
+            <WordStaggerHeading
+              as="h2"
+              className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
+              staggerDuration={0.08}
+            >
+              Event Timeline
+            </WordStaggerHeading>
             <p className="text-fg/60 text-lg font-light">The 48 hours that will change your Web3 journey.</p>
           </div>
 
@@ -538,6 +569,55 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section with CountUp Animation */}
+      <section className="py-24 border-t border-border relative z-10 bg-gradient-to-r from-surface/20 to-surface/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <WordStaggerHeading
+              as="h2"
+              className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
+              staggerDuration={0.08}
+            >
+              Event by Numbers
+            </WordStaggerHeading>
+            <p className="text-fg/60 text-lg max-w-2xl mx-auto font-light">
+              Join a global community of builders shaping the future of Web3
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <CountUpCard
+              end={500}
+              start={0}
+              duration={2}
+              label="Developers"
+              suffix="+"
+            />
+            <CountUpCard
+              end={150}
+              start={0}
+              duration={2}
+              label="Projects"
+              suffix="+"
+            />
+            <CountUpCard
+              end={15000}
+              start={0}
+              duration={2}
+              label="Prize Pool"
+              prefix="$"
+            />
+            <CountUpCard
+              end={25}
+              start={0}
+              duration={2}
+              label="Countries"
+              suffix="+"
+            />
           </div>
         </div>
       </section>
