@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "ETH Lima Hackathon 2026 — Build the Decentralized Future",
+    "description": "The premier Web3 hybrid hackathon in Latin America. July 2026, Lima & Virtual. $15,000+ in prizes, expert mentorship, and global networking.",
+    "keywords": "Ethereum, Hackathon, Lima, Peru, Web3, Blockchain, Arbitrum, Solidity, Crypto"
+  },
+  "nav": {
+    "about": "About",
+    "tracks": "Tracks",
+    "timeline": "Timeline",
+    "sponsors": "Sponsors",
+    "support": "Support"
+  },
+  "banner": {
+    "title": "Ethereum Lima Bootcamp, Learn about Arbitrum",
+    "apply_until": "Apply until",
+    "register": "Register",
+    "loading": "Loading..."
+  },
+  "hero": {
+    "badge": "Applications opening soon — stay tuned!",
+    "date": "Jul 18 - Sep 6, 2026",
+    "hybrid": "Hybrid",
+    "prizes": "$10k+ Prizes",
+    "title_main": "ETH Lima",
+    "title_sub": "Hackathon",
+    "description": "The premier Web3 hybrid hackathon in Latin America. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.",
+    "waitlist_btn": "Join Waitlist",
+    "terminal_title": "eth-lima-terminal"
+  },
+  "about": {
+    "title": "Elevating the LATAM",
+    "accent": "Web3 Ecosystem",
+    "description": "Ethereum Lima 2026 is more than a hackathon; it is a convergence of brilliant minds, protocols, and ideas aimed at solving real-world problems using decentralized technologies.",
+    "perk1": "Intensive 48-hour building",
+    "perk2": "Workshops by industry leaders",
+    "perk3": "Mentorship from core protocol engineers"
+  },
+  "tracks": {
+    "title": "Official",
+    "accent": "Tracks",
+    "description": "Build innovative solutions for these bounties. Choose your path and start hacking.",
+    "categories": "Categories",
+    "prizes": "Prizes",
+    "soon": "SOON",
+    "tba": "TBA",
+    "prize_pool": "Prize Pool",
+    "your_track": "Your Track Here",
+    "sponsor_desc": "Want to see your technology used by the best builders in Web3? Sponsor a track.",
+    "become_sponsor": "Become a Sponsor"
+  },
+  "sponsors": {
+    "title": "World Class",
+    "accent": "Sponsors",
+    "description": "Supported by the most innovative protocols and companies in the Web3 space."
+  },
+  "timeline": {
+    "title": "Event",
+    "accent": "Timeline",
+    "description": "The 48 hours that will change your Web3 journey.",
+    "items": [
+      {
+        "day": "Jul 18 - Jul 24",
+        "time": "Preparation",
+        "title": "Pre-Event Workshops",
+        "desc": "Introductory talks, team formation, and virtual support sessions."
+      },
+      {
+        "day": "Jul 25 - Jul 26",
+        "time": "Build",
+        "title": "Hackathon & Demo Day",
+        "desc": "48 hours of intensive coding, submissions and live demos."
+      },
+      {
+        "day": "Jul 31 - Aug 10",
+        "time": "Evaluation",
+        "title": "Results",
+        "desc": "Winners announced for Arbitrum, Arkiv, and all other tracks."
+      },
+      {
+        "day": "Aug 13 - Sep 6",
+        "time": "Follow-up",
+        "title": "Post-Hackathon",
+        "desc": "Talk series, Mentoring sessions and official close of the event season."
+      }
+    ]
+  },
+  "login": {
+    "title_build": "Build the",
+    "title_decentralized": "Decentralized",
+    "title_future": "Future.",
+    "stats": {
+      "participants": "Participants",
+      "bounties": "Bounties",
+      "sponsors": "Sponsors"
+    },
+    "welcome": "Welcome back",
+    "subtitle": "Enter your credentials to access your hacker dashboard.",
+    "github_btn": "Continue with GitHub",
+    "google_btn": "Continue with Google",
+    "or_email": "Or with email",
+    "email_label": "Email",
+    "password_label": "Password",
+    "forgot_password": "Forgot password?",
+    "signin_btn": "Sign In",
+    "signing_in": "Signing in...",
+    "no_account": "Don't have an account?",
+    "register_link": "Register as Hacker",
+    "sandbox_mode": "Sandbox mode",
+    "all_rights": "© 2026 Ethereum Lima. All rights reserved."
+  },
+  "register": {
+    "nav_back": "Already have an account? →",
+    "form_subtitle": "// Application form",
+    "title": "Apply as",
+    "hacker": "Hacker",
+    "subtitle": "Join the premier Web3 hackathon in Latin America. 48h to build the future.",
+    "perks": {
+      "free": "Free to join",
+      "prizes": "$10K+ prizes",
+      "mentors": "Mentors available"
+    },
+    "sections": {
+      "personal": "01. Personal Information",
+      "web3": "02. Web3 Profile",
+      "track": "03. Track Preference"
+    },
+    "fields": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "github": "GitHub Username",
+      "wallet": "Wallet Address (optional)",
+      "skill": "Primary Skill",
+      "why": "Why do you want to participate? (optional)",
+      "why_placeholder": "Tell us what motivates you to join ETH Lima 2026..."
+    },
+    "skills": {
+      "Smart Contract Engineer": "Smart Contract Engineer",
+      "Frontend Developer": "Frontend Developer",
+      "Backend Developer": "Backend Developer",
+      "UI/UX Designer": "UI/UX Designer",
+      "Product Manager": "Product Manager",
+      "Data Scientist": "Data Scientist",
+      "Full Stack Dev": "Full Stack Dev",
+      "Blockchain Researcher": "Blockchain Researcher"
+    },
+    "tracks": {
+      "Arbitrum": "Arbitrum",
+      "Arkiv — Job Platform": "Arkiv — Job Platform",
+      "Arkiv — Wikis": "Arkiv — Wikis",
+      "Arkiv — Events": "Arkiv — Events",
+      "To be defined": "To be defined"
+    },
+    "errors": {
+      "first_name_short": "First name is too short",
+      "last_name_short": "Last name is too short",
+      "email_invalid": "Invalid email address",
+      "password_short": "Password must be at least 8 characters",
+      "github_required": "GitHub username is required",
+      "skill_required": "Please select a skill",
+      "track_required": "Please select a track"
+    },
+    "submit": "Submit Application",
+    "processing": "Processing..."
+  }
+}

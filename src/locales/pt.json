@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "ETH Lima Hackathon 2026 — Construa o Futuro Descentralizado",
+    "description": "O principal hackathon híbrido Web3 da América Latina. Julho de 2026, Lima & Virtual. Mais de $15.000 em prêmios, mentoria especializada e networking global.",
+    "keywords": "Ethereum, Hackathon, Lima, Peru, Web3, Blockchain, Arbitrum, Solidity, Crypto"
+  },
+  "nav": {
+    "about": "Sobre",
+    "tracks": "Tracks",
+    "timeline": "Cronograma",
+    "sponsors": "Sponsors",
+    "support": "Suporte"
+  },
+  "banner": {
+    "title": "Ethereum Lima Bootcamp, Aprenda sobre Arbitrum",
+    "apply_until": "Inscreva-se até",
+    "register": "Registrar-se",
+    "loading": "Carregando..."
+  },
+  "hero": {
+    "badge": "Inscrições em breve — fique ligado!",
+    "date": "18 Jul - 6 Set, 2026",
+    "hybrid": "Híbrido",
+    "prizes": "$10k+ em Prêmios",
+    "title_main": "ETH Lima",
+    "title_sub": "Hackathon",
+    "description": "O principal hackathon híbrido Web3 da América Latina. Junte-se aos melhores desenvolvedores para construir na Arbitrum, Arkiv e escalar a web descentralizada.",
+    "waitlist_btn": "Entrar na Lista de Espera",
+    "terminal_title": "terminal-eth-lima"
+  },
+  "about": {
+    "title": "Elevando o",
+    "accent": "Ecossistema Web3 da LATAM",
+    "description": "O Ethereum Lima 2026 é mais do que um hackathon; é uma convergência de mentes brilhantes, protocolos e ideias voltadas para resolver problemas do mundo real usando tecnologias descentralizadas.",
+    "perk1": "Construção intensiva de 48 horas",
+    "perk2": "Workshops liderados por líderes da indústria",
+    "perk3": "Mentoria de engenheiros do protocolo principal"
+  },
+  "tracks": {
+    "title": "Tracks",
+    "accent": "Oficiais",
+    "description": "Construa soluções inovadoras para essas recompensas. Escolha seu caminho e comece a hackear.",
+    "categories": "Categorias",
+    "prizes": "Prêmios",
+    "soon": "EM BREVE",
+    "tba": "A ser anunciado",
+    "prize_pool": "Pool de Prêmios",
+    "your_track": "Seu Track Aqui",
+    "sponsor_desc": "Quer ver sua tecnologia sendo usada pelos melhores construtores da Web3? Patrocine um track.",
+    "become_sponsor": "Seja um Sponsor"
+  },
+  "sponsors": {
+    "title": "Sponsors de",
+    "accent": "Classe Mundial",
+    "description": "Apoiado pelos protocolos e empresas mais inovadores do espaço Web3."
+  },
+  "timeline": {
+    "title": "Cronograma",
+    "accent": "do Evento",
+    "description": "As 48 horas que mudarão sua jornada na Web3.",
+    "items": [
+      {
+        "day": "18 Jul - 24 Jul",
+        "time": "Preparação",
+        "title": "Workshops Pré-Evento",
+        "desc": "Palestras introdutórias, formação de equipes e sessões de suporte virtual."
+      },
+      {
+        "day": "25 Jul - 26 Jul",
+        "time": "Construção",
+        "title": "Hackathon & Demo Day",
+        "desc": "48 horas de programação intensiva, envios e demonstrações ao vivo."
+      },
+      {
+        "day": "31 Jul - 10 Ago",
+        "time": "Avaliação",
+        "title": "Resultados",
+        "desc": "Vencedores anunciados para Arbitrum, Arkiv e todos os outros tracks."
+      },
+      {
+        "day": "13 Ago - 6 Set",
+        "time": "Acompanhamento",
+        "title": "Pós-Hackathon",
+        "desc": "Séries de palestras, sessões de mentoria e encerramento oficial da temporada de eventos."
+      }
+    ]
+  },
+  "login": {
+    "title_build": "Construa o",
+    "title_decentralized": "Futuro",
+    "title_future": "Descentralizado.",
+    "stats": {
+      "participants": "Participantes",
+      "bounties": "Prêmios",
+      "sponsors": "Sponsors"
+    },
+    "welcome": "Bem-vindo de volta",
+    "subtitle": "Insira suas credenciais para acessar o seu painel de hacker.",
+    "github_btn": "Continuar com GitHub",
+    "google_btn": "Continuar com Google",
+    "or_email": "Ou com e-mail",
+    "email_label": "E-mail",
+    "password_label": "Senha",
+    "forgot_password": "Esqueceu a senha?",
+    "signin_btn": "Entrar",
+    "signing_in": "Entrando...",
+    "no_account": "Não tem uma conta?",
+    "register_link": "Registre-se como Hacker",
+    "sandbox_mode": "Modo Sandbox",
+    "all_rights": "© 2026 Ethereum Lima. Todos os direitos reservados."
+  },
+  "register": {
+    "nav_back": "Já tem uma conta? →",
+    "form_subtitle": "// Formulário de inscrição",
+    "title": "Inscreva-se como",
+    "hacker": "Hacker",
+    "subtitle": "Junte-se ao principal hackathon Web3 da América Latina. 48h para construir o futuro.",
+    "perks": {
+      "free": "Gratuito para participar",
+      "prizes": "+$10K em prêmios",
+      "mentors": "Mentores disponíveis"
+    },
+    "sections": {
+      "personal": "01. Informações Pessoais",
+      "web3": "02. Perfil Web3",
+      "track": "03. Preferência de Track"
+    },
+    "fields": {
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "email": "E-mail",
+      "password": "Senha",
+      "github": "Usuário do GitHub",
+      "wallet": "Endereço da Carteira (opcional)",
+      "skill": "Habilidade Principal",
+      "why": "Por que você quer participar? (opcional)",
+      "why_placeholder": "Conte-nos o que te motiva a participar do ETH Lima 2026..."
+    },
+    "skills": {
+      "Smart Contract Engineer": "Engenheiro de Smart Contracts",
+      "Frontend Developer": "Desenvolvedor Frontend",
+      "Backend Developer": "Desenvolvedor Backend",
+      "UI/UX Designer": "Designer UI/UX",
+      "Product Manager": "Product Manager",
+      "Data Scientist": "Cientista de Dados",
+      "Full Stack Dev": "Desenvolvedor Full Stack",
+      "Blockchain Researcher": "Pesquisador de Blockchain"
+    },
+    "tracks": {
+      "Arbitrum": "Arbitrum",
+      "Arkiv — Job Platform": "Arkiv — Plataforma de Empregos",
+      "Arkiv — Wikis": "Arkiv — Wikis",
+      "Arkiv — Events": "Arkiv — Eventos",
+      "To be defined": "A ser definido"
+    },
+    "errors": {
+      "first_name_short": "O nome é muito curto",
+      "last_name_short": "O sobrenome é muito curto",
+      "email_invalid": "Endereço de e-mail inválido",
+      "password_short": "A senha deve ter pelo menos 8 caracteres",
+      "github_required": "O usuário do GitHub é obrigatório",
+      "skill_required": "Por favor selecione uma habilidade",
+      "track_required": "Por favor selecione um track"
+    },
+    "submit": "Enviar Inscrição",
+    "processing": "Processando..."
+  }
+}
