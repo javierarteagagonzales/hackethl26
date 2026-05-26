@@ -54,9 +54,27 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${outfit.variable} ${jetbrainsMono.variable} font-sans h-full antialiased dark`}
+      data-scroll-container
     >
       <head>
         <link rel="preload" as="image" href={LOGO_SRC} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+                import('locomotive-scroll').then(({ default: LocomotiveScroll }) => {
+                  new LocomotiveScroll({
+                    el: document.querySelector('[data-scroll-container]'),
+                    smooth: true,
+                    multiplier: 1.2,
+                    lerp: 0.1,
+                    class: 'is-reveal'
+                  });
+                }).catch(() => {});
+              }
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <AuthProvider>{children}</AuthProvider>

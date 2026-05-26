@@ -1,15 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, ArrowRight, ArrowUp, GitBranch, Globe, MessageSquare, Mic, Briefcase, Trophy, Terminal, Code2, Zap, Server, HelpCircle, Sun, Moon } from "lucide-react";
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { MOCK_TRACKS } from "@/lib/mock-data";
 import { getTracks } from "@/app/actions/tracks";
+import { AnimatedSVGDivider } from "@/components/AnimatedSVGDivider";
+import { AnimatedTimeline } from "@/components/AnimatedTimeline";
+import { heroStaggerTimeline, staggerChildrenTimeline } from "@/lib/animations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const tracksContainerRef = useRef<HTMLDivElement>(null);
+  const sponsorsContainerRef = useRef<HTMLDivElement>(null);
+  
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
@@ -103,6 +114,70 @@ export default function Home() {
     };
   }, [codeSnippet]);
 
+  // Initialize GSAP animations
+  useEffect(() => {
+    if (!isMounted) return;
+
+    // Hero stagger animation
+    if (heroRef.current) {
+      const ctx = gsap.context(() => {
+        const timeline = gsap.timeline({ defaults: { ease: "cubic.out" } });
+        
+        const badge = heroRef.current?.querySelector('[data-animate="badge"]');
+        const heading = heroRef.current?.querySelector('[data-animate="heading"]');
+        const description = heroRef.current?.querySelector('[data-animate="description"]');
+        const button = heroRef.current?.querySelector('[data-animate="button"]');
+
+        if (badge) timeline.from(badge, { opacity: 0, y: 20, duration: 0.6 }, 0);
+        if (heading) timeline.from(heading, { opacity: 0, y: 30, duration: 0.6 }, 0.1);
+        if (description) timeline.from(description, { opacity: 0, y: 20, duration: 0.6 }, 0.2);
+        if (button) timeline.from(button, { opacity: 0, y: 20, scale: 0.95, duration: 0.6 }, 0.3);
+      }, heroRef);
+
+      return () => ctx.revert();
+    }
+  }, [isMounted]);
+
+  // Stagger animations for tracks
+  useEffect(() => {
+    if (!tracksContainerRef.current || !isMounted) return;
+
+    const cards = tracksContainerRef.current.querySelectorAll('.stagger-item');
+    gsap.from(cards, {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "cubic.out",
+      scrollTrigger: {
+        trigger: tracksContainerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, [isMounted, tracks]);
+
+  // Stagger animations for sponsors
+  useEffect(() => {
+    if (!sponsorsContainerRef.current || !isMounted) return;
+
+    const logos = sponsorsContainerRef.current.querySelectorAll('.sponsor-logo');
+    if (logos.length > 0) {
+      gsap.from(logos, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: sponsorsContainerRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  }, [isMounted]);
+
   useEffect(() => {
     if (!isMounted) return;
     const root = window.document.documentElement;
@@ -189,7 +264,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10">
+      <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10" ref={heroRef}>
         <div className="container relative mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -198,7 +273,7 @@ export default function Home() {
           >
 
             {/* Coming Soon Badge with Live Dot */}
-            <div className="flex flex-col items-center gap-3 mb-8">
+            <div className="flex flex-col items-center gap-3 mb-8" data-animate="badge">
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-accent/30 bg-brand-accent/5 text-fg font-semibold text-sm shadow-md font-mono">
                 <div className="live-dot" />
                 Applications opening soon — stay tuned!
@@ -211,12 +286,12 @@ export default function Home() {
             </div>
 
             {/* Plus Jakarta Sans Heading with letter-spacing & accent gradient */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 leading-none" style={{ letterSpacing: "-0.02em" }}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 leading-none mix-blend-screen-text" style={{ letterSpacing: "-0.02em" }} data-animate="heading">
               <span className="text-gradient-sunset">ETH Lima</span>{" "}
               Hackathon <span className="block text-fg">2026</span>
             </h1>
 
-            <p className="text-xl text-fg/70 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+            <p className="text-xl text-fg/70 max-w-2xl mx-auto mb-8 font-light leading-relaxed mix-blend-screen-text" data-animate="description">
               The premier Web3 hybrid hackathon in Latin America. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.
             </p>
 
@@ -225,6 +300,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-12 flex justify-center"
+              data-animate="button"
             >
               <a
                 href="https://tally.so/r/aQa4GX"
@@ -254,6 +330,9 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* Animated SVG Divider */}
+        <AnimatedSVGDivider className="mt-8 md:mt-12 opacity-70" animated={isMounted} />
       </section>
 
       {/* About Section */}
@@ -307,7 +386,7 @@ export default function Home() {
             <p className="text-fg/70 text-lg max-w-2xl mx-auto font-light">Build innovative solutions for these bounties. Choose your path and start hacking.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" ref={tracksContainerRef}>
             {tracks.map((track, i) => (
               <motion.div
                 key={i}
@@ -315,7 +394,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group"
+                className="group stagger-item"
               >
                 <div className="glass-card h-full overflow-hidden flex flex-col hover:border-brand-accent/30 shadow-md">
                   <div className={`h-1.5 w-full bg-gradient-to-r ${track.color}`}></div>
@@ -385,23 +464,23 @@ export default function Home() {
 
       {/* World Class Sponsors with Ticker Marquee Component */}
       <section id="sponsors" className="py-24 border-t border-border relative z-10 bg-surface/10">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center" ref={sponsorsContainerRef}>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>World Class <span className="text-gradient-sunset font-extrabold">Sponsors</span></h2>
           <p className="text-fg/60 text-lg mb-16 max-w-2xl mx-auto font-light">Supported by the most innovative protocols and companies in the Web3 space.</p>
 
-          <div className="marquee-container py-6 flex">
+          <div className="marquee-container py-6 flex mask-fade-horizontal">
             {[1, 2].map((idx) => (
               <div key={idx} className="marquee-content items-center">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="flex gap-20 items-center justify-around">
-                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 sponsor-logo">
                       <img
                         src="/assets/sponsors/arbitrum-logo.svg"
                         alt="Arbitrum"
                         className={`h-12 md:h-16 w-auto object-contain filter transition-all ${theme === 'dark' ? 'brightness-100' : 'brightness-75'}`}
                       />
                     </div>
-                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 sponsor-logo">
                       <img
                         src="/assets/sponsors/logo-arkiv.png"
                         alt="Arkiv"
@@ -441,7 +520,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative flex flex-col items-center text-center group"
+                  className="relative flex flex-col items-center text-center group stagger-item"
                 >
 
                   {/* Node */}
