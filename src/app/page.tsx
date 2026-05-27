@@ -13,11 +13,13 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useTheme } from "next-themes";
 import { LoadingScreen } from "@/components/ui/loading-screen";
+import { InteractiveBackground } from "@/components/ui/interactive-background";
+import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navigator";
 
 export default function Home() {
   const { t, tArray } = useTranslation();
   const { resolvedTheme } = useTheme();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // TEMPORARILY DISABLED
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
@@ -125,8 +127,8 @@ export default function Home() {
 
       {/* Premium Visual Overlays */}
       <div className="fixed inset-0 z-0 pointer-events-none glow-hero opacity-30"></div>
-      <div className="fixed inset-0 z-0 pointer-events-none pattern-dots opacity-40"></div>
-      <div className="fixed inset-0 z-0 pointer-events-none pattern-grid opacity-30"></div>
+      <InteractiveBackground />
+      <SidebarTimelineNavigator />
 
       {/* Top Banner Bootcamp */}
       <div className="w-full bg-gradient-to-r from-teal via-cyan to-coral text-white py-1.5 sm:py-2 px-3 sm:px-4 text-center z-50 relative shadow-md">
@@ -244,6 +246,8 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-24 border-t border-border relative z-10 bg-surface/20">
+        {/* Visual Blockchain Link Node to Hero */}
+        <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-coral/40 hidden md:block"></div>
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -252,9 +256,14 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6" style={{ letterSpacing: "-0.02em" }}>
-                {t("about.title")} <span className="text-gradient-sunset font-extrabold">{t("about.accent")}</span>
-              </h2>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-coral/20 bg-coral/5 backdrop-blur-sm z-10 shrink-0">
+                  <div className="w-3 h-3 rounded-full bg-coral animate-pulse" />
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+                  {t("about.title")} <span className="text-gradient-sunset font-extrabold">{t("about.accent")}</span>
+                </h2>
+              </div>
               <p className="text-fg/70 text-lg mb-6 leading-relaxed">
                 {t("about.description")}
               </p>
@@ -287,9 +296,16 @@ export default function Home() {
 
       {/* Tracks Section */}
       <section id="tracks" className="py-24 border-t border-border relative z-10">
+        {/* Visual Blockchain Link Node to About */}
+        <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-orange/40 hidden md:block"></div>
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>{t("tracks.title")} <span className="text-gradient-sunset font-extrabold">{t("tracks.accent")}</span></h2>
+          <div className="text-center mb-16 flex flex-col items-center">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-orange/20 bg-orange/5 backdrop-blur-sm z-10 shrink-0">
+                <div className="w-3 h-3 rounded-full bg-orange animate-pulse" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>{t("tracks.title")} <span className="text-gradient-sunset font-extrabold">{t("tracks.accent")}</span></h2>
+            </div>
             <p className="text-fg/70 text-lg max-w-2xl mx-auto font-light">{t("tracks.description")}</p>
           </div>
 
@@ -371,8 +387,15 @@ export default function Home() {
 
       {/* World Class Sponsors with Ticker Marquee Component */}
       <section id="sponsors" className="py-24 border-t border-border relative z-10 bg-surface/10">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>{t("sponsors.title")} <span className="text-gradient-sunset font-extrabold">{t("sponsors.accent")}</span></h2>
+        {/* Visual Blockchain Link Node to Tracks */}
+        <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-cyan/40 hidden md:block"></div>
+        <div className="container mx-auto px-6 text-center flex flex-col items-center">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-cyan/20 bg-cyan/5 backdrop-blur-sm z-10 shrink-0">
+              <div className="w-3 h-3 rounded-full bg-cyan animate-pulse" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>{t("sponsors.title")} <span className="text-gradient-sunset font-extrabold">{t("sponsors.accent")}</span></h2>
+          </div>
           <p className="text-fg/60 text-lg mb-16 max-w-2xl mx-auto font-light">{t("sponsors.description")}</p>
 
           <div className="marquee-container py-6 flex">
@@ -404,9 +427,16 @@ export default function Home() {
 
       {/* Horizontal Timeline Section */}
       <section id="timeline" className="py-24 border-t border-border relative z-10 bg-bg transition-colors duration-300">
+        {/* Visual Blockchain Link Node to Sponsors */}
+        <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-teal/40 hidden md:block"></div>
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>{t("timeline.title")} <span className="text-gradient-sunset font-extrabold">{t("timeline.accent")}</span></h2>
+          <div className="text-center mb-16 flex flex-col items-center">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-teal/20 bg-teal/5 backdrop-blur-sm z-10 shrink-0">
+                <div className="w-3 h-3 rounded-full bg-teal animate-pulse" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>{t("timeline.title")} <span className="text-gradient-sunset font-extrabold">{t("timeline.accent")}</span></h2>
+            </div>
             <p className="text-fg/60 text-lg font-light">{t("timeline.description")}</p>
           </div>
 
