@@ -17,41 +17,66 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
+  metadataBase: new URL("https://ethlima.com"),
+  title: {
+    default: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
+    template: "%s | ETH Lima Hackathon 2026"
+  },
   description: "The premier Web3 hybrid hackathon in Latin America. July 2026, Lima & Virtual. $15,000+ in prizes, expert mentorship, and global networking.",
-  keywords: ["Ethereum", "Hackathon", "Lima", "Peru", "Web3", "Blockchain", "Arbitrum", "Solidity", "Crypto"],
-  authors: [{ name: "ETH Lima Team" }],
+  keywords: ["Ethereum", "Hackathon", "Lima", "Peru", "Web3", "Blockchain", "Arbitrum", "Solidity", "Crypto", "DeFi", "Smart Contracts", "Web3 Latam"],
+  authors: [{ name: "ETH Lima Team", url: "https://ethlima.com" }],
+  creator: "ETH Lima",
+  publisher: "ETH Lima",
+  category: "technology",
   alternates: {
-    canonical: "https://ethlima.com",
+    canonical: "/",
     languages: {
-      "en": "https://ethlima.com/en",
-      "es": "https://ethlima.com/es",
-      "pt": "https://ethlima.com/pt",
+      "en": "/en",
+      "es": "/es",
+      "pt": "/pt",
     },
   },
   openGraph: {
     title: "ETH Lima Hackathon 2026",
-    description: "Build the future of Web3 at the premier hybrid hackathon in Latin America.",
+    description: "Build the future of Web3 at the premier hybrid hackathon in Latin America. Join us in Lima or virtually.",
     url: "https://ethlima.com",
-    siteName: "ETH Lima",
+    siteName: "ETH Lima Hackathon",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
+        alt: "ETH Lima Hackathon 2026 Hero Image",
       },
     ],
     locale: "es_PE",
+    alternateLocales: ["en_US", "pt_BR"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "ETH Lima Hackathon 2026",
     description: "Build the future of Web3 at the premier hybrid hackathon in Latin America.",
-    images: ["/og-image.png"],
+    creator: "@ETHLima",
+    images: {
+      url: "/og-image.png",
+      alt: "ETH Lima Hackathon 2026 Hero Image",
+    }
   },
   icons: {
     icon: "/assets/favicon.png",
+    apple: "/assets/apple-touch-icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
