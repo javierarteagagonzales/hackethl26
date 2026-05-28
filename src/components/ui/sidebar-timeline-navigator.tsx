@@ -3,6 +3,14 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 
+const sections = [
+  { id: "hero", label: "00 // ACCESO", target: "#" },
+  { id: "about", label: "01 // SINOPSIS", target: "#about" },
+  { id: "tracks", label: "02 // CATEGORÍAS", target: "#tracks" },
+  { id: "sponsors", label: "03 // ALIADOS", target: "#sponsors" },
+  { id: "timeline", label: "04 // CRONOGRAMA", target: "#timeline" },
+];
+
 export function SidebarTimelineNavigator() {
   const [activeSection, setActiveSection] = useState("hero");
   const { scrollYProgress } = useScroll();
@@ -10,14 +18,6 @@ export function SidebarTimelineNavigator() {
     damping: 30,
     stiffness: 100,
   });
-
-  const sections = [
-    { id: "hero", label: "00 // ACCESO", target: "#" },
-    { id: "about", label: "01 // SINOPSIS", target: "#about" },
-    { id: "tracks", label: "02 // CATEGORÍAS", target: "#tracks" },
-    { id: "sponsors", label: "03 // ALIADOS", target: "#sponsors" },
-    { id: "timeline", label: "04 // CRONOGRAMA", target: "#timeline" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

@@ -45,3 +45,6 @@ next-env.d.ts
 # Custom Premium Design System Documentation
 /premium_styles_guide.md
 /site-info.md
+
+#carpet
+.agents/

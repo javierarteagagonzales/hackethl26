@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LOGO_SRC } from "@/lib/asset-path";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       },
     ],
     locale: "es_PE",
-    alternateLocales: ["en_US", "pt_BR"],
+    alternateLocale: ["en_US", "pt_BR"],
     type: "website",
   },
   twitter: {
@@ -88,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${jetbrainsMono.variable} font-sans h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} font-sans h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
