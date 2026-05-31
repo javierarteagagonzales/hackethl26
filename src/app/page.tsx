@@ -24,7 +24,7 @@ import { TimelineSection } from "@/components/sections/TimelineSection";
 export default function Home() {
   const { t, tArray } = useTranslation();
   const { resolvedTheme } = useTheme();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);

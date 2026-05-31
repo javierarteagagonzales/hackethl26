@@ -25,10 +25,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           return 100;
         }
         // Random incremental value to feel organic
-        const increment = Math.floor(Math.random() * 8) + 4;
+        const increment = Math.floor(Math.random() * 15) + 10;
         return Math.min(prev + increment, 100);
       });
-    }, 120);
+    }, 60);
 
     // Rotate status messages
     const statusInterval = setInterval(() => {
@@ -47,9 +47,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         setIsExiting(true);
         const completeTimeout = setTimeout(() => {
           onComplete();
-        }, 1000); // Allow spectacular exit animation to finish
+        }, 500); // Allow spectacular exit animation to finish
         return () => clearTimeout(completeTimeout);
-      }, 500); // Pause briefly at 100%
+      }, 200); // Pause briefly at 100%
       return () => clearTimeout(exitTimeout);
     }
   }, [progress, onComplete]);
@@ -58,7 +58,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     <AnimatePresence>
       {!isExiting && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0b0717] overflow-hidden select-none"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-bg overflow-hidden select-none"
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
