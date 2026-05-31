@@ -135,7 +135,7 @@ export default function Home() {
       <InteractiveBackground />
       <SidebarTimelineNavigator />
 
-      {/* Top Banner Bootcamp */}
+      {/* Top Banner Bootcamp
       <div className="w-full bg-gradient-to-r from-teal via-cyan to-coral text-white py-1.5 sm:py-2 px-3 sm:px-4 text-center z-50 relative shadow-md">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-6">
           <span className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
@@ -157,6 +157,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      */}
 
       {/* Navigation */}
       <nav className="sticky top-0 w-full z-50 border-b border-border bg-surface/75 backdrop-blur-xl transition-all duration-300">
