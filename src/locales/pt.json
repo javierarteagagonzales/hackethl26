@@ -164,5 +164,22 @@
     },
     "submit": "Enviar Inscrição",
     "processing": "Processando..."
+  },
+  "track": {
+    "back": "Voltar para Tracks",
+    "sidebar": {
+      "formation": "Formação",
+      "information": "Informação",
+      "track_details": "Detalhes do Track",
+      "prizes": "Prêmios",
+      "stages": "Etapas"
+    },
+    "active_events": "Eventos Ativos",
+    "past_builds": "Builds Anteriores",
+    "view_more": "Ver mais",
+    "tech_stack": "Tecnologias",
+    "total_prize": "Prêmio Total",
+    "participants": "participantes",
+    "partners": "Nossos Parceiros"
   }
 }

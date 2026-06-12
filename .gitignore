@@ -48,3 +48,7 @@ next-env.d.ts
 
 #carpet
 .agents/
+
+# Ignore markdown files except README
+*.md
+!README.md

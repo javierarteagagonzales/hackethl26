@@ -164,5 +164,22 @@
     },
     "submit": "Submit Application",
     "processing": "Processing..."
+  },
+  "track": {
+    "back": "Back to Tracks",
+    "sidebar": {
+      "formation": "Formation",
+      "information": "Information",
+      "track_details": "Track Details",
+      "prizes": "Prizes",
+      "stages": "Stages"
+    },
+    "active_events": "Active Events",
+    "past_builds": "Past Builds",
+    "view_more": "View more",
+    "tech_stack": "Tech Stack",
+    "total_prize": "Total Prize",
+    "participants": "participants",
+    "partners": "Our Partners"
   }
 }

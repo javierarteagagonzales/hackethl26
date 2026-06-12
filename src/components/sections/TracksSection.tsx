@@ -43,7 +43,7 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="group"
             >
-              <div className="glass-card h-full overflow-hidden flex flex-col hover:border-brand-accent/30 shadow-md">
+              <Link href={`/tracks/${track.title.toLowerCase().replace(/\s+/g, '-')}`} className="glass-card h-full overflow-hidden flex flex-col hover:border-brand-accent/30 shadow-md block transition-all hover:-translate-y-1">
                 <div className={`h-1.5 w-full bg-gradient-to-r ${track.color}`}></div>
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex justify-between items-start gap-4 mb-4">
@@ -83,7 +83,7 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
 

@@ -151,7 +151,8 @@
       "Arkiv — Job Platform": "Arkiv — Plataforma de Empleos",
       "Arkiv — Wikis": "Arkiv — Wikis",
       "Arkiv — Events": "Arkiv — Eventos",
-      "To be defined": "Por definir"
+      "To be defined": "Por definir",
+      "end": "Pitch Final"
     },
     "errors": {
       "first_name_short": "El nombre es muy corto",
@@ -164,5 +165,22 @@
     },
     "submit": "Enviar Aplicación",
     "processing": "Procesando..."
+  },
+  "track": {
+    "back": "Volver a Tracks",
+    "sidebar": {
+      "formation": "Formación",
+      "information": "Información",
+      "track_details": "Detalles del Track",
+      "prizes": "Premios",
+      "stages": "Etapas"
+    },
+    "active_events": "Eventos Activos",
+    "past_builds": "Builds Pasados",
+    "view_more": "Ver más",
+    "tech_stack": "Tecnologías",
+    "total_prize": "Premio Total",
+    "participants": "participantes",
+    "partners": "Nuestros Partners"
   }
 }
