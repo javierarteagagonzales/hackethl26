@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslation } from "@/components/providers/language-provider";
 import { TrackSidebar } from "@/components/ui/track-sidebar";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowLeft } from "lucide-react";
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const { t } = useTranslation();
@@ -22,8 +23,11 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
         {/* Top Navbar */}
         <nav className="sticky top-0 w-full z-50 border-b border-border bg-surface/75 backdrop-blur-xl">
           <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-            <div className="flex items-center text-fg/70 transition-colors">
-              <span className="font-mono text-sm tracking-wider font-bold">ETH Lima</span>
+            <div className="flex items-center">
+              <Link href="/" className="group flex items-center gap-2 text-fg/70 hover:text-fg transition-colors">
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-mono text-sm tracking-wider font-bold">{t("track.back")}</span>
+              </Link>
             </div>
             <div className="flex items-center gap-3">
               <LanguageSwitcher />
