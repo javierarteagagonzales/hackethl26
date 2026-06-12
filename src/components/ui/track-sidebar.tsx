@@ -53,7 +53,7 @@ export function TrackSidebar({
     // Default active item for styling within the information section
     const isSubItemSelected = isInformationItem && label === t("track.sidebar.track_details") && isSelected;
 
-    const btnClass = `flex items-center w-full gap-3 px-3 py-2 text-left rounded-md transition-colors ${
+    const btnClass = `flex items-center w-full gap-2 md:gap-3 px-3 py-2 text-left rounded-md transition-colors ${
       isFormationItem && isSelected || isSubItemSelected
         ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
         : "text-fg/60 hover:text-fg hover:bg-surface/50"
@@ -65,24 +65,24 @@ export function TrackSidebar({
           onClick={() => onSectionChange(isFormationItem ? "formation" : "information")}
           className={btnClass}
         >
-          {icon}
-          <span className="text-sm">{label}</span>
+          {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4 md:w-4 md:h-4" })}
+          <span className="text-xs md:text-sm">{label}</span>
         </button>
       );
     }
 
     return (
       <Link href={href} className={btnClass}>
-        {icon}
-        <span className="text-sm">{label}</span>
+        {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4 md:w-4 md:h-4" })}
+        <span className="text-xs md:text-sm">{label}</span>
       </Link>
     );
   };
 
   return (
-    <aside className="w-full md:w-64 flex-shrink-0 flex flex-col border-r border-border/50 bg-bg min-h-screen py-6 px-4">
+    <aside className="w-full md:w-64 flex-shrink-0 flex flex-col border-b md:border-b-0 md:border-r border-border/50 bg-bg h-auto md:min-h-screen py-4 md:py-6 px-4">
       {/* Logo */}
-      <div className="mb-10 px-2 flex justify-center md:justify-start">
+      <div className="mb-6 md:mb-10 px-2 flex justify-center md:justify-start">
         <Link href="/">
           <img src={LOGO_SRC} alt="Open House" className="h-8 w-auto object-contain" />
         </Link>
@@ -91,7 +91,7 @@ export function TrackSidebar({
       <nav className="space-y-8">
         {/* Formation Section */}
         <div>
-          <h4 className="text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
+          <h4 className="text-[8px] md:text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
             {t("track.sidebar.formation")}
             <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
           </h4>
@@ -102,7 +102,7 @@ export function TrackSidebar({
 
         {/* Information Section */}
         <div>
-          <h4 className="text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
+          <h4 className="text-[8px] md:text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
             {t("track.sidebar.information")}
             <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
           </h4>
