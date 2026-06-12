@@ -21,7 +21,15 @@ const defaultConfig: SidebarConfig = {
   stages: true,
 };
 
-export function TrackSidebar({ config = defaultConfig }: { config?: SidebarConfig }) {
+export function TrackSidebar({ 
+  config = defaultConfig,
+  activeSection = "information",
+  onSectionChange
+}: { 
+  config?: SidebarConfig,
+  activeSection?: "formation" | "information",
+  onSectionChange?: (section: "formation" | "information") => void
+}) {
   const { t } = useTranslation();
   const activeConfig = { ...defaultConfig, ...config };
 
@@ -35,18 +43,36 @@ export function TrackSidebar({ config = defaultConfig }: { config?: SidebarConfi
       );
     }
     
-    // Hardcoding specific state to mimic selection
-    const isSelected = label === t("track.sidebar.track_details");
+    // Determine if this section is selected based on state
+    // We group track_details, prizes, and stages under "information"
+    const isFormationItem = label === t("track.sidebar.formation");
+    const isInformationItem = !isFormationItem;
+    
+    const isSelected = isFormationItem ? activeSection === "formation" : activeSection === "information";
+    
+    // Default active item for styling within the information section
+    const isSubItemSelected = isInformationItem && label === t("track.sidebar.track_details") && isSelected;
+
+    const btnClass = `flex items-center w-full gap-3 px-3 py-2 text-left rounded-md transition-colors ${
+      isFormationItem && isSelected || isSubItemSelected
+        ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
+        : "text-fg/60 hover:text-fg hover:bg-surface/50"
+    }`;
+
+    if (onSectionChange) {
+      return (
+        <button 
+          onClick={() => onSectionChange(isFormationItem ? "formation" : "information")}
+          className={btnClass}
+        >
+          {icon}
+          <span className="text-sm">{label}</span>
+        </button>
+      );
+    }
 
     return (
-      <Link 
-        href={href} 
-        className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
-          isSelected 
-            ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
-            : "text-fg/60 hover:text-fg hover:bg-surface/50"
-        }`}
-      >
+      <Link href={href} className={btnClass}>
         {icon}
         <span className="text-sm">{label}</span>
       </Link>

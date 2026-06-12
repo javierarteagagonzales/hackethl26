@@ -1,19 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "@/components/providers/language-provider";
 import { TrackSidebar } from "@/components/ui/track-sidebar";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { ExternalLink } from "lucide-react";
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const { t } = useTranslation();
+  const [activeSection, setActiveSection] = useState<"formation" | "information">("information");
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-bg text-fg">
       {/* Sidebar */}
-      <TrackSidebar />
+      <TrackSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col w-full overflow-x-hidden relative">
@@ -62,10 +64,39 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
               <p className="text-fg/70 text-lg leading-relaxed">{trackDetails.description}</p>
             </div>
 
-            {/* Body content cleared per user request. New info will be added later */}
-            <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
-              [ {t("track.sidebar.information")} - Coming Soon ]
-            </div>
+            {/* Dynamic Content Based on Sidebar Selection */}
+            {activeSection === "formation" && trackDetails.formation ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  {t("track.sidebar.formation")}
+                </h3>
+                <p className="text-fg/80 text-lg leading-relaxed mb-8">
+                  {trackDetails.formation.description}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {trackDetails.formation.links.map((link: any, i: number) => (
+                    <a 
+                      key={i} 
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-4 bg-surface hover:bg-surface/80 border border-border/50 hover:border-border transition-all rounded-lg"
+                    >
+                      <span className="font-semibold">{link.title}</span>
+                      <ExternalLink className="w-4 h-4 text-fg/50 group-hover:text-fg transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : activeSection === "formation" && !trackDetails.formation ? (
+              <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                [ {t("track.sidebar.formation")} - Content Not Available ]
+              </div>
+            ) : (
+              <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                [ {t("track.sidebar.information")} - Coming Soon ]
+              </div>
+            )}
 
           </main>
         </div>
