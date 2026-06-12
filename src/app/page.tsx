@@ -30,8 +30,14 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tracks, setTracks] = useState<any[]>(MOCK_TRACKS);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const mobileCheck = window.innerWidth < 1024;
+    setIsMobile(mobileCheck);
+    if (mobileCheck) {
+      setIsLoading(false);
+    }
     if (isLoading) {
       document.body.style.overflow = "hidden";
     } else {
@@ -49,20 +55,27 @@ export default function Home() {
     let i = 0;
     let erasing = false;
     let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
+    let terminalInterval: NodeJS.Timeout | null = null;
 
-    const terminalInterval = setInterval(() => {
-      if (!erasing) {
-        setTerminalText(codeSnippet.slice(0, i));
-        i++;
-        if (i > codeSnippet.length) {
-          erasing = true;
-          pauseTimeout = setTimeout(() => {
-            erasing = false;
-            i = 0;
-          }, 2000);
+    const isDesktop = window.innerWidth >= 1024;
+
+    if (isDesktop) {
+      terminalInterval = setInterval(() => {
+        if (!erasing) {
+          setTerminalText(codeSnippet.slice(0, i));
+          i++;
+          if (i > codeSnippet.length) {
+            erasing = true;
+            pauseTimeout = setTimeout(() => {
+              erasing = false;
+              i = 0;
+            }, 2000);
+          }
         }
-      }
-    }, 40);
+      }, 40);
+    } else {
+      setTerminalText(codeSnippet);
+    }
 
     const targetDate = new Date("2026-05-30T00:00:00").getTime();
     const countdownInterval = setInterval(() => {
@@ -113,7 +126,7 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      clearInterval(terminalInterval);
+      if (terminalInterval) clearInterval(terminalInterval);
       clearInterval(countdownInterval);
       if (pauseTimeout) clearTimeout(pauseTimeout);
       window.removeEventListener("scroll", handleScroll);
@@ -131,8 +144,8 @@ export default function Home() {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       {/* Premium Visual Overlays */}
-      <div className="fixed inset-0 z-0 pointer-events-none glow-hero opacity-30"></div>
-      <InteractiveBackground />
+      <div className="hidden lg:block fixed inset-0 z-0 pointer-events-none glow-hero opacity-30"></div>
+      {!isMobile && <InteractiveBackground />}
       <SidebarTimelineNavigator />
 
       {/* Top Banner Bootcamp

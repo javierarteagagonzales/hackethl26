@@ -65,7 +65,7 @@ export function TrackSidebar({
           onClick={() => onSectionChange(isFormationItem ? "formation" : "information")}
           className={btnClass}
         >
-          {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4 md:w-4 md:h-4" })}
+          {icon}
           <span className="text-xs md:text-sm">{label}</span>
         </button>
       );
@@ -73,7 +73,7 @@ export function TrackSidebar({
 
     return (
       <Link href={href} className={btnClass}>
-        {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4 md:w-4 md:h-4" })}
+        {icon}
         <span className="text-xs md:text-sm">{label}</span>
       </Link>
     );
