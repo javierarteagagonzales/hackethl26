@@ -10,7 +10,7 @@ export default async function TrackDetailPage({ params }: { params: Promise<{ id
   let mockKey = "";
   if (trackSlug.includes("arbitrum")) mockKey = "arbitrum-track";
   else if (trackSlug.includes("arkiv")) mockKey = "arkiv-track";
-  
+
   const trackDetails = MOCK_TRACK_DETAILS[mockKey];
 
   if (!trackDetails) {

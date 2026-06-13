@@ -41,6 +41,12 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
     heroImage: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop",
     title: "Explore Arbitrum",
     description: "Build the decentralized future with Arbitrum's scaling solutions.",
+    website: "https://arbitrum.io",
+    socials: {
+      x: { handle: "@arbitrum", url: "https://x.com/arbitrum" },
+      discord: { handle: "Arbitrum Discord", url: "https://discord.gg/arbitrum" },
+      github: { handle: "OffchainLabs", url: "https://github.com/OffchainLabs" }
+    },
     activeEvents: [],
     pastEvents: []
   },
@@ -49,6 +55,12 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
     heroImage: "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=2070&auto=format&fit=crop",
     title: "Explore Arkiv Build",
     description: "Join the Arkiv Buildathon to build the next generation of job boards, wikis, and event platforms.",
+    website: "https://arkiv.network",
+    socials: {
+      x: { handle: "@arkivnetwork", url: "https://x.com/arkivnetwork" },
+      discord: { handle: "Arkiv Discord", url: "https://discord.gg/arkiv" },
+      github: { handle: "arkiv-network", url: "https://github.com/arkiv-network" }
+    },
     activeEvents: [],
     pastEvents: [],
     formation: {
