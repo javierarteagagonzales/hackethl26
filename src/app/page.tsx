@@ -20,6 +20,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { TracksSection } from "@/components/sections/TracksSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
+import { GallerySection } from "@/components/sections/GallerySection";
 
 export default function Home() {
   const { t, tArray } = useTranslation();
@@ -183,6 +184,7 @@ export default function Home() {
             <Link href="#tracks" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.tracks")}</Link>
             <Link href="#timeline" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.timeline")}</Link>
             <Link href="#sponsors" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.sponsors")}</Link>
+            <Link href="/2025" className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.edition_2025")}</Link>
           </div>
           <div className="flex items-center gap-3">
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2">
@@ -201,6 +203,7 @@ export default function Home() {
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <SponsorsSection t={t} isDark={isDark} />
       <TimelineSection t={t} tArray={tArray} />
+      <GallerySection t={t} isDark={isDark} />
 
       {/* Footer */}
       <footer className="bg-bg py-12 border-t border-border relative z-10 transition-colors duration-300">

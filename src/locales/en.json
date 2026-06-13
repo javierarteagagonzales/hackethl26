@@ -9,7 +9,8 @@
     "tracks": "Tracks",
     "timeline": "Timeline",
     "sponsors": "Sponsors",
-    "support": "Support"
+    "support": "Support",
+    "edition_2025": "2025 Edition"
   },
   "banner": {
     "title": "Ethereum Lima Bootcamp, Learn about Arbitrum",
@@ -181,5 +182,49 @@
     "total_prize": "Total Prize",
     "participants": "participants",
     "partners": "Our Partners"
+  },
+  "edition2025": {
+    "title": "2025 Edition",
+    "accent": "Recap",
+    "description": "A look back at the amazing projects and winners from the ETH Lima 2025 Hackathon.",
+    "tracks": "Tracks & Winners",
+    "view_project": "View Project on TAIKAI",
+    "view_full": "View Full 2025 Edition →",
+    "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
+    "gallery_title": "2025 Gallery",
+    "gallery_desc": "Relive the best moments of the event. (Recommended dimensions: 800x600px or 4:3 ratio)",
+    "dates": {
+      "title": "Key Dates",
+      "reg": "Registration: October 8 - 24, 2025",
+      "hack": "Hackathon: October 24 - 26, 2025",
+      "pitch": "In-person Pitch: October 26, 2025",
+      "eval": "Offline Evaluation: October 26 - 28, 2025",
+      "winners": "Winners Announcement: October 29, 2025"
+    },
+    "sponsors_title": "2025 Sponsors",
+    "winners_data": {
+      "starknet": {
+        "name": "Starknet Track",
+        "first": {
+          "name": "Ocean Sense Network",
+          "desc": "A DePIN (Decentralized Physical Infrastructure Network) that democratizes ocean monitoring on the Peruvian coast using IoT buoys operated by artisanal fishermen."
+        },
+        "second": {
+          "name": "Colectiva",
+          "desc": "Colectiva groups merchants to buy directly from wholesalers. You get previously impossible prices, your investment is protected, and everyone decides together. Real and smart savings."
+        }
+      },
+      "scroll": {
+        "name": "Scroll Track",
+        "first": {
+          "name": "Semilla Microlending",
+          "desc": "Decentralized micro-lending platform that allows communities, NGOs, and businesses to create their own loan funds."
+        },
+        "second": {
+          "name": "Turi",
+          "desc": "A platform that rewards tourists based on their reputation gained from visiting tourist sites in Peru and LATAM."
+        }
+      }
+    }
   }
 }

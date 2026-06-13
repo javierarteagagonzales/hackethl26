@@ -9,7 +9,8 @@
     "tracks": "Tracks",
     "timeline": "Cronograma",
     "sponsors": "Sponsors",
-    "support": "Soporte"
+    "support": "Soporte",
+    "edition_2025": "Edición 2025"
   },
   "banner": {
     "title": "Ethereum Lima Bootcamp, Aprende sobre Arbitrum",
@@ -182,5 +183,49 @@
     "total_prize": "Premio Total",
     "participants": "participantes",
     "partners": "Nuestros Partners"
+  },
+  "edition2025": {
+    "title": "Edición 2025",
+    "accent": "Resumen",
+    "description": "Un vistazo a los increíbles proyectos y ganadores de la Hackathon ETH Lima 2025.",
+    "tracks": "Tracks y Ganadores",
+    "view_project": "Ver Proyecto en TAIKAI",
+    "view_full": "Ver Edición 2025 completa →",
+    "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
+    "gallery_title": "Galería 2025",
+    "gallery_desc": "Revive los mejores momentos del evento. (Dimensiones recomendadas: 800x600px o ratio 4:3)",
+    "dates": {
+      "title": "Fechas Clave",
+      "reg": "Registro: del 8 al 24 de octubre de 2025",
+      "hack": "Hackathon: del 24 al 26 de octubre de 2025",
+      "pitch": "Pitch presencial: 26 de octubre de 2025",
+      "eval": "Evaluación offline: del 26 al 28 de octubre de 2025",
+      "winners": "Anuncio de ganadores: 29 de octubre de 2025"
+    },
+    "sponsors_title": "Sponsors 2025",
+    "winners_data": {
+      "starknet": {
+        "name": "Track Starknet",
+        "first": {
+          "name": "Ocean Sense Network",
+          "desc": "Es una red DePIN (Infraestructura Física Descentralizada) que democratiza el monitoreo oceánico del litoral peruano mediante boyas IoT operadas por pescadores artesanales."
+        },
+        "second": {
+          "name": "Colectiva",
+          "desc": "Colectiva agrupa a comerciantes para comprar directo del mayorista. Consigues precios que antes eran imposibles, tu inversión está protegida y todos deciden juntos. Ahorro real e inteligente."
+        }
+      },
+      "scroll": {
+        "name": "Track Scroll",
+        "first": {
+          "name": "Semilla Microlending",
+          "desc": "Plataforma descentralizada de microcréditos que permite a las comunidades, ONG y empresas crear sus propios fondos de préstamos."
+        },
+        "second": {
+          "name": "Turi",
+          "desc": "Una plataforma que da beneficios a turistas en base a su reputación obtenida en sus visitas a los lugares turísticos del Perú y LATAM."
+        }
+      }
+    }
   }
 }
