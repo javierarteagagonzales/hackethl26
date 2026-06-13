@@ -22,7 +22,7 @@ export function GallerySection({ t, isDark }: GallerySectionProps) {
             </span>
           </h2>
           <p className="text-xl text-fg/70">
-            {t("edition2025.gallery_desc") || "Revive los mejores momentos del evento. (Dimensiones recomendadas: 800x600px o ratio 4:3)"}
+            {t("edition2025.gallery_desc") || "Revive los mejores momentos del evento."}
           </p>
         </motion.div>
 
