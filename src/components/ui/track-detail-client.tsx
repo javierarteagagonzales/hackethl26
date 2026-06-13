@@ -37,8 +37,18 @@ function GithubIcon({ className }: { className?: string }) {
 }
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
-  const { t } = useTranslation();
+  const { t, tArray } = useTranslation();
   const [activeSection, setActiveSection] = useState<"formation" | "information">("information");
+
+  const translatedDesc = t(`track_content.${trackDetails.id}.description`);
+  const displayDesc = translatedDesc !== `track_content.${trackDetails.id}.description` ? translatedDesc : trackDetails.description;
+
+  const translatedFormDesc = t(`track_content.${trackDetails.id}.formation.description`);
+  const displayFormDesc = translatedFormDesc !== `track_content.${trackDetails.id}.formation.description` ? translatedFormDesc : trackDetails.formation?.description;
+
+  const translatedLevels = tArray(`track_content.${trackDetails.id}.formation.levels`);
+  const displayLevels = translatedLevels.length > 0 ? translatedLevels : trackDetails.formation?.levels;
+
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-bg text-fg">
@@ -92,7 +102,7 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
           <main className="container mx-auto px-6 py-12 max-w-5xl">
             <div className="max-w-4xl mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{trackDetails.title}</h2>
-              <p className="text-fg/70 text-lg leading-relaxed mb-8">{trackDetails.description}</p>
+              <p className="text-fg/70 text-lg leading-relaxed mb-8">{displayDesc}</p>
 
               {/* Social links & website */}
               <div className="flex flex-wrap items-center gap-3">
@@ -152,12 +162,12 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                   {t("track.sidebar.formation")}
                 </h3>
                 <p className="text-fg/70 text-base leading-relaxed mb-10">
-                  {trackDetails.formation.description}
+                  {displayFormDesc}
                 </p>
 
-                {trackDetails.formation.levels ? (
+                {displayLevels ? (
                   <div className="space-y-10">
-                    {trackDetails.formation.levels.map((lvl: any, li: number) => (
+                    {displayLevels.map((lvl: any, li: number) => (
                       <div key={li} className="relative pl-6 border-l-2 border-border/40">
                         <div className="flex items-center gap-3 mb-2">
                           <span className="font-mono text-xs font-bold text-[#00f0ff] bg-[#00f0ff]/10 border border-[#00f0ff]/20 px-2 py-0.5 rounded-sm tracking-widest">

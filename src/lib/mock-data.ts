@@ -147,10 +147,69 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
     activeEvents: [],
     pastEvents: [],
     formation: {
-      description: "Find all the information, documentation, and resources needed to build on Arkiv. Learn how to integrate our network and use our tools for your project.",
-      links: [
-        { title: "Arkiv Network", url: "https://arkiv.network/" },
-        { title: "Arkiv Docs", url: "https://docs.arkiv.network/" }
+      description: "Encuentra toda la información, documentación y recursos necesarios para construir en Arkiv. Explora nuestra organización, ejemplos prácticos de integraciones y herramientas para la comunidad.",
+      levels: [
+        {
+          level: "Documentación y Autoaprendizaje",
+          badge: "01",
+          goal: "Accede a la central de código, repositorios y SDK oficiales.",
+          resources: [
+            {
+              title: "Arkiv Network (Sitio Oficial)",
+              description: "Página principal de la red Arkiv.",
+              url: "https://arkiv.network/"
+            },
+            {
+              title: "Organización en GitHub",
+              description: "Central de código y repositorios públicos del proyecto.",
+              url: "https://github.com/arkiv-network"
+            },
+            {
+              title: "Documentación General",
+              description: "Código y archivos base del portal de guías basados en Starlight.",
+              url: "https://github.com/Arkiv-Network/arkiv-starlight-docs"
+            },
+            {
+              title: "SDK oficial para JS/TS",
+              description: "Manual de uso del paquete @arkiv-network/sdk con ejemplos de inicialización en Node.js y Bun.",
+              url: "https://github.com/Arkiv-Network/arkiv-sdk-js"
+            }
+          ]
+        },
+        {
+          level: "Desafíos de Construcción",
+          badge: "02",
+          goal: "Estudia casos de uso reales y cómo estructurar tus proyectos en la red.",
+          resources: [
+            {
+              title: "Cortex (AI + Privacy)",
+              description: "Proyecto de memoria evolutiva para agentes de IA que sirvió como plantilla en el Arkiv x ETHNS Builder Challenge.",
+              url: "https://github.com/LingSiewWin/Cortex"
+            },
+            {
+              title: "Guías de Arquitectura (p2pmentor)",
+              description: "Ejemplo de estructura de bases de datos en la red para un proyecto educativo real.",
+              url: "https://github.com/understories/p2pmentor/blob/main/docs/betadocs/arkiv/overview.md"
+            }
+          ]
+        },
+        {
+          level: "Comunidad y Soporte Técnico",
+          badge: "03",
+          goal: "Aprende patrones avanzados y examina flujos de trabajo de código abierto de la comunidad.",
+          resources: [
+            {
+              title: "Repositorio de Agent Skills",
+              description: "Kit oficial diseñado para aprender patrones, atributos y TTL en herramientas como Cursor, Claude Code o Aider.",
+              url: "https://github.com/Arkiv-Network/skills"
+            },
+            {
+              title: "Integración Avanzada (AI Memory Layer)",
+              description: "Flujos de trabajo avanzados de código abierto, como el pipeline de análisis multi-agente creado por la comunidad.",
+              url: "https://github.com/SantiagoDevRel/Arkiv-agent-memory"
+            }
+          ]
+        }
       ]
     }
   }

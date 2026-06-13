@@ -235,5 +235,162 @@
         }
       }
     }
+  },
+  "track_content": {
+    "arbitrum-track": {
+      "description": "Build the decentralized future with Arbitrum's scaling solutions.",
+      "formation": {
+        "description": "Whether you're new to Web3 or building advanced smart contracts, here you'll find the path to build on Arbitrum. Follow the levels in order or jump to the one that matches your experience.",
+        "levels": [
+          {
+            "level": "Beginner",
+            "badge": "01",
+            "goal": "Understand what a Layer 2 is and take your first steps as a user without touching code.",
+            "resources": [
+              {
+                "title": "Official Intro to Arbitrum",
+                "description": "A friendly guide explaining why Ethereum needs scalability solutions and how Arbitrum solves it.",
+                "url": "https://docs.arbitrum.io/get-started/arbitrum-introduction"
+              },
+              {
+                "title": "Arbitrum Bridge Tutorial",
+                "description": "Step-by-step guide to connect your wallet and transfer funds from Ethereum safely.",
+                "url": "https://docs.arbitrum.io/arbitrum-bridge/quickstart"
+              },
+              {
+                "title": "Arbitrum Portal",
+                "description": "Official catalog to discover verified apps, games, and tools active on the network.",
+                "url": "https://portal.arbitrum.io/"
+              }
+            ]
+          },
+          {
+            "level": "Intermediate",
+            "badge": "02",
+            "goal": "Learn to use the network's DeFi protocols and interpret on-chain activity and security data.",
+            "resources": [
+              {
+                "title": "Layer3 — Interactive Quests",
+                "description": "Gamified tutorials focused on Arbitrum where you perform real actions on the blockchain.",
+                "url": "https://layer3.xyz/"
+              },
+              {
+                "title": "L2BEAT — Security Dashboard",
+                "description": "Industry reference for auditing an L2's security, reviewing its risks, and verifying TVL.",
+                "url": "https://l2beat.com/scaling/projects/arbitrum"
+              },
+              {
+                "title": "Arbiscan — Block Explorer",
+                "description": "Track the status of your transactions, wallet balances, and exact gas costs directly on the network.",
+                "url": "https://arbiscan.io/"
+              }
+            ]
+          },
+          {
+            "level": "Advanced",
+            "badge": "03",
+            "goal": "Program your first smart contracts with Solidity in the Ethereum-compatible environment (EVM).",
+            "resources": [
+              {
+                "title": "Solidity Quickstart (Remix)",
+                "description": "Official from-scratch tutorial to compile and deploy your first smart contract using Remix.",
+                "url": "https://docs.arbitrum.io/build-decentralized-apps/quickstart-solidity-remix"
+              },
+              {
+                "title": "Foundry on Arbitrum",
+                "description": "Commands and structure to create, compile, and verify an ERC-20 token contract using Foundry.",
+                "url": "https://docs.arbitrum.io/build-decentralized-apps/quickstart-create-a-token"
+              }
+            ]
+          },
+          {
+            "level": "Expert",
+            "badge": "04",
+            "goal": "Push efficiency to the limit by programming smart contracts in Rust compiled to WebAssembly with Stylus.",
+            "resources": [
+              {
+                "title": "Stylus Rust Quickstart",
+                "description": "From installing cargo-stylus to compiling your WASM code and deploying it on the network.",
+                "url": "https://docs.arbitrum.io/stylus/quickstart"
+              },
+              {
+                "title": "Stylus Rust SDK Reference",
+                "description": "Master storage handling and gas optimization in Rust to get maximum performance out of Stylus.",
+                "url": "https://docs.arbitrum.io/stylus/reference/overview"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "arkiv-track": {
+      "description": "Join the Arkiv Buildathon to build the next generation of job boards, wikis, and event platforms.",
+      "formation": {
+        "description": "Find all the information, documentation, and resources needed to build on Arkiv. Explore our organization, practical integration examples, and community tools.",
+        "levels": [
+          {
+            "level": "Documentation & Learning",
+            "badge": "01",
+            "goal": "Access the main codebase, public repositories, and official SDKs.",
+            "resources": [
+              {
+                "title": "Arkiv Network (Official Site)",
+                "description": "Main page of the Arkiv network.",
+                "url": "https://arkiv.network/"
+              },
+              {
+                "title": "GitHub Organization",
+                "description": "Main code hub and public repositories for the project.",
+                "url": "https://github.com/arkiv-network"
+              },
+              {
+                "title": "General Documentation",
+                "description": "Code and base files for the Starlight-based guides portal.",
+                "url": "https://github.com/Arkiv-Network/arkiv-starlight-docs"
+              },
+              {
+                "title": "Official JS/TS SDK",
+                "description": "Usage manual for the @arkiv-network/sdk package with Node.js and Bun initialization examples.",
+                "url": "https://github.com/Arkiv-Network/arkiv-sdk-js"
+              }
+            ]
+          },
+          {
+            "level": "Builder Challenges",
+            "badge": "02",
+            "goal": "Study real use cases and learn how to structure your projects on the network.",
+            "resources": [
+              {
+                "title": "Cortex (AI + Privacy)",
+                "description": "Evolutionary memory project for AI agents that served as a template in the Arkiv x ETHNS Builder Challenge.",
+                "url": "https://github.com/LingSiewWin/Cortex"
+              },
+              {
+                "title": "Architecture Guides (p2pmentor)",
+                "description": "Database structuring example on the network for a real educational project.",
+                "url": "https://github.com/understories/p2pmentor/blob/main/docs/betadocs/arkiv/overview.md"
+              }
+            ]
+          },
+          {
+            "level": "Community & Technical Support",
+            "badge": "03",
+            "goal": "Learn advanced patterns and examine open-source community workflows.",
+            "resources": [
+              {
+                "title": "Agent Skills Repository",
+                "description": "Official kit designed to learn patterns, attributes, and TTL in tools like Cursor, Claude Code, or Aider.",
+                "url": "https://github.com/Arkiv-Network/skills"
+              },
+              {
+                "title": "Advanced Integration (AI Memory Layer)",
+                "description": "Advanced open-source workflows, such as the multi-agent analysis pipeline created by the community.",
+                "url": "https://github.com/SantiagoDevRel/Arkiv-agent-memory"
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
