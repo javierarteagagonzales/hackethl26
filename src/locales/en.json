@@ -193,6 +193,11 @@
     "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
     "gallery_title": "2025 Gallery",
     "gallery_desc": "Relive the best moments of the event. (Recommended dimensions: 800x600px or 4:3 ratio)",
+    "stats": {
+      "projects": "+25 Projects",
+      "attendees": "+80 Attendees",
+      "format": "Hybrid Hackathon"
+    },
     "dates": {
       "title": "Key Dates",
       "reg": "Registration: October 8 - 24, 2025",

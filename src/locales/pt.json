@@ -193,6 +193,11 @@
     "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
     "gallery_title": "Galeria 2025",
     "gallery_desc": "Reviva os melhores momentos do evento. (Dimensões recomendadas: 800x600px ou proporção 4:3)",
+    "stats": {
+      "projects": "+25 Projetos",
+      "attendees": "+80 Participantes",
+      "format": "Hackathon Híbrida"
+    },
     "dates": {
       "title": "Datas Importantes",
       "reg": "Inscrições: 8 a 24 de outubro de 2025",

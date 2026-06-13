@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LOGO_SRC } from "@/lib/asset-path";
 import Link from "next/link";
 import Image from "next/image";
-import { Trophy, ArrowLeft, Calendar, ExternalLink, Medal } from "lucide-react";
+import { Trophy, ArrowLeft, Calendar, ExternalLink, Medal, Users, Code, MonitorSmartphone } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Edition2025Page() {
@@ -81,9 +81,25 @@ export default function Edition2025Page() {
                 {t("edition2025.accent")}
               </span>
             </h1>
-            <p className="text-xl text-fg/70 mb-8">
+            <p className="text-xl text-fg/70 mb-12">
               {t("edition2025.description")}
             </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-surface/50 border border-border rounded-2xl p-6 text-center shadow-sm">
+                <Code className="w-8 h-8 text-brand-accent mx-auto mb-3" />
+                <p className="text-3xl font-black mb-1">{t("edition2025.stats.projects")}</p>
+              </div>
+              <div className="bg-surface/50 border border-border rounded-2xl p-6 text-center shadow-sm">
+                <Users className="w-8 h-8 text-brand-accent mx-auto mb-3" />
+                <p className="text-3xl font-black mb-1">{t("edition2025.stats.attendees")}</p>
+              </div>
+              <div className="bg-surface/50 border border-border rounded-2xl p-6 text-center shadow-sm">
+                <MonitorSmartphone className="w-8 h-8 text-brand-accent mx-auto mb-3" />
+                <p className="text-3xl font-black mb-1">{t("edition2025.stats.format")}</p>
+              </div>
+            </div>
 
             {/* Dates */}
             <div className="bg-surface border border-border rounded-2xl p-6 md:p-8 text-left mb-12 shadow-lg">
