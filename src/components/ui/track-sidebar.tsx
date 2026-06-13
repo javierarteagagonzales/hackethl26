@@ -80,7 +80,7 @@ export function TrackSidebar({
   };
 
   return (
-    <aside className="w-full md:w-64 flex-shrink-0 flex flex-col border-b md:border-b-0 md:border-r border-border/50 bg-bg h-auto md:min-h-screen py-4 md:py-6 px-4">
+    <aside className="w-full md:w-64 flex-shrink-0 flex flex-col border-b md:border-b-0 md:border-r border-border/50 bg-bg h-auto md:h-screen md:sticky md:top-0 md:overflow-y-auto py-4 md:py-6 px-4">
       {/* Logo */}
       <div className="mb-6 md:mb-10 px-2 flex justify-center md:justify-start">
         <Link href="/">

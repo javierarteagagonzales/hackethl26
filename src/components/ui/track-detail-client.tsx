@@ -148,27 +148,62 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
             {/* Dynamic Content Based on Sidebar Selection */}
             {activeSection === "formation" && trackDetails.formation ? (
               <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
                   {t("track.sidebar.formation")}
                 </h3>
-                <p className="text-fg/80 text-lg leading-relaxed mb-8">
+                <p className="text-fg/70 text-base leading-relaxed mb-10">
                   {trackDetails.formation.description}
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {trackDetails.formation.links.map((link: any, i: number) => (
-                    <a 
-                      key={i} 
-                      href={link.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-4 bg-surface hover:bg-surface/80 border border-border/50 hover:border-border transition-all rounded-lg"
-                    >
-                      <span className="font-semibold">{link.title}</span>
-                      <ExternalLink className="w-4 h-4 text-fg/50 group-hover:text-fg transition-colors" />
-                    </a>
-                  ))}
-                </div>
+
+                {trackDetails.formation.levels ? (
+                  <div className="space-y-10">
+                    {trackDetails.formation.levels.map((lvl: any, li: number) => (
+                      <div key={li} className="relative pl-6 border-l-2 border-border/40">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-mono text-xs font-bold text-[#00f0ff] bg-[#00f0ff]/10 border border-[#00f0ff]/20 px-2 py-0.5 rounded-sm tracking-widest">
+                            {lvl.badge}
+                          </span>
+                          <h4 className="text-lg font-bold text-fg">{lvl.level}</h4>
+                        </div>
+                        <p className="text-fg/60 text-sm mb-5 leading-relaxed">{lvl.goal}</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                          {lvl.resources.map((res: any, ri: number) => (
+                            <a
+                              key={ri}
+                              href={res.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group flex flex-col gap-2 p-4 bg-surface hover:bg-surface/70 border border-border/40 hover:border-[#00f0ff]/40 transition-all rounded-lg"
+                            >
+                              <div className="flex items-start justify-between gap-2">
+                                <span className="font-semibold text-sm text-fg leading-snug">{res.title}</span>
+                                <ExternalLink className="w-3.5 h-3.5 text-fg/30 group-hover:text-[#00f0ff] transition-colors shrink-0 mt-0.5" />
+                              </div>
+                              <p className="text-fg/55 text-xs leading-relaxed">{res.description}</p>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {trackDetails.formation.links.map((link: any, i: number) => (
+                      <a
+                        key={i}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-4 bg-surface hover:bg-surface/80 border border-border/50 hover:border-border transition-all rounded-lg"
+                      >
+                        <span className="font-semibold">{link.title}</span>
+                        <ExternalLink className="w-4 h-4 text-fg/50 group-hover:text-fg transition-colors" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
+
             ) : activeSection === "formation" && !trackDetails.formation ? (
               <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
                 [ {t("track.sidebar.formation")} - Content Not Available ]
