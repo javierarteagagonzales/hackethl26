@@ -1,5 +1,7 @@
 "use client";
 
+import React, { useState } from "react";
+
 import { useTranslation } from "@/components/providers/language-provider";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -11,6 +13,7 @@ import { motion } from "framer-motion";
 
 export default function Edition2025Page() {
   const { t } = useTranslation();
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   const tracks = [
     {
@@ -129,6 +132,53 @@ export default function Edition2025Page() {
 
           </motion.div>
         </div>
+
+        {/* Recap Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mt-20 max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-4">Recap Oficial</h2>
+            <p className="text-fg/60">Revive la experiencia de la Hackathon ETH Lima 2025</p>
+          </div>
+          
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl bg-surface/50 group">
+            {!isVideoPlaying ? (
+              <div 
+                className="absolute inset-0 cursor-pointer"
+                onClick={() => setIsVideoPlaying(true)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="https://img.youtube.com/vi/f28SB4dbVq0/maxresdefault.jpg" 
+                  alt="ETH Lima 2025 Recap Video Thumbnail"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-500">
+                  <div className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.4)]">
+                    <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/f28SB4dbVq0?autoplay=1"
+                title="ETH Lima 2025 Recap"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="absolute inset-0"
+              ></iframe>
+            )}
+          </div>
+        </motion.div>
 
         {/* Winners Section */}
         <motion.div
