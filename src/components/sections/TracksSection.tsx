@@ -81,6 +81,12 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
                       <span className="text-xs font-mono text-fg/40 uppercase tracking-widest">{t("tracks.prize_pool")}</span>
                       <span className="text-xl font-extrabold text-fg">{t("tracks.tba")}</span>
                     </div>
+
+                    <div className="pt-4 flex justify-end">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold font-mono uppercase tracking-wider text-brand-accent bg-brand-accent/10 border border-brand-accent/25 px-3 py-1.5 rounded-full group-hover:bg-brand-accent/20 transition-colors">
+                        {t("tracks.view_more")} →
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
