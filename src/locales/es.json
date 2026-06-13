@@ -194,6 +194,10 @@
     "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
     "gallery_title": "Galería 2025",
     "gallery_desc": "Revive los mejores momentos del evento.",
+    "organizers_title": "Organizadores",
+    "organizers_desc": "El equipo detrás de la Hackathon ETH Lima 2025.",
+    "organizers_lead": "Lead",
+    "organizers_member": "Organizador",
     "stats": {
       "projects": "+25 Proyectos",
       "attendees": "+80 Asistentes",

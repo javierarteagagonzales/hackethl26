@@ -183,6 +183,50 @@ export default function Edition2025Page() {
           </div>
         </motion.div>
 
+        {/* Organizers Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-32 border-t border-border pt-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">{t("edition2025.organizers_title")}</h2>
+            <p className="text-fg/60">{t("edition2025.organizers_desc")}</p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-10">
+            {[
+              { name: "Javier Arteaga", role: t("edition2025.organizers_lead"), img: "/2025/organizer/javier.webp" },
+              { name: "Criss Valladares", role: t("edition2025.organizers_member"), img: "/2025/organizer/criss-valladares.webp" },
+              { name: "Yamille Celis", role: t("edition2025.organizers_member"), img: "/2025/organizer/yami.webp" },
+            ].map((org, idx) => (
+              <motion.div
+                key={org.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * idx }}
+                className="flex flex-col items-center gap-4 group"
+              >
+                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-brand-accent/60 transition-colors shadow-lg">
+                  <Image
+                    src={org.img}
+                    alt={org.name}
+                    fill
+                    sizes="128px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <div className="text-center">
+                  <p className="font-bold text-lg">{org.name}</p>
+                  <p className="text-sm text-brand-accent font-medium">{org.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Photo Gallery Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
