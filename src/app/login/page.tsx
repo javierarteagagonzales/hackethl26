@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { motion } from "framer-motion";
 import { Code2, Mail, ArrowRight, ShieldCheck, Zap, Globe } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -61,7 +61,7 @@ export default function LoginPage() {
         
         <div className="relative z-10">
           <Link href="/">
-            <img src={LOGO_SRC} alt="ETH Lima" className="h-9 w-auto" />
+            <Logo alt="ETH Lima" className="h-9 w-auto" />
           </Link>
         </div>
 
@@ -100,7 +100,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md space-y-8">
           <div className="text-center md:text-left">
             <div className="md:hidden mb-8 flex justify-center">
-              <img src={LOGO_SRC} alt="ETH Lima" className="h-8 w-auto" />
+              <Logo alt="ETH Lima" className="h-8 w-auto" />
             </div>
             <h2 className="text-3xl font-bold tracking-tight">{t("login.welcome")}</h2>
             <p className="text-fg/60 mt-2 text-sm">{t("login.subtitle")}</p>

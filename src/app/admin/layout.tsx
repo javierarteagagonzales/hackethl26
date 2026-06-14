@@ -14,7 +14,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useSession, signOut } from "next-auth/react";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { Badge } from "@/components/ui/badge";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-[#020202] text-white flex flex-col md:flex-row overflow-hidden h-screen">
       <aside className="w-full md:w-64 border-r border-white/5 flex flex-col sticky top-0 md:h-screen shrink-0 bg-[#080808]">
         <div className="p-6 border-b border-white/5 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
+          <Link href="/"><Logo alt="ETH Lima" className="h-7 w-auto" /></Link>
           <Badge className="bg-red-500/10 text-red-500 border-red-500/20 text-[10px]">ADMIN</Badge>
         </div>
         

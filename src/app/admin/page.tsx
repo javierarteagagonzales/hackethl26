@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Users, 

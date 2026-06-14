@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, HelpCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ export default function SponsorPage() {
       <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)", backgroundSize: "48px 48px" }} />
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
+          <Link href="/"><Logo alt="ETH Lima" className="h-7 w-auto" /></Link>
           <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors"><HelpCircle className="w-3 h-3" />@javierdgtl</a>
         </div>
       </nav>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code2, Mic, Users } from "lucide-react";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 
 export function AboutSection({ t, isDark }: { t: (key: string) => string, isDark: boolean }) {
   return (
@@ -42,8 +42,7 @@ export function AboutSection({ t, isDark }: { t: (key: string) => string, isDark
             className="relative h-full min-h-[300px] glass-card p-8 flex items-center justify-center overflow-hidden shadow-lg border-brand-accent/15"
           >
             <div className="absolute inset-0 pattern-dots opacity-10"></div>
-            <img
-              src={LOGO_SRC}
+            <Logo
               alt="ETH Lima Logo"
               width={200}
               height={200}

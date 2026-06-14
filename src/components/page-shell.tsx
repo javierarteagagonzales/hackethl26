@@ -1,7 +1,7 @@
 /* Shared layout component for all inner pages */
 "use client";
 import Link from "next/link";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { HelpCircle, ArrowLeft } from "lucide-react";
 
 export default function PageShell({ children, backHref = "/", backLabel = "← Back to Home" }: { children: React.ReactNode; backHref?: string; backLabel?: string }) {
@@ -16,7 +16,7 @@ export default function PageShell({ children, backHref = "/", backLabel = "← B
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <img src={LOGO_SRC} alt="ETH Lima Logo" width={100} height={32} className="h-7 w-auto object-contain" />
+            <Logo alt="ETH Lima Logo" width={100} height={32} className="h-7 w-auto object-contain" />
           </Link>
           <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-gray-500 hover:text-white text-xs transition-colors">
             <HelpCircle className="w-3.5 h-3.5" /> @javierdgtl

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { MOCK_TRACKS } from "@/lib/mock-data";
 import { getTracks } from "@/app/actions/tracks";
 import { useTranslation } from "@/components/providers/language-provider";
@@ -177,7 +177,7 @@ export default function Home() {
       <nav className="sticky top-0 w-full z-50 border-b border-border bg-surface/75 backdrop-blur-xl transition-all duration-300">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={LOGO_SRC} alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" />
+            <Logo alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" />
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-fg/80">
             <Link href="#about" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.about")}</Link>
@@ -209,7 +209,7 @@ export default function Home() {
       <footer className="bg-bg py-12 border-t border-border relative z-10 transition-colors duration-300">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img src={LOGO_SRC} alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+            <Logo alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
           </div>
 
           <div className="flex items-center gap-6">

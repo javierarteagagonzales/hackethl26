@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useTranslation } from "@/components/providers/language-provider";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import Image from "next/image";
 import { Trophy, ArrowLeft, Calendar, ExternalLink, Medal, Users, Code, MonitorSmartphone } from "lucide-react";
@@ -57,7 +57,7 @@ export default function Edition2025Page() {
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/">
-              <img src={LOGO_SRC} alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain cursor-pointer" />
+              <Logo alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain cursor-pointer" />
             </Link>
           </div>
           <div className="flex items-center gap-3">

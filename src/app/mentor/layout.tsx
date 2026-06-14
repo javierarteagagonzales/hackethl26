@@ -6,7 +6,7 @@ import { Code2, Calendar, MessageSquare, CheckSquare, Settings, LogOut, Video } 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useSession, signOut } from "next-auth/react";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 
 export default function MentorLayout({ children }: { children: ReactNode }) {
   const { data: session } = useSession();

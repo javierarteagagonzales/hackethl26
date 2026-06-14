@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Logo } from "@/components/ui/logo";
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -17,6 +18,13 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   ];
 
   useEffect(() => {
+    // Mobile/tablet fast bypass
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      setProgress(100);
+      onComplete();
+      return;
+    }
+
     // Increment progress bar
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
@@ -25,15 +33,15 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           return 100;
         }
         // Random incremental value to feel organic
-        const increment = Math.floor(Math.random() * 15) + 10;
+        const increment = Math.floor(Math.random() * 25) + 15;
         return Math.min(prev + increment, 100);
       });
-    }, 60);
+    }, 25);
 
     // Rotate status messages
     const statusInterval = setInterval(() => {
       setStatusIndex((prev) => (prev < statuses.length - 1 ? prev + 1 : prev));
-    }, 600);
+    }, 200);
 
     return () => {
       clearInterval(progressInterval);
@@ -167,27 +175,13 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               }}
               className="relative w-32 h-32 sm:w-48 sm:h-48 flex items-center justify-center z-10"
             >
-              {/* Premium Glow effect behind Logo */}
-              <div 
-                className="absolute inset-0 rounded-full blur-2xl opacity-60 mix-blend-screen scale-90 animate-pulse transition-all duration-300"
-                style={{
-                  background: "radial-gradient(circle, rgba(230,74,48,0.8) 0%, rgba(61,190,213,0.8) 50%, transparent 100%)",
-                }}
-              />
-
-              <motion.img
-                src="/Ethlogo.png"
-                alt="Ethereum Lima Logo"
-                className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_40px_rgba(230,74,48,0.4)]"
-                animate={{
-                  y: [-8, 8, -8],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
+              <motion.div
+                className="w-full h-full relative z-10"
+                animate={{ y: [-8, 8, -8] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Logo alt="Ethereum Lima Logo" className="w-full h-full object-contain" />
+              </motion.div>
 
               {/* Spectacular Shine Effect Swipe */}
               <div className="absolute inset-0 w-full h-full overflow-hidden rounded-full pointer-events-none z-20">

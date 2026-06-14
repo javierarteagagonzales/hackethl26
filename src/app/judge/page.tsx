@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { getProjectsForJudging, submitOrUpdateEvaluation } from "@/app/actions/judge";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import { 
   Trophy, 
   ExternalLink, 
@@ -142,7 +142,7 @@ export default function JudgePage() {
       {/* Sidebar Judge */}
       <aside className="w-64 border-r border-white/5 flex flex-col shrink-0 bg-[#080808]">
         <div className="p-6 border-b border-white/5 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="ETH Lima" className="h-7 w-auto" /></Link>
+          <Link href="/"><Logo alt="ETH Lima" className="h-7 w-auto" /></Link>
           <Badge className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20 text-[10px]">JUDGE</Badge>
         </div>
         

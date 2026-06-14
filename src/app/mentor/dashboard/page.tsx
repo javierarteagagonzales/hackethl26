@@ -20,7 +20,7 @@ import {
   HelpCircle
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 

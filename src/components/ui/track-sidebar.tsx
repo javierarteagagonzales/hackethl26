@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { BookOpen, FolderDot, LayoutDashboard, Target, Trophy, Clock } from "lucide-react";
 import { useTranslation } from "@/components/providers/language-provider";
-import { LOGO_SRC } from "@/lib/asset-path";
+import { Logo } from "@/components/ui/logo";
 
 // Features configuration array to enable/disable specific parts
 export interface SidebarConfig {
@@ -84,7 +84,7 @@ export function TrackSidebar({
       {/* Logo */}
       <div className="mb-6 md:mb-10 px-2 flex justify-center md:justify-start">
         <Link href="/">
-          <img src={LOGO_SRC} alt="Open House" className="h-8 w-auto object-contain" />
+          <Logo alt="Open House" className="h-8 w-auto object-contain" />
         </Link>
       </div>
 
