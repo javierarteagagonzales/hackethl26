@@ -20,7 +20,7 @@
   },
   "hero": {
     "badge": "Applications opening soon — stay tuned!",
-    "date": "Jul 18 - Sep 6, 2026",
+    "date": "Jul 20 - Sep 6, 2026",
     "hybrid": "Hybrid",
     "prizes": "$10k+ Prizes",
     "title_main": "ETH Lima",
@@ -61,28 +61,28 @@
     "description": "The 48 hours that will change your Web3 journey.",
     "items": [
       {
-        "day": "Jul 18 - Jul 24",
+        "day": "Jul 20 - Jul 30",
         "time": "Preparation",
         "title": "Pre-Event Workshops",
         "desc": "Introductory talks, team formation, and virtual support sessions."
       },
       {
-        "day": "Jul 25 - Jul 26",
+        "day": "Jul 31 - Aug 12",
         "time": "Build",
-        "title": "Hackathon & Demo Day",
-        "desc": "48 hours of intensive coding, submissions and live demos."
+        "title": "Hackathon",
+        "desc": "Intensive coding, submissions and live demos for all official tracks."
       },
       {
-        "day": "Jul 31 - Aug 10",
+        "day": "Aug 15 - Aug 20",
         "time": "Evaluation",
         "title": "Results",
         "desc": "Winners announced for Arbitrum, Arkiv, and all other tracks."
       },
       {
-        "day": "Aug 13 - Sep 6",
+        "day": "Aug 22 - Sep 6",
         "time": "Follow-up",
         "title": "Post-Hackathon",
-        "desc": "Talk series, Mentoring sessions and official close of the event season."
+        "desc": "Talk series, mentoring sessions and official close of the event season."
       }
     ]
   },
