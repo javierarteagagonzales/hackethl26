@@ -50,6 +50,16 @@ export default function Edition2025Page() {
     },
   ];
 
+  const judges = [
+    { name: "Toño Romero", role: t("edition2025.roles.jurado"), img: "/2025/judge/toño.webp" },
+    { name: "Alan Espinoza", role: t("edition2025.roles.jurado"), img: "/2025/judge/alan-espinoza.webp" },
+    { name: "Angel Espinoza", role: t("edition2025.roles.jurado"), img: "/2025/judge/angel-espinoza.webp" },
+    { name: "Solene", role: t("edition2025.roles.jurado_virtual"), img: "/2025/judge/solene.webp" },
+    { name: "Stella Achenbach", role: t("edition2025.roles.jurado_virtual"), img: "/2025/judge/stella.webp" },
+    { name: "Arturo Mena", role: t("edition2025.roles.jurado_tecnico"), img: "/2025/judge/arturo.webp" },
+    { name: "Javier Arteaga", role: t("edition2025.roles.jurado_tecnico"), img: "/2025/judge/javier.webp" },
+  ];
+
   return (
     <div className="min-h-screen bg-bg text-fg selection:bg-coral/30 overflow-x-hidden font-sans transition-colors duration-300">
       {/* Navigation */}
@@ -144,16 +154,16 @@ export default function Edition2025Page() {
             <h2 className="text-3xl font-bold mb-4">Recap Oficial</h2>
             <p className="text-fg/60">Revive la experiencia de la Hackathon ETH Lima 2025</p>
           </div>
-          
+
           <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl bg-surface/50 group">
             {!isVideoPlaying ? (
-              <div 
+              <div
                 className="absolute inset-0 cursor-pointer"
                 onClick={() => setIsVideoPlaying(true)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="https://img.youtube.com/vi/f28SB4dbVq0/maxresdefault.jpg" 
+                <img
+                  src="https://img.youtube.com/vi/f28SB4dbVq0/maxresdefault.jpg"
                   alt="ETH Lima 2025 Recap Video Thumbnail"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -206,7 +216,7 @@ export default function Edition2025Page() {
                 className="group relative bg-surface border border-border rounded-2xl p-6 overflow-hidden hover:border-brand-accent/50 transition-colors shadow-sm"
               >
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${track.color} opacity-10 blur-3xl rounded-full group-hover:opacity-20 transition-opacity`} />
-                
+
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
@@ -219,17 +229,88 @@ export default function Edition2025Page() {
                       <Medal className="w-3 h-3" /> {track.position}
                     </div>
                   </div>
-                  
+
                   <div className="mb-4">
                     <p className="text-2xl font-black">{track.winner}</p>
                   </div>
-                  
+
                   <p className="text-fg/70 text-sm leading-relaxed mb-6 flex-grow">
                     {track.desc}
                   </p>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Judges Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="mt-32 border-t border-border pt-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">{t("edition2025.judges_title") || "Jurados"}</h2>
+            <p className="text-fg/60">{t("edition2025.judges_desc") || "Conoce a los expertos que evaluaron los proyectos."}</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-10 w-full max-w-5xl mx-auto">
+            {/* First row: 4 judges */}
+            <div className="flex flex-wrap justify-center gap-10">
+              {judges.slice(0, 4).map((judge, idx) => (
+                <motion.div
+                  key={judge.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * idx }}
+                  className="flex flex-col items-center gap-4 group w-36"
+                >
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-brand-accent/60 transition-colors shadow-lg">
+                    <Image
+                      src={judge.img}
+                      alt={judge.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-lg leading-tight">{judge.name}</p>
+                    <p className="text-sm text-brand-accent font-medium mt-1">{judge.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Second row: 3 judges */}
+            <div className="flex flex-wrap justify-center gap-10">
+              {judges.slice(4).map((judge, idx) => (
+                <motion.div
+                  key={judge.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * (idx + 4) }}
+                  className="flex flex-col items-center gap-4 group w-36"
+                >
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-brand-accent/60 transition-colors shadow-lg">
+                    <Image
+                      src={judge.img}
+                      alt={judge.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-lg leading-tight">{judge.name}</p>
+                    <p className="text-sm text-brand-accent font-medium mt-1">{judge.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -292,8 +373,8 @@ export default function Edition2025Page() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="aspect-[4/3] bg-surface border border-border rounded-xl overflow-hidden flex items-center justify-center group relative cursor-pointer">
-                <Image 
-                  src={`/2025/fotos/foto${i}.webp`} 
+                <Image
+                  src={`/2025/fotos/foto${i}.webp`}
                   alt={`Hackathon ETH Lima 2025 Foto ${i}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

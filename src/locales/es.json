@@ -194,6 +194,13 @@
     "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
     "gallery_title": "Galería 2025",
     "gallery_desc": "Revive los mejores momentos del evento.",
+    "judges_title": "Jurado Especializado",
+    "judges_desc": "Conoce a los expertos de la industria que evaluaron y premiaron la innovación de los proyectos.",
+    "roles": {
+      "jurado": "Jurado",
+      "jurado_virtual": "Jurado virtual",
+      "jurado_tecnico": "Jurado técnico"
+    },
     "organizers_title": "Organizadores",
     "organizers_desc": "El equipo detrás de la Hackathon ETH Lima 2025.",
     "organizers_lead": "Lead",
