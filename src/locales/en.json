@@ -25,7 +25,7 @@
     "prizes": "$10k+ Prizes",
     "title_main": "ETH Lima",
     "title_sub": "Hackathon",
-    "description": "The premier Web3 hybrid hackathon in Latin America. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.",
+    "description": "The premier Web3 hybrid hackathon in Latin America. The hackathon runs July 31 – August 12. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.",
     "waitlist_btn": "Join Waitlist",
     "terminal_title": "eth-lima-terminal"
   },
@@ -58,7 +58,7 @@
   "timeline": {
     "title": "Event",
     "accent": "Timeline",
-    "description": "The 48 hours that will change your Web3 journey.",
+    "description": "Key milestones from workshops to the final results.",
     "items": [
       {
         "day": "Jul 20 - Jul 30",
@@ -70,7 +70,13 @@
         "day": "Jul 31 - Aug 12",
         "time": "Build",
         "title": "Hackathon",
-        "desc": "Intensive coding, submissions and live demos for all official tracks."
+        "desc": "Intensive coding and submissions for all official tracks."
+      },
+      {
+        "day": "Aug 8",
+        "time": "Demo Day",
+        "title": "Demo Day",
+        "desc": "Teams present their projects to judges in Lima and receive live feedback."
       },
       {
         "day": "Aug 15 - Aug 20",
