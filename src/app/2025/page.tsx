@@ -8,12 +8,13 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import Image from "next/image";
-import { Trophy, ArrowLeft, Calendar, ExternalLink, Medal, Users, Code, MonitorSmartphone } from "lucide-react";
-import { motion } from "framer-motion";
+import { Trophy, ArrowLeft, Calendar, ExternalLink, Medal, Users, Code, MonitorSmartphone, X, Play } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Edition2025Page() {
   const { t } = useTranslation();
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const tracks = [
     {
@@ -23,6 +24,7 @@ export default function Edition2025Page() {
       desc: t("edition2025.winners_data.starknet.first.desc"),
       color: "from-blue-500 to-cyan-400",
       position: "1st",
+      link: "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-lima-2025",
     },
     {
       id: "starknet-2",
@@ -31,6 +33,7 @@ export default function Edition2025Page() {
       desc: t("edition2025.winners_data.starknet.second.desc"),
       color: "from-blue-400 to-cyan-300",
       position: "2nd",
+      link: "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-lima-2025",
     },
     {
       id: "scroll-1",
@@ -39,6 +42,7 @@ export default function Edition2025Page() {
       desc: t("edition2025.winners_data.scroll.first.desc"),
       color: "from-amber-400 to-orange-500",
       position: "1st",
+      link: "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-lima-2025",
     },
     {
       id: "scroll-2",
@@ -47,6 +51,7 @@ export default function Edition2025Page() {
       desc: t("edition2025.winners_data.scroll.second.desc"),
       color: "from-amber-300 to-orange-400",
       position: "2nd",
+      link: "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-lima-2025",
     },
   ];
 
@@ -62,7 +67,6 @@ export default function Edition2025Page() {
 
   return (
     <div className="min-h-screen bg-bg text-fg selection:bg-coral/30 overflow-x-hidden font-sans transition-colors duration-300">
-      {/* Navigation */}
       <nav className="sticky top-0 w-full z-50 border-b border-border bg-surface/75 backdrop-blur-xl transition-all duration-300">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -73,6 +77,17 @@ export default function Edition2025Page() {
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
             <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Secondary Navigation (TOC) */}
+        <div className="w-full border-t border-border/50 bg-surface/90 backdrop-blur-md hidden md:block">
+          <div className="container mx-auto px-6 h-12 flex items-center justify-center gap-8 text-sm font-medium">
+            <a href="#recap" className="text-fg/60 hover:text-brand-accent transition-colors">{t("edition2025.nav.recap")}</a>
+            <a href="#winners" className="text-fg/60 hover:text-brand-accent transition-colors">{t("edition2025.nav.winners")}</a>
+            <a href="#judges" className="text-fg/60 hover:text-brand-accent transition-colors">{t("edition2025.nav.judges")}</a>
+            <a href="#organizers" className="text-fg/60 hover:text-brand-accent transition-colors">{t("edition2025.nav.organizers")}</a>
+            <a href="#gallery" className="text-fg/60 hover:text-brand-accent transition-colors">{t("edition2025.nav.gallery")}</a>
           </div>
         </div>
       </nav>
@@ -145,10 +160,12 @@ export default function Edition2025Page() {
 
         {/* Recap Video Section */}
         <motion.div
+          id="recap"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.15 }}
-          className="mt-20 max-w-4xl mx-auto"
+          className="mt-20 max-w-4xl mx-auto scroll-mt-24"
         >
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4">Recap Oficial</h2>
@@ -168,11 +185,13 @@ export default function Edition2025Page() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-500">
-                  <div className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.4)]">
-                    <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
+                  <motion.div 
+                    animate={{ boxShadow: ["0px 0px 0px 0px rgba(0,240,255,0.7)", "0px 0px 0px 20px rgba(0,240,255,0)"] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.4)]"
+                  >
+                    <Play className="w-8 h-8 text-black ml-1 fill-black" />
+                  </motion.div>
                 </div>
               </div>
             ) : (
@@ -192,10 +211,12 @@ export default function Edition2025Page() {
 
         {/* Winners Section */}
         <motion.div
+          id="winners"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.2 }}
-          className="mt-20"
+          className="mt-20 scroll-mt-24"
         >
           <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
             <h2 className="text-3xl font-bold">
@@ -211,9 +232,10 @@ export default function Edition2025Page() {
               <motion.div
                 key={track.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.1 * idx }}
-                className="group relative bg-surface border border-border rounded-2xl p-6 overflow-hidden hover:border-brand-accent/50 transition-colors shadow-sm"
+                className="group relative bg-surface border border-border rounded-2xl p-6 overflow-hidden hover:border-brand-accent/50 transition-colors shadow-sm flex flex-col"
               >
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${track.color} opacity-10 blur-3xl rounded-full group-hover:opacity-20 transition-opacity`} />
 
@@ -237,6 +259,10 @@ export default function Edition2025Page() {
                   <p className="text-fg/70 text-sm leading-relaxed mb-6 flex-grow">
                     {track.desc}
                   </p>
+
+                  <a href={track.link} target="_blank" rel="noreferrer" className="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-surface border border-border rounded-xl font-medium text-sm hover:bg-brand-accent hover:text-bg hover:border-brand-accent transition-all z-20 relative">
+                    Ver Proyecto <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -245,10 +271,12 @@ export default function Edition2025Page() {
 
         {/* Judges Section */}
         <motion.div
+          id="judges"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.25 }}
-          className="mt-32 border-t border-border pt-20"
+          className="mt-32 border-t border-border pt-20 scroll-mt-24"
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">{t("edition2025.judges_title") || "Jurados"}</h2>
@@ -262,7 +290,8 @@ export default function Edition2025Page() {
                 <motion.div
                   key={judge.name}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 0.1 * idx }}
                   className="flex flex-col items-center gap-4 group w-36"
                 >
@@ -290,7 +319,8 @@ export default function Edition2025Page() {
                 <motion.div
                   key={judge.name}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 0.1 * (idx + 4) }}
                   className="flex flex-col items-center gap-4 group w-36"
                 >
@@ -316,10 +346,12 @@ export default function Edition2025Page() {
 
         {/* Organizers Section */}
         <motion.div
+          id="organizers"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.3 }}
-          className="mt-32 border-t border-border pt-20"
+          className="mt-32 border-t border-border pt-20 scroll-mt-24"
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">{t("edition2025.organizers_title")}</h2>
@@ -335,7 +367,8 @@ export default function Edition2025Page() {
               <motion.div
                 key={org.name}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.1 * idx }}
                 className="flex flex-col items-center gap-4 group"
               >
@@ -360,10 +393,12 @@ export default function Edition2025Page() {
 
         {/* Photo Gallery Section */}
         <motion.div
+          id="gallery"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.4 }}
-          className="mt-32 border-t border-border pt-20"
+          className="mt-32 border-t border-border pt-20 scroll-mt-24"
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">{t("edition2025.gallery_title")}</h2>
@@ -371,8 +406,12 @@ export default function Edition2025Page() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-[4/3] bg-surface border border-border rounded-xl overflow-hidden flex items-center justify-center group relative cursor-pointer">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+              <div 
+                key={i} 
+                className="aspect-[4/3] bg-surface border border-border rounded-xl overflow-hidden flex items-center justify-center group relative cursor-pointer"
+                onClick={() => setSelectedImage(i)}
+              >
                 <Image
                   src={`/2025/fotos/foto${i}.webp`}
                   alt={`Hackathon ETH Lima 2025 Foto ${i}`}
@@ -385,6 +424,40 @@ export default function Edition2025Page() {
             ))}
           </div>
         </motion.div>
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {selectedImage !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-xl p-4 sm:p-6 cursor-pointer"
+            >
+              <button
+                onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+                className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative w-full max-w-5xl aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden shadow-2xl cursor-default"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={`/2025/fotos/foto${selectedImage}.webp`}
+                  alt={`Hackathon ETH Lima 2025 Foto ${selectedImage}`}
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </main>
     </div>

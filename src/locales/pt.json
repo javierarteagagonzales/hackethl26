@@ -184,6 +184,13 @@
     "partners": "Nossos Parceiros"
   },
   "edition2025": {
+    "nav": {
+      "recap": "Video Recap",
+      "winners": "Vencedores",
+      "judges": "Jurados",
+      "organizers": "Organizadores",
+      "gallery": "Galeria"
+    },
     "title": "Edição 2025",
     "accent": "Resumo",
     "description": "Uma retrospectiva dos incríveis projetos e vencedores do Hackathon ETH Lima 2025.",
