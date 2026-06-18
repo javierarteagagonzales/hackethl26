@@ -25,7 +25,7 @@
     "prizes": "$10k+ Prizes",
     "title_main": "ETH Lima",
     "title_sub": "Hackathon",
-    "description": "The premier Web3 hybrid hackathon in Latin America. The hackathon runs July 31 – August 12. Join top developers to build on Arbitrum, Arkiv, and scale the decentralized web.",
+    "description": "The premier Web3 hybrid hackathon in Latin America. The hackathon runs July 31 – August 12. Join top developers to build on Arbitrum and scale the decentralized web.",
     "waitlist_btn": "Join Waitlist",
     "terminal_title": "eth-lima-terminal"
   },
@@ -82,7 +82,7 @@
         "day": "Aug 15 - Aug 20",
         "time": "Evaluation",
         "title": "Results",
-        "desc": "Winners announced for Arbitrum, Arkiv, and all other tracks."
+        "desc": "Winners announced for Arbitrum and all other tracks."
       },
       {
         "day": "Aug 22 - Sep 6",
@@ -155,9 +155,6 @@
     },
     "tracks": {
       "Arbitrum": "Arbitrum",
-      "Arkiv — Job Platform": "Arkiv — Job Platform",
-      "Arkiv — Wikis": "Arkiv — Wikis",
-      "Arkiv — Events": "Arkiv — Events",
       "To be defined": "To be defined"
     },
     "errors": {
@@ -337,75 +334,6 @@
                 "title": "Stylus Rust SDK Reference",
                 "description": "Master storage handling and gas optimization in Rust to get maximum performance out of Stylus.",
                 "url": "https://docs.arbitrum.io/stylus/reference/overview"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "arkiv-track": {
-      "description": "Join the Arkiv Buildathon to build the next generation of job boards, wikis, and event platforms.",
-      "formation": {
-        "description": "Find all the information, documentation, and resources needed to build on Arkiv. Explore our organization, practical integration examples, and community tools.",
-        "levels": [
-          {
-            "level": "Documentation & Learning",
-            "badge": "01",
-            "goal": "Access the main codebase, public repositories, and official SDKs.",
-            "resources": [
-              {
-                "title": "Arkiv Network (Official Site)",
-                "description": "Main page of the Arkiv network.",
-                "url": "https://arkiv.network/"
-              },
-              {
-                "title": "GitHub Organization",
-                "description": "Main code hub and public repositories for the project.",
-                "url": "https://github.com/arkiv-network"
-              },
-              {
-                "title": "General Documentation",
-                "description": "Code and base files for the Starlight-based guides portal.",
-                "url": "https://github.com/Arkiv-Network/arkiv-starlight-docs"
-              },
-              {
-                "title": "Official JS/TS SDK",
-                "description": "Usage manual for the @arkiv-network/sdk package with Node.js and Bun initialization examples.",
-                "url": "https://github.com/Arkiv-Network/arkiv-sdk-js"
-              }
-            ]
-          },
-          {
-            "level": "Builder Challenges",
-            "badge": "02",
-            "goal": "Study real use cases and learn how to structure your projects on the network.",
-            "resources": [
-              {
-                "title": "Cortex (AI + Privacy)",
-                "description": "Evolutionary memory project for AI agents that served as a template in the Arkiv x ETHNS Builder Challenge.",
-                "url": "https://github.com/LingSiewWin/Cortex"
-              },
-              {
-                "title": "Architecture Guides (p2pmentor)",
-                "description": "Database structuring example on the network for a real educational project.",
-                "url": "https://github.com/understories/p2pmentor/blob/main/docs/betadocs/arkiv/overview.md"
-              }
-            ]
-          },
-          {
-            "level": "Community & Technical Support",
-            "badge": "03",
-            "goal": "Learn advanced patterns and examine open-source community workflows.",
-            "resources": [
-              {
-                "title": "Agent Skills Repository",
-                "description": "Official kit designed to learn patterns, attributes, and TTL in tools like Cursor, Claude Code, or Aider.",
-                "url": "https://github.com/Arkiv-Network/skills"
-              },
-              {
-                "title": "Advanced Integration (AI Memory Layer)",
-                "description": "Advanced open-source workflows, such as the multi-agent analysis pipeline created by the community.",
-                "url": "https://github.com/SantiagoDevRel/Arkiv-agent-memory"
               }
             ]
           }

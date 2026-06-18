@@ -12,19 +12,6 @@ export const MOCK_TRACKS = [
       { name: "Bounties", amount: "$500" }
     ],
     totalPrizePool: "$2,100"
-  },
-  {
-    id: "arkiv-track",
-    title: "Arkiv",
-    sponsor: "Arkiv",
-    description: "Build innovative solutions for job boards, wikis, and event platforms.",
-    color: "from-purple-500 to-pink-400",
-    categories: ["Job Platform", "Wikis", "Events Platform"],
-    prizes: [
-      { name: "Global Winners Pool", amount: "$2,500 USDC" },
-      { name: "Local Winner", amount: "Special Prize" }
-    ],
-    totalPrizePool: "$2,500 USDC"
   }
 ];
 
@@ -127,86 +114,6 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
               title: "Stylus Rust SDK — Referencia completa",
               description: "Domina el manejo de storage y la optimización de gas en Rust para sacar el máximo rendimiento de tus contratos Stylus.",
               url: "https://docs.arbitrum.io/stylus/reference/overview"
-            }
-          ]
-        }
-      ]
-    }
-  },
-  "arkiv-track": {
-    id: "arkiv-track",
-    heroImage: "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=2070&auto=format&fit=crop",
-    title: "Explore Arkiv Build",
-    description: "Join the Arkiv Buildathon to build the next generation of job boards, wikis, and event platforms.",
-    website: "https://arkiv.network",
-    socials: {
-      x: { handle: "@arkivnetwork", url: "https://x.com/arkivnetwork" },
-      discord: { handle: "Arkiv Discord", url: "https://discord.gg/arkiv" },
-      github: { handle: "arkiv-network", url: "https://github.com/arkiv-network" }
-    },
-    activeEvents: [],
-    pastEvents: [],
-    formation: {
-      description: "Encuentra toda la información, documentación y recursos necesarios para construir en Arkiv. Explora nuestra organización, ejemplos prácticos de integraciones y herramientas para la comunidad.",
-      levels: [
-        {
-          level: "Documentación y Autoaprendizaje",
-          badge: "01",
-          goal: "Accede a la central de código, repositorios y SDK oficiales.",
-          resources: [
-            {
-              title: "Arkiv Network (Sitio Oficial)",
-              description: "Página principal de la red Arkiv.",
-              url: "https://arkiv.network/"
-            },
-            {
-              title: "Organización en GitHub",
-              description: "Central de código y repositorios públicos del proyecto.",
-              url: "https://github.com/arkiv-network"
-            },
-            {
-              title: "Documentación General",
-              description: "Código y archivos base del portal de guías basados en Starlight.",
-              url: "https://github.com/Arkiv-Network/arkiv-starlight-docs"
-            },
-            {
-              title: "SDK oficial para JS/TS",
-              description: "Manual de uso del paquete @arkiv-network/sdk con ejemplos de inicialización en Node.js y Bun.",
-              url: "https://github.com/Arkiv-Network/arkiv-sdk-js"
-            }
-          ]
-        },
-        {
-          level: "Desafíos de Construcción",
-          badge: "02",
-          goal: "Estudia casos de uso reales y cómo estructurar tus proyectos en la red.",
-          resources: [
-            {
-              title: "Cortex (AI + Privacy)",
-              description: "Proyecto de memoria evolutiva para agentes de IA que sirvió como plantilla en el Arkiv x ETHNS Builder Challenge.",
-              url: "https://github.com/LingSiewWin/Cortex"
-            },
-            {
-              title: "Guías de Arquitectura (p2pmentor)",
-              description: "Ejemplo de estructura de bases de datos en la red para un proyecto educativo real.",
-              url: "https://github.com/understories/p2pmentor/blob/main/docs/betadocs/arkiv/overview.md"
-            }
-          ]
-        },
-        {
-          level: "Comunidad y Soporte Técnico",
-          badge: "03",
-          goal: "Aprende patrones avanzados y examina flujos de trabajo de código abierto de la comunidad.",
-          resources: [
-            {
-              title: "Repositorio de Agent Skills",
-              description: "Kit oficial diseñado para aprender patrones, atributos y TTL en herramientas como Cursor, Claude Code o Aider.",
-              url: "https://github.com/Arkiv-Network/skills"
-            },
-            {
-              title: "Integración Avanzada (AI Memory Layer)",
-              description: "Flujos de trabajo avanzados de código abierto, como el pipeline de análisis multi-agente creado por la comunidad.",
-              url: "https://github.com/SantiagoDevRel/Arkiv-agent-memory"
             }
           ]
         }

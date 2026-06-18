@@ -4,12 +4,11 @@ import { TrackDetailClient } from "@/components/ui/track-detail-client";
 
 export default async function TrackDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
-  const trackSlug = resolvedParams.id; // e.g. "arbitrum" or "arkiv"
+  const trackSlug = resolvedParams.id; // e.g. "arbitrum"
   
   // Determine which mock details to show based on the slug
   let mockKey = "";
   if (trackSlug.includes("arbitrum")) mockKey = "arbitrum-track";
-  else if (trackSlug.includes("arkiv")) mockKey = "arkiv-track";
 
   const trackDetails = MOCK_TRACK_DETAILS[mockKey];
 

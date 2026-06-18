@@ -65,15 +65,7 @@ async function main() {
     },
   });
 
-  const arkiv = await prisma.sponsor.upsert({
-    where: { name: "Arkiv" },
-    update: { logoUrl: "/assets/sponsors/logo-arkiv.png" },
-    create: {
-      name: "Arkiv",
-      logoUrl: "/assets/sponsors/logo-arkiv.png",
-      website: "https://arkiv.network",
-    },
-  });
+
 
   // Clear existing tracks to prevent duplicates
   await prisma.prize.deleteMany();
@@ -100,23 +92,7 @@ async function main() {
     }
   });
 
-  await prisma.track.create({
-    data: {
-      title: "Arkiv Infrastructure",
-      description: "Revolutionize data availability and decentralized storage with Arkiv.",
-      color: "from-purple-600 to-pink-400",
-      sponsorId: arkiv.id,
-      categories: {
-        create: [{ name: "Infrastructure" }, { name: "Storage" }]
-      },
-      prizes: {
-        create: [
-          { name: "Local Winner", amount: "2500 USDC" },
-          { name: "Global Contest", amount: "Pass to ETH Mumbai" }
-        ]
-      }
-    }
-  });
+
 
   console.log("Seed data created successfully!");
 }

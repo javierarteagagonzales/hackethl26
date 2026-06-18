@@ -33,7 +33,7 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
           <p className="text-fg/70 text-lg max-w-2xl mx-auto font-light">{t("tracks.description")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {tracks.map((track, i) => (
             <motion.div
               key={i}
@@ -41,7 +41,7 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group"
+              className="group w-full sm:w-[calc(50%-12px)] lg:w-[380px] max-w-md"
             >
               <Link href={`/tracks/${track.title.toLowerCase().split(' ')[0]}-track`} className="glass-card h-full overflow-hidden flex flex-col hover:border-brand-accent/30 shadow-md block transition-all hover:-translate-y-1">
                 <div className={`h-1.5 w-full bg-gradient-to-r ${track.color}`}></div>
@@ -98,7 +98,7 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: tracks.length * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="group"
+            className="group w-full sm:w-[calc(50%-12px)] lg:w-[380px] max-w-md"
           >
             <div className="glass-card h-full border-dashed border-2 border-border flex flex-col items-center justify-center p-8 text-center min-h-[400px] hover:bg-brand-accent/5 hover:border-brand-accent/40">
               <div className="w-16 h-16 rounded-full bg-surface/50 flex items-center justify-center mb-6 group-hover:bg-brand-accent/20 transition-colors shadow-sm border border-border group-hover:border-brand-accent/30">

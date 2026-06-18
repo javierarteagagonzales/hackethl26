@@ -103,7 +103,9 @@ export default function Home() {
     const fetchTracks = async () => {
       const result = await getTracks();
       if (result.success && result.tracks && result.tracks.length > 0) {
-        const formattedTracks = result.tracks.map((t: any) => {
+        const formattedTracks = result.tracks
+          .filter((t: any) => !t.title?.toLowerCase().includes("arkiv") && !t.sponsor?.name?.toLowerCase().includes("arkiv"))
+          .map((t: any) => {
           const totalAmount = t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) || 0;
           const isUSDC = t.prizes?.some((p: any) => p.amount.includes("USDC"));
 
@@ -122,6 +124,7 @@ export default function Home() {
         setTracks(formattedTracks);
       }
     };
+
 
     fetchTracks();
     window.addEventListener("scroll", handleScroll);

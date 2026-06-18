@@ -15,7 +15,7 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const SKILLS = ["Smart Contract Engineer", "Frontend Developer", "Backend Developer", "UI/UX Designer", "Product Manager", "Data Scientist", "Full Stack Dev", "Blockchain Researcher"];
-const TRACKS = ["Arbitrum", "Arkiv — Job Platform", "Arkiv — Wikis", "Arkiv — Events", "To be defined"];
+const TRACKS = ["Arbitrum", "To be defined"];
 
 const registerSchema = z.object({
   firstName: z.string().min(2, "register.errors.first_name_short"),

@@ -52,3 +52,6 @@ next-env.d.ts
 # Ignore markdown files except README
 *.md
 !README.md
+
+# Arkiv track backup (desactivado 2026-06-18)
+/arkiv-track.md

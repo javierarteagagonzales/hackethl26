@@ -26,13 +26,6 @@ export function SponsorsSection({ t, isDark }: { t: (key: string) => string, isD
                       className={`h-12 md:h-16 w-auto object-contain filter transition-all ${isDark ? 'brightness-100' : 'brightness-75'}`}
                     />
                   </div>
-                  <div className="h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img
-                      src="/assets/sponsors/logo-arkiv.png"
-                      alt="Arkiv"
-                      className={`h-8 md:h-10 w-auto object-contain filter transition-all ${isDark ? 'brightness-100' : 'brightness-75'}`}
-                    />
-                  </div>
                 </div>
               ))}
             </div>
