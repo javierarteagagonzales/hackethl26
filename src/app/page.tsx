@@ -21,6 +21,7 @@ import { TracksSection } from "@/components/sections/TracksSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { GallerySection } from "@/components/sections/GallerySection";
+import { CallsSection } from "@/components/sections/CallsSection";
 
 export default function Home() {
   const { t, tArray } = useTranslation();
@@ -202,6 +203,7 @@ export default function Home() {
       </nav>
 
       <HeroSection t={t} terminalText={terminalText} isDark={isDark} />
+      <CallsSection t={t} isDark={isDark} />
       <AboutSection t={t} isDark={isDark} />
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <SponsorsSection t={t} isDark={isDark} />

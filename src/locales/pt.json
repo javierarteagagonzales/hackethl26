@@ -186,6 +186,26 @@
     "participants": "participantes",
     "partners": "Nossos Parceiros"
   },
+  "calls": {
+    "title": "Convocatórias",
+    "accent": "Abertas",
+    "description": "Junte-se à edição 2026 da ETH Lima e faça parte da mudança.",
+    "mentor_judge": {
+      "title": "Mentores e Jurados",
+      "description": "Você tem experiência em Web3 e deseja guiar a próxima geração de construtores? Candidate-se para ser mentor ou avaliar projetos como jurado.",
+      "cta": "Candidatar-se agora"
+    },
+    "hacker": {
+      "title": "Hackers",
+      "description": "Forme uma equipe, construa soluções inovadoras e concorra a grandes prêmios. As inscrições abrem em breve!",
+      "cta": "Registro (Em breve)"
+    },
+    "partner": {
+      "title": "Community Partner",
+      "description": "Faça parceria conosco para expandir o ecossistema estudantil Web3. Obtenha visibilidade, traga sua comunidade e cocrie workshops e eventos paralelos.",
+      "cta": "Inscreva-se como Partner"
+    }
+  },
   "edition2025": {
     "nav": {
       "recap": "Video Recap",

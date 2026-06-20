@@ -186,6 +186,26 @@
     "participants": "participants",
     "partners": "Our Partners"
   },
+  "calls": {
+    "title": "Open",
+    "accent": "Calls",
+    "description": "Join the 2026 edition of ETH Lima and be part of the change.",
+    "mentor_judge": {
+      "title": "Mentors & Judges",
+      "description": "Do you have Web3 experience and want to guide the next generation of builders? Apply to be a mentor or evaluate projects as a judge.",
+      "cta": "Apply Now"
+    },
+    "hacker": {
+      "title": "Hackers",
+      "description": "Form a team, build innovative solutions, and compete for huge prizes. Registrations will open soon!",
+      "cta": "Register (Soon)"
+    },
+    "partner": {
+      "title": "Community Partner",
+      "description": "Partner with us to grow the Web3 student ecosystem. Get visibility, bring your community, and co-create workshops and side events.",
+      "cta": "Apply as Partner"
+    }
+  },
   "edition2025": {
     "nav": {
       "recap": "Video Recap",
