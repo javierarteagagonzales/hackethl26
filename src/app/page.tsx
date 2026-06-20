@@ -11,7 +11,6 @@ import { useTranslation } from "@/components/providers/language-provider";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useTheme } from "next-themes";
-import { LoadingScreen } from "@/components/ui/loading-screen";
 import { InteractiveBackground } from "@/components/ui/interactive-background";
 import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navigator";
 
@@ -26,7 +25,6 @@ import { CallsSection } from "@/components/sections/CallsSection";
 export default function Home() {
   const { t, tArray } = useTranslation();
   const { resolvedTheme } = useTheme();
-  const [isLoading, setIsLoading] = useState(true);
   const [terminalText, setTerminalText] = useState("");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
@@ -37,18 +35,7 @@ export default function Home() {
   useEffect(() => {
     const mobileCheck = window.innerWidth < 1024;
     setIsMobile(mobileCheck);
-    if (mobileCheck) {
-      setIsLoading(false);
-    }
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isLoading]);
+  }, []);
 
   const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
@@ -146,8 +133,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-bg text-fg selection:bg-coral/30 overflow-x-hidden font-sans transition-colors duration-300">
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-
       {/* Premium Visual Overlays */}
       <div className="hidden lg:block fixed inset-0 z-0 pointer-events-none glow-hero opacity-30"></div>
       {!isMobile && <InteractiveBackground />}
