@@ -38,7 +38,7 @@ function GithubIcon({ className }: { className?: string }) {
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const { t, tArray } = useTranslation();
-  const [activeSection, setActiveSection] = useState<"formation" | "information">("information");
+  const [activeSection, setActiveSection] = useState<"formation" | "information" | "bootcamp">("information");
 
   const translatedDesc = t(`track_content.${trackDetails.id}.description`);
   const displayDesc = translatedDesc !== `track_content.${trackDetails.id}.description` ? translatedDesc : trackDetails.description;
@@ -48,6 +48,11 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
 
   const translatedLevels = tArray(`track_content.${trackDetails.id}.formation.levels`);
   const displayLevels = translatedLevels.length > 0 ? translatedLevels : trackDetails.formation?.levels;
+
+  const translatedBootcampDesc = t(`track_content.${trackDetails.id}.bootcamp.description`);
+  const displayBootcampDesc = translatedBootcampDesc !== `track_content.${trackDetails.id}.bootcamp.description` ? translatedBootcampDesc : "";
+
+  const translatedBootcampModules = tArray(`track_content.${trackDetails.id}.bootcamp.modules`);
 
 
   return (
@@ -214,9 +219,59 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 )}
               </div>
 
-            ) : activeSection === "formation" && !trackDetails.formation ? (
-              <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
-                [ {t("track.sidebar.formation")} - Content Not Available ]
+            ) : activeSection === "bootcamp" ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
+                  {t("track.sidebar.bootcamp")}
+                </h3>
+                {displayBootcampDesc && (
+                  <p className="text-fg/70 text-base leading-relaxed mb-10">
+                    {displayBootcampDesc}
+                  </p>
+                )}
+                
+                {translatedBootcampModules && translatedBootcampModules.length > 0 ? (
+                  <div className="space-y-12">
+                    {translatedBootcampModules.map((module: any, mi: number) => (
+                      <div key={mi} className="relative">
+                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{module.title}</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {module.videos.map((video: any, vi: number) => (
+                            <a
+                              key={vi}
+                              href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group flex flex-col overflow-hidden bg-surface hover:bg-surface/80 border border-border/40 hover:border-[#00f0ff]/50 transition-all rounded-xl shadow-sm hover:shadow-md"
+                            >
+                              <div className="relative aspect-video w-full overflow-hidden bg-black">
+                                <img 
+                                  src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} 
+                                  alt={video.title}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                                  loading="lazy"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+                                  <div className="w-12 h-12 bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 group-hover:bg-[#00f0ff]/90 group-hover:border-[#00f0ff] transition-all">
+                                    <svg className="w-5 h-5 text-white group-hover:text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="p-4 flex items-start justify-between gap-3">
+                                <h5 className="font-semibold text-sm text-fg leading-snug line-clamp-2">{video.title}</h5>
+                                <ExternalLink className="w-4 h-4 text-fg/30 group-hover:text-[#00f0ff] transition-colors shrink-0 mt-0.5" />
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                    [ Bootcamp Content Not Found ]
+                  </div>
+                )}
               </div>
             ) : (
               <div className="mt-12 p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">

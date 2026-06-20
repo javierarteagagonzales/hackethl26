@@ -9,6 +9,7 @@ import { Logo } from "@/components/ui/logo";
 // Features configuration array to enable/disable specific parts
 export interface SidebarConfig {
   formation?: boolean;
+  bootcamp?: boolean;
   trackDetails?: boolean;
   prizes?: boolean;
   stages?: boolean;
@@ -16,6 +17,7 @@ export interface SidebarConfig {
 
 const defaultConfig: SidebarConfig = {
   formation: true,
+  bootcamp: true,
   trackDetails: true,
   prizes: true,
   stages: true,
@@ -27,8 +29,8 @@ export function TrackSidebar({
   onSectionChange
 }: { 
   config?: SidebarConfig,
-  activeSection?: "formation" | "information",
-  onSectionChange?: (section: "formation" | "information") => void
+  activeSection?: "formation" | "information" | "bootcamp",
+  onSectionChange?: (section: "formation" | "information" | "bootcamp") => void
 }) {
   const { t } = useTranslation();
   const activeConfig = { ...defaultConfig, ...config };
@@ -46,15 +48,19 @@ export function TrackSidebar({
     // Determine if this section is selected based on state
     // We group track_details, prizes, and stages under "information"
     const isFormationItem = label === t("track.sidebar.formation");
-    const isInformationItem = !isFormationItem;
+    const isBootcampItem = label === t("track.sidebar.bootcamp");
+    const isInformationItem = !isFormationItem && !isBootcampItem;
     
-    const isSelected = isFormationItem ? activeSection === "formation" : activeSection === "information";
+    let isSelected = false;
+    if (isFormationItem) isSelected = activeSection === "formation";
+    else if (isBootcampItem) isSelected = activeSection === "bootcamp";
+    else isSelected = activeSection === "information";
     
     // Default active item for styling within the information section
     const isSubItemSelected = isInformationItem && label === t("track.sidebar.track_details") && isSelected;
 
     const btnClass = `flex items-center w-full gap-2 md:gap-3 px-3 py-2 text-left rounded-md transition-colors ${
-      isFormationItem && isSelected || isSubItemSelected
+      (isFormationItem && isSelected) || (isBootcampItem && isSelected) || isSubItemSelected
         ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
         : "text-fg/60 hover:text-fg hover:bg-surface/50"
     }`;
@@ -62,7 +68,11 @@ export function TrackSidebar({
     if (onSectionChange) {
       return (
         <button 
-          onClick={() => onSectionChange(isFormationItem ? "formation" : "information")}
+          onClick={() => {
+            if (isFormationItem) onSectionChange("formation");
+            else if (isBootcampItem) onSectionChange("bootcamp");
+            else onSectionChange("information");
+          }}
           className={btnClass}
         >
           {icon}
@@ -97,6 +107,7 @@ export function TrackSidebar({
           </h4>
           <div className="space-y-1">
             {renderLink(!!activeConfig.formation, <BookOpen className="w-4 h-4" />, t("track.sidebar.formation"))}
+            {renderLink(!!activeConfig.bootcamp, <Target className="w-4 h-4" />, t("track.sidebar.bootcamp"))}
           </div>
         </div>
 

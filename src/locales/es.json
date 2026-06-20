@@ -177,7 +177,8 @@
       "information": "Información",
       "track_details": "Detalles del Track",
       "prizes": "Premios",
-      "stages": "Etapas"
+      "stages": "Etapas",
+      "bootcamp": "Bootcamp 2025"
     },
     "active_events": "Eventos Activos",
     "past_builds": "Builds Pasados",
@@ -355,6 +356,64 @@
                 "title": "Stylus Rust SDK — Referencia completa",
                 "description": "Domina el manejo de storage y la optimización de gas en Rust para sacar el máximo rendimiento de tus contratos Stylus.",
                 "url": "https://docs.arbitrum.io/stylus/reference/overview"
+              }
+            ]
+          }
+        ]
+      },
+      "bootcamp": {
+        "description": "Explora las sesiones de nuestro Bootcamp 2025 para aprender todo sobre Arbitrum, desde fundamentos hasta desarrollo de Smart Contracts y Frontend.",
+        "modules": [
+          {
+            "title": "Fundamentos & Ecosistema",
+            "videos": [
+              {
+                "title": "Introducción al Blockchain, Arbitrum y Stylus",
+                "videoId": "UHc3f0y_rz8"
+              },
+              {
+                "title": "Ethereum & Arbitrum 101",
+                "videoId": "pB6_pR26DUY"
+              }
+            ]
+          },
+          {
+            "title": "Smart Contracts & Stylus",
+            "videos": [
+              {
+                "title": "Stylus smart contracts and Testing",
+                "videoId": "4r1RvVr60UE"
+              }
+            ]
+          },
+          {
+            "title": "Infraestructura & Casos de Uso",
+            "videos": [
+              {
+                "title": "Infraestructura de Arbitrum & Gaming RWAs, Stablecoins y Gaming",
+                "videoId": "VgE4WPgw5Uk"
+              }
+            ]
+          },
+          {
+            "title": "Desarrollo Frontend",
+            "videos": [
+              {
+                "title": "Front end with Scaffold stylus",
+                "videoId": "1pNfpaf9Ejk"
+              },
+              {
+                "title": "Front end with Scaffold stark",
+                "videoId": "ILd-wAgGbE4"
+              }
+            ]
+          },
+          {
+            "title": "Gobernanza DAO",
+            "videos": [
+              {
+                "title": "Gobernanza DAO de Arbitrum",
+                "videoId": "90HLX0RdZvk"
               }
             ]
           }
