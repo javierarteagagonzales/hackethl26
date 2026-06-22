@@ -26,7 +26,7 @@
     "title_main": "ETH Lima",
     "title_sub": "Hackathon",
     "description": "The premier Web3 hybrid hackathon in Latin America. The hackathon runs July 31 – August 12. Join top developers to build on Arbitrum and scale the decentralized web.",
-    "waitlist_btn": "Join Waitlist",
+    "discord_btn": "Join Discord",
     "terminal_title": "eth-lima-terminal"
   },
   "about": {
@@ -186,6 +186,16 @@
     "total_prize": "Total Prize",
     "participants": "participants",
     "partners": "Our Partners"
+  },
+  "discord_modal": {
+    "badge": "Ethereum Lima",
+    "title": "Join our Discord!",
+    "subtitle": "Hackathon 2026",
+    "body1": "Stay up to date and join the builders community.",
+    "channel_label": "Official channel",
+    "channel_name": "#🚀-hackathon-2026",
+    "instruction": "Find this channel in the server and follow the instructions.",
+    "cta": "Join Discord"
   },
   "calls": {
     "title": "Open",
