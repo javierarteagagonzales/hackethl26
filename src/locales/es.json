@@ -430,5 +430,95 @@
         ]
       }
     }
+  },
+  "privacy": {
+    "badge": "Legal",
+    "title": "Política de",
+    "title_accent": "Privacidad",
+    "subtitle": "En ETH Lima nos comprometemos a proteger tu información personal y ser transparentes sobre cómo la usamos.",
+    "last_updated": "Última actualización",
+    "intro": "Esta Política de Privacidad describe cómo Ethereum Lima ('nosotros', 'nuestro') recopila, utiliza y protege la información personal que compartes con nosotros al usar nuestro sitio web ethlima.com, al registrarte en nuestros eventos o al participar en el Hackathon ETH Lima 2026. Al usar nuestros servicios, aceptas los términos de esta política.",
+    "back_home": "Volver al inicio",
+    "all_rights": "Todos los derechos reservados.",
+    "cta_title": "¿Tienes preguntas sobre tu privacidad?",
+    "cta_desc": "Contáctanos directamente y responderemos en un plazo de 72 horas.",
+    "cta_btn": "Contactar al equipo",
+    "sections": {
+      "data_collection": {
+        "title": "Datos que recopilamos",
+        "description": "Recopilamos únicamente la información necesaria para operar nuestros servicios y organizar el hackathon:",
+        "items": [
+          "Nombre completo y correo electrónico al registrarte como participante, mentor o patrocinador.",
+          "Usuario de GitHub para verificar tu perfil de desarrollador.",
+          "Dirección de billetera Web3 (opcional) para la entrega de premios en criptomonedas.",
+          "Información de habilidades y preferencias de track para fines organizativos.",
+          "Datos técnicos de acceso: dirección IP, navegador y sistema operativo (recopilados automáticamente)."
+        ]
+      },
+      "data_use": {
+        "title": "Uso de la información",
+        "description": "Utilizamos tu información exclusivamente para los siguientes propósitos:",
+        "items": [
+          "Gestionar tu registro y participación en el Hackathon ETH Lima 2026.",
+          "Enviarte comunicaciones esenciales sobre el evento (horarios, actualizaciones, resultados).",
+          "Asignar mentores, jurados y tracks de acuerdo con tus preferencias.",
+          "Distribuir premios a los ganadores de los tracks oficiales.",
+          "Mejorar nuestros servicios y experiencia de usuario en futuras ediciones."
+        ]
+      },
+      "data_sharing": {
+        "title": "Compartir información",
+        "description": "No vendemos ni alquilamos tu información personal a terceros. Solo compartimos datos en estos casos:",
+        "items": [
+          "Con patrocinadores del evento: únicamente nombre y perfil profesional, con tu consentimiento previo.",
+          "Con proveedores de servicios técnicos (plataformas de pago, herramientas de gestión) bajo acuerdos de confidencialidad.",
+          "Con autoridades competentes si la ley peruana o normativa aplicable lo exige.",
+          "Datos estadísticos y anónimos con la comunidad Web3 para promover el ecosistema."
+        ]
+      },
+      "data_security": {
+        "title": "Seguridad de los datos",
+        "description": "Implementamos medidas técnicas y organizativas para proteger tu información:",
+        "items": [
+          "Comunicaciones cifradas mediante HTTPS/TLS en todo el sitio.",
+          "Acceso restringido a los datos: solo el equipo organizador autorizado puede acceder a ellos.",
+          "Contraseñas almacenadas con hashing bcrypt; nunca en texto plano.",
+          "Revisiones periódicas de seguridad de nuestra infraestructura.",
+          "Eliminación segura de datos cuando ya no son necesarios para los fines del evento."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies y tecnologías similares",
+        "description": "Utilizamos cookies funcionales y de análisis para mejorar tu experiencia:",
+        "items": [
+          "Cookies de sesión: necesarias para mantener tu estado de autenticación.",
+          "Preferencias de idioma y tema (oscuro/claro) almacenadas localmente en tu navegador.",
+          "Análisis de uso anónimo para entender cómo se navega el sitio y optimizarlo.",
+          "Puedes desactivar las cookies no esenciales desde la configuración de tu navegador."
+        ]
+      },
+      "user_rights": {
+        "title": "Tus derechos",
+        "description": "Como usuario, tienes derecho a:",
+        "items": [
+          "Acceder a los datos personales que tenemos sobre ti en cualquier momento.",
+          "Solicitar la corrección de información inexacta o incompleta.",
+          "Solicitar la eliminación de tus datos (derecho al olvido), sujeto a obligaciones legales.",
+          "Retirar tu consentimiento para el tratamiento de datos en cualquier momento.",
+          "Presentar una queja ante la autoridad de protección de datos competente.",
+          "Para ejercer cualquiera de estos derechos, contáctanos en: @javierdgtl (Telegram)."
+        ]
+      },
+      "contact": {
+        "title": "Contacto y responsable",
+        "description": "El responsable del tratamiento de datos es Ethereum Lima. Para cualquier consulta sobre privacidad:",
+        "items": [
+          "Telegram: @javierdgtl (respuesta en menos de 72 horas)",
+          "Sitio web: https://ethlima.com",
+          "Esta política se rige por la Ley N.° 29733 de Protección de Datos Personales del Perú.",
+          "Nos reservamos el derecho de actualizar esta política; notificaremos cambios significativos por correo electrónico."
+        ]
+      }
+    }
   }
 }

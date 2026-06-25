@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle } from "lucide-react";
+import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
@@ -202,7 +202,10 @@ export default function Home() {
             <Logo alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap justify-center md:justify-end">
+            <Link href="/privacy" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+              <Shield className="w-4 h-4 mr-1 text-brand-accent" /> {t("privacy.title")}
+            </Link>
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}: @javierdgtl
             </a>

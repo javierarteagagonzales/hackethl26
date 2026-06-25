@@ -429,5 +429,95 @@
         ]
       }
     }
+  },
+  "privacy": {
+    "badge": "Legal",
+    "title": "Privacy",
+    "title_accent": "Policy",
+    "subtitle": "At ETH Lima we are committed to protecting your personal information and being transparent about how we use it.",
+    "last_updated": "Last updated",
+    "intro": "This Privacy Policy describes how Ethereum Lima ('we', 'our') collects, uses, and protects the personal information you share with us when using our website ethlima.com, registering for our events, or participating in the ETH Lima Hackathon 2026. By using our services, you agree to the terms of this policy.",
+    "back_home": "Back to home",
+    "all_rights": "All rights reserved.",
+    "cta_title": "Have questions about your privacy?",
+    "cta_desc": "Contact us directly and we will respond within 72 hours.",
+    "cta_btn": "Contact the team",
+    "sections": {
+      "data_collection": {
+        "title": "Data we collect",
+        "description": "We only collect the information necessary to operate our services and organize the hackathon:",
+        "items": [
+          "Full name and email address when registering as a participant, mentor, or sponsor.",
+          "GitHub username to verify your developer profile.",
+          "Web3 wallet address (optional) for cryptocurrency prize distribution.",
+          "Skills and track preference information for organizational purposes.",
+          "Technical access data: IP address, browser, and operating system (collected automatically)."
+        ]
+      },
+      "data_use": {
+        "title": "How we use your information",
+        "description": "We use your information exclusively for the following purposes:",
+        "items": [
+          "Manage your registration and participation in the ETH Lima Hackathon 2026.",
+          "Send you essential event communications (schedules, updates, results).",
+          "Assign mentors, judges, and tracks according to your preferences.",
+          "Distribute prizes to winners of the official tracks.",
+          "Improve our services and user experience for future editions."
+        ]
+      },
+      "data_sharing": {
+        "title": "Information sharing",
+        "description": "We do not sell or rent your personal information to third parties. We only share data in these cases:",
+        "items": [
+          "With event sponsors: only name and professional profile, with your prior consent.",
+          "With technical service providers (payment platforms, management tools) under confidentiality agreements.",
+          "With competent authorities if Peruvian law or applicable regulations require it.",
+          "Statistical and anonymous data with the Web3 community to promote the ecosystem."
+        ]
+      },
+      "data_security": {
+        "title": "Data security",
+        "description": "We implement technical and organizational measures to protect your information:",
+        "items": [
+          "Encrypted communications via HTTPS/TLS throughout the site.",
+          "Restricted data access: only the authorized organizing team can access it.",
+          "Passwords stored with bcrypt hashing; never in plain text.",
+          "Periodic security reviews of our infrastructure.",
+          "Secure deletion of data when no longer needed for event purposes."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies and similar technologies",
+        "description": "We use functional and analytics cookies to improve your experience:",
+        "items": [
+          "Session cookies: necessary to maintain your authentication state.",
+          "Language and theme (dark/light) preferences stored locally in your browser.",
+          "Anonymous usage analytics to understand how the site is navigated and optimize it.",
+          "You can disable non-essential cookies from your browser settings."
+        ]
+      },
+      "user_rights": {
+        "title": "Your rights",
+        "description": "As a user, you have the right to:",
+        "items": [
+          "Access the personal data we hold about you at any time.",
+          "Request the correction of inaccurate or incomplete information.",
+          "Request the deletion of your data (right to be forgotten), subject to legal obligations.",
+          "Withdraw your consent for data processing at any time.",
+          "File a complaint with the competent data protection authority.",
+          "To exercise any of these rights, contact us at: @javierdgtl (Telegram)."
+        ]
+      },
+      "contact": {
+        "title": "Contact and data controller",
+        "description": "The data controller is Ethereum Lima. For any privacy inquiries:",
+        "items": [
+          "Telegram: @javierdgtl (response within 72 hours)",
+          "Website: https://ethlima.com",
+          "This policy is governed by Peru's Personal Data Protection Law No. 29733.",
+          "We reserve the right to update this policy; we will notify of significant changes by email."
+        ]
+      }
+    }
   }
 }
