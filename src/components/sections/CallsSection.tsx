@@ -18,7 +18,7 @@ export function CallsSection({ t, isDark }: { t: (key: string) => string, isDark
     {
       id: "partner",
       icon: Handshake,
-      link: "#"
+      link: "https://tally.so/r/dWgr8r"
     }
   ];
 
