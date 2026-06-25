@@ -13,6 +13,7 @@ export interface SidebarConfig {
   trackDetails?: boolean;
   prizes?: boolean;
   stages?: boolean;
+  rules?: boolean;
 }
 
 const defaultConfig: SidebarConfig = {
@@ -21,6 +22,7 @@ const defaultConfig: SidebarConfig = {
   trackDetails: true,
   prizes: true,
   stages: true,
+  rules: true,
 };
 
 export function TrackSidebar({ 
@@ -29,8 +31,8 @@ export function TrackSidebar({
   onSectionChange
 }: { 
   config?: SidebarConfig,
-  activeSection?: "formation" | "information" | "bootcamp",
-  onSectionChange?: (section: "formation" | "information" | "bootcamp") => void
+  activeSection?: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules",
+  onSectionChange?: (section: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules") => void
 }) {
   const { t } = useTranslation();
   const activeConfig = { ...defaultConfig, ...config };
@@ -49,18 +51,21 @@ export function TrackSidebar({
     // We group track_details, prizes, and stages under "information"
     const isFormationItem = label === t("track.sidebar.formation");
     const isBootcampItem = label === t("track.sidebar.bootcamp");
-    const isInformationItem = !isFormationItem && !isBootcampItem;
+    const isInformationItem = label === t("track.sidebar.track_details");
+    const isPrizesItem = label === t("track.sidebar.prizes");
+    const isStagesItem = label === t("track.sidebar.stages");
+    const isRulesItem = label === t("track.sidebar.rules");
     
     let isSelected = false;
     if (isFormationItem) isSelected = activeSection === "formation";
     else if (isBootcampItem) isSelected = activeSection === "bootcamp";
-    else isSelected = activeSection === "information";
-    
-    // Default active item for styling within the information section
-    const isSubItemSelected = isInformationItem && label === t("track.sidebar.track_details") && isSelected;
+    else if (isInformationItem) isSelected = activeSection === "information";
+    else if (isPrizesItem) isSelected = activeSection === "prizes";
+    else if (isStagesItem) isSelected = activeSection === "stages";
+    else if (isRulesItem) isSelected = activeSection === "rules";
 
     const btnClass = `flex items-center w-full gap-2 md:gap-3 px-3 py-2 text-left rounded-md transition-colors ${
-      (isFormationItem && isSelected) || (isBootcampItem && isSelected) || isSubItemSelected
+      isSelected
         ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
         : "text-fg/60 hover:text-fg hover:bg-surface/50"
     }`;
@@ -71,6 +76,9 @@ export function TrackSidebar({
           onClick={() => {
             if (isFormationItem) onSectionChange("formation");
             else if (isBootcampItem) onSectionChange("bootcamp");
+            else if (isPrizesItem) onSectionChange("prizes");
+            else if (isStagesItem) onSectionChange("stages");
+            else if (isRulesItem) onSectionChange("rules");
             else onSectionChange("information");
           }}
           className={btnClass}
@@ -121,6 +129,7 @@ export function TrackSidebar({
             {renderLink(!!activeConfig.trackDetails, <LayoutDashboard className="w-4 h-4" />, t("track.sidebar.track_details"))}
             {renderLink(!!activeConfig.prizes, <Trophy className="w-4 h-4" />, t("track.sidebar.prizes"))}
             {renderLink(!!activeConfig.stages, <Clock className="w-4 h-4" />, t("track.sidebar.stages"))}
+            {renderLink(!!activeConfig.rules, <BookOpen className="w-4 h-4" />, t("track.sidebar.rules"))}
           </div>
         </div>
       </nav>

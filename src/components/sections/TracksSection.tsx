@@ -72,14 +72,25 @@ export function TracksSection({ t, tracks, isDark }: { t: (key: string) => strin
 
                     <div>
                       <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3 flex items-center gap-2"><Trophy className="w-3 h-3 text-brand-accent" /> {t("tracks.prizes")}</h4>
-                      <div className="flex justify-center items-center bg-surface/50 px-3 py-6 rounded-lg border border-border border-dashed">
-                        <span className="text-fg/60 font-mono font-medium tracking-wider text-sm animate-pulse">{t("tracks.soon")}</span>
-                      </div>
+                      {track.prizes && track.prizes.length > 0 ? (
+                        <div className="space-y-2">
+                          {track.prizes.map((prize, pIdx) => (
+                            <div key={pIdx} className="flex items-center justify-between bg-surface/30 px-3 py-2 rounded border border-border/50">
+                              <span className="text-sm font-medium text-fg/80">{prize.name}</span>
+                              <span className="text-sm font-bold text-brand-accent">{prize.amount}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex justify-center items-center bg-surface/50 px-3 py-6 rounded-lg border border-border border-dashed">
+                          <span className="text-fg/60 font-mono font-medium tracking-wider text-sm animate-pulse">{t("tracks.soon")}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="pt-4 border-t border-border flex items-center justify-between mt-auto">
                       <span className="text-xs font-mono text-fg/40 uppercase tracking-widest">{t("tracks.prize_pool")}</span>
-                      <span className="text-xl font-extrabold text-fg">{t("tracks.tba")}</span>
+                      <span className="text-xl font-extrabold text-fg">{(track.totalPrizePool && track.totalPrizePool !== "TBA") ? track.totalPrizePool : t("tracks.tba")}</span>
                     </div>
 
                     <div className="pt-4 flex justify-end">

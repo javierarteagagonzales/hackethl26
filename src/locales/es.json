@@ -178,6 +178,7 @@
       "track_details": "Detalles del Track",
       "prizes": "Premios",
       "stages": "Etapas",
+      "rules": "Reglas",
       "bootcamp": "Bootcamp 2025"
     },
     "active_events": "Eventos Activos",
@@ -427,6 +428,39 @@
               }
             ]
           }
+        ]
+      },
+      "information": {
+        "intro": "El Track Arbitrum tiene como objetivo fomentar el desarrollo de dApps innovadoras utilizando tecnología Arbitrum. Se requiere construir soluciones funcionales que generen impacto real.",
+        "categories_title": "Categorías Oficiais",
+        "categories": [
+          { "name": "DeFi e Infraestructura Financiera", "desc": "DEXs, Lending, Yield, RWA, Stablecoins." },
+          { "name": "Inteligencia Artificial y Agentes", "desc": "Agentes autónomos, AI copilots, verificación." },
+          { "name": "Consumer Apps y UX", "desc": "SocialFi, Loyalty, Entradas, Account Abstraction." },
+          { "name": "Identidad, Reputación y Gobernanza", "desc": "Identidad descentralizada, DAOs, certificados." },
+          { "name": "Infraestructura y Herramientas", "desc": "SDKs, exploradores, seguridad, Orbit." }
+        ],
+        "requirements_title": "Requisitos Técnicos Obligatorios",
+        "requirements": [
+          "Uso verificable de Arbitrum como componente principal de la solución.",
+          "Evidencia en el repositorio entregado (smart contracts, integraciones).",
+          "Para el bounty Best Stylus Project, el uso de Stylus debe ser parte esencial de la lógica."
+        ],
+        "criteria_title": "Criterios de Evaluación",
+        "criteria": [
+          "Impacto del problema - 20%",
+          "Innovación con Blockchain - 15%",
+          "Implementación técnica - 25%",
+          "Uso de Arbitrum - 20%",
+          "Experiencia del Usuario - 15%",
+          "Presentación Final - 5%"
+        ],
+        "rules_title": "Reglas de Participación",
+        "rules": [
+          "Equipos de 1 a 4 integrantes (mínimo un desarrollador blockchain).",
+          "No se permite presentar productos desarrollados antes de la hackathon.",
+          "Todo recurso a evaluar debe estar público antes del cierre.",
+          "La participación implica la aceptación del Código de Conducta y las bases del evento."
         ]
       }
     }

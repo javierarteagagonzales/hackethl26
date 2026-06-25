@@ -80,13 +80,17 @@ async function main() {
       color: "from-blue-600 to-cyan-400",
       sponsorId: arbitrum.id,
       categories: {
-        create: [{ name: "DeFi" }, { name: "Gaming" }, { name: "Social" }]
+        create: [
+          { name: "DeFi" },
+          { name: "AI" },
+          { name: "Consumer Apps" },
+          { name: "Identity" },
+          { name: "Infrastructure" }
+        ]
       },
       prizes: {
         create: [
-          { name: "1st Place", amount: "$900" },
-          { name: "2nd Place", amount: "$700" },
-          { name: "Bounties", amount: "$500" }
+          { name: "Arbitrum Bounty", amount: "$2,000+" }
         ]
       }
     }

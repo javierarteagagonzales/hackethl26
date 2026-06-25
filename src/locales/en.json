@@ -177,6 +177,7 @@
       "track_details": "Track Details",
       "prizes": "Prizes",
       "stages": "Stages",
+      "rules": "Rules",
       "bootcamp": "Bootcamp 2025"
     },
     "active_events": "Active Events",
@@ -426,6 +427,39 @@
               }
             ]
           }
+        ]
+      },
+      "information": {
+        "intro": "The Arbitrum Track aims to foster the development of innovative dApps using Arbitrum technology. You must build functional solutions that generate real impact.",
+        "categories_title": "Official Categories",
+        "categories": [
+          { "name": "DeFi & Financial Infrastructure", "desc": "DEXs, Lending, Yield, RWA, Stablecoins." },
+          { "name": "Artificial Intelligence & Agents", "desc": "Autonomous agents, AI copilots, verification." },
+          { "name": "Consumer Apps & UX", "desc": "SocialFi, Loyalty, Ticketing, Account Abstraction." },
+          { "name": "Identity, Reputation & Governance", "desc": "Decentralized identity, DAOs, certificates." },
+          { "name": "Infrastructure & Tooling", "desc": "SDKs, explorers, security, Orbit." }
+        ],
+        "requirements_title": "Mandatory Technical Requirements",
+        "requirements": [
+          "Verifiable use of Arbitrum as a core component of the solution.",
+          "Evidence in the submitted repository (smart contracts, integrations).",
+          "For the Best Stylus Project bounty, Stylus must be an essential part of the logic."
+        ],
+        "criteria_title": "Evaluation Criteria",
+        "criteria": [
+          "Problem Impact - 20%",
+          "Blockchain Innovation - 15%",
+          "Technical Implementation - 25%",
+          "Arbitrum Usage - 20%",
+          "User Experience - 15%",
+          "Final Presentation - 5%"
+        ],
+        "rules_title": "Participation Rules",
+        "rules": [
+          "Teams of 1 to 4 members (minimum one blockchain developer).",
+          "Products fully developed before the hackathon are not allowed.",
+          "All resources to be evaluated must be public before the deadline.",
+          "Participation implies acceptance of the Code of Conduct and event rules."
         ]
       }
     }

@@ -5,13 +5,11 @@ export const MOCK_TRACKS = [
     sponsor: "Arbitrum",
     description: "Build the future of Ethereum scaling with Arbitrum.",
     color: "from-blue-500 to-cyan-400",
-    categories: ["General"],
+    categories: ["DeFi", "AI", "Consumer Apps", "Identity", "Infrastructure"],
     prizes: [
-      { name: "1st Place", amount: "$900" },
-      { name: "2nd Place", amount: "$700" },
-      { name: "Bounties", amount: "$500" }
+      { name: "Arbitrum Bounty", amount: "$2,000+" }
     ],
-    totalPrizePool: "$2,100"
+    totalPrizePool: "$2,000+"
   }
 ];
 
@@ -117,7 +115,12 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
             }
           ]
         }
-      ]
-    }
+      ],
+    },
+    information: true,
+    prizes: [
+      { name: "Arbitrum Bounty", amount: "$2,000+" }
+    ],
+    totalPrizePool: "$2,000+"
   }
 };

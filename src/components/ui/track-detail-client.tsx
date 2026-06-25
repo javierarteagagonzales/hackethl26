@@ -38,7 +38,7 @@ function GithubIcon({ className }: { className?: string }) {
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const { t, tArray } = useTranslation();
-  const [activeSection, setActiveSection] = useState<"formation" | "information" | "bootcamp">("information");
+  const [activeSection, setActiveSection] = useState<"formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules">("information");
 
   const translatedDesc = t(`track_content.${trackDetails.id}.description`);
   const displayDesc = translatedDesc !== `track_content.${trackDetails.id}.description` ? translatedDesc : trackDetails.description;
@@ -54,6 +54,18 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
 
   const translatedBootcampModules = tArray(`track_content.${trackDetails.id}.bootcamp.modules`);
 
+  const infoPath = `track_content.${trackDetails.id}.information`;
+  const infoIntro = t(`${infoPath}.intro`);
+  const infoCategoriesTitle = t(`${infoPath}.categories_title`);
+  const infoCategories = tArray(`${infoPath}.categories`);
+  const infoRequirementsTitle = t(`${infoPath}.requirements_title`);
+  const infoRequirements = tArray(`${infoPath}.requirements`);
+  const infoCriteriaTitle = t(`${infoPath}.criteria_title`);
+  const infoCriteria = tArray(`${infoPath}.criteria`);
+  const infoRulesTitle = t(`${infoPath}.rules_title`);
+  const infoRules = tArray(`${infoPath}.rules`);
+
+  const timelineItems = tArray("timeline.items");
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-bg text-fg">
@@ -270,6 +282,151 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 ) : (
                   <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
                     [ Bootcamp Content Not Found ]
+                  </div>
+                )}
+              </div>
+            ) : activeSection === "information" && trackDetails.information ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
+                  {t("track.sidebar.information")}
+                </h3>
+                {infoIntro && infoIntro !== `${infoPath}.intro` && (
+                  <p className="text-fg/70 text-base leading-relaxed mb-10">
+                    {infoIntro}
+                  </p>
+                )}
+
+                <div className="space-y-12">
+                  {/* Categories */}
+                  {infoCategories && infoCategories.length > 0 && (
+                    <div>
+                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoCategoriesTitle}</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {infoCategories.map((cat: any, i: number) => (
+                          <div key={i} className="p-4 bg-surface border border-border/40 rounded-lg">
+                            <h5 className="font-bold text-sm text-[#00f0ff] mb-2">{cat.name}</h5>
+                            <p className="text-fg/60 text-xs leading-relaxed">{cat.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Requirements */}
+                  {infoRequirements && infoRequirements.length > 0 && (
+                    <div>
+                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoRequirementsTitle}</h4>
+                      <ul className="space-y-3">
+                        {infoRequirements.map((req: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3 text-sm text-fg/70">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#00f0ff] flex-shrink-0" />
+                            {req}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 gap-8">
+                    {/* Criteria */}
+                    {infoCriteria && infoCriteria.length > 0 && (
+                      <div>
+                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoCriteriaTitle}</h4>
+                        <ul className="space-y-3">
+                          {infoCriteria.map((crit: string, i: number) => (
+                            <li key={i} className="flex items-start gap-3 text-sm text-fg/70">
+                              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#e5ff00] flex-shrink-0" />
+                              {crit}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : activeSection === "prizes" ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                  {t("track.sidebar.prizes")}
+                </h3>
+                
+                <div className="flex flex-col gap-6">
+                  <div className="bg-gradient-to-r from-surface to-surface/40 p-8 rounded-xl border border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                      <h4 className="text-sm font-mono text-fg/50 uppercase tracking-widest mb-1">{t("tracks.prize_pool")}</h4>
+                      <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#e5ff00] to-[#ffd700]">
+                        {trackDetails.totalPrizePool || t("tracks.tba")}
+                      </div>
+                    </div>
+                  </div>
+
+                  {trackDetails.prizes && trackDetails.prizes.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {trackDetails.prizes.map((prize: any, idx: number) => (
+                        <div key={idx} className="group relative overflow-hidden bg-surface/50 hover:bg-surface border border-border/40 hover:border-[#00f0ff]/50 transition-all rounded-xl p-6 shadow-sm">
+                          <div className="absolute top-0 left-0 w-1 h-full bg-[#00f0ff] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                          <h5 className="font-bold text-lg text-fg mb-1">{prize.name}</h5>
+                          <span className="text-2xl font-black text-brand-accent">{prize.amount}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                      [ {t("tracks.soon")} ]
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : activeSection === "stages" ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-10 flex items-center gap-3">
+                  {t("track.sidebar.stages")}
+                </h3>
+                
+                {timelineItems && timelineItems.length > 0 ? (
+                  <div className="relative border-l-2 border-border/50 ml-4 md:ml-6 space-y-10">
+                    {timelineItems.map((item: any, idx: number) => (
+                      <div key={idx} className="relative pl-8 md:pl-12 group">
+                        <div className="absolute w-4 h-4 rounded-full bg-brand-accent/20 border-2 border-brand-accent -left-[9px] top-1.5 group-hover:bg-brand-accent group-hover:shadow-[0_0_10px_rgba(var(--brand-accent),0.5)] transition-all"></div>
+                        
+                        <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                          <span className="text-brand-accent font-bold text-lg">{item.day}</span>
+                          <span className="text-fg/50 font-mono text-sm">{item.time}</span>
+                        </div>
+                        
+                        <h4 className="text-xl font-bold text-fg mb-2">{item.title}</h4>
+                        <p className="text-fg/70 leading-relaxed text-sm">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                    [ Timeline Data Not Found ]
+                  </div>
+                )}
+              </div>
+            ) : activeSection === "rules" ? (
+              <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
+                <h3 className="text-2xl font-bold mb-10 flex items-center gap-3">
+                  {t("track.sidebar.rules")}
+                </h3>
+                
+                {infoRules && infoRules.length > 0 ? (
+                  <div className="bg-surface/50 border border-border/40 rounded-xl p-8 shadow-sm">
+                    <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoRulesTitle}</h4>
+                    <ul className="space-y-4">
+                      {infoRules.map((rule: string, i: number) => (
+                        <li key={i} className="flex items-start gap-4 text-fg/80">
+                          <span className="mt-1 w-2 h-2 rounded-full bg-brand-accent flex-shrink-0 shadow-[0_0_8px_rgba(var(--brand-accent),0.8)]" />
+                          <span className="leading-relaxed">{rule}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
+                    [ Rules Data Not Found ]
                   </div>
                 )}
               </div>
