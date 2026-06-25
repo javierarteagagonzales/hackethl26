@@ -464,6 +464,69 @@
       }
     }
   },
+  "terms": {
+    "back_home": "Voltar ao Início",
+    "badge": "Legal",
+    "title": "Termos e",
+    "title_accent": "Condições",
+    "subtitle": "Regras de participação, propriedade intelectual e responsabilidades para o Hackathon Ethereum Lima 2026.",
+    "last_updated": "Última atualização",
+    "intro": "Ao se registrar e participar do Hackathon Ethereum Lima 2026, você concorda em cumprir os seguintes termos e condições. Por favor, leia-os com atenção.",
+    "cta_title": "Tem dúvidas sobre os termos?",
+    "cta_desc": "Contate-nos e ajudaremos a resolvê-las.",
+    "cta_btn": "Contatar Suporte",
+    "all_rights": "Todos os direitos reservados.",
+    "sections": {
+      "acceptance": {
+        "title": "Aceitação das Regras",
+        "description": "A participação implica aceitação total das regras do evento e dos critérios de avaliação. Qualquer situação não coberta será resolvida pela organização."
+      },
+      "eligibility": {
+        "title": "Elegibilidade e Equipes",
+        "description": "Critérios para participar de forma válida no evento:",
+        "items": [
+          "Indivíduos maiores de 18 anos.",
+          "Equipes de 1 a 4 membros.",
+          "Pelo menos um membro deve ser desenvolvedor blockchain.",
+          "Organizadores principais e jurados não podem participar."
+        ]
+      },
+      "ip": {
+        "title": "Propriedade Intelectual",
+        "description": "Levamos o seu trabalho e a sua propriedade a sério:",
+        "items": [
+          "A propriedade intelectual dos projetos pertence exclusivamente aos seus autores/criadores.",
+          "Os participantes concedem à Ethereum Lima e aos patrocinadores o direito de usar o nome do projeto, capturas de tela, código e vídeos para fins promocionais.",
+          "A apresentação de projetos comerciais já finalizados ou vencedores de outros hackathons sem alterações substanciais não é permitida."
+        ]
+      },
+      "prizes": {
+        "title": "Prêmios e Bounties",
+        "description": "Regras aplicáveis aos prêmios:",
+        "items": [
+          "A alocação de prêmios está sujeita a uma validação técnica exaustiva pelo júri.",
+          "Um projeto pode ganhar simultaneamente um prêmio geral e um ou mais bounties (se aplicável).",
+          "O júri pode declarar um prêmio 'deserto' se os projetos não atingirem a qualidade técnica exigida."
+        ]
+      },
+      "code_of_conduct": {
+        "title": "Código de Conduta",
+        "description": "Ethereum Lima é um espaço seguro e profissional. Não toleramos assédio, discriminação ou plágio. Qualquer infração pode resultar em desqualificação imediata."
+      },
+      "liability": {
+        "title": "Limitação de Responsabilidade",
+        "description": "Limitações quanto à responsabilidade:",
+        "items": [
+          "A organização não se responsabiliza por problemas técnicos, falhas de rede ou falhas nas entregas dos participantes.",
+          "As equipes são responsáveis por garantir que seus repositórios, demonstrações e vídeos estejam publicamente acessíveis antes do prazo."
+        ]
+      },
+      "changes": {
+        "title": "Modificações",
+        "description": "Ethereum Lima reserva-se o direito de modificar estes termos a qualquer momento, o que será comunicado prontamente a todos os participantes registrados."
+      }
+    }
+  },
   "privacy": {
     "badge": "Legal",
     "title": "Política de",

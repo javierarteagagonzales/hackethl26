@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield } from "lucide-react";
+import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
@@ -203,6 +203,9 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-6 flex-wrap justify-center md:justify-end">
+            <Link href="/terms" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+              <FileText className="w-4 h-4 mr-1 text-brand-accent" /> {t("terms.title")}
+            </Link>
             <Link href="/privacy" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <Shield className="w-4 h-4 mr-1 text-brand-accent" /> {t("privacy.title")}
             </Link>
