@@ -528,6 +528,116 @@
       }
     }
   },
+  "conduct": {
+    "back_home": "Volver al Inicio",
+    "badge": "Comunidad",
+    "title": "Código de",
+    "title_accent": "Conducta",
+    "subtitle": "Nuestro compromiso con un entorno seguro, inclusivo y respetuoso para todos los participantes de Ethereum Lima.",
+    "last_updated": "Última actualización",
+    "intro": "Queremos que la Hackathon Ethereum Lima sea una experiencia increíble para todos. Se espera que todos los asistentes, patrocinadores, mentores y voluntarios sigan este código de conducta.",
+    "cta_title": "¿Presenciaste un comportamiento inaceptable?",
+    "cta_desc": "Por favor, repórtalo inmediatamente a los organizadores.",
+    "cta_btn": "Reportar Incidente",
+    "all_rights": "Todos los derechos reservados.",
+    "sections": {
+      "expected": {
+        "title": "Comportamiento Esperado",
+        "description": "Se espera que todos los miembros de la comunidad participen de manera profesional y respetuosa:",
+        "items": [
+          "Sé respetuoso, amable e inclusivo.",
+          "Fomenta la colaboración y el espíritu de construcción.",
+          "Sé consciente de tu entorno y tus compañeros."
+        ]
+      },
+      "unacceptable": {
+        "title": "Comportamiento Inaceptable",
+        "description": "Las siguientes conductas son inaceptables y no serán toleradas:",
+        "items": [
+          "Comentarios ofensivos, discriminatorios, insultos o ataques personales.",
+          "Acoso público o privado, atención sexual no deseada o intimidación.",
+          "Plagio o intento deliberado de sabotear el trabajo de otros equipos."
+        ]
+      },
+      "consequences": {
+        "title": "Consecuencias",
+        "description": "El incumplimiento del código de conducta traerá consecuencias inmediatas:",
+        "items": [
+          "Advertencias verbales o escritas.",
+          "Expulsión inmediata del evento (sin derecho a premios ni devoluciones).",
+          "Prohibición de participar en futuros eventos de Ethereum Lima."
+        ]
+      }
+    }
+  },
+  "cookies": {
+    "back_home": "Volver al Inicio",
+    "badge": "Transparencia",
+    "title": "Política de",
+    "title_accent": "Cookies",
+    "subtitle": "Información sobre cómo usamos las cookies y tecnologías similares en nuestra plataforma.",
+    "last_updated": "Última actualización",
+    "intro": "Para que este sitio funcione correctamente y para mejorar tu experiencia, utilizamos pequeños archivos de datos llamados cookies. Al navegar por Ethereum Lima, aceptas su uso.",
+    "cta_title": "¿Dudas sobre las cookies?",
+    "cta_desc": "Revisa nuestra política de privacidad o contáctanos.",
+    "cta_btn": "Ver Privacidad",
+    "all_rights": "Todos los derechos reservados.",
+    "sections": {
+      "what": {
+        "title": "¿Qué son las Cookies?",
+        "description": "Las cookies son pequeños archivos de texto que los sitios web guardan en tu computadora o dispositivo móvil cuando los visitas. Nos ayudan a recordar tus preferencias."
+      },
+      "how": {
+        "title": "¿Cómo las usamos?",
+        "description": "Utilizamos cookies principalmente para fines funcionales y analíticos:",
+        "items": [
+          "Recordar tu idioma preferido (es, en, pt) y el tema de tu interfaz (claro/oscuro).",
+          "Analizar el tráfico de manera anónima para entender cómo mejorar el sitio.",
+          "Mantener la seguridad de las sesiones activas si implementamos autenticación."
+        ]
+      },
+      "control": {
+        "title": "Control de Cookies",
+        "description": "Puedes controlar y/o eliminar las cookies como desees. Puedes borrar todas las cookies que ya están en tu computadora y puedes configurar la mayoría de los navegadores para evitar que se coloquen."
+      }
+    }
+  },
+  "faq": {
+    "back_home": "Volver al Inicio",
+    "badge": "Ayuda",
+    "title": "Preguntas",
+    "title_accent": "Frecuentes",
+    "subtitle": "Encuentra respuestas rápidas sobre la participación, los equipos, premios y más detalles del evento.",
+    "last_updated": "Última actualización",
+    "intro": "Si no encuentras la respuesta que buscas, no dudes en escribirnos por nuestros canales oficiales.",
+    "cta_title": "¿Aún tienes dudas?",
+    "cta_desc": "Escríbenos directamente o únete a nuestro Discord.",
+    "cta_btn": "Contactar Soporte",
+    "view_all": "Ver todas las preguntas",
+    "all_rights": "Todos los derechos reservados.",
+    "questions": [
+      {
+        "q": "¿Tiene algún costo participar?",
+        "a": "No, la participación en la Hackathon Ethereum Lima es completamente gratuita."
+      },
+      {
+        "q": "¿Es necesario tener un equipo para inscribirse?",
+        "a": "Puedes inscribirte individualmente, pero para participar oficialmente debes formar un equipo de 1 a 4 personas. Facilitaremos dinámicas de team-building antes de que inicie el evento."
+      },
+      {
+        "q": "¿Tengo que saber de Blockchain/Web3 para participar?",
+        "a": "Si bien es un evento enfocado en Web3 (Ethereum, Arbitrum, etc.), buscamos equipos multidisciplinarios. Necesitas al menos un desarrollador blockchain en el equipo, pero también se requieren diseñadores, project managers y desarrolladores frontend/backend."
+      },
+      {
+        "q": "¿El evento es presencial o virtual?",
+        "a": "El evento es Híbrido. Habrá talleres virtuales previos y los días de construcción podrán hacerse de forma remota, aunque tendremos puntos de encuentro físicos (IRL) para los que estén en Lima."
+      },
+      {
+        "q": "¿Puedo presentar un proyecto en el que ya estaba trabajando?",
+        "a": "No se permiten proyectos comerciales ya terminados o ganadores de otras hackathons. Sin embargo, puedes construir sobre un proyecto existente si la funcionalidad a evaluar fue desarrollada de cero durante los días de nuestra hackathon."
+      }
+    ]
+  },
   "privacy": {
     "badge": "Legal",
     "title": "Política de",

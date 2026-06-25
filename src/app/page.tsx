@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText } from "lucide-react";
+import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText, Users } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
@@ -21,6 +21,7 @@ import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { CallsSection } from "@/components/sections/CallsSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function Home() {
   const { t, tArray } = useTranslation();
@@ -194,6 +195,7 @@ export default function Home() {
       <SponsorsSection t={t} isDark={isDark} />
       <TimelineSection t={t} tArray={tArray} />
       <GallerySection t={t} isDark={isDark} />
+      <FAQSection t={t} tArray={tArray} />
 
       {/* Footer */}
       <footer className="bg-bg py-12 border-t border-border relative z-10 transition-colors duration-300">
@@ -206,8 +208,17 @@ export default function Home() {
             <Link href="/terms" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <FileText className="w-4 h-4 mr-1 text-brand-accent" /> {t("terms.title")}
             </Link>
+            <Link href="/conduct" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+              <Users className="w-4 h-4 mr-1 text-brand-accent" /> {t("conduct.title")}
+            </Link>
             <Link href="/privacy" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <Shield className="w-4 h-4 mr-1 text-brand-accent" /> {t("privacy.title")}
+            </Link>
+            <Link href="/cookies" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+              <Globe className="w-4 h-4 mr-1 text-brand-accent" /> {t("cookies.title")}
+            </Link>
+            <Link href="/faq" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+              <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> FAQ
             </Link>
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}: @javierdgtl

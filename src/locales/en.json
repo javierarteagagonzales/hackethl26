@@ -527,6 +527,116 @@
       }
     }
   },
+  "conduct": {
+    "back_home": "Back to Home",
+    "badge": "Community",
+    "title": "Code of",
+    "title_accent": "Conduct",
+    "subtitle": "Our commitment to a safe, inclusive, and respectful environment for all Ethereum Lima participants.",
+    "last_updated": "Last updated",
+    "intro": "We want the Ethereum Lima Hackathon to be an amazing experience for everyone. All attendees, sponsors, mentors, and volunteers are expected to follow this code of conduct.",
+    "cta_title": "Witnessed unacceptable behavior?",
+    "cta_desc": "Please report it immediately to the organizers.",
+    "cta_btn": "Report Incident",
+    "all_rights": "All rights reserved.",
+    "sections": {
+      "expected": {
+        "title": "Expected Behavior",
+        "description": "All community members are expected to participate in a professional and respectful manner:",
+        "items": [
+          "Be respectful, kind, and inclusive.",
+          "Foster collaboration and the spirit of building.",
+          "Be mindful of your surroundings and your peers."
+        ]
+      },
+      "unacceptable": {
+        "title": "Unacceptable Behavior",
+        "description": "The following behaviors are unacceptable and will not be tolerated:",
+        "items": [
+          "Offensive comments, discrimination, insults, or personal attacks.",
+          "Public or private harassment, unwanted sexual attention, or intimidation.",
+          "Plagiarism or deliberate attempts to sabotage other teams' work."
+        ]
+      },
+      "consequences": {
+        "title": "Consequences",
+        "description": "Violation of the code of conduct will bring immediate consequences:",
+        "items": [
+          "Verbal or written warnings.",
+          "Immediate expulsion from the event (without the right to prizes or refunds).",
+          "Ban from participating in future Ethereum Lima events."
+        ]
+      }
+    }
+  },
+  "cookies": {
+    "back_home": "Back to Home",
+    "badge": "Transparency",
+    "title": "Cookie",
+    "title_accent": "Policy",
+    "subtitle": "Information on how we use cookies and similar technologies on our platform.",
+    "last_updated": "Last updated",
+    "intro": "For this site to work properly and to improve your experience, we use small data files called cookies. By browsing Ethereum Lima, you accept their use.",
+    "cta_title": "Questions about cookies?",
+    "cta_desc": "Check our privacy policy or contact us.",
+    "cta_btn": "View Privacy",
+    "all_rights": "All rights reserved.",
+    "sections": {
+      "what": {
+        "title": "What are Cookies?",
+        "description": "Cookies are small text files that websites save on your computer or mobile device when you visit them. They help us remember your preferences."
+      },
+      "how": {
+        "title": "How do we use them?",
+        "description": "We use cookies primarily for functional and analytical purposes:",
+        "items": [
+          "Remember your preferred language (es, en, pt) and UI theme (light/dark).",
+          "Anonymously analyze traffic to understand how to improve the site.",
+          "Maintain the security of active sessions if we implement authentication."
+        ]
+      },
+      "control": {
+        "title": "Cookie Control",
+        "description": "You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed."
+      }
+    }
+  },
+  "faq": {
+    "back_home": "Back to Home",
+    "badge": "Help",
+    "title": "Frequently Asked",
+    "title_accent": "Questions",
+    "subtitle": "Find quick answers about participation, teams, prizes, and other event details.",
+    "last_updated": "Last updated",
+    "intro": "If you can't find the answer you're looking for, feel free to reach out through our official channels.",
+    "cta_title": "Still have questions?",
+    "cta_desc": "Write to us directly or join our Discord.",
+    "cta_btn": "Contact Support",
+    "view_all": "View all questions",
+    "all_rights": "All rights reserved.",
+    "questions": [
+      {
+        "q": "Is there a cost to participate?",
+        "a": "No, participation in the Ethereum Lima Hackathon is completely free."
+      },
+      {
+        "q": "Do I need a team to register?",
+        "a": "You can register individually, but to officially participate you must form a team of 1 to 4 people. We will facilitate team-building dynamics before the event starts."
+      },
+      {
+        "q": "Do I need to know Blockchain/Web3 to participate?",
+        "a": "While this is a Web3-focused event (Ethereum, Arbitrum, etc.), we look for multidisciplinary teams. You need at least one blockchain developer on the team, but designers, project managers, and frontend/backend developers are also needed."
+      },
+      {
+        "q": "Is the event in-person or virtual?",
+        "a": "The event is Hybrid. There will be virtual pre-workshops and the building days can be done remotely, although we will have physical meeting points (IRL) for those in Lima."
+      },
+      {
+        "q": "Can I submit a project I was already working on?",
+        "a": "Already finished commercial projects or winners of other hackathons are not allowed. However, you can build upon an existing project if the functionality to be evaluated was developed from scratch during the days of our hackathon."
+      }
+    ]
+  },
   "privacy": {
     "badge": "Legal",
     "title": "Privacy",
