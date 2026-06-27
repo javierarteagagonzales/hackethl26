@@ -5,7 +5,7 @@ export const MOCK_TRACKS = [
     sponsor: "Arbitrum",
     description: "Build the future of Ethereum scaling with Arbitrum.",
     color: "from-blue-500 to-cyan-400",
-    categories: ["DeFi", "AI", "Consumer Apps", "Identity", "Infrastructure"],
+    categories: ["DeFi e Infraestructura Financiera", "IA y Tecnologías Emergentes", "Aplicaciones Descentralizadas (dApps)"],
     prizes: [
       { name: "Arbitrum Bounty", amount: "$2,000+" }
     ],

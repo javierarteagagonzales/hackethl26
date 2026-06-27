@@ -81,11 +81,9 @@ async function main() {
       sponsorId: arbitrum.id,
       categories: {
         create: [
-          { name: "DeFi" },
-          { name: "AI" },
-          { name: "Consumer Apps" },
-          { name: "Identity" },
-          { name: "Infrastructure" }
+          { name: "DeFi e Infraestructura Financiera" },
+          { name: "IA y Tecnologías Emergentes" },
+          { name: "Aplicaciones Descentralizadas (dApps)" }
         ]
       },
       prizes: {

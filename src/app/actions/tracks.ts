@@ -5,7 +5,8 @@ import { revalidatePath } from "next/cache";
 
 export async function getTracks() {
   try {
-    const tracks = await prisma.track.findMany({
+    const timeoutMs = 5000;
+    const tracksPromise = prisma.track.findMany({
       include: {
         sponsor: true,
         categories: true,
@@ -15,6 +16,12 @@ export async function getTracks() {
         createdAt: "desc",
       },
     });
+
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("DB timeout")), timeoutMs)
+    );
+
+    const tracks = await Promise.race([tracksPromise, timeoutPromise]);
     return { success: true, tracks };
   } catch (error) {
     console.error("Error fetching tracks:", error);

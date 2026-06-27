@@ -433,11 +433,9 @@
         "intro": "The Arbitrum Track aims to foster the development of innovative dApps using Arbitrum technology. You must build functional solutions that generate real impact.",
         "categories_title": "Official Categories",
         "categories": [
-          { "name": "DeFi & Financial Infrastructure", "desc": "DEXs, Lending, Yield, RWA, Stablecoins." },
-          { "name": "Artificial Intelligence & Agents", "desc": "Autonomous agents, AI copilots, verification." },
-          { "name": "Consumer Apps & UX", "desc": "SocialFi, Loyalty, Ticketing, Account Abstraction." },
-          { "name": "Identity, Reputation & Governance", "desc": "Decentralized identity, DAOs, certificates." },
-          { "name": "Infrastructure & Tooling", "desc": "SDKs, explorers, security, Orbit." }
+          { "name": "DeFi & Financial Infrastructure", "desc": "DEXs, Lending, Borrowing, Remittances, Stablecoins, RWA, Staking, Yield, Derivatives." },
+          { "name": "Artificial Intelligence & Emerging Technologies", "desc": "Autonomous agents, AI copilots, onchain automation, ZK, interoperability." },
+          { "name": "Decentralized Applications (dApps)", "desc": "SocialFi, GameFi, Education, Identity, DAOs, NFTs, Ticketing, Loyalty, Account Abstraction." }
         ],
         "requirements_title": "Mandatory Technical Requirements",
         "requirements": [
