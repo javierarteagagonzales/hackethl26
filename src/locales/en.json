@@ -18,6 +18,14 @@
     "register": "Register",
     "loading": "Loading..."
   },
+  "countdown": {
+    "slogan": "🔥 Hackathon Ethereum Lima — Closes in:",
+    "cta": "Register →",
+    "days": "D",
+    "hours": "H",
+    "minutes": "M",
+    "seconds": "S"
+  },
   "hero": {
     "badge": "Applications opening soon — stay tuned!",
     "date": "Jul 20 - Sep 6, 2026",

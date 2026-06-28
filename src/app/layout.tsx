@@ -5,6 +5,7 @@ import { LOGO_SRC } from "@/lib/asset-path";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
+import { CountdownBanner } from "@/components/ui/countdown-banner";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -97,7 +98,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <ThemeProvider>
           <LanguageProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <CountdownBanner />
+              {children}
+            </AuthProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

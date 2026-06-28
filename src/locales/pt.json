@@ -18,6 +18,14 @@
     "register": "Registrar-se",
     "loading": "Carregando..."
   },
+  "countdown": {
+    "slogan": "🔥 Hackathon Ethereum Lima — Encerra em:",
+    "cta": "Registro →",
+    "days": "D",
+    "hours": "H",
+    "minutes": "M",
+    "seconds": "S"
+  },
   "hero": {
     "badge": "Inscrições em breve — fique ligado!",
     "date": "20 Jul - 6 Set, 2026",
