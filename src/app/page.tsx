@@ -174,7 +174,8 @@ export default function Home() {
             <Link href="#tracks" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.tracks")}</Link>
             <Link href="#timeline" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.timeline")}</Link>
             <Link href="#sponsors" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.sponsors")}</Link>
-            <Link href="/2025" className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.edition_2025")}</Link>
+            <Link href="/demoday" className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors">{t("demoday.nav_link")}</Link>
+            <Link href="/2025" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.edition_2025")}</Link>
           </div>
           <div className="flex items-center gap-3">
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2">
@@ -205,6 +206,9 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-6 flex-wrap justify-center md:justify-end">
+            <Link href="/demoday" className="text-fg/50 hover:text-brand-accent text-sm transition-colors flex items-center font-semibold">
+              <Zap className="w-4 h-4 mr-1 text-brand-accent" /> {t("demoday.nav_link")}
+            </Link>
             <Link href="/terms" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
               <FileText className="w-4 h-4 mr-1 text-brand-accent" /> {t("terms.title")}
             </Link>
