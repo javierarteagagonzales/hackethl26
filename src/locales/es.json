@@ -10,7 +10,8 @@
     "timeline": "Cronograma",
     "sponsors": "Sponsors",
     "support": "Soporte",
-    "edition_2025": "Edición 2025"
+    "edition_2025": "Edición 2025",
+    "luma": "Calendario"
   },
   "banner": {
     "title": "Ethereum Lima Bootcamp, Aprende sobre Arbitrum",
@@ -35,6 +36,8 @@
     "title_sub": "Hackathon",
     "description": "El hackathon híbrido Web3 más importante de Latinoamérica. La hackathon es del 31 de julio al 12 de agosto. Únete a los mejores desarrolladores para construir en Arbitrum y escalar la web descentralizada.",
     "discord_btn": "Únete al Discord",
+    "luma_btn": "Ver Calendario de Eventos",
+    "luma_note": "Talleres, Demo Day y más — guarda los eventos en tu calendario",
     "terminal_title": "terminal-eth-lima"
   },
   "about": {

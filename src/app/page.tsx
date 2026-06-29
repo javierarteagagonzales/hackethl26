@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText, Users } from "lucide-react";
+import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText, Users, Calendar } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
@@ -180,6 +180,17 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2">
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}: @javierdgtl
+            </a>
+
+            {/* Luma Calendar pill */}
+            <a
+              href="https://luma.com/hackEthLima26"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all hover:scale-105 border border-brand-accent/40 bg-brand-accent/8 text-brand-accent hover:bg-brand-accent/15"
+            >
+              <Calendar className="w-3 h-3" />
+              {t("nav.luma")}
             </a>
 
             {/* Language & Theme Selectors */}
