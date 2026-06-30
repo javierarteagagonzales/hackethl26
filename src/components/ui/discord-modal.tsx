@@ -93,6 +93,7 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
             {/* Body */}
             <div className="px-8 py-6 text-sm leading-relaxed text-white/70 space-y-3">
             <p>{t("discord_modal.body1")}</p>
+              <p className="font-semibold" style={{ color: "#c7f73a" }}>{t("discord_modal.body2")}</p>
 
               {/* Channel instruction */}
               <div
