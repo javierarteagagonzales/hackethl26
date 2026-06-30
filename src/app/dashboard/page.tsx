@@ -125,9 +125,7 @@ export default function DashboardPage() {
   };
 
   const handleCreateTeam = async (values: { name: string }) => {
-    const formData = new FormData();
-    formData.append("name", values.name);
-    const result = await createTeam(formData);
+    const result = await createTeam(values.name);
     if (result.success) {
       toast.success("Team created!");
       fetchInitialData();
@@ -208,7 +206,23 @@ export default function DashboardPage() {
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-white/5">
         <div>
           <h1 className="text-3xl font-black tracking-tighter">Welcome, <span className="text-brand-blue">{session.user?.name || "Hacker"}</span> 👾</h1>
-          <p className="text-gray-500 text-sm mt-1">Application Status: <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 ml-2">Approved ✅</Badge></p>
+          <p className="text-gray-500 text-sm mt-1">
+            Application Status: 
+            {(() => {
+              const statusStr = (session.user as any).status || "APPROVED";
+              switch (statusStr) {
+                case "PENDING":
+                  return <Badge className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20 ml-2">Pending ⏳</Badge>;
+                case "REJECTED":
+                  return <Badge className="bg-red-500/10 text-red-500 border-red-500/20 ml-2">Rejected ❌</Badge>;
+                case "WAITLIST":
+                  return <Badge className="bg-purple-500/10 text-purple-500 border-purple-500/20 ml-2">Waitlist ⏳</Badge>;
+                case "APPROVED":
+                default:
+                  return <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 ml-2">Approved ✅</Badge>;
+              }
+            })()}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="text-right hidden sm:block">
@@ -220,12 +234,8 @@ export default function DashboardPage() {
           </div>
         </div>
       </header>
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-2xl font-bold tracking-tight mb-1">Welcome, {session.user?.name || "Hacker"} 👾</h1>
-            <p className="text-gray-500 text-sm">Application Status: <span className="text-green-500 font-medium">Approved ✅</span></p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2 space-y-6">
               {/* Team Section */}
               <section className="bg-white/2 border border-white/8 rounded-xl overflow-hidden">
@@ -494,6 +504,6 @@ export default function DashboardPage() {
               </section>
             </div>
           </div>
-        </div>
+    </div>
   );
 }

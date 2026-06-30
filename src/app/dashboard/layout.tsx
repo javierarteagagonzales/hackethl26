@@ -25,13 +25,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-md bg-white/10 text-white font-medium">
             <LayoutDashboard className="w-4 h-4" /> Dashboard
           </Link>
-          <Link href="/dashboard/team" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
+          <Link href="/teams" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
             <Users className="w-4 h-4" /> My Team
           </Link>
-          <Link href="/dashboard/project" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
+          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
             <FolderKanban className="w-4 h-4" /> Project
           </Link>
-          <Link href="/dashboard/mentorship" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
+          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-white hover:bg-white/5 transition-colors">
             <Calendar className="w-4 h-4" /> Mentorships
           </Link>
         </div>
@@ -47,7 +47,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="flex items-center justify-between text-muted-foreground">
-            <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-white"><Settings className="w-4 h-4" /></Button>
+            <Link href="/profile">
+              <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-white"><Settings className="w-4 h-4" /></Button>
+            </Link>
             <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-white"><Bell className="w-4 h-4" /></Button>
             <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-red-400" onClick={() => signOut({ callbackUrl: "/" })}><LogOut className="w-4 h-4" /></Button>
           </div>

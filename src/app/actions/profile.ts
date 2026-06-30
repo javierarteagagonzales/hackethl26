@@ -5,32 +5,74 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
-export async function updateProfile(formData: FormData) {
+export async function updateProfile(data: {
+  avatar?: string;
+  bio?: string;
+  country?: string;
+  city?: string;
+  github?: string;
+  linkedin?: string;
+  website?: string;
+  wallet?: string;
+  skills?: string[];
+  experience?: string;
+  track?: string;
+  visibility?: string;
+}) {
   const session = await getServerSession(authOptions);
   if (!session?.user) return { success: false, error: "Unauthorized" };
 
-  const name = formData.get("name") as string;
-  const bio = formData.get("bio") as string;
-  const github = formData.get("github") as string;
-  const linkedin = formData.get("linkedin") as string;
-  const walletAddress = formData.get("walletAddress") as string;
-  const skills = formData.getAll("skills") as string[];
-
   try {
-    const user = await prisma.user.update({
+    // 1. Update the Profile model
+    const profile = await prisma.profile.upsert({
+      where: { userId: session.user.id },
+      update: {
+        avatar: data.avatar,
+        bio: data.bio,
+        country: data.country,
+        city: data.city,
+        github: data.github,
+        linkedin: data.linkedin,
+        website: data.website,
+        wallet: data.wallet,
+        skills: data.skills,
+        experience: data.experience,
+        track: data.track,
+        visibility: data.visibility || "public",
+      },
+      create: {
+        userId: session.user.id,
+        avatar: data.avatar,
+        bio: data.bio,
+        country: data.country,
+        city: data.city,
+        github: data.github,
+        linkedin: data.linkedin,
+        website: data.website,
+        wallet: data.wallet,
+        skills: data.skills || [],
+        experience: data.experience,
+        track: data.track,
+        visibility: data.visibility || "public",
+      },
+    });
+
+    // 2. Synchronize inline cache fields on User to avoid breaking existing pages
+    await prisma.user.update({
       where: { id: session.user.id },
       data: {
-        name,
-        bio,
-        github,
-        linkedin,
-        walletAddress,
-        skills,
+        bio: data.bio,
+        country: data.country,
+        github: data.github,
+        linkedin: data.linkedin,
+        walletAddress: data.wallet,
+        skills: data.skills || [],
       },
     });
 
     revalidatePath("/dashboard");
-    return { success: true, user };
+    revalidatePath("/profile");
+    return { success: true, profile };
   } catch (error) {
     console.error("Update profile error:", error);
     return { success: false, error: "Could not update profile." };
@@ -42,11 +84,23 @@ export async function getProfile() {
   if (!session?.user) return { success: false, error: "Unauthorized" };
 
   try {
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
+    const profile = await prisma.profile.findUnique({
+      where: { userId: session.user.id },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            role: true,
+            status: true,
+          },
+        },
+      },
     });
-    return { success: true, user };
+
+    return { success: true, profile };
   } catch (error) {
+    console.error("Get profile error:", error);
     return { success: false, error: "Database error." };
   }
 }
