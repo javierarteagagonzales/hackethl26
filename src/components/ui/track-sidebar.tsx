@@ -107,18 +107,6 @@ export function TrackSidebar({
       </div>
 
       <nav className="space-y-8">
-        {/* Formation Section */}
-        <div>
-          <h4 className="text-[8px] md:text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
-            {t("track.sidebar.formation")}
-            <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
-          </h4>
-          <div className="space-y-1">
-            {renderLink(!!activeConfig.formation, <BookOpen className="w-4 h-4" />, t("track.sidebar.formation"))}
-            {renderLink(!!activeConfig.bootcamp, <Target className="w-4 h-4" />, t("track.sidebar.bootcamp"))}
-          </div>
-        </div>
-
         {/* Information Section */}
         <div>
           <h4 className="text-[8px] md:text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
@@ -130,6 +118,18 @@ export function TrackSidebar({
             {renderLink(!!activeConfig.prizes, <Trophy className="w-4 h-4" />, t("track.sidebar.prizes"))}
             {renderLink(!!activeConfig.stages, <Clock className="w-4 h-4" />, t("track.sidebar.stages"))}
             {renderLink(!!activeConfig.rules, <BookOpen className="w-4 h-4" />, t("track.sidebar.rules"))}
+          </div>
+        </div>
+
+        {/* Formation Section */}
+        <div>
+          <h4 className="text-[8px] md:text-[10px] font-mono uppercase tracking-widest text-fg/40 mb-3 px-3 flex items-center">
+            {t("track.sidebar.formation")}
+            <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
+          </h4>
+          <div className="space-y-1">
+            {renderLink(!!activeConfig.formation, <BookOpen className="w-4 h-4" />, t("track.sidebar.formation"))}
+            {renderLink(!!activeConfig.bootcamp, <Target className="w-4 h-4" />, t("track.sidebar.bootcamp"))}
           </div>
         </div>
       </nav>
