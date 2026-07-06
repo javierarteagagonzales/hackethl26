@@ -90,6 +90,25 @@ export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => s
                 <Calendar className="w-5 h-5 text-brand-accent flex-shrink-0" />
                 <span>{t("hero.luma_btn")}</span>
               </a>
+
+              {/* Apply CTA */}
+              <a
+                id="hero-apply-btn"
+                href="https://platform.ethlima.org/apply"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl"
+                style={{
+                  background: "linear-gradient(135deg, #EA5B3D 0%, #3DBED5 100%)",
+                  color: "#fff",
+                  boxShadow: "0 4px 28px rgba(234,91,61,0.4)",
+                }}
+              >
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                <span>{t("hero.apply_btn")}</span>
+              </a>
             </div>
 
             {/* Luma subtle note */}

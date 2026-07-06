@@ -13,7 +13,7 @@ export function CallsSection({ t, isDark }: { t: (key: string) => string, isDark
     {
       id: "hacker",
       icon: Code,
-      link: "#"
+      link: "https://platform.ethlima.org/apply"
     },
     {
       id: "partner",
