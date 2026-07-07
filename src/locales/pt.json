@@ -28,7 +28,7 @@
     "seconds": "S"
   },
   "hero": {
-    "badge": "Inscrições em breve — fique ligado!",
+    "badge": "Inscrições abertas",
     "date": "31 Jul - 12 Ago",
     "hybrid": "Híbrido",
     "prizes": "$10k+ em Prêmios",
@@ -45,7 +45,7 @@
     "title": "Elevando o",
     "accent": "Ecossistema Web3 da LATAM",
     "description": "O Ethereum Lima 2026 é mais do que um hackathon; é uma convergência de mentes brilhantes, protocolos e ideias voltadas para resolver problemas do mundo real usando tecnologias descentralizadas.",
-    "perk1": "Construção intensiva de 48 horas",
+    "perk1": "Maratona de construção de 10 dias",
     "perk2": "Workshops liderados por líderes da indústria",
     "perk3": "Mentoria de engenheiros do protocolo principal"
   },

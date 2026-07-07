@@ -28,7 +28,7 @@
     "seconds": "S"
   },
   "hero": {
-    "badge": "Applications opening soon — stay tuned!",
+    "badge": "Applications open",
     "date": "Jul 31 - Aug 12",
     "hybrid": "Hybrid",
     "prizes": "$10k+ Prizes",
@@ -45,7 +45,7 @@
     "title": "Elevating the LATAM",
     "accent": "Web3 Ecosystem",
     "description": "Ethereum Lima 2026 is more than a hackathon; it is a convergence of brilliant minds, protocols, and ideas aimed at solving real-world problems using decentralized technologies.",
-    "perk1": "Intensive 48-hour building",
+    "perk1": "10-day build marathon",
     "perk2": "Workshops by industry leaders",
     "perk3": "Mentorship from core protocol engineers"
   },
