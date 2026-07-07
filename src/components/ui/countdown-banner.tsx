@@ -118,15 +118,6 @@ export function CountdownBanner() {
           ))}
         </div>
 
-        {/* CTA Button */}
-        <a
-          href="https://hackathon.ethlima.org/"
-          target="_blank"
-          rel="noreferrer"
-          className="countdown-cta-btn"
-        >
-          {t("countdown.cta")}
-        </a>
       </div>
     </div>
   );
