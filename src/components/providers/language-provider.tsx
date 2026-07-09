@@ -8,6 +8,7 @@ import ptTranslations from "@/locales/pt.json";
 
 export type Locale = "en" | "es" | "pt";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const translations: Record<Locale, any> = {
   en: enTranslations,
   es: esTranslations,
@@ -18,6 +19,7 @@ interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, variables?: Record<string, string | number>) => string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tArray: (key: string) => any[];
 }
 
@@ -40,9 +42,9 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     // 1. Check path prefix first
     const pathParts = pathname.split("/");
     const firstSegment = pathParts[1] as Locale;
-    
+
     let detectedLocale: Locale = "en";
-    
+
     if (["en", "es", "pt"].includes(firstSegment)) {
       detectedLocale = firstSegment;
     } else {
@@ -66,11 +68,17 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       // or if we want clean routing.
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocaleState(detectedLocale);
     localStorage.setItem("lang", detectedLocale);
     setCookie("lang", detectedLocale);
     setIsInitialized(true);
   }, [pathname]);
+
+  // Sync HTML lang attribute
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = (newLocale: Locale) => {
     if (newLocale === locale) return;
@@ -82,7 +90,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     // Dynamic routing transition
     const pathParts = pathname.split("/");
     const firstSegment = pathParts[1];
-    
+
     let newPath = "";
     if (["en", "es", "pt"].includes(firstSegment)) {
       // Replace existing prefix
@@ -100,6 +108,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   // Deep key lookup (e.g. "login.welcome")
   const t = (key: string, variables?: Record<string, string | number>): string => {
     const keys = key.split(".");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let current: any = translations[locale] || translations["en"];
 
     for (const k of keys) {
@@ -107,6 +116,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         current = current[k];
       } else {
         // Fallback to English
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let fallback: any = translations["en"];
         for (const fk of keys) {
           if (fallback && typeof fallback === "object" && fk in fallback) {
@@ -138,8 +148,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   // Retrieve translation arrays (e.g., timeline items)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tArray = (key: string): any[] => {
     const keys = key.split(".");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let current: any = translations[locale] || translations["en"];
 
     for (const k of keys) {
@@ -147,6 +159,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         current = current[k];
       } else {
         // Fallback to English
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let fallback: any = translations["en"];
         for (const fk of keys) {
           if (fallback && typeof fallback === "object" && fk in fallback) {
@@ -167,7 +180,11 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t, tArray }}>
       {/* Prevent render flash until we've detected the language preference */}
-      {isInitialized ? children : <div className="min-h-screen bg-bg opacity-0 transition-opacity duration-300" />}
+      {isInitialized ? (
+        children
+      ) : (
+        <div className="min-h-screen bg-bg opacity-0 transition-opacity duration-300" />
+      )}
     </LanguageContext.Provider>
   );
 };
