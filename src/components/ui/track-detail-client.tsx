@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
@@ -38,19 +39,31 @@ function GithubIcon({ className }: { className?: string }) {
 
 export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const { t, tArray } = useTranslation();
-  const [activeSection, setActiveSection] = useState<"formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules">("information");
+  const [activeSection, setActiveSection] = useState<
+    "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules"
+  >("information");
 
   const translatedDesc = t(`track_content.${trackDetails.id}.description`);
-  const displayDesc = translatedDesc !== `track_content.${trackDetails.id}.description` ? translatedDesc : trackDetails.description;
+  const displayDesc =
+    translatedDesc !== `track_content.${trackDetails.id}.description`
+      ? translatedDesc
+      : trackDetails.description;
 
   const translatedFormDesc = t(`track_content.${trackDetails.id}.formation.description`);
-  const displayFormDesc = translatedFormDesc !== `track_content.${trackDetails.id}.formation.description` ? translatedFormDesc : trackDetails.formation?.description;
+  const displayFormDesc =
+    translatedFormDesc !== `track_content.${trackDetails.id}.formation.description`
+      ? translatedFormDesc
+      : trackDetails.formation?.description;
 
   const translatedLevels = tArray(`track_content.${trackDetails.id}.formation.levels`);
-  const displayLevels = translatedLevels.length > 0 ? translatedLevels : trackDetails.formation?.levels;
+  const displayLevels =
+    translatedLevels.length > 0 ? translatedLevels : trackDetails.formation?.levels;
 
   const translatedBootcampDesc = t(`track_content.${trackDetails.id}.bootcamp.description`);
-  const displayBootcampDesc = translatedBootcampDesc !== `track_content.${trackDetails.id}.bootcamp.description` ? translatedBootcampDesc : "";
+  const displayBootcampDesc =
+    translatedBootcampDesc !== `track_content.${trackDetails.id}.bootcamp.description`
+      ? translatedBootcampDesc
+      : "";
 
   const translatedBootcampModules = tArray(`track_content.${trackDetails.id}.bootcamp.modules`);
 
@@ -78,9 +91,14 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
         <nav className="sticky top-0 w-full z-50 border-b border-border bg-surface/75 backdrop-blur-xl">
           <div className="container mx-auto px-6 h-16 flex items-center justify-between">
             <div className="flex items-center">
-              <Link href="/" className="group flex items-center gap-2 text-fg/70 hover:text-fg transition-colors">
+              <Link
+                href="/"
+                className="group flex items-center gap-2 text-fg/70 hover:text-fg transition-colors"
+              >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                <span className="font-mono text-sm tracking-wider font-bold">{t("track.back")}</span>
+                <span className="font-mono text-sm tracking-wider font-bold">
+                  {t("track.back")}
+                </span>
               </Link>
             </div>
             <div className="flex items-center gap-3">
@@ -101,10 +119,13 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
-            
+
             {/* Banner Text overlay */}
             <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 flex flex-col justify-end container mx-auto">
-              <h1 className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#e5ff00] to-[#ffd700] tracking-tighter uppercase drop-shadow-lg" style={{ WebkitTextStroke: '2px #000' }}>
+              <h1
+                className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#e5ff00] to-[#ffd700] tracking-tighter uppercase drop-shadow-lg"
+                style={{ WebkitTextStroke: "2px #000" }}
+              >
                 BUILD
               </h1>
               <div className="mt-2 inline-flex">
@@ -131,7 +152,9 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface hover:bg-surface/60 hover:border-[#00f0ff]/60 transition-all text-sm font-medium"
                   >
                     <Globe className="w-4 h-4 text-[#00f0ff] shrink-0" />
-                    <span className="text-fg/80 group-hover:text-fg transition-colors">{trackDetails.website.replace(/https?:\/\//, "")}</span>
+                    <span className="text-fg/80 group-hover:text-fg transition-colors">
+                      {trackDetails.website.replace(/https?:\/\//, "")}
+                    </span>
                     <ExternalLink className="w-3 h-3 text-fg/30 group-hover:text-fg/60 transition-colors" />
                   </a>
                 )}
@@ -143,7 +166,9 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface hover:bg-surface/60 hover:border-white/40 transition-all text-sm font-medium"
                   >
                     <XIcon className="w-4 h-4 text-fg shrink-0" />
-                    <span className="text-fg/70 group-hover:text-fg transition-colors font-mono">{trackDetails.socials.x.handle}</span>
+                    <span className="text-fg/70 group-hover:text-fg transition-colors font-mono">
+                      {trackDetails.socials.x.handle}
+                    </span>
                   </a>
                 )}
                 {trackDetails.socials?.discord && (
@@ -154,7 +179,9 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface hover:bg-surface/60 hover:border-[#5865F2]/60 transition-all text-sm font-medium"
                   >
                     <DiscordIcon className="w-4 h-4 text-[#5865F2] shrink-0" />
-                    <span className="text-fg/70 group-hover:text-fg transition-colors">{trackDetails.socials.discord.handle}</span>
+                    <span className="text-fg/70 group-hover:text-fg transition-colors">
+                      {trackDetails.socials.discord.handle}
+                    </span>
                   </a>
                 )}
                 {trackDetails.socials?.github && (
@@ -165,12 +192,13 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface hover:bg-surface/60 hover:border-fg/40 transition-all text-sm font-medium"
                   >
                     <GithubIcon className="w-4 h-4 text-fg/80 shrink-0" />
-                    <span className="text-fg/70 group-hover:text-fg transition-colors font-mono">{trackDetails.socials.github.handle}</span>
+                    <span className="text-fg/70 group-hover:text-fg transition-colors font-mono">
+                      {trackDetails.socials.github.handle}
+                    </span>
                   </a>
                 )}
               </div>
             </div>
-
 
             {/* Dynamic Content Based on Sidebar Selection */}
             {activeSection === "formation" && trackDetails.formation ? (
@@ -178,9 +206,7 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
                   {t("track.sidebar.formation")}
                 </h3>
-                <p className="text-fg/70 text-base leading-relaxed mb-10">
-                  {displayFormDesc}
-                </p>
+                <p className="text-fg/70 text-base leading-relaxed mb-10">{displayFormDesc}</p>
 
                 {displayLevels ? (
                   <div className="space-y-10">
@@ -203,10 +229,14 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                               className="group flex flex-col gap-2 p-4 bg-surface hover:bg-surface/70 border border-border/40 hover:border-[#00f0ff]/40 transition-all rounded-lg"
                             >
                               <div className="flex items-start justify-between gap-2">
-                                <span className="font-semibold text-sm text-fg leading-snug">{res.title}</span>
+                                <span className="font-semibold text-sm text-fg leading-snug">
+                                  {res.title}
+                                </span>
                                 <ExternalLink className="w-3.5 h-3.5 text-fg/30 group-hover:text-[#00f0ff] transition-colors shrink-0 mt-0.5" />
                               </div>
-                              <p className="text-fg/55 text-xs leading-relaxed">{res.description}</p>
+                              <p className="text-fg/55 text-xs leading-relaxed">
+                                {res.description}
+                              </p>
                             </a>
                           ))}
                         </div>
@@ -230,7 +260,6 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                   </div>
                 )}
               </div>
-
             ) : activeSection === "bootcamp" ? (
               <div className="mt-12 bg-surface/30 p-8 md:p-12 border border-border/50 rounded-xl">
                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -241,12 +270,14 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     {displayBootcampDesc}
                   </p>
                 )}
-                
+
                 {translatedBootcampModules && translatedBootcampModules.length > 0 ? (
                   <div className="space-y-12">
                     {translatedBootcampModules.map((module: any, mi: number) => (
                       <div key={mi} className="relative">
-                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{module.title}</h4>
+                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
+                          {module.title}
+                        </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {module.videos.map((video: any, vi: number) => (
                             <a
@@ -257,20 +288,29 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                               className="group flex flex-col overflow-hidden bg-surface hover:bg-surface/80 border border-border/40 hover:border-[#00f0ff]/50 transition-all rounded-xl shadow-sm hover:shadow-md"
                             >
                               <div className="relative aspect-video w-full overflow-hidden bg-black">
-                                <img 
-                                  src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} 
+                                <Image
+                                  src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
                                   alt={video.title}
+                                  width={320}
+                                  height={180}
                                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                                  loading="lazy"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
                                   <div className="w-12 h-12 bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 group-hover:bg-[#00f0ff]/90 group-hover:border-[#00f0ff] transition-all">
-                                    <svg className="w-5 h-5 text-white group-hover:text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg
+                                      className="w-5 h-5 text-white group-hover:text-black ml-1"
+                                      fill="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path d="M8 5v14l11-7z" />
+                                    </svg>
                                   </div>
                                 </div>
                               </div>
                               <div className="p-4 flex items-start justify-between gap-3">
-                                <h5 className="font-semibold text-sm text-fg leading-snug line-clamp-2">{video.title}</h5>
+                                <h5 className="font-semibold text-sm text-fg leading-snug line-clamp-2">
+                                  {video.title}
+                                </h5>
                                 <ExternalLink className="w-4 h-4 text-fg/30 group-hover:text-[#00f0ff] transition-colors shrink-0 mt-0.5" />
                               </div>
                             </a>
@@ -291,19 +331,22 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                   {t("track.sidebar.information")}
                 </h3>
                 {infoIntro && infoIntro !== `${infoPath}.intro` && (
-                  <p className="text-fg/70 text-base leading-relaxed mb-10">
-                    {infoIntro}
-                  </p>
+                  <p className="text-fg/70 text-base leading-relaxed mb-10">{infoIntro}</p>
                 )}
 
                 <div className="space-y-12">
                   {/* Categories */}
                   {infoCategories && infoCategories.length > 0 && (
                     <div>
-                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoCategoriesTitle}</h4>
+                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
+                        {infoCategoriesTitle}
+                      </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {infoCategories.map((cat: any, i: number) => (
-                          <div key={i} className="p-4 bg-surface border border-border/40 rounded-lg">
+                          <div
+                            key={i}
+                            className="p-4 bg-surface border border-border/40 rounded-lg"
+                          >
                             <h5 className="font-bold text-sm text-[#00f0ff] mb-2">{cat.name}</h5>
                             <p className="text-fg/60 text-xs leading-relaxed">{cat.desc}</p>
                           </div>
@@ -315,7 +358,9 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                   {/* Requirements */}
                   {infoRequirements && infoRequirements.length > 0 && (
                     <div>
-                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoRequirementsTitle}</h4>
+                      <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
+                        {infoRequirementsTitle}
+                      </h4>
                       <ul className="space-y-3">
                         {infoRequirements.map((req: string, i: number) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-fg/70">
@@ -331,7 +376,9 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                     {/* Criteria */}
                     {infoCriteria && infoCriteria.length > 0 && (
                       <div>
-                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoCriteriaTitle}</h4>
+                        <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
+                          {infoCriteriaTitle}
+                        </h4>
                         <ul className="space-y-3">
                           {infoCriteria.map((crit: string, i: number) => (
                             <li key={i} className="flex items-start gap-3 text-sm text-fg/70">
@@ -350,11 +397,13 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
                   {t("track.sidebar.prizes")}
                 </h3>
-                
+
                 <div className="flex flex-col gap-6">
                   <div className="bg-gradient-to-r from-surface to-surface/40 p-8 rounded-xl border border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
-                      <h4 className="text-sm font-mono text-fg/50 uppercase tracking-widest mb-1">{t("tracks.prize_pool")}</h4>
+                      <h4 className="text-sm font-mono text-fg/50 uppercase tracking-widest mb-1">
+                        {t("tracks.prize_pool")}
+                      </h4>
                       <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#e5ff00] to-[#ffd700]">
                         {trackDetails.totalPrizePool || t("tracks.tba")}
                       </div>
@@ -364,10 +413,15 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                   {trackDetails.prizes && trackDetails.prizes.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {trackDetails.prizes.map((prize: any, idx: number) => (
-                        <div key={idx} className="group relative overflow-hidden bg-surface/50 hover:bg-surface border border-border/40 hover:border-[#00f0ff]/50 transition-all rounded-xl p-6 shadow-sm">
+                        <div
+                          key={idx}
+                          className="group relative overflow-hidden bg-surface/50 hover:bg-surface border border-border/40 hover:border-[#00f0ff]/50 transition-all rounded-xl p-6 shadow-sm"
+                        >
                           <div className="absolute top-0 left-0 w-1 h-full bg-[#00f0ff] opacity-50 group-hover:opacity-100 transition-opacity"></div>
                           <h5 className="font-bold text-lg text-fg mb-1">{prize.name}</h5>
-                          <span className="text-2xl font-black text-brand-accent">{prize.amount}</span>
+                          <span className="text-2xl font-black text-brand-accent">
+                            {prize.amount}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -383,18 +437,18 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 <h3 className="text-2xl font-bold mb-10 flex items-center gap-3">
                   {t("track.sidebar.stages")}
                 </h3>
-                
+
                 {timelineItems && timelineItems.length > 0 ? (
                   <div className="relative border-l-2 border-border/50 ml-4 md:ml-6 space-y-10">
                     {timelineItems.map((item: any, idx: number) => (
                       <div key={idx} className="relative pl-8 md:pl-12 group">
                         <div className="absolute w-4 h-4 rounded-full bg-brand-accent/20 border-2 border-brand-accent -left-[9px] top-1.5 group-hover:bg-brand-accent group-hover:shadow-[0_0_10px_rgba(var(--brand-accent),0.5)] transition-all"></div>
-                        
+
                         <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
                           <span className="text-brand-accent font-bold text-lg">{item.day}</span>
                           <span className="text-fg/50 font-mono text-sm">{item.time}</span>
                         </div>
-                        
+
                         <h4 className="text-xl font-bold text-fg mb-2">{item.title}</h4>
                         <p className="text-fg/70 leading-relaxed text-sm">{item.desc}</p>
                       </div>
@@ -411,10 +465,12 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 <h3 className="text-2xl font-bold mb-10 flex items-center gap-3">
                   {t("track.sidebar.rules")}
                 </h3>
-                
+
                 {infoRules && infoRules.length > 0 ? (
                   <div className="bg-surface/50 border border-border/40 rounded-xl p-8 shadow-sm">
-                    <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">{infoRulesTitle}</h4>
+                    <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
+                      {infoRulesTitle}
+                    </h4>
                     <ul className="space-y-4">
                       {infoRules.map((rule: string, i: number) => (
                         <li key={i} className="flex items-start gap-4 text-fg/80">
@@ -435,7 +491,6 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 [ {t("track.sidebar.information")} - Coming Soon ]
               </div>
             )}
-
           </main>
         </div>
       </div>
