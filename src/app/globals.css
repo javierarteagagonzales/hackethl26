@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -46,7 +45,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  
+
   /* Brand colors */
   --color-coral: #e64a30;
   --color-orange: #f18a2e;
@@ -54,12 +53,12 @@
   --color-teal: #2ca89f;
   --color-ink: #0b0717;
   --color-cream: #fff8ee;
-  
+
   --color-bg: var(--color-bg-val);
   --color-surface: var(--color-surface-val);
   --color-fg: var(--color-fg-val);
   --color-brand-accent: var(--color-accent-val);
-  
+
   --color-dot: var(--dot-color-val);
   --color-grid: var(--grid-color-val);
 }
@@ -84,7 +83,7 @@
   --input: rgba(11, 7, 23, 0.08);
   --ring: #e64a30;
   --radius: 20px;
-  
+
   /* Theme tokens */
   --color-bg-val: #fff8ee;
   --color-surface-val: #ffffff;
@@ -92,13 +91,14 @@
   --color-accent-val: #e64a30;
   --dot-color-val: rgba(11, 7, 23, 0.06);
   --grid-color-val: rgba(11, 7, 23, 0.04);
-  
+
   --glass-border: rgba(11, 7, 23, 0.08);
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-hover-border: rgba(11, 7, 23, 0.2);
 }
 
-.dark, [data-theme="dark"] {
+.dark,
+[data-theme="dark"] {
   --background: #0b0717;
   --foreground: #f4f0e8;
   --card: #14102a;
@@ -117,7 +117,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.08);
   --ring: #c7f73a;
-  
+
   /* Theme tokens */
   --color-bg-val: #0b0717;
   --color-surface-val: #14102a;
@@ -125,7 +125,7 @@
   --color-accent-val: #c7f73a;
   --dot-color-val: rgba(255, 255, 255, 0.06);
   --grid-color-val: rgba(255, 255, 255, 0.04);
-  
+
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-bg: rgba(20, 16, 42, 0.7);
   --glass-hover-border: rgba(199, 247, 58, 0.3);
@@ -148,9 +148,9 @@
 
 .glow-hero {
   background:
-    radial-gradient(ellipse 70% 50% at 20% 10%, rgba(230,74,48,0.18), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(241,138,46,0.14), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(61,190,213,0.18), transparent 60%);
+    radial-gradient(ellipse 70% 50% at 20% 10%, rgba(230, 74, 48, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(241, 138, 46, 0.14), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(61, 190, 213, 0.18), transparent 60%);
   background-size: 200% 200%;
 }
 
@@ -161,8 +161,19 @@
 }
 
 @keyframes drift-glow {
-  0%, 100% { background-position: 0% 0%, 100% 0%, 0% 100%; }
-  50% { background-position: 30% 20%, 70% 30%, 30% 80%; }
+  0%,
+  100% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%;
+  }
+  50% {
+    background-position:
+      30% 20%,
+      70% 30%,
+      30% 80%;
+  }
 }
 
 /* Background overlay patterns */
@@ -172,7 +183,7 @@
 }
 
 .pattern-grid {
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
   background-size: 80px 80px;
@@ -207,7 +218,10 @@
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   backdrop-filter: blur(12px);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 @media (min-width: 1024px) {
@@ -230,9 +244,12 @@
 }
 
 .vibrant-border::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: -1px; bottom: -1px; left: -1px; right: -1px;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
   background: linear-gradient(135deg, var(--color-brand-accent), #3dbed5);
   border-radius: 20px;
   z-index: -1;
@@ -263,8 +280,12 @@
 }
 
 @keyframes marquee-anim {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* Nav Link Hover bottom line */
@@ -274,7 +295,7 @@
 }
 
 .nav-link-premium::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -300,7 +321,7 @@
 }
 
 .live-dot::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -4px;
   border-radius: 50%;
@@ -310,8 +331,14 @@
 }
 
 @keyframes pulse-dot-anim {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
 /* Countdown Banner */
@@ -328,7 +355,9 @@
   border-radius: 999px;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
 }
 .countdown-cta-btn:hover {
   opacity: 0.85;
@@ -336,8 +365,15 @@
 }
 
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(0.98); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
 }
 .countdown-timer-wrapper {
   animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
