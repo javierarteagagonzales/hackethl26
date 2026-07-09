@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /judge/
+Disallow: /api/
+
+# Host
+Host: https://ethlima.com
+
+# Sitemaps
+Sitemap: https://ethlima.com/sitemap.xml

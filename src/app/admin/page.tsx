@@ -33,7 +33,7 @@ interface Applicant {
   github?: string;
   walletAddress?: string;
   status: string;
-  createdAt: string;
+  createdAt: string | Date;
 }
 
 interface Project {
@@ -317,7 +317,7 @@ export default function AdminPage() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Link
-                            href={proj.githubUrl}
+                            href={proj.githubUrl || "#"}
                             target="_blank"
                             className="p-1.5 rounded hover:bg-white/5 text-gray-500 hover:text-white"
                           >
@@ -526,7 +526,7 @@ export default function AdminPage() {
                         {sponsor.logoUrl ? (
                           <Image
                             src={sponsor.logoUrl}
-                            alt={sponsor.name}
+                            alt={sponsor.name || "Sponsor logo"}
                             width={200}
                             height={100}
                             className="h-10 w-auto object-contain mb-4 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500"
