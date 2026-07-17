@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -82,18 +83,16 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
               >
                 {t("discord_modal.badge")}
               </div>
-              <h2 className="text-xl font-extrabold text-white mb-1">
-                {t("discord_modal.title")}
-              </h2>
-              <p className="text-sm text-white/50">
-                {t("discord_modal.subtitle")}
-              </p>
+              <h2 className="text-xl font-extrabold text-white mb-1">{t("discord_modal.title")}</h2>
+              <p className="text-sm text-white/50">{t("discord_modal.subtitle")}</p>
             </div>
 
             {/* Body */}
             <div className="px-8 py-6 text-sm leading-relaxed text-white/70 space-y-3">
-            <p>{t("discord_modal.body1")}</p>
-              <p className="font-semibold" style={{ color: "#c7f73a" }}>{t("discord_modal.body2")}</p>
+              <p>{t("discord_modal.body1")}</p>
+              <p className="font-semibold" style={{ color: "#c7f73a" }}>
+                {t("discord_modal.body2")}
+              </p>
 
               {/* Channel instruction */}
               <div
@@ -108,22 +107,18 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
                   <span className="block font-bold text-[#c7f73a]">
                     {t("discord_modal.channel_label")}
                   </span>
-                  <span className="text-white/60">
-                    {t("discord_modal.channel_name")}
-                  </span>
+                  <span className="text-white/60">{t("discord_modal.channel_name")}</span>
                 </div>
               </div>
 
-              <p className="text-white/50 text-xs">
-                {t("discord_modal.instruction")}
-              </p>
+              <p className="text-white/50 text-xs">{t("discord_modal.instruction")}</p>
             </div>
 
             {/* CTA */}
             <div className="px-8 pb-8">
               <a
                 id="discord-modal-cta"
-                href="https://discord.gg/4Pu9sesdr"
+                href="https://discord.gg/vBBebr5vE"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center justify-center gap-3 w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] shadow-lg"
