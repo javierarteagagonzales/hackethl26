@@ -21,10 +21,24 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ethlima.com"),
   title: {
     default: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
-    template: "%s | ETH Lima Hackathon 2026"
+    template: "%s | ETH Lima Hackathon 2026",
   },
-  description: "The premier Web3 hybrid hackathon in Latin America. July 2026, Lima & Virtual. $15,000+ in prizes, expert mentorship, and global networking.",
-  keywords: ["Ethereum", "Hackathon", "Lima", "Peru", "Web3", "Blockchain", "Arbitrum", "Solidity", "Crypto", "DeFi", "Smart Contracts", "Web3 Latam"],
+  description:
+    "The premier Web3 hybrid hackathon in Latin America. July 2026, Lima & Virtual. $15,000+ in prizes, expert mentorship, and global networking.",
+  keywords: [
+    "Ethereum",
+    "Hackathon",
+    "Lima",
+    "Peru",
+    "Web3",
+    "Blockchain",
+    "Arbitrum",
+    "Solidity",
+    "Crypto",
+    "DeFi",
+    "Smart Contracts",
+    "Web3 Latam",
+  ],
   authors: [{ name: "ETH Lima Team", url: "https://ethlima.com" }],
   creator: "ETH Lima",
   publisher: "ETH Lima",
@@ -32,19 +46,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      "en": "/en",
-      "es": "/es",
-      "pt": "/pt",
+      en: "/en",
+      es: "/es",
+      pt: "/pt",
     },
   },
   openGraph: {
     title: "ETH Lima Hackathon 2026",
-    description: "Build the future of Web3 at the premier hybrid hackathon in Latin America. Join us in Lima or virtually.",
+    description:
+      "Build the future of Web3 at the premier hybrid hackathon in Latin America. Join us in Lima or virtually.",
     url: "https://ethlima.com",
     siteName: "ETH Lima Hackathon",
     images: [
       {
-        url: "/og-image.png",
+        url: "/portada.webp",
         width: 1200,
         height: 630,
         alt: "ETH Lima Hackathon 2026 Hero Image",
@@ -60,9 +75,9 @@ export const metadata: Metadata = {
     description: "Build the future of Web3 at the premier hybrid hackathon in Latin America.",
     creator: "@ETHLima",
     images: {
-      url: "/og-image.png",
+      url: "/portada.webp",
       alt: "ETH Lima Hackathon 2026 Hero Image",
-    }
+    },
   },
   icons: {
     icon: "/assets/favicon.png",
@@ -74,9 +89,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -108,4 +123,3 @@ export default function RootLayout({
     </html>
   );
 }
-
