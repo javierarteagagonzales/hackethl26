@@ -1,12 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Zap, ArrowRight, Globe, GitBranch, MessageSquare, HelpCircle, Shield, FileText, Users, Calendar } from "lucide-react";
+import {
+  ArrowUp,
+  Zap,
+  Globe,
+  GitBranch,
+  MessageSquare,
+  HelpCircle,
+  Shield,
+  FileText,
+  Users,
+  Calendar,
+} from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
 import { MOCK_TRACKS } from "@/lib/mock-data";
 import { getTracks } from "@/app/actions/tracks";
+import type { Track } from "@/components/sections/TracksSection";
 import { useTranslation } from "@/components/providers/language-provider";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -18,6 +30,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { TracksSection } from "@/components/sections/TracksSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
+import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { CallsSection } from "@/components/sections/CallsSection";
@@ -30,17 +43,19 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMounted, setIsMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [tracks, setTracks] = useState<any[]>(MOCK_TRACKS);
+  const [tracks, setTracks] = useState<Track[]>(MOCK_TRACKS);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mobileCheck = window.innerWidth < 1024;
-    setIsMobile(mobileCheck);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only init, runs once
+    setIsMobile(window.innerWidth < 1024);
   }, []);
 
-  const codeSnippet = "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
+  const codeSnippet =
+    "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only init, runs once
     setIsMounted(true);
     let i = 0;
     let erasing = false;
@@ -81,7 +96,7 @@ export default function Home() {
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
       });
     }, 1000);
 
@@ -92,28 +107,53 @@ export default function Home() {
     const fetchTracks = async () => {
       const result = await getTracks();
       if (result.success && result.tracks && result.tracks.length > 0) {
-        const formattedTracks = result.tracks
-          .filter((t: any) => !t.title?.toLowerCase().includes("arkiv") && !t.sponsor?.name?.toLowerCase().includes("arkiv"))
-          .map((t: any) => {
-          const totalAmount = t.prizes?.reduce((acc: number, p: any) => acc + (parseFloat(p.amount.replace(/[^0-9.]/g, '')) || 0), 0) || 0;
-          const isUSDC = t.prizes?.some((p: any) => p.amount.includes("USDC"));
+        interface RawPrize {
+          name: string;
+          amount: string;
+        }
+        interface RawCategory {
+          name: string;
+        }
+        interface RawTrack {
+          id: string;
+          title: string;
+          description: string;
+          color: string | null;
+          sponsor?: { name: string; logoUrl: string | null } | null;
+          categories?: RawCategory[];
+          prizes?: RawPrize[];
+        }
+        const formattedTracks = (result.tracks as RawTrack[])
+          .filter(
+            (tr) =>
+              !tr.title?.toLowerCase().includes("arkiv") &&
+              !tr.sponsor?.name?.toLowerCase().includes("arkiv")
+          )
+          .map((tr) => {
+            const totalAmount =
+              tr.prizes?.reduce(
+                (acc: number, p: RawPrize) =>
+                  acc + (parseFloat(p.amount.replace(/[^0-9.]/g, "")) || 0),
+                0
+              ) || 0;
+            const isUSDC = tr.prizes?.some((p: RawPrize) => p.amount.includes("USDC"));
 
-          return {
-            id: t.id,
-            title: t.title,
-            sponsor: t.sponsor?.name || "Independent",
-            sponsorLogo: t.sponsor?.logoUrl || null,
-            description: t.description,
-            color: t.color || "from-blue-500 to-cyan-400",
-            categories: t.categories?.map((c: any) => c.name) || [],
-            prizes: t.prizes?.map((p: any) => ({ name: p.name, amount: p.amount })) || [],
-            totalPrizePool: totalAmount > 0 ? (isUSDC ? `${totalAmount} USDC` : `$${totalAmount}`) : "TBA"
-          };
-        });
+            return {
+              id: tr.id,
+              title: tr.title,
+              sponsor: tr.sponsor?.name || "Independent",
+              sponsorLogo: tr.sponsor?.logoUrl || null,
+              description: tr.description,
+              color: tr.color || "from-blue-500 to-cyan-400",
+              categories: tr.categories?.map((c: RawCategory) => c.name) || [],
+              prizes: tr.prizes?.map((p: RawPrize) => ({ name: p.name, amount: p.amount })) || [],
+              totalPrizePool:
+                totalAmount > 0 ? (isUSDC ? `${totalAmount} USDC` : `$${totalAmount}`) : "TBA",
+            };
+          });
         setTracks(formattedTracks);
       }
     };
-
 
     fetchTracks();
     window.addEventListener("scroll", handleScroll);
@@ -170,16 +210,52 @@ export default function Home() {
             <Logo alt="ETH Lima Logo" className="h-8 sm:h-10 w-auto object-contain" />
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-fg/80">
-            <Link href="#about" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.about")}</Link>
-            <Link href="#tracks" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.tracks")}</Link>
-            <Link href="#timeline" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.timeline")}</Link>
-            <Link href="#sponsors" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.sponsors")}</Link>
-            <Link href="/demoday" className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors">{t("demoday.nav_link")}</Link>
-            <Link href="/2025" className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors">{t("nav.edition_2025")}</Link>
+            <Link
+              href="#about"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.about")}
+            </Link>
+            <Link
+              href="#tracks"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.tracks")}
+            </Link>
+            <Link
+              href="#timeline"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.timeline")}
+            </Link>
+            <Link
+              href="#sponsors"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.sponsors")}
+            </Link>
+            <Link
+              href="/demoday"
+              className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("demoday.nav_link")}
+            </Link>
+            <Link
+              href="/2025"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.edition_2025")}
+            </Link>
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2">
-              <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}: @javierdgtl
+            <a
+              href="https://t.me/javierdgtl"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden lg:flex items-center text-fg/60 hover:text-fg text-sm transition-colors mr-2"
+            >
+              <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}:
+              @javierdgtl
             </a>
 
             {/* Luma Calendar pill */}
@@ -205,6 +281,7 @@ export default function Home() {
       <AboutSection t={t} isDark={isDark} />
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <SponsorsSection t={t} isDark={isDark} />
+      <PartnersSection t={t} />
       <TimelineSection t={t} tArray={tArray} />
       <GallerySection t={t} isDark={isDark} />
       <FAQSection t={t} tArray={tArray} />
@@ -213,34 +290,67 @@ export default function Home() {
       <footer className="bg-bg py-12 border-t border-border relative z-10 transition-colors duration-300">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <Logo alt="ETH Lima Logo" className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+            <Logo
+              alt="ETH Lima Logo"
+              className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+            />
           </div>
 
           <div className="flex items-center gap-6 flex-wrap justify-center md:justify-end">
-            <Link href="/demoday" className="text-fg/50 hover:text-brand-accent text-sm transition-colors flex items-center font-semibold">
+            <Link
+              href="/demoday"
+              className="text-fg/50 hover:text-brand-accent text-sm transition-colors flex items-center font-semibold"
+            >
               <Zap className="w-4 h-4 mr-1 text-brand-accent" /> {t("demoday.nav_link")}
             </Link>
-            <Link href="/terms" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+            <Link
+              href="/terms"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
               <FileText className="w-4 h-4 mr-1 text-brand-accent" /> {t("terms.title")}
             </Link>
-            <Link href="/conduct" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+            <Link
+              href="/conduct"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
               <Users className="w-4 h-4 mr-1 text-brand-accent" /> {t("conduct.title")}
             </Link>
-            <Link href="/privacy" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+            <Link
+              href="/privacy"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
               <Shield className="w-4 h-4 mr-1 text-brand-accent" /> {t("privacy.title")}
             </Link>
-            <Link href="/cookies" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+            <Link
+              href="/cookies"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
               <Globe className="w-4 h-4 mr-1 text-brand-accent" /> {t("cookies.title")}
             </Link>
-            <Link href="/faq" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
+            <Link
+              href="/faq"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> FAQ
             </Link>
-            <a href="https://t.me/javierdgtl" target="_blank" rel="noreferrer" className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center">
-              <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}: @javierdgtl
+            <a
+              href="https://t.me/javierdgtl"
+              target="_blank"
+              rel="noreferrer"
+              className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
+            >
+              <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}:
+              @javierdgtl
             </a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors"><Globe className="w-5 h-5" /></a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors"><GitBranch className="w-5 h-5" /></a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors"><MessageSquare className="w-5 h-5" /></a>
+            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+              <Globe className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+              <GitBranch className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+              <MessageSquare className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </footer>

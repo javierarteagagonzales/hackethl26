@@ -67,6 +67,16 @@
     "accent": "Sponsors",
     "description": "Supported by the most innovative protocols and companies in the Web3 space."
   },
+  "partners": {
+    "title": "Partners &",
+    "accent": "Allies",
+    "description": "Organizations and communities that make the most important hackathon in LATAM possible.",
+    "partners_label": "Partners",
+    "ecosystem": "Ecosystem Partner",
+    "media": "Media Partner",
+    "community": "Community Partner",
+    "allied_label": "Allied Organizations"
+  },
   "timeline": {
     "title": "Event",
     "accent": "Timeline",
@@ -446,9 +456,18 @@
         "intro": "The Arbitrum Track aims to foster the development of innovative dApps using Arbitrum technology. You must build functional solutions that generate real impact.",
         "categories_title": "Official Categories",
         "categories": [
-          { "name": "DeFi & Financial Infrastructure", "desc": "DEXs, Lending, Borrowing, Remittances, Stablecoins, RWA, Staking, Yield, Derivatives." },
-          { "name": "Artificial Intelligence & Emerging Technologies", "desc": "Autonomous agents, AI copilots, onchain automation, ZK, interoperability." },
-          { "name": "Decentralized Applications (dApps)", "desc": "SocialFi, GameFi, Education, Identity, DAOs, NFTs, Ticketing, Loyalty, Account Abstraction." }
+          {
+            "name": "DeFi & Financial Infrastructure",
+            "desc": "DEXs, Lending, Borrowing, Remittances, Stablecoins, RWA, Staking, Yield, Derivatives."
+          },
+          {
+            "name": "Artificial Intelligence & Emerging Technologies",
+            "desc": "Autonomous agents, AI copilots, onchain automation, ZK, interoperability."
+          },
+          {
+            "name": "Decentralized Applications (dApps)",
+            "desc": "SocialFi, GameFi, Education, Identity, DAOs, NFTs, Ticketing, Loyalty, Account Abstraction."
+          }
         ],
         "requirements_title": "Mandatory Technical Requirements",
         "requirements": [

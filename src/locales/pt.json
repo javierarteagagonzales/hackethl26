@@ -67,6 +67,16 @@
     "accent": "Classe Mundial",
     "description": "Apoiado pelos protocolos e empresas mais inovadores do espaço Web3."
   },
+  "partners": {
+    "title": "Partners &",
+    "accent": "Aliados",
+    "description": "Organizações e comunidades que tornam possível o hackathon mais importante da LATAM.",
+    "partners_label": "Partners",
+    "ecosystem": "Ecosystem Partner",
+    "media": "Media Partner",
+    "community": "Community Partner",
+    "allied_label": "Aliados"
+  },
   "timeline": {
     "title": "Cronograma",
     "accent": "do Evento",
@@ -446,9 +456,18 @@
         "intro": "A Track Arbitrum visa promover o desenvolvimento de dApps inovadores usando a tecnologia Arbitrum. Requer-se a construção de soluções funcionais que gerem impacto real.",
         "categories_title": "Categorias Oficiais",
         "categories": [
-          { "name": "DeFi e Infraestrutura Financeira", "desc": "DEXs, Lending, Borrowing, Remessas, Stablecoins, RWA, Staking, Yield, Derivativos." },
-          { "name": "Inteligência Artificial e Tecnologias Emergentes", "desc": "Agentes autônomos, copilotos de IA, automação onchain, ZK, interoperabilidade." },
-          { "name": "Aplicações Descentralizadas (dApps)", "desc": "SocialFi, GameFi, Educação, Identidade, DAOs, NFTs, Ingressos, Loyalty, Account Abstraction." }
+          {
+            "name": "DeFi e Infraestrutura Financeira",
+            "desc": "DEXs, Lending, Borrowing, Remessas, Stablecoins, RWA, Staking, Yield, Derivativos."
+          },
+          {
+            "name": "Inteligência Artificial e Tecnologias Emergentes",
+            "desc": "Agentes autônomos, copilotos de IA, automação onchain, ZK, interoperabilidade."
+          },
+          {
+            "name": "Aplicações Descentralizadas (dApps)",
+            "desc": "SocialFi, GameFi, Educação, Identidade, DAOs, NFTs, Ingressos, Loyalty, Account Abstraction."
+          }
         ],
         "requirements_title": "Requisitos Técnicos Obrigatórios",
         "requirements": [

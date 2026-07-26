@@ -67,6 +67,16 @@
     "accent": "Clase Mundial",
     "description": "Apoyado por los protocolos y empresas más innovadores del espacio Web3."
   },
+  "partners": {
+    "title": "Partners &",
+    "accent": "Aliados",
+    "description": "Organizaciones y comunidades que hacen posible el hackathon más importante de LATAM.",
+    "partners_label": "Partners",
+    "ecosystem": "Ecosystem Partner",
+    "media": "Media Partner",
+    "community": "Community Partner",
+    "allied_label": "Aliados"
+  },
   "timeline": {
     "title": "Cronograma",
     "accent": "del Evento",
@@ -447,9 +457,18 @@
         "intro": "El Track Arbitrum tiene como objetivo fomentar el desarrollo de dApps innovadoras utilizando tecnología Arbitrum. Se requiere construir soluciones funcionales que generen impacto real.",
         "categories_title": "Categorías Oficiales",
         "categories": [
-          { "name": "DeFi e Infraestructura Financiera", "desc": "DEXs, Lending, Borrowing, Remesas, Stablecoins, RWA, Staking, Yield, Derivados." },
-          { "name": "Inteligencia Artificial y Tecnologías Emergentes", "desc": "Agentes autónomos, AI copilots, automatización onchain, ZK, interoperabilidad." },
-          { "name": "Aplicaciones Descentralizadas (dApps)", "desc": "SocialFi, GameFi, Educación, Identidad, DAOs, NFTs, Ticketing, Loyalty, Account Abstraction." }
+          {
+            "name": "DeFi e Infraestructura Financiera",
+            "desc": "DEXs, Lending, Borrowing, Remesas, Stablecoins, RWA, Staking, Yield, Derivados."
+          },
+          {
+            "name": "Inteligencia Artificial y Tecnologías Emergentes",
+            "desc": "Agentes autónomos, AI copilots, automatización onchain, ZK, interoperabilidad."
+          },
+          {
+            "name": "Aplicaciones Descentralizadas (dApps)",
+            "desc": "SocialFi, GameFi, Educación, Identidad, DAOs, NFTs, Ticketing, Loyalty, Account Abstraction."
+          }
         ],
         "requirements_title": "Requisitos Técnicos Obligatorios",
         "requirements": [
