@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ethlima.com"),
+  metadataBase: new URL("https://hackathon.ethlima.org"),
   title: {
     default: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
     template: "%s | ETH Lima Hackathon 2026",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Smart Contracts",
     "Web3 Latam",
   ],
-  authors: [{ name: "ETH Lima Team", url: "https://ethlima.com" }],
+  authors: [{ name: "ETH Lima Team", url: "https://hackathon.ethlima.org" }],
   creator: "ETH Lima",
   publisher: "ETH Lima",
   category: "technology",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "ETH Lima Hackathon 2026",
     description:
       "Build the future of Web3 at the premier hybrid hackathon in Latin America. Join us in Lima or virtually.",
-    url: "https://ethlima.com",
+    url: "https://hackathon.ethlima.org",
     siteName: "ETH Lima Hackathon",
     images: [
       {
