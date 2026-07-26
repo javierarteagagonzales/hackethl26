@@ -24,6 +24,7 @@ const COMMUNITY: Partner[] = [
   { name: "W3G", logo: "w3g", ext: "png" },
   { name: "Startups Perú", logo: "StartupsPeru", ext: "png" },
   { name: "Zaja Labs", logo: "zajalabs", ext: "png" },
+  { name: "Rush Academy", logo: "rush-academy", ext: "png" },
 ];
 
 const ALLIED: Partner[] = [
