@@ -60,9 +60,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/portada.webp",
-        width: 1200,
-        height: 630,
-        alt: "ETH Lima Hackathon 2026 Hero Image",
+        width: 1483,
+        height: 834,
+        alt: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
+        type: "image/webp",
       },
     ],
     locale: "es_PE",
