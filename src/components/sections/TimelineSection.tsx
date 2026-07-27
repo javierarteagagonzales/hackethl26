@@ -9,12 +9,21 @@ export interface TimelineItem {
   desc: string;
 }
 
-export function TimelineSection({ t, tArray }: { t: (key: string) => string, tArray: (key: string) => TimelineItem[] }) {
+export function TimelineSection({
+  t,
+  tArray,
+}: {
+  t: (key: string) => string;
+  tArray: (key: string) => TimelineItem[];
+}) {
   const items = tArray("timeline.items");
   const colors = ["bg-coral", "bg-teal", "bg-orange", "bg-cyan", "bg-brand-accent"];
 
   return (
-    <section id="timeline" className="py-24 border-t border-border relative z-10 bg-bg transition-colors duration-300">
+    <section
+      id="timeline"
+      className="py-24 border-t border-border relative z-10 bg-bg transition-colors duration-300"
+    >
       {/* Visual Blockchain Link Node to Sponsors */}
       <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-teal/40 hidden md:block"></div>
       <div className="container mx-auto px-6">
@@ -23,14 +32,20 @@ export function TimelineSection({ t, tArray }: { t: (key: string) => string, tAr
             <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-teal/20 bg-teal/5 backdrop-blur-sm z-10 shrink-0">
               <div className="w-3 h-3 rounded-full bg-teal animate-pulse" />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>{t("timeline.title")} <span className="text-gradient-sunset font-extrabold">{t("timeline.accent")}</span></h2>
+            <h2
+              className="text-3xl md:text-5xl font-bold tracking-tight"
+              style={{ letterSpacing: "-0.02em" }}
+            >
+              {t("timeline.title")}{" "}
+              <span className="text-gradient-sunset font-extrabold">{t("timeline.accent")}</span>
+            </h2>
           </div>
           <p className="text-fg/60 text-lg font-light">{t("timeline.description")}</p>
         </div>
 
         {/* ── MOBILE: vertical stack ── */}
         <div className="flex flex-col gap-8 md:hidden">
-          {items.map((item: any, idx: number) => {
+          {items.map((item: TimelineItem, idx: number) => {
             const color = colors[idx % colors.length];
             return (
               <motion.div
@@ -41,7 +56,9 @@ export function TimelineSection({ t, tArray }: { t: (key: string) => string, tAr
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="relative flex flex-col items-center text-center group"
               >
-                <div className={`flex items-center justify-center w-7 h-7 rounded-full border-[4px] border-bg ${color} z-10 mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm`}></div>
+                <div
+                  className={`flex items-center justify-center w-7 h-7 rounded-full border-[4px] border-bg ${color} z-10 mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm`}
+                ></div>
                 <div className="glass-card w-full p-6 transition-all duration-300 hover:border-brand-accent/30">
                   <h3 className="font-bold text-fg text-lg mb-2">{item.title}</h3>
                   <div className="font-mono text-xs mb-3 text-fg/50 font-semibold">
@@ -54,55 +71,39 @@ export function TimelineSection({ t, tArray }: { t: (key: string) => string, tAr
           })}
         </div>
 
-        {/* ── DESKTOP: single horizontal scrollable row ── */}
+        {/* ── DESKTOP: centered row ── */}
         <div className="hidden md:block relative mt-10">
-          {/* Scrollable container */}
-          <div
-            className="overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
-            style={{ scrollbarWidth: "thin" }}
-          >
-            {/* Inner flex row — min-width keeps items from shrinking */}
-            <div className="relative flex flex-row gap-6" style={{ minWidth: "max-content" }}>
+          <div className="relative flex flex-row flex-wrap justify-center gap-6">
+            {items.map((item: TimelineItem, idx: number) => {
+              const color = colors[idx % colors.length];
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative flex flex-col items-center text-center group"
+                  style={{ width: "220px", flexShrink: 0 }}
+                >
+                  {/* Node */}
+                  <div
+                    className={`flex items-center justify-center w-7 h-7 rounded-full border-[4px] border-bg ${color} z-10 mb-6 transition-transform duration-300 group-hover:scale-110 shadow-sm`}
+                  ></div>
 
-              {/* Connector line — spans full width of the flex row, sits at node height */}
-              <div
-                className="absolute top-[13px] left-[56px] right-[56px] h-[2px] bg-border pointer-events-none"
-                aria-hidden="true"
-              />
-
-              {items.map((item: any, idx: number) => {
-                const color = colors[idx % colors.length];
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative flex flex-col items-center text-center group"
-                    style={{ width: "220px", flexShrink: 0 }}
-                  >
-                    {/* Node */}
-                    <div className={`flex items-center justify-center w-7 h-7 rounded-full border-[4px] border-bg ${color} z-10 mb-6 transition-transform duration-300 group-hover:scale-110 shadow-sm`}></div>
-
-                    {/* Content Card */}
-                    <div className="glass-card w-full p-5 transition-all duration-300 hover:border-brand-accent/30">
-                      <h3 className="font-bold text-fg text-base mb-2">{item.title}</h3>
-                      <div className="font-mono text-xs mb-3 text-fg/50 font-semibold">
-                        {item.day} <span className="mx-1 text-fg/30">•</span> {item.time}
-                      </div>
-                      <p className="text-fg/60 text-sm leading-relaxed font-light">{item.desc}</p>
+                  {/* Content Card */}
+                  <div className="glass-card w-full p-5 transition-all duration-300 hover:border-brand-accent/30">
+                    <h3 className="font-bold text-fg text-base mb-2">{item.title}</h3>
+                    <div className="font-mono text-xs mb-3 text-fg/50 font-semibold">
+                      {item.day} <span className="mx-1 text-fg/30">•</span> {item.time}
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                    <p className="text-fg/60 text-sm leading-relaxed font-light">{item.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
-
-          {/* Scroll hint fade — right edge */}
-          <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-bg to-transparent" />
         </div>
-
       </div>
     </section>
   );

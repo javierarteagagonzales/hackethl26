@@ -11,8 +11,8 @@ export const MOCK_TRACKS = [
       "IA y Tecnologías Emergentes",
       "Aplicaciones Descentralizadas (dApps)",
     ],
-    prizes: [{ name: "Arbitrum Bounty", amount: "$2,000+" }],
-    totalPrizePool: "$2,000+",
+    prizes: [],
+    totalPrizePool: "",
   },
 ];
 
@@ -134,7 +134,7 @@ export const MOCK_TRACK_DETAILS: Record<string, any> = {
       ],
     },
     information: true,
-    prizes: [{ name: "Arbitrum Bounty", amount: "$2,000+" }],
-    totalPrizePool: "$2,000+",
+    prizes: [],
+    totalPrizePool: "",
   },
 };
