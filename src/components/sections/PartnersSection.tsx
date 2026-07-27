@@ -7,8 +7,8 @@ interface Partner {
   name: string;
   logo: string;
   ext: string;
-  /** "cover" = imagen llena la caja, "dark" = object-contain con fondo negro */
-  display?: "cover" | "dark";
+  /** "cover" = imagen llena la caja, "dark" = bg negro, "white" = bg blanco explícito */
+  display?: "cover" | "dark" | "white";
 }
 
 const ECOSYSTEM: Partner[] = [{ name: "Q3 Labs", logo: "q3labs", ext: "svg" }];
@@ -25,12 +25,14 @@ const COMMUNITY: Partner[] = [
   { name: "Startups Perú", logo: "StartupsPeru", ext: "png" },
   { name: "Zaja Labs", logo: "zajalabs", ext: "png" },
   { name: "Rush Academy", logo: "rush-academy", ext: "png" },
+  { name: "Club Blockchain PUCP", logo: "club-blockchain-pucp", ext: "png", display: "white" },
 ];
 
 const ALLIED: Partner[] = [
   { name: "Patronato", logo: "patronato", ext: "png" },
   { name: "Rust Perú", logo: "rust-peru", ext: "png" },
   { name: "Blockchain UPC", logo: "blobkchain-upc", ext: "jpeg", display: "dark" },
+  { name: "Dev3Pack Perú", logo: "dev3pack-peru", ext: "png", display: "white" },
 ];
 
 /** Logo cubre toda la caja (mercurio, cryptomorfosis) */
@@ -56,7 +58,7 @@ function CoverCard({ partner }: { partner: Partner }) {
   );
 }
 
-/** Logo con fondo negro, imagen contenida a la altura de la caja (blockchain-upc) */
+/** Logo con fondo negro (blockchain-upc) */
 function DarkCard({ partner }: { partner: Partner }) {
   return (
     <motion.div
@@ -80,8 +82,32 @@ function DarkCard({ partner }: { partner: Partner }) {
   );
 }
 
-/** Logo transparente sobre fondo blanco (mayoría) */
-function LogoCard({ partner, imgSize = "h-14" }: { partner: Partner; imgSize?: string }) {
+/** Logo con fondo blanco explícito (club-blockchain-pucp, dev3pack-peru, etc.) */
+function WhiteCard({ partner, imgSize = "h-12" }: { partner: Partner; imgSize?: string }) {
+  return (
+    <motion.div
+      title={partner.name}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.08, y: -4 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="flex items-center justify-center rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-default p-4"
+    >
+      <Image
+        src={`/assets/pa/${partner.logo}.${partner.ext}`}
+        alt={partner.name}
+        width={120}
+        height={80}
+        className={`${imgSize} w-auto object-contain`}
+        sizes="120px"
+      />
+    </motion.div>
+  );
+}
+
+/** Logo transparente sobre fondo blanco/90 (logos sin fondo) */
+function LogoCard({ partner, imgSize = "h-12" }: { partner: Partner; imgSize?: string }) {
   return (
     <motion.div
       title={partner.name}
@@ -97,16 +123,17 @@ function LogoCard({ partner, imgSize = "h-14" }: { partner: Partner; imgSize?: s
         alt={partner.name}
         width={120}
         height={80}
-        className={`${imgSize} w-auto object-contain transition-transform duration-300 hover:scale-105`}
+        className={`${imgSize} w-auto object-contain`}
         sizes="120px"
       />
     </motion.div>
   );
 }
 
-function PartnerCardRouter({ partner, imgSize = "h-14" }: { partner: Partner; imgSize?: string }) {
+function PartnerCardRouter({ partner, imgSize = "h-12" }: { partner: Partner; imgSize?: string }) {
   if (partner.display === "cover") return <CoverCard partner={partner} />;
   if (partner.display === "dark") return <DarkCard partner={partner} />;
+  if (partner.display === "white") return <WhiteCard partner={partner} imgSize={imgSize} />;
   return <LogoCard partner={partner} imgSize={imgSize} />;
 }
 
@@ -194,16 +221,16 @@ export function PartnersSection({ t }: { t: (key: string) => string }) {
             </div>
           </Block>
 
-          {/* Community */}
+          {/* Community — grid adaptativo de dos filas */}
           <Block
             label={t("partners.community")}
             accent="text-teal/80"
             border="border-teal/20"
             bg="bg-gradient-to-r from-teal/6 via-surface/5 to-cyan/4"
           >
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 gap-3">
               {COMMUNITY.map((p) => (
-                <PartnerCardRouter key={p.name} partner={p} imgSize="h-12" />
+                <PartnerCardRouter key={p.name} partner={p} imgSize="h-10 sm:h-12" />
               ))}
             </div>
           </Block>
@@ -216,9 +243,9 @@ export function PartnersSection({ t }: { t: (key: string) => string }) {
           border="border-orange/20"
           bg="bg-gradient-to-r from-orange/6 via-surface/5 to-surface/5"
         >
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {ALLIED.map((p) => (
-              <PartnerCardRouter key={p.name} partner={p} imgSize="h-12" />
+              <PartnerCardRouter key={p.name} partner={p} imgSize="h-10 sm:h-12" />
             ))}
           </div>
         </Block>
