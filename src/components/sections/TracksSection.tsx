@@ -57,7 +57,7 @@ export function TracksSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group w-full sm:w-[calc(50%-12px)] lg:w-[380px] max-w-md"
+              className="group w-full sm:w-[calc(50%-12px)] lg:w-[440px] max-w-lg"
             >
               <Link
                 href={`/tracks/${track.title.toLowerCase().split(" ")[0]}-track`}
@@ -85,19 +85,30 @@ export function TracksSection({
 
                   <div className="space-y-6 mt-auto">
                     <div>
-                      <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3">
-                        {t("tracks.categories")}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {track.categories.map((cat: string, j: number) => (
-                          <Badge
-                            key={j}
-                            className="bg-brand-accent/10 text-fg hover:bg-brand-accent/25 border border-brand-accent/20 transition-all font-mono text-xs py-0.5"
-                          >
-                            {cat}
-                          </Badge>
-                        ))}
-                      </div>
+                      {track.title.toLowerCase().includes("arbitrum") ? (
+                        <div className="flex items-center gap-3 bg-brand-accent/10 border border-brand-accent/25 rounded-xl px-4 py-3">
+                          <Trophy className="w-5 h-5 text-brand-accent shrink-0" />
+                          <span className="text-sm font-bold text-fg">
+                            Pozo de premios: <span className="text-brand-accent">+2000$</span>
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <h4 className="text-xs font-mono text-fg/40 uppercase tracking-widest mb-3">
+                            {t("tracks.categories")}
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {track.categories.map((cat: string, j: number) => (
+                              <Badge
+                                key={j}
+                                className="bg-brand-accent/10 text-fg hover:bg-brand-accent/25 border border-brand-accent/20 transition-all font-mono text-xs py-0.5"
+                              >
+                                {cat}
+                              </Badge>
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
 
                     <div>
