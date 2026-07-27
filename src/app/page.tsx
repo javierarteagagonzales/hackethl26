@@ -21,7 +21,6 @@ import { getTracks } from "@/app/actions/tracks";
 import type { Track } from "@/components/sections/TracksSection";
 import { useTranslation } from "@/components/providers/language-provider";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useTheme } from "next-themes";
 import { InteractiveBackground } from "@/components/ui/interactive-background";
 import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navigator";
@@ -271,7 +270,6 @@ export default function Home() {
 
             {/* Language & Theme Selectors */}
             <LanguageSwitcher />
-            <ThemeToggle />
           </div>
         </div>
       </nav>
