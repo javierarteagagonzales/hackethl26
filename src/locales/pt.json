@@ -83,22 +83,16 @@
     "description": "Os marcos principais desde os workshops até os resultados finais.",
     "items": [
       {
-        "day": "20 Jul - 30 Jul",
-        "time": "Preparação",
-        "title": "Workshops Pré-Evento",
-        "desc": "Palestras introdutórias, formação de equipes e sessões de suporte virtual."
-      },
-      {
         "day": "31 Jul - 12 Ago",
         "time": "Construção",
-        "title": "Hackathon",
+        "title": "Hackathon e Workshops",
         "desc": "Programação intensiva e envios para todos os tracks oficiais."
       },
       {
         "day": "8 Ago",
         "time": "Demo Day",
         "title": "Demo Day",
-        "desc": "As equipes apresentam seus projetos aos jurados em Lima e recebem feedback ao vivo."
+        "desc": "As equipes apresentam seus projetos ao público do evento."
       },
       {
         "day": "15 Ago - 20 Ago",

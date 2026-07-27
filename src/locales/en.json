@@ -83,22 +83,16 @@
     "description": "Key milestones from workshops to the final results.",
     "items": [
       {
-        "day": "Jul 20 - Jul 30",
-        "time": "Preparation",
-        "title": "Pre-Event Workshops",
-        "desc": "Introductory talks, team formation, and virtual support sessions."
-      },
-      {
         "day": "Jul 31 - Aug 12",
         "time": "Build",
-        "title": "Hackathon",
+        "title": "Hackathon & Workshops",
         "desc": "Intensive coding and submissions for all official tracks."
       },
       {
         "day": "Aug 8",
         "time": "Demo Day",
         "title": "Demo Day",
-        "desc": "Teams present their projects to judges in Lima and receive live feedback."
+        "desc": "Teams present their projects to the event audience."
       },
       {
         "day": "Aug 15 - Aug 20",

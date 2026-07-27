@@ -83,22 +83,16 @@
     "description": "Los hitos clave desde los talleres hasta los resultados finales.",
     "items": [
       {
-        "day": "20 Jul - 30 Jul",
-        "time": "Preparación",
-        "title": "Talleres Pre-Evento",
-        "desc": "Charlas introductorias, formación de equipos y sesiones de soporte virtual."
-      },
-      {
         "day": "31 Jul - 12 Ago",
         "time": "Construcción",
-        "title": "Hackathon",
+        "title": "Hackathon y Workshops",
         "desc": "Programación intensiva y entregas para todos los tracks oficiales."
       },
       {
         "day": "8 Ago",
         "time": "Demo Day",
         "title": "Demo Day",
-        "desc": "Los equipos presentan sus proyectos ante los jurados en Lima y reciben feedback en vivo."
+        "desc": "Los equipos presentan sus proyectos ante el público del evento."
       },
       {
         "day": "15 Ago - 20 Ago",
