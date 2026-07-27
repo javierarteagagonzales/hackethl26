@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Code, ArrowRight, Handshake } from "lucide-react";
+import { Users, ArrowRight } from "lucide-react";
 
 export function CallsSection({ t, isDark }: { t: (key: string) => string; isDark: boolean }) {
   const callsData = [
@@ -9,16 +9,6 @@ export function CallsSection({ t, isDark }: { t: (key: string) => string; isDark
       id: "mentor_judge",
       icon: Users,
       link: "https://tally.so/r/VLyg5J",
-    },
-    {
-      id: "hacker",
-      icon: Code,
-      link: "https://platform.ethlima.org/apply",
-    },
-    {
-      id: "partner",
-      icon: Handshake,
-      link: "https://tally.so/r/dWgr8r",
     },
   ];
 
@@ -41,7 +31,7 @@ export function CallsSection({ t, isDark }: { t: (key: string) => string; isDark
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 gap-6 justify-center max-w-sm mx-auto">
           {callsData.map((call, index) => {
             const Icon = call.icon;
             const isActive = call.link !== "#";
