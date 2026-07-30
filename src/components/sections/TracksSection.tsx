@@ -38,24 +38,6 @@ export function TracksSection({
       {/* Visual Blockchain Link Node to About */}
       <div className="absolute top-0 left-6 md:left-12 lg:left-16 h-12 w-[1px] bg-gradient-to-b from-transparent to-orange/40 hidden md:block"></div>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 flex flex-col items-center">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-orange/20 bg-orange/5 backdrop-blur-sm z-10 shrink-0">
-              <div className="w-3 h-3 rounded-full bg-orange animate-pulse" />
-            </div>
-            <h2
-              className="text-3xl md:text-5xl font-bold tracking-tight"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              {t("tracks.title")}{" "}
-              <span className="text-gradient-sunset font-extrabold">{t("tracks.accent")}</span>
-            </h2>
-          </div>
-          <p className="text-fg/70 text-lg max-w-2xl mx-auto font-light">
-            {t("tracks.description")}
-          </p>
-        </div>
-
         <div className="flex flex-wrap justify-center gap-6">
           {tracks.map((track, i) => (
             <motion.div
