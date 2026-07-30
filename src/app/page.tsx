@@ -26,7 +26,6 @@ import { InteractiveBackground } from "@/components/ui/interactive-background";
 import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navigator";
 
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
 import { TracksSection } from "@/components/sections/TracksSection";
 import { WorkshopsSection } from "@/components/sections/WorkshopsSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
@@ -214,12 +213,6 @@ export default function Home() {
               className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
             >
               {t("nav.workshops")}
-            </Link>
-            <Link
-              href="#about"
-              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
-            >
-              {t("nav.about")}
             </Link>
             <Link
               href="#tracks"
