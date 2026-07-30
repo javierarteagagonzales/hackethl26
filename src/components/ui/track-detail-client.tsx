@@ -8,6 +8,7 @@ import { useTranslation } from "@/components/providers/language-provider";
 import { TrackSidebar } from "@/components/ui/track-sidebar";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 import { ExternalLink, ArrowLeft, Globe } from "lucide-react";
 
 // Simple SVG icon for X (Twitter)
@@ -76,7 +77,7 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const infoCriteriaTitle = t(`${infoPath}.criteria_title`);
   const infoCriteria = tArray(`${infoPath}.criteria`);
   const infoRulesTitle = t(`${infoPath}.rules_title`);
-  const infoRules = tArray(`${infoPath}.rules`);
+  const infoRules = t(`${infoPath}.rules`);
 
   const timelineItems = tArray("timeline.items");
 
@@ -467,19 +468,7 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
                 </h3>
 
                 {infoRules && infoRules.length > 0 ? (
-                  <div className="bg-surface/50 border border-border/40 rounded-xl p-8 shadow-sm">
-                    <h4 className="text-xl font-bold text-fg mb-6 border-b border-border/40 pb-2">
-                      {infoRulesTitle}
-                    </h4>
-                    <ul className="space-y-4">
-                      {infoRules.map((rule: string, i: number) => (
-                        <li key={i} className="flex items-start gap-4 text-fg/80">
-                          <span className="mt-1 w-2 h-2 rounded-full bg-brand-accent flex-shrink-0 shadow-[0_0_8px_rgba(var(--brand-accent),0.8)]" />
-                          <span className="leading-relaxed">{rule}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <MarkdownRenderer content={infoRules} />
                 ) : (
                   <div className="p-12 border border-dashed border-border/50 rounded-xl flex items-center justify-center text-fg/40 font-mono text-sm">
                     [ Rules Data Not Found ]
