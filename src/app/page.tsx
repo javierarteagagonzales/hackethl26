@@ -282,7 +282,6 @@ export default function Home() {
 
       <HeroSection t={t} terminalText={terminalText} isDark={isDark} />
       <AboutSection t={t} isDark={isDark} />
-      <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <TimelineSection t={t} tArray={tArray} />
       <WorkshopsSection t={t} tArray={tArray} />
       <SponsorsSection t={t} isDark={isDark} />
