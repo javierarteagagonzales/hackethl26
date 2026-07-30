@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy } from "lucide-react";
+import { Trophy, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
@@ -26,6 +26,13 @@ export function TracksSection({
   tracks: Track[];
   isDark: boolean;
 }) {
+  const callsData = [
+    {
+      id: "mentor_judge",
+      icon: Users,
+      link: "https://tally.so/r/VLyg5J",
+    },
+  ];
   return (
     <section id="tracks" className="py-24 border-t border-border relative z-10">
       {/* Visual Blockchain Link Node to About */}
@@ -163,6 +170,55 @@ export function TracksSection({
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        {/* Convocatorias */}
+        <div className="mt-16 mb-4 text-center">
+          <h3 className="text-2xl font-bold tracking-tight text-fg">
+            {t("calls.title")}{" "}
+            <span className="text-gradient-sunset font-extrabold">{t("calls.accent")}</span>
+          </h3>
+          <p className="text-fg/70 text-lg max-w-2xl mx-auto mt-2 font-light">
+            {t("calls.description")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {callsData.map((call, index) => {
+            const Icon = call.icon;
+            const isActive = call.link !== "#";
+            return (
+              <motion.div
+                key={call.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="glass-card p-6 flex flex-col items-center text-center group relative"
+              >
+                {isActive && (
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/5 rounded-full blur-3xl -mr-8 -mt-8 group-hover:bg-brand-accent/10 transition-colors"></div>
+                )}
+
+                <div
+                  className={`w-12 h-12 rounded-2xl bg-surface/80 border border-border flex items-center justify-center mb-4 shadow-sm ${isActive ? "group-hover:border-brand-accent/30 group-hover:scale-110 transition-all" : ""}`}
+                >
+                  <Icon className={`w-5 h-5 ${isActive ? "text-brand-accent" : "text-fg/60"}`} />
+                </div>
+
+                <h4 className="text-lg font-bold mb-2 text-fg">{t(`calls.${call.id}.title`)}</h4>
+                <p className="text-fg/70 mb-5 font-light flex-grow leading-relaxed text-sm">
+                  {t(`calls.${call.id}.description`)}
+                </p>
+
+                <div
+                  className={`mt-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-semibold ${isActive ? "text-brand-accent group-hover:gap-2 transition-all" : "text-fg/40 cursor-not-allowed"}`}
+                >
+                  {t(`calls.${call.id}.cta`)} {isActive && <ArrowRight className="w-3 h-3" />}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

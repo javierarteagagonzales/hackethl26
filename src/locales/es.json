@@ -7,6 +7,7 @@
   "nav": {
     "about": "Acerca de",
     "tracks": "Tracks",
+    "workshops": "Workshops",
     "timeline": "Cronograma",
     "sponsors": "Sponsors",
     "support": "Soporte",
@@ -108,6 +109,108 @@
         "desc": "Series de charlas, sesiones de mentoría y cierre oficial de la temporada de eventos."
       }
     ]
+  },
+  "workshops": {
+    "title": "Talleres",
+    "accent": "Workshops",
+    "description": "Sessions previas y durante la hackathon para profundizar en temas clave y preparar equipos para la competencia.",
+    "columns": {
+      "mod": "Mód",
+      "date": "Fecha",
+      "time": "Horario",
+      "topic": "Taller",
+      "speaker": "Speaker"
+    },
+    "speakerTbaLabel": "Por confirmar",
+    "items": [
+      {
+        "workshop": "KickOff",
+        "day": "Viernes",
+        "date": "31/07/2026",
+        "time": "16:00",
+        "speaker": "Javier Arteaga, Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Ethereum Lima · Q3Labs",
+        "flag": "",
+        "description": "Apertura del hackathon, presentación del equipo organizador y alineación de objetivos.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: Cómo ganar un hackathon web3",
+        "day": "Viernes",
+        "date": "01/07/2026",
+        "time": "13:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Estrategias probadas para construir y presentar un proyecto ganador de hackathon.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop: IA + Blockchain",
+        "day": "Domingo",
+        "date": "03/08/2026",
+        "time": "13:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Cómo integrar inteligencia artificial con contratos inteligentes y dApps.",
+        "accent": "#3d43e0"
+      },
+      {
+        "workshop": "Workshop: Arbitrum + Scaffolding con IAs",
+        "day": "Domingo",
+        "date": "03/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "Scaffolding rápido con ayuda de IA especializada en Arbitrum Stylus.",
+        "accent": "#f18a2e"
+      },
+      {
+        "workshop": "Workshop: Ideación + Prototipado",
+        "day": "Lunes",
+        "date": "04/08/2026",
+        "time": "19:00",
+        "speaker": "Eduardo",
+        "speakerInitials": "E",
+        "organization": "Zajalabs",
+        "flag": "🇵🇪",
+        "description": "Sesión de ideación en equipo y prototipado rápido de propuestas de proyecto.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: De lo técnico a producto + AMA",
+        "day": "Martes",
+        "date": "05/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "De la idea al producto: lecciones de llevar un proyecto de prototipo a producción.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop Cómo dar un Pitch Ganador",
+        "day": "Jueves",
+        "date": "07/08/2026",
+        "time": "16:00",
+        "speaker": "Simoneth",
+        "speakerInitials": "S",
+        "organization": "Simoneth",
+        "flag": "🇦🇷",
+        "description": "Técnicas de presentación y storytelling para pitch ganadores ante jurados.",
+        "accent": "#3d43e0"
+      }
+    ],
+    "outcomeEyebrow": "Resultado",
+    "outcomeTitle": "Sal con las herramientas para ganar un hackathon",
+    "outcomeBody": "Cada sesión está diseñada para darte una ventaja concreta: desde la planificación del proyecto hasta la presentación final ante jurados. Salí con un roadmap claro, un equipo formado y la confianza de saber cómo escalar tu idea."
   },
   "login": {
     "title_build": "Construye el",

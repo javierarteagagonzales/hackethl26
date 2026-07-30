@@ -28,11 +28,11 @@ import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navig
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { TracksSection } from "@/components/sections/TracksSection";
+import { WorkshopsSection } from "@/components/sections/WorkshopsSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { GallerySection } from "@/components/sections/GallerySection";
-import { CallsSection } from "@/components/sections/CallsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function Home() {
@@ -210,6 +210,12 @@ export default function Home() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-fg/80">
             <Link
+              href="#workshops"
+              className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
+            >
+              {t("nav.workshops")}
+            </Link>
+            <Link
               href="#about"
               className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
             >
@@ -275,12 +281,12 @@ export default function Home() {
       </nav>
 
       <HeroSection t={t} terminalText={terminalText} isDark={isDark} />
-      <CallsSection t={t} isDark={isDark} />
       <AboutSection t={t} isDark={isDark} />
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
+      <TimelineSection t={t} tArray={tArray} />
+      <WorkshopsSection t={t} tArray={tArray} />
       <SponsorsSection t={t} isDark={isDark} />
       <PartnersSection t={t} />
-      <TimelineSection t={t} tArray={tArray} />
       <GallerySection t={t} isDark={isDark} />
       <FAQSection t={t} tArray={tArray} />
 

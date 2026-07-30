@@ -7,6 +7,7 @@
   "nav": {
     "about": "About",
     "tracks": "Tracks",
+    "workshops": "Workshops",
     "timeline": "Timeline",
     "sponsors": "Sponsors",
     "support": "Support",
@@ -108,6 +109,108 @@
         "desc": "Talk series, mentoring sessions and official close of the event season."
       }
     ]
+  },
+  "workshops": {
+    "title": "Workshops",
+    "accent": "Sessions",
+    "description": "Pre-event and during-hackathon sessions to dive deeper into key topics and prepare teams for the competition.",
+    "columns": {
+      "mod": "Mod",
+      "date": "Date",
+      "time": "Time",
+      "topic": "Workshop",
+      "speaker": "Speaker"
+    },
+    "speakerTbaLabel": "TBA",
+    "items": [
+      {
+        "workshop": "KickOff",
+        "day": "Friday",
+        "date": "31/07/2026",
+        "time": "16:00",
+        "speaker": "Javier Arteaga, Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Ethereum Lima · Q3Labs",
+        "flag": "",
+        "description": "Opening session: team introduction, agenda overview, and goal alignment.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: How to Win a Web3 Hackathon",
+        "day": "Friday",
+        "date": "01/07/2026",
+        "time": "13:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Proven strategies for building and presenting a winning hackathon project.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop: AI + Blockchain",
+        "day": "Sunday",
+        "date": "03/08/2026",
+        "time": "16:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Integrating AI with smart contracts and dApps.",
+        "accent": "#3d43e0"
+      },
+      {
+        "workshop": "Workshop: Arbitrum + Scaffolding with AIs",
+        "day": "Sunday",
+        "date": "03/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "Rapid scaffolding with AI assistance for Arbitrum Stylus.",
+        "accent": "#f18a2e"
+      },
+      {
+        "workshop": "Workshop: Ideation + Prototyping",
+        "day": "Monday",
+        "date": "04/08/2026",
+        "time": "19:00",
+        "speaker": "Eduardo",
+        "speakerInitials": "E",
+        "organization": "Zajalabs",
+        "flag": "🇵🇪",
+        "description": "Team ideation session and rapid prototyping of project proposals.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: From Tech to Product + AMA",
+        "day": "Tuesday",
+        "date": "05/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "From idea to product: lessons from taking a prototype to production.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop How to Give a Winning Pitch",
+        "day": "Thursday",
+        "date": "07/08/2026",
+        "time": "16:00",
+        "speaker": "Simoneth",
+        "speakerInitials": "S",
+        "organization": "Simoneth",
+        "flag": "🇦🇷",
+        "description": "Presentation and storytelling techniques for winning pitches.",
+        "accent": "#3d43e0"
+      }
+    ],
+    "outcomeEyebrow": "Outcome",
+    "outcomeTitle": "Go with the tools to win a hackathon",
+    "outcomeBody": "Every session is designed to give you a concrete edge: from project planning to final presentation. Walk away with a clear roadmap, a formed team, and the confidence to scale your idea."
   },
   "login": {
     "title_build": "Build the",

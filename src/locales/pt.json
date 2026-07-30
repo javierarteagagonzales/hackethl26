@@ -7,6 +7,7 @@
   "nav": {
     "about": "Sobre",
     "tracks": "Tracks",
+    "workshops": "Workshops",
     "timeline": "Cronograma",
     "sponsors": "Sponsors",
     "support": "Suporte",
@@ -108,6 +109,108 @@
         "desc": "Séries de palestras, sessões de mentoria e encerramento oficial da temporada de eventos."
       }
     ]
+  },
+  "workshops": {
+    "title": "Workshops",
+    "accent": "Sessões",
+    "description": "Sessões pré-evento e durante a hackathon para aprofundar temas-chave e preparar equipes para a competição.",
+    "columns": {
+      "mod": "Mod",
+      "date": "Data",
+      "time": "Horário",
+      "topic": "Workshop",
+      "speaker": "Palestrante"
+    },
+    "speakerTbaLabel": "A confirmar",
+    "items": [
+      {
+        "workshop": "KickOff",
+        "day": "Sexta",
+        "date": "31/07/2026",
+        "time": "16:00",
+        "speaker": "Javier Arteaga, Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Ethereum Lima · Q3Labs",
+        "flag": "",
+        "description": "Sessão de abertura: apresentação da equipe organizadora e alinhamento de objetivos.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: Como Ganar um Hackathon Web3",
+        "day": "Sexta",
+        "date": "01/07/2026",
+        "time": "13:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Estratégias comprovadas para construir e apresentar um projeto vencedor de hackathon.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop: IA + Blockchain",
+        "day": "Domingo",
+        "date": "03/08/2026",
+        "time": "13:00",
+        "speaker": "Ian Clavely",
+        "speakerInitials": "IC",
+        "organization": "Ian Clavely",
+        "flag": "🇲🇽",
+        "description": "Como integrar inteligência artificial com contratos inteligentes e dApps.",
+        "accent": "#3d43e0"
+      },
+      {
+        "workshop": "Workshop: Arbitrum + Scaffolding com IAs",
+        "day": "Domingo",
+        "date": "03/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "Scaffolding rápido com assistência de IA especializada em Arbitrum Stylus.",
+        "accent": "#f18a2e"
+      },
+      {
+        "workshop": "Workshop: Ideação + Prototipagem",
+        "day": "Segunda",
+        "date": "04/08/2026",
+        "time": "19:00",
+        "speaker": "Eduardo",
+        "speakerInitials": "E",
+        "organization": "Zajalabs",
+        "flag": "🇵🇪",
+        "description": "Sessão de ideação em equipe e prototipagem rápida de propostas de projeto.",
+        "accent": "#e64a30"
+      },
+      {
+        "workshop": "Workshop: Do Técnico ao Produto + AMA",
+        "day": "Terça",
+        "date": "05/08/2026",
+        "time": "16:00",
+        "speaker": "Javier Nadai",
+        "speakerInitials": "JN",
+        "organization": "Q3Labs",
+        "flag": "🇪🇸",
+        "description": "Da ideia ao produto: lições sobre levar um protótipo para produção.",
+        "accent": "#3dbed5"
+      },
+      {
+        "workshop": "Workshop Como Dar um Pitch Vencedor",
+        "day": "Quinta",
+        "date": "07/08/2026",
+        "time": "16:00",
+        "speaker": "Simoneth",
+        "speakerInitials": "S",
+        "organization": "Simoneth",
+        "flag": "🇦🇷",
+        "description": "Técnicas de apresentação e storytelling para pitches vencedores.",
+        "accent": "#3d43e0"
+      }
+    ],
+    "outcomeEyebrow": "Resultado",
+    "outcomeTitle": "Vá com as ferramentas para ganhar um hackathon",
+    "outcomeBody": "Cada sessão foi criada para dar a você uma vantagem concreta: do planejamento do projeto à apresentação final. Saia com um roadmap claro, uma equipe formada e a confiança de saber como escalar sua ideia."
   },
   "login": {
     "title_build": "Construa o",
