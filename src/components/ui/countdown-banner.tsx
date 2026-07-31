@@ -10,48 +10,30 @@ interface TimeLeft {
   seconds: number;
 }
 
-const TARGET_DATE = new Date("2026-07-31T09:00:00").getTime();
+const TARGET_DATE = new Date("2026-08-03T23:59:00").getTime();
+
+function calc(): TimeLeft | null {
+  const distance = TARGET_DATE - Date.now();
+  if (distance <= 0) return null;
+  return {
+    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+  };
+}
 
 export function CountdownBanner() {
   const { t } = useTranslation();
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(calc);
 
   useEffect(() => {
-    const calc = () => {
-      const distance = TARGET_DATE - Date.now();
-      if (distance <= 0) {
-        setVisible(false);
-        return null;
-      }
-      return {
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      };
-    };
-
-    const initial = calc();
-    if (initial) {
-      setTimeLeft(initial);
-      setVisible(true);
-    }
-
-    const interval = setInterval(() => {
-      const result = calc();
-      if (result) {
-        setTimeLeft(result);
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-
+    const interval = setInterval(() => setTimeLeft(calc()), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  if (!visible || !timeLeft) return null;
-
+  if (!timeLeft) return null;
+  const tl = timeLeft;
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
@@ -81,13 +63,12 @@ export function CountdownBanner() {
         }}
       >
         {/* Slogan */}
-        <span style={{ whiteSpace: "nowrap" }}>
-          {t("countdown.slogan")}
-        </span>
+        <span style={{ whiteSpace: "nowrap" }}>{t("countdown.slogan")}</span>
 
         {/* Timer blocks */}
         <div
           className="countdown-timer-wrapper"
+          suppressHydrationWarning
           style={{
             display: "flex",
             gap: "8px",
@@ -96,10 +77,10 @@ export function CountdownBanner() {
           }}
         >
           {[
-            { value: pad(timeLeft.days), label: t("countdown.days") },
-            { value: pad(timeLeft.hours), label: t("countdown.hours") },
-            { value: pad(timeLeft.minutes), label: t("countdown.minutes") },
-            { value: pad(timeLeft.seconds), label: t("countdown.seconds") },
+            { value: pad(tl.days), label: t("countdown.days") },
+            { value: pad(tl.hours), label: t("countdown.hours") },
+            { value: pad(tl.minutes), label: t("countdown.minutes") },
+            { value: pad(tl.seconds), label: t("countdown.seconds") },
           ].map(({ value, label }) => (
             <div
               key={label}
@@ -117,7 +98,6 @@ export function CountdownBanner() {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
