@@ -1,12 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Terminal } from "lucide-react";
 import { DiscordModal } from "@/components/ui/discord-modal";
 
-export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => string, terminalText: string, isDark: boolean }) {
+const REGISTRATION_DEADLINE = new Date("2026-08-03T23:59:00").getTime();
+
+export function HeroSection({
+  t,
+  terminalText,
+  isDark,
+}: {
+  t: (key: string) => string;
+  terminalText: string;
+  isDark: boolean;
+}) {
   const [discordOpen, setDiscordOpen] = useState(false);
+  const [registrationsClosed, setRegistrationsClosed] = useState(
+    () => Date.now() >= REGISTRATION_DEADLINE
+  );
+
+  useEffect(() => {
+    if (registrationsClosed) return;
+    const interval = setInterval(() => {
+      if (Date.now() >= REGISTRATION_DEADLINE) {
+        setRegistrationsClosed(true);
+        clearInterval(interval);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [registrationsClosed]);
 
   return (
     <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 z-10">
@@ -25,13 +49,18 @@ export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => s
               {t("hero.badge")}
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-fg/60 font-mono text-xs sm:text-sm uppercase tracking-widest">
-              <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-brand-accent" /> {t("hero.date")}</div>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-brand-accent" /> {t("hero.date")}
+              </div>
               <div className="flex items-center gap-2">🌍 {t("hero.hybrid")}</div>
             </div>
           </div>
 
           {/* Plus Jakarta Sans Heading with letter-spacing & accent gradient */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 leading-none" style={{ letterSpacing: "-0.02em" }}>
+          <h1
+            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 leading-none"
+            style={{ letterSpacing: "-0.02em" }}
+          >
             <span className="text-gradient-sunset">{t("hero.title_main")}</span>{" "}
             {t("hero.title_sub")} <span className="block text-fg">2026</span>
           </h1>
@@ -82,7 +111,8 @@ export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => s
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl border border-brand-accent/30"
                 style={{
-                  background: "linear-gradient(135deg, rgba(230,74,48,0.12) 0%, rgba(61,190,213,0.10) 100%)",
+                  background:
+                    "linear-gradient(135deg, rgba(230,74,48,0.12) 0%, rgba(61,190,213,0.10) 100%)",
                   color: "inherit",
                   backdropFilter: "blur(12px)",
                 }}
@@ -92,29 +122,66 @@ export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => s
               </a>
 
               {/* Apply CTA */}
-              <a
-                id="hero-apply-btn"
-                href="https://platform.ethlima.org/apply"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl"
-                style={{
-                  background: "linear-gradient(135deg, #EA5B3D 0%, #3DBED5 100%)",
-                  color: "#fff",
-                  boxShadow: "0 4px 28px rgba(234,91,61,0.4)",
-                }}
-              >
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-                <span>{t("hero.apply_btn")}</span>
-              </a>
+              {registrationsClosed ? (
+                <button
+                  id="hero-apply-btn"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg cursor-not-allowed opacity-70"
+                  style={{
+                    background: "#6b7280",
+                    color: "#fff",
+                    boxShadow: "none",
+                  }}
+                >
+                  <svg
+                    className="w-5 h-5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                  <span>{t("hero.apply_btn")}</span>
+                </button>
+              ) : (
+                <a
+                  id="hero-apply-btn"
+                  href="https://platform.ethlima.org/apply"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl"
+                  style={{
+                    background: "linear-gradient(135deg, #EA5B3D 0%, #3DBED5 100%)",
+                    color: "#fff",
+                    boxShadow: "0 4px 28px rgba(234,91,61,0.4)",
+                  }}
+                >
+                  <svg
+                    className="w-5 h-5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                  <span>{t("hero.apply_btn")}</span>
+                </a>
+              )}
             </div>
 
             {/* Luma subtle note */}
-            <p className="text-fg/40 text-xs font-mono tracking-wider">
-              {t("hero.luma_note")}
-            </p>
+            <p className="text-fg/40 text-xs font-mono tracking-wider">{t("hero.luma_note")}</p>
           </motion.div>
 
           {/* Premium Glassmorphic Terminal Window */}
@@ -123,7 +190,9 @@ export function HeroSection({ t, terminalText, isDark }: { t: (key: string) => s
               <div className="w-3 h-3 rounded-full bg-coral opacity-80"></div>
               <div className="w-3 h-3 rounded-full bg-orange opacity-80"></div>
               <div className="w-3 h-3 rounded-full bg-teal opacity-80"></div>
-              <div className="ml-2 flex items-center text-fg/50 text-xs font-mono"><Terminal className="w-3 h-3 mr-1" /> {t("hero.terminal_title")}</div>
+              <div className="ml-2 flex items-center text-fg/50 text-xs font-mono">
+                <Terminal className="w-3 h-3 mr-1" /> {t("hero.terminal_title")}
+              </div>
             </div>
             <div className="p-6 font-mono text-sm md:text-base text-brand-accent whitespace-pre-wrap min-h-[160px]">
               {terminalText}
