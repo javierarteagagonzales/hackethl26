@@ -31,7 +31,6 @@ import { WorkshopsSection } from "@/components/sections/WorkshopsSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
-import { GallerySection } from "@/components/sections/GallerySection";
 import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function Home() {
@@ -279,7 +278,6 @@ export default function Home() {
       <WorkshopsSection t={t} tArray={tArray} />
       <SponsorsSection t={t} isDark={isDark} />
       <PartnersSection t={t} />
-      <GallerySection t={t} isDark={isDark} />
       <FAQSection t={t} tArray={tArray} />
 
       {/* Footer */}
