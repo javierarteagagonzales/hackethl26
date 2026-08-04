@@ -231,12 +231,14 @@ export default function Home() {
             >
               {t("nav.sponsors")}
             </Link>
-            <Link
-              href="/demoday"
+            <a
+              href="https://luma.com/modcxwyr"
+              target="_blank"
+              rel="noopener noreferrer"
               className="nav-link-premium text-brand-accent hover:text-brand-accent/80 font-mono uppercase tracking-wider text-xs transition-colors"
             >
               {t("demoday.nav_link")}
-            </Link>
+            </a>
             <Link
               href="/2025"
               className="nav-link-premium text-fg/80 hover:text-fg font-mono uppercase tracking-wider text-xs transition-colors"
@@ -291,12 +293,14 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-6 flex-wrap justify-center md:justify-end">
-            <Link
-              href="/demoday"
+            <a
+              href="https://luma.com/modcxwyr"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-fg/50 hover:text-brand-accent text-sm transition-colors flex items-center font-semibold"
             >
               <Zap className="w-4 h-4 mr-1 text-brand-accent" /> {t("demoday.nav_link")}
-            </Link>
+            </a>
             <Link
               href="/terms"
               className="text-fg/50 hover:text-fg text-sm transition-colors flex items-center"
