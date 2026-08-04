@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local SVG sponsor logos kept as <img> per perf decision (no remote optimization) */
 
 import { motion } from "framer-motion";
-import { Trophy, Users, ArrowRight } from "lucide-react";
+import { Trophy } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
@@ -161,32 +161,56 @@ export function TracksSection({
         </div>
 
         {arbitrumTrack && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+          <div className="flex justify-center mb-16">
             <motion.div
-              key="mentor_judge"
-              initial={{ opacity: 0, y: 20 }}
+              key={arbitrumTrack.id}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="glass-card p-6 flex flex-col items-center text-center group relative"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full max-w-5xl"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/5 rounded-full blur-3xl -mr-8 -mt-8 group-hover:bg-brand-accent/10 transition-colors"></div>
+              <Link
+                href={`/tracks/${arbitrumTrack.title.toLowerCase().split(" ")[0]}-track`}
+                className="glass-card group relative h-full overflow-hidden flex flex-col hover:border-brand-accent/40 shadow-xl block transition-all hover:-translate-y-1"
+              >
+                <div className={`h-2 w-full bg-gradient-to-r ${arbitrumTrack.color}`}></div>
+                <div className="relative p-8 md:p-14 flex-1 flex flex-col items-center text-center overflow-hidden">
+                  {/* Ambient glows */}
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none group-hover:bg-brand-accent/15 transition-colors"></div>
+                  <div className="absolute bottom-0 left-0 w-72 h-72 bg-teal/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none group-hover:bg-teal/15 transition-colors"></div>
 
-              <div className="w-12 h-12 rounded-2xl bg-surface/80 border border-border flex items-center justify-center mb-4 shadow-sm group-hover:border-brand-accent/30 group-hover:scale-110 transition-all">
-                <Users className="w-5 h-5 text-brand-accent" />
-              </div>
+                  {/* Big Arbitrum logo */}
+                  {arbitrumTrack.sponsorLogo && (
+                    <div className="relative flex items-center justify-center rounded-3xl border border-brand-accent/25 bg-brand-accent/5 px-12 py-9 mb-8 shadow-lg group-hover:border-brand-accent/40 group-hover:scale-[1.03] transition-all duration-300">
+                      <img
+                        src={arbitrumTrack.sponsorLogo}
+                        alt={arbitrumTrack.sponsor}
+                        className={`h-20 md:h-28 w-auto object-contain drop-shadow-lg transition-all duration-300 ${isDark ? "brightness-100" : "brightness-75"}`}
+                      />
+                    </div>
+                  )}
 
-              <h4 className="text-lg font-bold mb-2 text-fg">{t("calls.mentor_judge.title")}</h4>
-              <p className="text-fg/70 mb-5 font-light flex-grow leading-relaxed text-sm">
-                {t("calls.mentor_judge.description")}
-              </p>
+                  <h3 className="relative text-3xl md:text-4xl font-extrabold tracking-tight text-fg mb-4">
+                    {arbitrumTrack.title}
+                  </h3>
+                  <p className="relative text-fg/70 text-base md:text-lg max-w-2xl leading-relaxed font-light mb-9">
+                    {arbitrumTrack.description}
+                  </p>
 
-              <div className="mt-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-semibold text-brand-accent group-hover:gap-2 transition-all">
-                {t("calls.mentor_judge.cta")} <ArrowRight className="w-3 h-3" />
-              </div>
+                  <div className="relative flex items-center gap-3 bg-brand-accent/10 border border-brand-accent/25 rounded-2xl px-6 py-4 mb-9 group-hover:bg-brand-accent/15 transition-colors">
+                    <Trophy className="w-6 h-6 text-brand-accent shrink-0" />
+                    <span className="text-lg font-bold text-fg">
+                      Pozo de premios: <span className="text-brand-accent">+2000$</span>
+                    </span>
+                  </div>
+
+                  <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold font-mono uppercase tracking-wider text-brand-accent bg-brand-accent/10 border border-brand-accent/25 px-5 py-2.5 rounded-full group-hover:bg-brand-accent/20 transition-colors">
+                    {t("tracks.view_more")} →
+                  </span>
+                </div>
+              </Link>
             </motion.div>
-
-            {renderTrackCard(arbitrumTrack, 0)}
           </div>
         )}
 
