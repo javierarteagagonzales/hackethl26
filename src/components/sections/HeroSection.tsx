@@ -42,10 +42,6 @@ export function HeroSection({
         >
           {/* Coming Soon Badge with Live Dot */}
           <div className="flex flex-col items-center gap-3 mb-8">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-accent/30 bg-brand-accent/5 text-fg font-semibold text-sm shadow-md font-mono">
-              <div className="live-dot" />
-              {t("hero.badge")}
-            </div>
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-fg/60 font-mono text-xs sm:text-sm uppercase tracking-widest">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-brand-accent" /> {t("hero.date")}
