@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
 
@@ -65,8 +66,6 @@ async function main() {
     },
   });
 
-
-
   // Clear existing tracks to prevent duplicates
   await prisma.prize.deleteMany();
   await prisma.category.deleteMany();
@@ -83,18 +82,14 @@ async function main() {
         create: [
           { name: "DeFi e Infraestructura Financiera" },
           { name: "IA y Tecnologías Emergentes" },
-          { name: "Aplicaciones Descentralizadas (dApps)" }
-        ]
+          { name: "Aplicaciones Descentralizadas (dApps)" },
+        ],
       },
       prizes: {
-        create: [
-          { name: "Arbitrum Bounty", amount: "$2,000+" }
-        ]
-      }
-    }
+        create: [{ name: "Arbitrum Bounty", amount: "$2,000+" }],
+      },
+    },
   });
-
-
 
   console.log("Seed data created successfully!");
 }

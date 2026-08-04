@@ -4,23 +4,22 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
 
+const statuses = [
+  "INITIALIZING ETH LIMA NODE...",
+  "ESTABLISHING PEER CONNECTIONS...",
+  "SYNCING SMART CONTRACT STATE...",
+  "GENERATING CRYPTOGRAPHIC PROOFS...",
+  "ACCESS GRANTED. ENJOY HACKETHL26!",
+];
+
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
   const [statusIndex, setStatusIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
-  const statuses = [
-    "INITIALIZING ETH LIMA NODE...",
-    "ESTABLISHING PEER CONNECTIONS...",
-    "SYNCING SMART CONTRACT STATE...",
-    "GENERATING CRYPTOGRAPHIC PROOFS...",
-    "ACCESS GRANTED. ENJOY HACKETHL26!",
-  ];
-
   useEffect(() => {
     // Mobile/tablet fast bypass
     if (typeof window !== "undefined" && window.innerWidth < 1024) {
-      setProgress(100);
       onComplete();
       return;
     }
@@ -47,6 +46,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       clearInterval(progressInterval);
       clearInterval(statusInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount; onComplete/statuses are stable
   }, []);
 
   useEffect(() => {
@@ -68,11 +68,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         <motion.div
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-bg overflow-hidden select-none"
           initial={{ opacity: 1 }}
-          exit={{ 
+          exit={{
             opacity: 0,
             scale: 1.1,
             filter: "blur(10px)",
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
           }}
         >
           {/* Cyberpunk network particles */}
@@ -103,13 +103,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
           {/* Central Logo Container */}
           <div className="relative flex flex-col items-center justify-center p-4">
-            
             {/* Spinning geometric structure surrounding logo (Ethereum shape inspired) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <motion.div
                 className="w-48 h-48 sm:w-72 sm:h-72 opacity-30"
                 style={{
-                  background: "radial-gradient(circle, rgba(61,190,213,0.15) 0%, transparent 70%)"
+                  background: "radial-gradient(circle, rgba(61,190,213,0.15) 0%, transparent 70%)",
                 }}
                 animate={{
                   scale: [1, 1.15, 1],
@@ -118,10 +117,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
-              
+
               {/* Pulsing Outer Rings */}
               <svg className="w-56 h-56 sm:w-80 sm:h-80 absolute" viewBox="0 0 100 100">
                 <motion.circle
@@ -146,7 +145,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                   animate={{ rotate: -360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 />
-                
+
                 <defs>
                   <linearGradient id="eth-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#e64a30" />
@@ -164,14 +163,14 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             {/* Logo Wrapper with Spectacular Scale & Rotation */}
             <motion.div
               initial={{ scale: 0.1, opacity: 0, rotate: -45 }}
-              animate={{ 
-                scale: [0.1, 1.15, 1], 
-                opacity: 1, 
+              animate={{
+                scale: [0.1, 1.15, 1],
+                opacity: 1,
                 rotate: 0,
               }}
               transition={{
                 duration: 1.8,
-                ease: [0.34, 1.56, 0.64, 1] // Spring effect
+                ease: [0.34, 1.56, 0.64, 1], // Spring effect
               }}
               className="relative w-32 h-32 sm:w-48 sm:h-48 flex items-center justify-center z-10"
             >
@@ -185,7 +184,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
               {/* Spectacular Shine Effect Swipe */}
               <div className="absolute inset-0 w-full h-full overflow-hidden rounded-full pointer-events-none z-20">
-                <motion.div 
+                <motion.div
                   className="absolute w-[200%] h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-12 top-0"
                   animate={{
                     left: ["-150%", "150%"],
@@ -194,7 +193,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                     duration: 2.2,
                     repeat: Infinity,
                     repeatDelay: 1,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 />
               </div>
@@ -212,7 +211,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               transition={{ duration: 0.3 }}
               className="text-xs sm:text-sm font-mono tracking-[0.2em] font-semibold text-fg/80 mb-4 h-6 uppercase"
               style={{
-                textShadow: "0 0 10px rgba(61,190,213,0.3)"
+                textShadow: "0 0 10px rgba(61,190,213,0.3)",
               }}
             >
               {statuses[statusIndex]}
@@ -227,7 +226,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               />
               {/* Glowing leading dot on progress bar */}
               {progress > 0 && progress < 100 && (
-                <div 
+                <div
                   className="absolute top-0 w-4 h-full bg-cyan blur-sm"
                   style={{ left: `calc(${progress}% - 8px)` }}
                 />
@@ -237,7 +236,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             {/* Percentage Display */}
             <div className="flex justify-between items-center w-full font-mono text-[10px] uppercase text-fg/40 tracking-widest font-bold">
               <span>HACKETHL26 MAINNET</span>
-              <motion.span 
+              <motion.span
                 className="text-cyan font-bold"
                 animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 1.5, repeat: Infinity }}

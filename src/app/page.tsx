@@ -37,8 +37,6 @@ export default function Home() {
   const { t, tArray } = useTranslation();
   const { resolvedTheme } = useTheme();
   const [terminalText, setTerminalText] = useState("");
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [isMounted, setIsMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tracks, setTracks] = useState<Track[]>(MOCK_TRACKS);
   const [isMobile, setIsMobile] = useState(false);
@@ -52,8 +50,6 @@ export default function Home() {
     "> npm run build --hackathon=EthLima2026\n\n> Initializing Web3 nodes...\n> Deploying smart contracts...\n> Building future...\n\n✔ ETH Lima Hackathon compiled successfully.\n> System Ready.";
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only init, runs once
-    setIsMounted(true);
     let i = 0;
     let erasing = false;
     let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -76,26 +72,9 @@ export default function Home() {
         }
       }, 40);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only init, runs once
       setTerminalText(codeSnippet);
     }
-
-    const targetDate = new Date("2026-05-30T00:00:00").getTime();
-    const countdownInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
-    }, 1000);
 
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
@@ -157,7 +136,6 @@ export default function Home() {
 
     return () => {
       if (terminalInterval) clearInterval(terminalInterval);
-      clearInterval(countdownInterval);
       if (pauseTimeout) clearTimeout(pauseTimeout);
       window.removeEventListener("scroll", handleScroll);
     };
@@ -274,7 +252,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <HeroSection t={t} terminalText={terminalText} isDark={isDark} />
+      <HeroSection t={t} terminalText={terminalText} />
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <TimelineSection t={t} tArray={tArray} />
       <WorkshopsSection t={t} tArray={tArray} />
@@ -340,13 +318,31 @@ export default function Home() {
               <HelpCircle className="w-4 h-4 mr-1 text-brand-accent" /> {t("nav.support")}:
               @javierdgtl
             </a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+            <a
+              href="https://x.com/eth_lima"
+              target="_blank"
+              rel="noreferrer"
+              className="text-fg/50 hover:text-fg transition-colors"
+              aria-label="X (Twitter)"
+            >
               <Globe className="w-5 h-5" />
             </a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+            <a
+              href="https://github.com/ethlima"
+              target="_blank"
+              rel="noreferrer"
+              className="text-fg/50 hover:text-fg transition-colors"
+              aria-label="GitHub"
+            >
               <GitBranch className="w-5 h-5" />
             </a>
-            <a href="#" className="text-fg/50 hover:text-fg transition-colors">
+            <a
+              href="https://discord.gg/vBBebr5vE"
+              target="_blank"
+              rel="noreferrer"
+              className="text-fg/50 hover:text-fg transition-colors"
+              aria-label="Discord"
+            >
               <MessageSquare className="w-5 h-5" />
             </a>
           </div>
@@ -360,6 +356,7 @@ export default function Home() {
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-brand-accent text-bg shadow-lg hover:opacity-95 transition-all cursor-pointer pointer-events-auto border border-brand-accent/20"
         style={{ pointerEvents: showBackToTop ? "auto" : "none" }}
+        aria-label="Volver arriba"
       >
         <ArrowUp className="w-6 h-6" />
       </motion.button>

@@ -13,9 +13,12 @@ interface DiscordModalProps {
 
 export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -24,6 +27,7 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      previouslyFocused?.focus();
     };
   }, [open, onClose]);
 
@@ -43,6 +47,9 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
         >
           <motion.div
             id="discord-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="discord-modal-title"
             initial={{ opacity: 0, scale: 0.93, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.93, y: 24 }}
@@ -56,9 +63,10 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
             {/* Close button */}
             <button
               id="discord-modal-close"
+              ref={closeButtonRef}
               onClick={onClose}
               className="absolute top-4 right-4 z-10 p-1.5 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
-              aria-label="Cerrar"
+              aria-label={t("discord_modal.close")}
             >
               <X className="w-5 h-5" />
             </button>
@@ -83,7 +91,9 @@ export function DiscordModal({ open, onClose, t }: DiscordModalProps) {
               >
                 {t("discord_modal.badge")}
               </div>
-              <h2 className="text-xl font-extrabold text-white mb-1">{t("discord_modal.title")}</h2>
+              <h2 id="discord-modal-title" className="text-xl font-extrabold text-white mb-1">
+                {t("discord_modal.title")}
+              </h2>
               <p className="text-sm text-white/50">{t("discord_modal.subtitle")}</p>
             </div>
 

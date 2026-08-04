@@ -76,7 +76,6 @@ export function TrackDetailClient({ trackDetails }: { trackDetails: any }) {
   const infoRequirements = tArray(`${infoPath}.requirements`);
   const infoCriteriaTitle = t(`${infoPath}.criteria_title`);
   const infoCriteria = tArray(`${infoPath}.criteria`);
-  const infoRulesTitle = t(`${infoPath}.rules_title`);
   const infoRules = t(`${infoPath}.rules`);
 
   const timelineItems = tArray("timeline.items");

@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getProjectsForJudging() {
   const session = await getServerSession(authOptions);
-  if (!session?.user || (session.user as any).role !== "JUDGE" && (session.user as any).role !== "ADMIN") {
+  if (!session?.user || (session.user.role !== "JUDGE" && session.user.role !== "ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -17,18 +17,18 @@ export async function getProjectsForJudging() {
         team: {
           include: {
             members: {
-              select: { name: true }
-            }
-          }
+              select: { name: true },
+            },
+          },
         },
         track: true,
         evaluations: {
-          where: { judgeId: session.user.id }
-        }
+          where: { judgeId: session.user.id },
+        },
       },
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
     });
     return { success: true, projects };
   } catch (error) {
@@ -39,7 +39,7 @@ export async function getProjectsForJudging() {
 
 export async function submitEvaluation(formData: FormData) {
   const session = await getServerSession(authOptions);
-  if (!session?.user || (session.user as any).role !== "JUDGE" && (session.user as any).role !== "ADMIN") {
+  if (!session?.user || (session.user.role !== "JUDGE" && session.user.role !== "ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -54,9 +54,9 @@ export async function submitEvaluation(formData: FormData) {
   try {
     const evaluation = await prisma.evaluation.upsert({
       where: {
-        id: formData.get("evaluationId") as string || "new-eval", // This might need a composite unique key in schema to be cleaner, but using upsert with id for now
+        id: (formData.get("evaluationId") as string) || "new-eval", // This might need a composite unique key in schema to be cleaner, but using upsert with id for now
       },
-      // Actually, looking at schema, Evaluation doesn't have a composite unique key for [judgeId, projectId]. 
+      // Actually, looking at schema, Evaluation doesn't have a composite unique key for [judgeId, projectId].
       // I should probably add one or handle it manually.
       // Let's check schema again.
       update: {
@@ -104,8 +104,8 @@ export async function submitOrUpdateEvaluation(data: {
     const existingEval = await prisma.evaluation.findFirst({
       where: {
         judgeId: session.user.id,
-        projectId: data.projectId
-      }
+        projectId: data.projectId,
+      },
     });
 
     if (existingEval) {
@@ -118,20 +118,20 @@ export async function submitOrUpdateEvaluation(data: {
           useOfArbitrum: data.useOfArbitrum,
           impact: data.impact,
           comments: data.comments,
-        }
+        },
       });
     } else {
       await prisma.evaluation.create({
         data: {
           ...data,
           judgeId: session.user.id,
-        }
+        },
       });
     }
 
     revalidatePath("/judge");
     return { success: true };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Error saving evaluation." };
   }
 }

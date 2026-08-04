@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LOGO_SRC } from "@/lib/asset-path";
@@ -6,6 +6,14 @@ import { AuthProvider } from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
 import { CountdownBanner } from "@/components/ui/countdown-banner";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_IMAGE,
+  TWITTER_HANDLE,
+} from "@/lib/site";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -17,14 +25,68 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#111111",
+  width: "device-width",
+  initialScale: 1,
+};
+
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "ETH Lima Hackathon 2026",
+  description: SITE_DESCRIPTION,
+  startDate: "2026-07-31T00:00:00-05:00",
+  endDate: "2026-08-12T23:59:00-05:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+  location: [
+    {
+      "@type": "Place",
+      name: "Lima, Peru",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lima",
+        addressCountry: "PE",
+      },
+    },
+    {
+      "@type": "VirtualLocation",
+      url: SITE_URL,
+    },
+  ],
+  image: [SITE_IMAGE],
+  organizer: {
+    "@type": "Organization",
+    name: "Ethereum Lima",
+    url: SITE_URL,
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    url: `${SITE_URL}/register`,
+    availability: "https://schema.org/InStock",
+  },
+  sameAs: ["https://x.com/eth_lima"],
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+  inLanguage: ["en", "es", "pt"],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hackathon.ethlima.org"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
+    default: SITE_TITLE,
     template: "%s | ETH Lima Hackathon 2026",
   },
-  description:
-    "The premier Web3 hybrid hackathon in Latin America. July 2026, Lima & Virtual. $15,000+ in prizes, expert mentorship, and global networking.",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
     "Ethereum",
     "Hackathon",
@@ -39,7 +101,7 @@ export const metadata: Metadata = {
     "Smart Contracts",
     "Web3 Latam",
   ],
-  authors: [{ name: "ETH Lima Team", url: "https://hackathon.ethlima.org" }],
+  authors: [{ name: "ETH Lima Team", url: SITE_URL }],
   creator: "ETH Lima",
   publisher: "ETH Lima",
   category: "technology",
@@ -52,33 +114,30 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "ETH Lima Hackathon 2026",
-    description:
-      "Build the future of Web3 at the premier hybrid hackathon in Latin America. Join us in Lima or virtually.",
-    url: "https://hackathon.ethlima.org",
-    siteName: "ETH Lima Hackathon",
+    type: "website",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "es_PE",
+    alternateLocale: ["en_US", "pt_BR"],
     images: [
       {
-        url: "/portada.webp",
+        url: SITE_IMAGE,
         width: 1483,
         height: 834,
         alt: "ETH Lima Hackathon 2026 — Build the Decentralized Future",
         type: "image/webp",
       },
     ],
-    locale: "es_PE",
-    alternateLocale: ["en_US", "pt_BR"],
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ETH Lima Hackathon 2026",
-    description: "Build the future of Web3 at the premier hybrid hackathon in Latin America.",
-    creator: "@ETHLima",
-    images: {
-      url: "/portada.webp",
-      alt: "ETH Lima Hackathon 2026 Hero Image",
-    },
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    site: TWITTER_HANDLE,
+    creator: TWITTER_HANDLE,
+    images: [SITE_IMAGE],
   },
   icons: {
     icon: "/assets/favicon.png",
@@ -110,6 +169,14 @@ export default function RootLayout({
     >
       <head>
         <link rel="preload" as="image" href={LOGO_SRC} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <ThemeProvider>

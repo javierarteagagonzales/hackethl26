@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { Role } from "@prisma/client";
 
 export async function getApplicants() {
   try {
@@ -20,7 +19,10 @@ export async function getApplicants() {
   }
 }
 
-export async function updateParticipantStatus(id: string, status: "APPROVED" | "REJECTED" | "PENDING") {
+export async function updateParticipantStatus(
+  id: string,
+  status: "APPROVED" | "REJECTED" | "PENDING"
+) {
   try {
     await prisma.user.update({
       where: { id },
@@ -40,14 +42,14 @@ export async function getProjects() {
         team: {
           include: {
             members: {
-              select: { name: true, email: true }
-            }
-          }
-        }
+              select: { name: true, email: true },
+            },
+          },
+        },
       },
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
     });
     return { success: true, projects };
   } catch (error) {
@@ -72,9 +74,9 @@ export async function getStats() {
         approvedUsers,
         totalTeams,
         totalProjects,
-      }
+      },
     };
-  } catch (error) {
+  } catch {
     return { success: false };
   }
 }

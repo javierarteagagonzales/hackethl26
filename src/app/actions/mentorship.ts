@@ -12,7 +12,7 @@ export async function requestMentorship(data: { scheduledAt: Date; topic?: strin
   try {
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { teamId: true }
+      select: { teamId: true },
     });
 
     if (!user?.teamId) {
@@ -22,7 +22,7 @@ export async function requestMentorship(data: { scheduledAt: Date; topic?: strin
     // Find an available mentor (randomly for now or by load)
     const mentors = await prisma.user.findMany({
       where: { role: "MENTOR" },
-      select: { id: true }
+      select: { id: true },
     });
 
     if (mentors.length === 0) {
@@ -37,8 +37,8 @@ export async function requestMentorship(data: { scheduledAt: Date; topic?: strin
         topic: data.topic,
         teamId: user.teamId,
         mentorId: randomMentor.id,
-        status: "PENDING"
-      }
+        status: "PENDING",
+      },
     });
 
     revalidatePath("/dashboard");
@@ -56,7 +56,7 @@ export async function getTeamMentorships() {
   try {
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { teamId: true }
+      select: { teamId: true },
     });
 
     if (!user?.teamId) return { success: true, mentorships: [] };
@@ -65,13 +65,13 @@ export async function getTeamMentorships() {
       where: { teamId: user.teamId },
       include: {
         mentor: {
-          select: { name: true, github: true }
-        }
+          select: { name: true, github: true },
+        },
       },
-      orderBy: { scheduledAt: "asc" }
+      orderBy: { scheduledAt: "asc" },
     });
     return { success: true, mentorships };
-  } catch (error) {
+  } catch {
     return { success: false, mentorships: [] };
   }
 }
@@ -86,14 +86,15 @@ export async function getMentorships() {
       include: {
         team: {
           include: {
-            members: { select: { name: true } }
-          }
-        }
+            members: { select: { id: true, name: true } },
+            project: { select: { id: true } },
+          },
+        },
       },
-      orderBy: { scheduledAt: "asc" }
+      orderBy: { scheduledAt: "asc" },
     });
     return { success: true, mentorships };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Database error", mentorships: [] };
   }
 }
@@ -102,12 +103,12 @@ export async function updateMentorshipStatus(id: string, status: string) {
   try {
     await prisma.mentorship.update({
       where: { id },
-      data: { status }
+      data: { status },
     });
     revalidatePath("/mentor");
     revalidatePath("/dashboard");
     return { success: true, error: null };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Failed to update status" };
   }
 }

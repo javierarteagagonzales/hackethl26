@@ -4,10 +4,11 @@ Allow: /
 Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /judge/
+Disallow: /mentor/
 Disallow: /api/
 
 # Host
-Host: https://ethlima.com
+Host: https://hackathon.ethlima.org
 
 # Sitemaps
-Sitemap: https://ethlima.com/sitemap.xml
+Sitemap: https://hackathon.ethlima.org/sitemap.xml

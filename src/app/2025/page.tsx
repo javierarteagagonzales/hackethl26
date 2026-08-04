@@ -240,11 +240,13 @@ export default function Edition2025Page() {
 
           <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl bg-surface/50 group">
             {!isVideoPlaying ? (
-              <div
+              <button
+                type="button"
                 className="absolute inset-0 cursor-pointer"
                 onClick={() => setIsVideoPlaying(true)}
+                aria-label={t("edition2025.play_recap")}
               >
-                { }
+                {}
                 <Image
                   src="https://img.youtube.com/vi/f28SB4dbVq0/maxresdefault.jpg"
                   alt="ETH Lima 2025 Recap Video Thumbnail"
@@ -262,11 +264,12 @@ export default function Edition2025Page() {
                     }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.4)]"
+                    aria-hidden="true"
                   >
                     <Play className="w-8 h-8 text-black ml-1 fill-black" />
                   </motion.div>
                 </div>
-              </div>
+              </button>
             ) : (
               <iframe
                 width="100%"
@@ -504,10 +507,12 @@ export default function Edition2025Page() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-              <div
+              <button
                 key={i}
+                type="button"
                 className="aspect-[4/3] bg-surface border border-border rounded-xl overflow-hidden flex items-center justify-center group relative cursor-pointer"
                 onClick={() => setSelectedImage(i)}
+                aria-label={`${t("edition2025.gallery_title")} - Foto ${i}`}
               >
                 <Image
                   src={`/2025/fotos/foto${i}.webp`}
@@ -516,8 +521,11 @@ export default function Edition2025Page() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+                <div
+                  className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
+                ></div>
+              </button>
             ))}
           </div>
         </motion.div>
@@ -526,6 +534,9 @@ export default function Edition2025Page() {
         <AnimatePresence>
           {selectedImage !== null && (
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${t("edition2025.gallery_title")} - Foto ${selectedImage}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -538,6 +549,7 @@ export default function Edition2025Page() {
                   setSelectedImage(null);
                 }}
                 className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+                aria-label={t("edition2025.close_gallery")}
               >
                 <X className="w-6 h-6" />
               </button>

@@ -17,7 +17,7 @@ export function InteractiveBackground() {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    let mouse = { x: null as number | null, y: null as number | null, radius: 150 };
+    const mouse = { x: null as number | null, y: null as number | null, radius: 150 };
     let scrollY = 0;
     let targetScrollY = 0;
 
@@ -27,9 +27,9 @@ export function InteractiveBackground() {
       return {
         particleColor: isDark ? "rgba(199, 247, 58, 0.4)" : "rgba(230, 74, 48, 0.3)",
         lineColor: isDark ? "rgba(61, 190, 213, 0.08)" : "rgba(11, 7, 23, 0.05)",
-        extraColors: isDark 
+        extraColors: isDark
           ? ["rgba(199, 247, 58, 0.5)", "rgba(61, 190, 213, 0.4)", "rgba(241, 138, 46, 0.3)"]
-          : ["rgba(230, 74, 48, 0.4)", "rgba(61, 190, 213, 0.3)", "rgba(44, 168, 159, 0.3)"]
+          : ["rgba(230, 74, 48, 0.4)", "rgba(61, 190, 213, 0.3)", "rgba(44, 168, 159, 0.3)"],
       };
     };
 
@@ -55,7 +55,8 @@ export function InteractiveBackground() {
         this.size = Math.random() * 2.5 + 1;
         this.speedX = (Math.random() - 0.5) * 0.4;
         this.speedY = (Math.random() - 0.5) * 0.4;
-        this.color = themeColors.extraColors[Math.floor(Math.random() * themeColors.extraColors.length)];
+        this.color =
+          themeColors.extraColors[Math.floor(Math.random() * themeColors.extraColors.length)];
         this.angle = Math.random() * Math.PI * 2;
         this.velocity = Math.random() * 0.02 - 0.01;
       }
@@ -63,7 +64,7 @@ export function InteractiveBackground() {
       update(w: number, h: number, currentScroll: number) {
         // Floating motion
         this.x += this.speedX;
-        this.y += this.speedY + (currentScroll * 0.05); // Responds to scrolling
+        this.y += this.speedY + currentScroll * 0.05; // Responds to scrolling
 
         // Wrap around edges
         if (this.x < 0) this.x = w;
@@ -80,8 +81,8 @@ export function InteractiveBackground() {
           if (distance < mouse.radius) {
             const force = (mouse.radius - distance) / mouse.radius;
             // Pushes particles slightly away from mouse
-            this.x -= dx / distance * force * 2;
-            this.y -= dy / distance * force * 2;
+            this.x -= (dx / distance) * force * 2;
+            this.y -= (dy / distance) * force * 2;
           }
         }
       }

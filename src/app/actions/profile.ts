@@ -46,7 +46,7 @@ export async function getProfile() {
       where: { id: session.user.id },
     });
     return { success: true, user };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Database error." };
   }
 }

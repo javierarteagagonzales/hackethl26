@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { BookOpen, FolderDot, LayoutDashboard, Target, Trophy, Clock } from "lucide-react";
+import { BookOpen, LayoutDashboard, Target, Trophy, Clock } from "lucide-react";
 import { useTranslation } from "@/components/providers/language-provider";
 import { Logo } from "@/components/ui/logo";
 
@@ -25,19 +25,26 @@ const defaultConfig: SidebarConfig = {
   rules: true,
 };
 
-export function TrackSidebar({ 
+export function TrackSidebar({
   config = defaultConfig,
   activeSection = "information",
-  onSectionChange
-}: { 
-  config?: SidebarConfig,
-  activeSection?: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules",
-  onSectionChange?: (section: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules") => void
+  onSectionChange,
+}: {
+  config?: SidebarConfig;
+  activeSection?: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules";
+  onSectionChange?: (
+    section: "formation" | "information" | "bootcamp" | "prizes" | "stages" | "rules"
+  ) => void;
 }) {
   const { t } = useTranslation();
   const activeConfig = { ...defaultConfig, ...config };
 
-  const renderLink = (active: boolean, icon: React.ReactNode, label: string, href: string = "#") => {
+  const renderLink = (
+    active: boolean,
+    icon: React.ReactNode,
+    label: string,
+    href: string = "#"
+  ) => {
     if (!active) {
       return (
         <div className="flex items-center gap-3 px-3 py-2 rounded-md text-fg/30 cursor-not-allowed">
@@ -46,7 +53,7 @@ export function TrackSidebar({
         </div>
       );
     }
-    
+
     // Determine if this section is selected based on state
     // We group track_details, prizes, and stages under "information"
     const isFormationItem = label === t("track.sidebar.formation");
@@ -55,7 +62,7 @@ export function TrackSidebar({
     const isPrizesItem = label === t("track.sidebar.prizes");
     const isStagesItem = label === t("track.sidebar.stages");
     const isRulesItem = label === t("track.sidebar.rules");
-    
+
     let isSelected = false;
     if (isFormationItem) isSelected = activeSection === "formation";
     else if (isBootcampItem) isSelected = activeSection === "bootcamp";
@@ -66,13 +73,13 @@ export function TrackSidebar({
 
     const btnClass = `flex items-center w-full gap-2 md:gap-3 px-3 py-2 text-left rounded-md transition-colors ${
       isSelected
-        ? "bg-surface text-fg font-semibold border border-border shadow-sm" 
+        ? "bg-surface text-fg font-semibold border border-border shadow-sm"
         : "text-fg/60 hover:text-fg hover:bg-surface/50"
     }`;
 
     if (onSectionChange) {
       return (
-        <button 
+        <button
           onClick={() => {
             if (isFormationItem) onSectionChange("formation");
             else if (isBootcampItem) onSectionChange("bootcamp");
@@ -114,10 +121,26 @@ export function TrackSidebar({
             <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
           </h4>
           <div className="space-y-1">
-            {renderLink(!!activeConfig.trackDetails, <LayoutDashboard className="w-4 h-4" />, t("track.sidebar.track_details"))}
-            {renderLink(!!activeConfig.prizes, <Trophy className="w-4 h-4" />, t("track.sidebar.prizes"))}
-            {renderLink(!!activeConfig.stages, <Clock className="w-4 h-4" />, t("track.sidebar.stages"))}
-            {renderLink(!!activeConfig.rules, <BookOpen className="w-4 h-4" />, t("track.sidebar.rules"))}
+            {renderLink(
+              !!activeConfig.trackDetails,
+              <LayoutDashboard className="w-4 h-4" />,
+              t("track.sidebar.track_details")
+            )}
+            {renderLink(
+              !!activeConfig.prizes,
+              <Trophy className="w-4 h-4" />,
+              t("track.sidebar.prizes")
+            )}
+            {renderLink(
+              !!activeConfig.stages,
+              <Clock className="w-4 h-4" />,
+              t("track.sidebar.stages")
+            )}
+            {renderLink(
+              !!activeConfig.rules,
+              <BookOpen className="w-4 h-4" />,
+              t("track.sidebar.rules")
+            )}
           </div>
         </div>
 
@@ -128,8 +151,16 @@ export function TrackSidebar({
             <span className="flex-1 border-t border-border/50 ml-3 border-dashed"></span>
           </h4>
           <div className="space-y-1">
-            {renderLink(!!activeConfig.formation, <BookOpen className="w-4 h-4" />, t("track.sidebar.formation"))}
-            {renderLink(!!activeConfig.bootcamp, <Target className="w-4 h-4" />, t("track.sidebar.bootcamp"))}
+            {renderLink(
+              !!activeConfig.formation,
+              <BookOpen className="w-4 h-4" />,
+              t("track.sidebar.formation")
+            )}
+            {renderLink(
+              !!activeConfig.bootcamp,
+              <Target className="w-4 h-4" />,
+              t("track.sidebar.bootcamp")
+            )}
           </div>
         </div>
       </nav>

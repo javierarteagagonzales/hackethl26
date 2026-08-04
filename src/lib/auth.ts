@@ -3,7 +3,15 @@ import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
+import { Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
+
+type AuthUser = {
+  id: string;
+  name: string | null;
+  email: string | null;
+  role: Role;
+};
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -37,10 +45,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("User not found");
         }
 
-        const isPasswordCorrect = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
 
         if (!isPasswordCorrect) {
           throw new Error("Invalid password");
@@ -54,13 +59,13 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.sub!;
-        session.user.role = token.role as any;
+        session.user.role = token.role as AuthUser["role"];
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role;
+        token.role = (user as AuthUser).role;
       }
       return token;
     },

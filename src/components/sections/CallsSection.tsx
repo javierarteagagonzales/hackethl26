@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Users, ArrowRight } from "lucide-react";
 
-export function CallsSection({ t, isDark }: { t: (key: string) => string; isDark: boolean }) {
+export function CallsSection({ t }: { t: (key: string) => string }) {
   const callsData = [
     {
       id: "mentor_judge",

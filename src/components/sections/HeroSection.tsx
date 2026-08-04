@@ -10,11 +10,9 @@ const REGISTRATION_DEADLINE = new Date("2026-08-03T23:59:00").getTime();
 export function HeroSection({
   t,
   terminalText,
-  isDark,
 }: {
   t: (key: string) => string;
   terminalText: string;
-  isDark: boolean;
 }) {
   const [discordOpen, setDiscordOpen] = useState(false);
   const [registrationsClosed, setRegistrationsClosed] = useState(

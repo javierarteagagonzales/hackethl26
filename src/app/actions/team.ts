@@ -72,12 +72,12 @@ export async function getTeams() {
     const teams = await prisma.team.findMany({
       include: {
         _count: {
-          select: { members: true }
-        }
-      }
+          select: { members: true },
+        },
+      },
     });
     return { success: true, teams };
-  } catch (error) {
+  } catch {
     return { success: false, teams: [] };
   }
 }
@@ -93,14 +93,14 @@ export async function getMyTeam() {
         team: {
           include: {
             members: {
-              select: { id: true, name: true, email: true, github: true }
-            }
-          }
-        }
-      }
+              select: { id: true, name: true, email: true, github: true },
+            },
+          },
+        },
+      },
     });
     return { success: true, team: user?.team };
-  } catch (error) {
+  } catch {
     return { success: false };
   }
 }

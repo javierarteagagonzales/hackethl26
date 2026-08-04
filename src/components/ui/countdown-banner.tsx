@@ -39,6 +39,8 @@ export function CountdownBanner() {
   return (
     <div
       id="countdown-banner"
+      role="timer"
+      aria-live="off"
       style={{
         background: "#c7f73a",
         color: "#111",
@@ -94,7 +96,7 @@ export function CountdownBanner() {
               }}
             >
               <span style={{ fontVariantNumeric: "tabular-nums" }}>{value}</span>
-              <span style={{ fontSize: "9px", opacity: 0.6 }}>{label}</span>
+              <span style={{ fontSize: "9px", opacity: 0.85 }}>{label}</span>
             </div>
           ))}
         </div>

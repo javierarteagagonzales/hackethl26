@@ -20,6 +20,7 @@ export function SponsorsSection({ t, isDark }: { t: (key: string) => string; isD
 
         <div className="flex justify-center items-center py-6">
           <div className="h-20 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static local SVG, no remote optimization needed */}
             <img
               src="/assets/sponsors/arbitrum-logo.svg"
               alt="Arbitrum"

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local SVG sponsor logos kept as <img> per perf decision (no remote optimization) */
+
 import { motion } from "framer-motion";
 import { Trophy, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";

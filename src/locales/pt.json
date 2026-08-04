@@ -317,7 +317,8 @@
     "channel_label": "Canal oficial",
     "channel_name": "#🚀-hackathon-2026",
     "instruction": "Encontre este canal no servidor e siga as instruções.",
-    "cta": "Entrar no Discord"
+    "cta": "Entrar no Discord",
+    "close": "Fechar"
   },
   "calls": {
     "title": "Convocatórias",
@@ -356,6 +357,8 @@
     "taikai_url": "https://taikai.network/en/ethereum-lima/hackathons/hackathon-eth-",
     "gallery_title": "Galeria 2025",
     "gallery_desc": "Reviva os melhores momentos do evento.",
+    "play_recap": "Reproduzir vídeo recap da ETH Lima 2025",
+    "close_gallery": "Fechar galeria",
     "judges_title": "Júri Especializado",
     "judges_desc": "Conheça os especialistas da indústria que avaliaram e premiaram a inovação dos projetos.",
     "roles": {

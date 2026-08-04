@@ -19,7 +19,7 @@ export async function submitProject(formData: FormData) {
   try {
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { teamId: true }
+      select: { teamId: true },
     });
 
     if (!user?.teamId) {
@@ -60,10 +60,10 @@ export async function submitProject(formData: FormData) {
 export async function getProjectByTeam(teamId: string) {
   try {
     const project = await prisma.project.findUnique({
-      where: { teamId }
+      where: { teamId },
     });
     return { success: true, project };
-  } catch (error) {
+  } catch {
     return { success: false };
   }
 }
