@@ -19,6 +19,9 @@ const MEDIA: Partner[] = [
 ];
 
 const COMMUNITY: Partner[] = [
+  { name: "Ethereum Uruguay", logo: "ethereumuruaguay", ext: "png" },
+  { name: "Ethereum México", logo: "ethereummexico", ext: "svg" },
+  { name: "Cripto UNAM", logo: "criptounam", ext: "png" },
   { name: "ETH Bolivia", logo: "ethbolivia", ext: "png" },
   { name: "ETH Ecuador", logo: "eth-ecuador", ext: "png" },
   { name: "W3G", logo: "w3g", ext: "png" },
