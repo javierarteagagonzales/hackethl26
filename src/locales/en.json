@@ -21,8 +21,11 @@
     "loading": "Loading..."
   },
   "countdown": {
-    "slogan": "🔥 The Hackathon has begun! We extend registrations until August 3rd",
+    "slogan": "🔥 Applications open until August 3rd 11:59pm (GMT-5)",
+    "slogan_live": "🔥 We're live at the Hackathon! Until August 12th 3:00pm (GMT-5)",
+    "slogan_thanks": "Thank you for participating in the ETH Lima Hackathon",
     "cta": "Register →",
+    "live_cta": "Join Discord",
     "days": "D",
     "hours": "H",
     "minutes": "M",
