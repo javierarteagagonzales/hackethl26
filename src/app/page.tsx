@@ -27,7 +27,7 @@ import { SidebarTimelineNavigator } from "@/components/ui/sidebar-timeline-navig
 
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TracksSection } from "@/components/sections/TracksSection";
-import { WorkshopsSection } from "@/components/sections/WorkshopsSection";
+// import { WorkshopsSection } from "@/components/sections/WorkshopsSection";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
@@ -255,7 +255,7 @@ export default function Home() {
       <HeroSection t={t} terminalText={terminalText} />
       <TracksSection t={t} tracks={tracks} isDark={isDark} />
       <TimelineSection t={t} tArray={tArray} />
-      <WorkshopsSection t={t} tArray={tArray} />
+      {/* <WorkshopsSection t={t} tArray={tArray} /> */}
       <SponsorsSection t={t} isDark={isDark} />
       <PartnersSection t={t} />
       <FAQSection t={t} tArray={tArray} />
